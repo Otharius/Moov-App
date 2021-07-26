@@ -1,0 +1,35 @@
+<div class="container">
+    <form class="form" id="createAccount" method="POST" action="register">
+      <h1 class="form_title">Créer un compte</h1>
+      <div class="form_message form_message-error"></div>
+      <div class="form_input-group">
+          <input type="text" id="signupUsername" class="form_input" autofocus placeholder="Pseudo" value="<%= typeof pseudo != 'undefined' ? pseudo : '' %>" name="pseudo">
+          <div class="form_input-error-message"></div>
+      </div>
+      <div class="form_input-group">
+          <input type="text" class="form_input" placeholder="Prénom" value="<%= typeof firstname != 'undefined' ? firstname : '' %>" name="firstname">
+          <div class="form__input-error-message"></div>
+      </div>
+      <div class="form__input-group">
+          <input type="text" class="form_input" placeholder="Nom" value="<%= typeof name != 'undefined' ? name : '' %>">
+          <div class="form_input-error-message"></div>
+      </div>
+      <div class="form_input-group">
+          <input type="email" class="form_input" placeholder="Adresse mail" value="<%= typeof email != 'undefined' ? email : '' %>" name="email">
+          <div class="form_input-error-message"></div>
+      </div>
+      <div class="form_input-group">
+          <input type="password" class="form_input" placeholder="Mot de passe" value="<%= typeof password != 'undefined' ? password : '' %>" name="password">
+          <div class="form_input-error-message"></div>
+      </div>
+      <div class="form_input-group">
+          <input type="password" class="form_input" placeholder="Confirmer le mot de passe" value="<%= typeof password2 != 'undefined' ? password2 : '' %>" name="password2">
+          <div class="form_input-error-message"></div>
+      </div>
+      <button class="form_button" type="submit">Valider</button>
+      <p class="form_text">
+          <a class="form_link" href="/users/login" id="linkLogin">Vous avez un compte ? Connectez vous.</a>
+      </p>
+    </form>
+</div>
+</body>

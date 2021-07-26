@@ -1,0 +1,212 @@
+body{
+   
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+     margin: 0px;
+    padding: 0px;
+}
+
+ nav > ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+nav li {
+    list-style-type: none;
+}
+
+nav > ul::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+nav > ul > li {
+    float: left;
+    position: relative;
+    color: #fff; }
+
+nav {
+    width: 100%;
+    background-color: #FF8C00;
+}
+
+nav > ul > li:hover {
+    background-color: crimson;
+}
+
+nav a{
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 20px 70px;
+}
+
+
+.mdp {
+    padding: 10px 50px;
+    text-align: left;
+}
+
+.button {
+    padding: 10px 20px;
+}
+
+/*Bouton de déconnexion*/
+.deco {
+    padding: 30px 40px;
+    color: #eee;
+    background-color:red;
+    border: none;
+    margin-left: 3%;
+    margin-top: 4%;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 1rem;
+    outline: none;
+    font-weight: bold;
+}
+
+.deco:active {
+    transform: scale(0.98);
+}
+
+.deco:hover {
+    background-color: rgb(190, 0, 0);
+}
+
+/*Formule payante*/
+#formule1 {
+    border: 3px solid #FF8C00;
+    padding: 10px 20px;
+    background-color: rgb(211, 186, 75);
+}
+
+/*Bouton d'accueil*/
+.home {
+    width: 50px;
+    margin-top: 3px;
+}
+
+.Home {
+    padding: 0px 0px;
+    padding-bottom: 2px;
+}
+
+.Home:hover {
+    background-color: dimgrey;
+}
+
+.Ac:hover {
+    background-color: dimgrey;
+}
+
+/*mettre l'heure en place*/
+.affichage {
+    width: 100%;
+}
+
+#Heure {
+    text-align: right;
+    padding-right: 5%;
+    font-weight: bold;
+}
+    
+/*Les boites*/
+.container_td {
+    width: 30%;
+}
+
+.container1 {
+    border: 0.5px solid black;
+   
+}
+
+.container2 {
+    align-content:"right";
+    border: 1px solid black;
+}
+
+.table_container {
+    margin-left: 8%;
+    width: 84%;
+    margin-right: 8%;
+}
+
+.container1, .container2 {
+    text-align: center;
+}
+
+/*La boite du profil de l'utilisateur*/
+.profil_box {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    float: left;
+    margin-left: 5%;
+    font-size: 1.2rem;
+}
+
+/*La seconde boite*/
+.second_box {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    width: 400px;
+    max-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    float: right;
+    margin-right: 5%;
+}
+
+.input_box {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.input_box:focus {
+    background: #ffffff;
+    border-color:#009579 ;
+}
+
+.submit:active{
+    transform: scale(0.98);
+}
+
+.submit {
+        width: 100%;
+        padding: 1rem 2rem;
+        font-weight: bold;
+        font-size: 1.1rem;
+        color: #ffffff;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        cursor: pointer;
+        background-color: #FF8C00 ;
+    }
+
+.submit:hover {
+    background-color: #bb7a0a ;
+}    
+
+/*La grosse boite*/
+.big_box h2{
+    text-align: center;
+}
+
+
+
+
+/*Afficher l'heure*/
+.time {
+    text-align: center;
+    margin-top: 3%;
+}
