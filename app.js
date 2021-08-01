@@ -20,4 +20,8 @@ app.use(express.urlencoded({extended : false}));
 app.use('/',require('./routes/index'));
 app.use('/users',require('./routes/users'));
 
+//const data = require('./data/users.json');
+//console.log(data);
+//console.log(data.users);
+
 app.listen(3000);
