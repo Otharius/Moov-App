@@ -2,7 +2,7 @@
     "users": [
         {
             "id": "1",
-            "username": "papatausore",
+            "pseudo": "papatausore",
             "firstname": "Richard",
             "name": "Le Pennec",
             "pwd": "papa",
@@ -10,15 +10,7 @@
         },
         {
             "id": "2",
-            "username": "tito",
-            "firstname": "Jean",
-            "name": "Bon",
-            "pwd": "pwd",
-            "mail": "mail"
-        },
-        {
-            "id": "3",
-            "username": "Otharius",
+            "pseudo": "Otharius",
             "firstname": "Loïc",
             "name": "Le Pennec",
             "pwd": "abcd",

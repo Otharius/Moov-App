@@ -1,53 +1,54 @@
 const express = require('express');
 const router = express.Router();
-const Data = require('../../oss2021/data/users.json')
-
+const data = require('../data/users.json')
+const Users = require('../public/javascripts/users1.js');
 // Login handle
 
 router.get('/login', (req,res) => {
-    /*
-    console.log("//LOGIN.1");
-    */
     res.render('login');
 })
 
 router.get('/register', (req,res) => {
-    /*
-    console.log("//REGISTER.1");
-    console.log("//----------------");
-    console.log(req);
-    console.log("//----------------");
-    */
     res.render('register');
 })
 
 // Register handle
 
 router.post('/register', (req,res) => {
-    //console.log("//REGISTER.2");
     const pseudo = req.body.pseudo;
     //const firstname = ;
     //const data = JSON.parse(Data)
-    for(let i=0;Data.users[i].username;i++){
-        if(Data.users[i].username === pseudo) {
-            res.send("Vous êtes le "  + i);
+    const users = new Users().load();
+    const exist = users.exist(req.body.pseudo);
+    if(exist){
+        res.send('Pseudo déjà utilisé')
+    }else{
+        res.send('Pseudo non-utilisé')
+    }
+})
+
+router.post('/login', (req,res,next) => {
+    const pseudo = req.body.pseudo;
+    const password = req.body.password;
+    for (let i=0; i<data.users.length; i++) {
+        if (data.users[i].pseudo === pseudo) {
+            if (data.users[i].pwd === password) {
+                res.send("Vous êtes connecté en tant que  "  + data.users[i].firstname);
+            } else {
+                res.send("Mauvais mot de passe pour "  + data.users[i].firstname);
+            }
             return;
         }
     }
     res.send("Vous n'existez pas");
-})
 
-router.post('/login', (req,res,next) => {
-    //console.log("//LOGIN.2");
 })
 
 // Logout
 
 router.get('/logout', (req,res) => {
-    //console.log("//LOGOUT");
 })
 
-module.exports  = router;
-
+module.exports = router
 
 
