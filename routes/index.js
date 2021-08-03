@@ -3,7 +3,7 @@ const router  = express.Router();
 
 // Login page
 router.get('/', (req,res) => {
-    res.render('welcome');
+    res.render('login');
 })
 
 // Register page
