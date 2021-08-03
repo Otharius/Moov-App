@@ -1,25 +1,41 @@
-class User{
+class User {
+
     pseudo = '';
-    #nom = '';
-    #prenom = '';
-    #email = '';
-    #password = '';
-    constructor(pseudo, nom, prenom){
+    name = '';
+    firstname = '';
+    email = '';
+    password = '';
+
+    constructor(pseudo, name, firstname) {
         this.pseudo = pseudo;
-        this.#nom = nom;
-        this.#prenom = prenom;
+        this.name = name;
+        this.firstname = firstname;
     }
-    withPassword(password){
-        this.#password = password;
+
+    withPassword(password) {
+        this.password = password;
         return this;
     }
-    withEmail(email){
-        this.#email = email;
+
+    withEmail(email) {
+        this.email = email;
         return this;
     }
-    checkPassword(password){
-        return this.#password === password;
+
+    checkPassword(password) {
+        return this.password === password;
     }
+
+    toObject() {
+        return {
+            "pseudo": this.pseudo,
+            "name": this.name,
+            "firstname": this.firstname,
+            "email": this.email,
+            "password": this.password
+        }
+    }
+
 }
 
 module.exports = User

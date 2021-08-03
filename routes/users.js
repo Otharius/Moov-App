@@ -27,9 +27,7 @@ router.post('/register', (req,res) => {
     //const data = JSON.parse(Data)
     const users = new Users().load();
     const exist = users.exist(req.body.pseudo);
-    fs.write('users.json', 'users', function (err) {
-        if (err) throw err;
-        console.log('Fichier créé !')})
+    users.save();
     if(exist){
         res.send('Pseudo déjà utilisé')
     }else{
