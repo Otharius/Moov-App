@@ -15,11 +15,6 @@ router.get('/register', (req,res) => {
     res.render('register');
 })
 
-// Workout handle
-
-router.get('/workout', (req,res) => {
-    res.render('workout')
-})
 
 // Register handle
 
@@ -75,7 +70,7 @@ router.post('/login', (req,res,next) => {
         return;
     }
 
-    res.render('accueil');
+    res.render('home');
 
 })
 

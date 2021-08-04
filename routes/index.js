@@ -6,9 +6,6 @@ router.get('/', (req,res) => {
     res.render('login');
 })
 
-// Register page
-router.get('/register', (req,res) =>{
-    res.render('register');
-})
 
-module.exports = router; 
+
+module.exports = router;  

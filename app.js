@@ -17,7 +17,8 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded({extended : false}));
 
 //Routes
-app.use('/',require('./routes/index'));
 app.use('/sign',require('./routes/sign'));
+app.use('/workout',require('./routes/workout'));
+app.use('/',require('./routes/index'));
 
 app.listen(3000);
