@@ -16,6 +16,7 @@ router.get('/home', (req,res) => {
 
 router.post('/profiles', (req,res) => {
     res.render('login')
+
 })
 
 // Meal handle
