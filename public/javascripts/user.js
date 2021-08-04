@@ -14,8 +14,12 @@ class User {
         this.firstname = firstname;
     }
 
-    withPassword(password) {
-        this.password = password;
+    withPassword(password, encrypt=false) {
+        if (encrypt) {
+            this.password = bcrypt.hashSync(password, 10);
+        } else {
+            this.password = password;
+        }
         return this;
     }
 
