@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Users = require('../public/javascripts/users1.js');
+const Users = require('../public/javascripts/users.js');
 const fs = require('fs');
 const users = new Users().load();
 const User = require('/dev/oss2021/public/javascripts/user');
