@@ -1,5 +1,5 @@
 const data = require('../../data/users.json')
-const User = require('/dev/oss2021/public/javascripts/user');
+const User = require('./user');
 const fs = require('fs')
 
 class Users {
