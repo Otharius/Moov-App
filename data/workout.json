@@ -1,0 +1,78 @@
+{
+    
+    "work": [
+        {
+            "id": "1",
+            "userId": "1",
+            "preview": "",
+            "difficulty": "",
+            "notes": "",
+            "done": "",
+            "duration": ""
+        },
+        {
+            "id": "2",
+            "userId": "2",
+            "preview": "",
+            "difficulty": "",
+            "notes": "",
+            "done": "",
+            "duration": ""
+        },
+        {   
+            "id": "3",
+            "userId": "3",
+            "preview": "",
+            "difficulty": "",
+            "notes": "",
+            "done": "",
+            "duration": ""
+        } 
+    ],
+    "exercices": [
+        {
+            "id": "1",
+            "title": "pompe",
+            "movie": ""
+        },
+        {
+            "id": "2",
+            "title": "squat",
+            "movie": ""
+        }
+    ],
+    "jobs": [
+        {
+            "id": "1",
+            "workId": "1",
+            "serie": "",
+            "rep": "",
+            "sleep": ""
+        },
+        {
+            "id": "2",
+            "workId": "2",
+            "serie": "",
+            "rep": "",
+            "sleep": ""
+        }
+    ],
+    "Seances": [
+        {
+            "jobsId": "1"
+        }
+    ],
+    "evenements": [
+        {
+            "id": "1",
+            "workId": "1",
+            "date": ""
+        }
+    ],
+    "calender": [
+        {
+            "evemenentId": "1",
+            "userId": "1"
+        }
+    ]
+}

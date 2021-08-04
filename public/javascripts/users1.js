@@ -1,4 +1,4 @@
-const data = require('../../data/user.json')
+const data = require('../../data/users.json')
 const User = require('/dev/oss2021/public/javascripts/user');
 const fs = require('fs')
 
@@ -19,7 +19,7 @@ class Users {
 
     exist(pseudo) {
         return this.users.has(pseudo);
-    }   
+    }
 
     get(pseudo) {
         return this.users.get(pseudo);

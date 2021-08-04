@@ -1,8 +1,8 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../data/user.json')
 const Users = require('../public/javascripts/users1.js');
 const fs = require('fs');
+const users = new Users().load();
 const User = require('/dev/oss2021/public/javascripts/user');
 // Login handle
 
@@ -30,7 +30,6 @@ router.post('/register', (req,res) => {
     const password = req.body.password;
     const password2 = req.body.password2;
     //const data = JSON.parse(Data)
-    const users = new Users().load();
     const exist = users.exist(req.body.pseudo);
 
     if (exist) {
@@ -50,18 +49,19 @@ router.post('/register', (req,res) => {
 router.post('/login', (req,res,next) => {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
-    for (let i=0; i<data.length; i++) {
-        if (data[i].pseudo === pseudo) {
-            if (data[i].password === password) {
-                res.render('accueil')
-                //res.send("Vous êtes connecté en tant que  "  + data.users[i].firstname);
-            } else {
-                res.send("Mauvais mot de passe pour "  + data[i].firstname);
-            }
-            return;
-        }
+
+    if (!users.exist(pseudo)) {
+        res.send("Vous n'existez pas");
+        return;
     }
-    res.send("Vous n'existez pas");
+
+    const user = users.get(pseudo);
+    if (!user.checkPassword(password)) {
+        res.send("Mauvais mot de passe pour "  + pseudo);
+        return;
+    }
+
+    res.render('accueil');
 
 })
 
