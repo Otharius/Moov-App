@@ -44,7 +44,7 @@ class Users {
             objs.push(user.toObject());
         }
         const buffer = JSON.stringify(objs);
-        fs.writeFile('data/user.json', buffer, function (err) {
+        fs.writeFile('data/users.json', buffer, function (err) {
             if (err) throw err;
             console.log('Fichier créé !')
         })
