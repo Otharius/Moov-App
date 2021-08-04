@@ -43,8 +43,17 @@ router.post('/register', (req,res) => {
         res.send('Mots de passe differents');
         return;
     }
+    //let has = bcrypt.hashSync('Password', 10);
 
-    const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password);
+//if (bcrypt.compareSync('Password', hash)) {
+
+   //} else {
+
+   //}
+    const hash = bcrypt.hashSync(password, 10)
+    const user = (new User(pseudo, name, firstname).withEmail(email).withPassword(hash));
+    console.log(user)
+
     users.add(user);
     users.save();
     res.render('login');
@@ -67,6 +76,9 @@ router.post('/login', (req,res,next) => {
     }
 
     const user = users.get(pseudo);
+    //console.log(user.password)
+    //console.log(bcrypt.compareSync(password, user.password))
+    //if (!user.checkPassword(bcrypt.compareSync(password, user.password))) {
     if (!user.checkPassword(password)) {
         res.send("Mauvais mot de passe pour "  + pseudo);
         return;
@@ -79,13 +91,7 @@ router.post('/login', (req,res,next) => {
 // Logout
 
 router.get('/logout', (req,res) => {
-    let hash = bcrypt.hashSync('Password', 10);
-    console.log(hash)
-if (bcrypt.compareSync('Password', hash)) {
-        res.send('bon mdp')
-   } else {
-    res.send('mauvais mdp')
-   }
+
    
     res.render('login')
 })

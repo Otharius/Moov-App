@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+
 class User {
 
     pseudo = '';
@@ -23,7 +25,7 @@ class User {
     }
 
     checkPassword(password) {
-        return this.password === password;
+        return bcrypt.compareSync(password, this.password);
     }
 
     toObject() {
