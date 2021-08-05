@@ -77,7 +77,8 @@ router.post('/login', (req,res,next) => {
 
     sessions.login(user);
 
-    console.log(sessions.getSession(user))
+    const session = sessions.getSession(user);
+    console.log(session.user.pseudo + " vient de se connecter.");
     res.render('home');
 
 })
@@ -89,5 +90,3 @@ router.get('/logout', (req,res) => {
 })
 
 module.exports = router
-
-

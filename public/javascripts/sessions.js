@@ -16,7 +16,7 @@ class Sessions {
         return new Session(this.getNewToken(), user)
     }
 
-    add (session) {
+    add(session) {
         if (this.exist(session.token)) {
             return false;
         }
@@ -29,22 +29,16 @@ class Sessions {
         this.add(session);
     }
 
-    exist (token) {
+    exist(token) {
         return this.sessions.has(token);
     }
 
-    get (token) {
+    get(token) {
         return this.sessions.get(token);
     }
 
     getSession(user) {
-        console.log('GETSESSION');
-        console.log(user);
         for (let session of this.sessions.values()) {
-            console.log('SESSION')
-            console.log(session);
-            console.log('SESSION USER')
-            console.log(session.user);
             if (session.user === user) {
                 return session;
             }
