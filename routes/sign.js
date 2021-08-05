@@ -8,6 +8,7 @@ const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
 
+
 // Login handle
 
 router.get('/login', (req,res) => {
@@ -77,7 +78,7 @@ router.post('/login', (req,res,next) => {
 
     sessions.login(user);
 
-    const session = sessions.getSession(user);
+    const session = sessions.getSession(user)
     console.log(session.user.pseudo + " vient de se connecter.");
     res.render('home');
 
