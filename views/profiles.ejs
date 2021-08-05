@@ -34,9 +34,13 @@
             </div>
             </tr>
         </table>
-        <a href="/sign/logout" class="deco" id="botton">Déconnexion</a>
+
+        <form class="form" id="logout" action="/sign/logout" method="POST">
+            <div class="form__input-group"> 
+              <input type="hidden" id="hidden_pseudo" name="hidden_pseudo">
+            </div>
+            <button class="deco" type="submit" id="deconnection" onclick="appendPseudo()">Déconnexion</button>
+        </form>
+
         <p id="heure" class="time"></p>
     </body>
- <script>
-     const storage = localStorage.setItem('pseudo', )
- </script>

@@ -4,7 +4,20 @@
     <meta name="viewport" content="width=device-width"/>
 <title></title>
 </head>
+
 <body>
 <%- body %>
 </body>
+<script>
+    function savePseudo() {
+        localStorage.clear()
+        pseudo = document.getElementById('const_pseudo').value;
+        localStorage.setItem('pseudo', pseudo); 
+    }
+
+    function appendPseudo() {
+        document.getElementById('hidden_pseudo').setAttribute('value', localStorage.getItem('pseudo'))
+    }
+
+</script>
 </html>

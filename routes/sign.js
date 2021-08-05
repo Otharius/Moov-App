@@ -90,4 +90,10 @@ router.get('/logout', (req,res) => {
     res.render('login')
 })
 
+router.post('/logout', (req,res) => {
+    res.render('login')
+    console.log(req.body.hidden_pseudo + ' vient de se déconnecter');
+})
+
+
 module.exports = router
