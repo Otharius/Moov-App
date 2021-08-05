@@ -9,7 +9,7 @@ class Users {
     constructor() {
     }
     
-    add(user) {
+    add (user) {
         if (this.exist(user.pseudo)) {
             return false;
         }
@@ -17,15 +17,15 @@ class Users {
         return true;
     }
 
-    exist(pseudo) {
+    exist (pseudo) {
         return this.users.has(pseudo);
     }
 
-    get(pseudo) {
+    get (pseudo) {
         return this.users.get(pseudo);
     }
 
-    load() {
+    load () {
         for (let i=0; i<data.length; i++) {
             this.add(new User(
                 data[i].pseudo,
