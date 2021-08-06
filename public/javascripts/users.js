@@ -8,6 +8,8 @@ class Users {
 
     constructor() {
     }
+
+    
     
     add (user) {
         if (this.exist(user.pseudo)) {
@@ -48,7 +50,7 @@ class Users {
             if (err) throw err;
             console.log('Fichier créé !')
         })
-    }
+    } 
 }
 
 module.exports = Users

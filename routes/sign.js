@@ -87,13 +87,55 @@ router.post('/login', (req,res,next) => {
 // Logout
 
 router.get('/logout', (req,res) => {
-    res.render('login')
 })
 
 router.post('/logout', (req,res) => {
     res.render('login')
-    console.log(req.body.hidden_pseudo + ' vient de se déconnecter');
+    console.log(req.body.hidden_pseudo + ' vient de se déconnecter.');
 })
 
+// Profiles handle
+ 
+router.get('/home', (req,res) => {
+    res.render('home')
+})
+
+router.post('/changePassword', (req,res) => {
+
+    const oldPassword = req.body.old;
+    const newPassword = req.body.new;
+    const newPassword2 = req.body.new2
+    const pseudo = req.body.hidden_pseudo;
+    const user = users.get(pseudo);
+    console.log(user)
+
+    if (!user.checkPassword(oldPassword)) {
+        res.send("Mauvais mot de passe pour "  + pseudo);
+        return;
+    }
+
+    console.log(req);
+    if (newPassword === '' || newPassword2 === '') {
+        res.send('Veillez renseigner tout les champs');
+        return;
+    }
+
+    if (oldPassword === newPassword) {
+        res.send('Le mot de passe doit être différent');
+        return;
+    }
+
+
+    if (newPassword != newPassword2) {
+        res.send('Confirmation de mot de passe incorrect');
+        return;
+    }
+
+    user.withPassword(newPassword, true);
+    users.save();
+
+
+    res.send('bon')
+})
 
 module.exports = router

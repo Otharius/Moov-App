@@ -23,13 +23,16 @@
                         <p id="no"></p>
                     </div>
                 <!--Boîte libre-->
+                <form action="/sign/changePassword" method="POST">
                     <div class="second_box">
                         <h2>Changer le mot de passe</h2>
-                        <input type="password" placeholder="Ancien mot de passe" class="input_box"> <br><br>
-                        <input type="password" placeholder="Nouveau mot de passe" class="input_box"><br><br>
-                        <input type="password" placeholder="Confirmer le nouveau mot de passe" class="input_box"><br><br>
-                        <button class="submit">Confirmer</button>
+                        <input type="password" placeholder="Ancien mot de passe" class="input_box" name="old" id=""> <br><br>
+                        <input type="password" placeholder="Nouveau mot de passe" class="input_box" name="new" id=""><br><br>
+                        <input type="password" placeholder="Confirmer le nouveau mot de passe" class="input_box" name="new2" id=""><br><br>
+                        <input type="hidden" id="hidden_pseudo" name="hidden_pseudo">
+                        <button class="submit" id="" onclick="appendPseudo()">Confirmer</button>
                     </div>
+                </form>
 
             </div>
             </tr>

@@ -1,4 +1,5 @@
 const express = require('express');
+const user = require('/dev/oss2021/data/users.json')
 
 const router = express.Router();
 
@@ -8,16 +9,6 @@ router.get('/training', (req,res) => {
     res.render('training')
 })
 
-// Profiles handle
- 
-router.get('/home', (req,res) => {
-    res.render('home')
-})
-
-router.post('/profiles', (req,res) => {
-    res.render('login')
-
-})
 
 // Meal handle
  
