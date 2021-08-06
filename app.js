@@ -3,9 +3,10 @@ const router = express.Router();
 const app = express();
 //const mongoose = require('mongoose');
 const expressEjsLayout = require('express-ejs-layouts');
-//const http = require('http');
+const http = require('http');
 const https = require('https')
 const fs = require('fs')
+const config = require('./config.json')
 
 //mongoose
 // mongoose
@@ -25,18 +26,19 @@ app.use('/sign',require('./routes/sign'));
 app.use('/workout',require('./routes/workout'));
 app.use('/',require('./routes/index'));
 
-var privateKey = fs.readFileSync('C:/Users/Loïc Le Pennec/.ssh/privateKey.key', 'utf-8');
-var certificate = fs.readFileSync('C:/Users/Loïc Le Pennec/.ssh/certificate.crt', 'utf-8');
-var credentials = {key: privateKey, cert: certificate};
-
 app.get('/', function(req,res) {
     res.send('hello');
 });
 
-//var httpServer = http.createServer(app);
-var httpsServer = https.createServer(credentials, app);
-
-//httpServer.listen(8080);
-httpsServer.listen(3000);
-
-//app.listen(3000);
+if (config.protocol === 'https') {
+    const privateKey = fs.readFileSync(config.privateKeyPath, 'utf-8');
+    const certificate = fs.readFileSync(config.certificatePath, 'utf-8');
+    var credentials = {key: privateKey, cert: certificate};
+    var server = https.createServer(credentials, app);
+    server.listen(3000);
+} else if (config.protocol === 'http') {
+    const server = http.createServer(app);
+    server.listen(3000);
+} else {
+    console.log('Unkown protocol ' + config.protocol);
+}

@@ -1,0 +1,6 @@
+{
+    "protocol" : "http",
+    "privateKeyPath" : "C:/Users/Loïc Le Pennec/.ssh/privateKey.key",
+    "certificatePath" : "C:/Users/Loïc Le Pennec/.ssh/certificate.crt",
+    "port" : 3000
+}

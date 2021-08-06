@@ -89,8 +89,9 @@ router.get('/logout', (req,res) => {
 })
 
 router.post('/logout', (req,res) => {
+
+    console.log(req.body.hidden_pseudo + ' vient de se déconnecter.')
     res.render('login')
-    console.log(req.body.hidden_pseudo + ' vient de se déconnecter.');
 })
 
 // Profiles handle

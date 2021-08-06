@@ -10,13 +10,15 @@
 </body>
 <script>
     function savePseudo() {
-        localStorage.clear()
-        pseudo = document.getElementById('const_pseudo').value;
+        pseudo = document.getElementById('pseudo').value;
+        alert(pseudo)
         localStorage.setItem('pseudo', pseudo); 
+
     }
 
     function appendPseudo() {
-        document.getElementById('hidden_pseudo').setAttribute('value', localStorage.getItem('pseudo'))
+        document.getElementById('hidden_pseudo').setAttribute('value', localStorage.getItem('pseudo'));
+        document.getElementById('hidden_pseudo').value = localStorage.getItem('pseudo');
     }
 
 </script>
