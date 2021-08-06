@@ -19,8 +19,6 @@ router.get('/register', (req,res) => {
     res.render('register');
 })
 
-
-
 // Register handle
 
 router.post('/register', (req,res) => {
@@ -80,6 +78,7 @@ router.post('/login', (req,res,next) => {
 
     const session = sessions.getSession(user)
     console.log(session.user.pseudo + " vient de se connecter.");
+    console.log(req)
     res.render('home');
 
 })
@@ -107,16 +106,14 @@ router.post('/changePassword', (req,res) => {
     const newPassword2 = req.body.new2
     const pseudo = req.body.hidden_pseudo;
     const user = users.get(pseudo);
-    console.log(user)
 
-    if (!user.checkPassword(oldPassword)) {
-        res.send("Mauvais mot de passe pour "  + pseudo);
+    if (newPassword === '' || newPassword2 === '') {
+        res.send('Veillez renseigner tout les champs');
         return;
     }
 
-    console.log(req);
-    if (newPassword === '' || newPassword2 === '') {
-        res.send('Veillez renseigner tout les champs');
+    if (!user.checkPassword(oldPassword)) {
+        res.send("Mot de passe incorrect");
         return;
     }
 
