@@ -11,14 +11,14 @@
 <script>
     function savePseudo() {
         pseudo = document.getElementById('pseudo').value;
-        alert(pseudo)
         localStorage.setItem('pseudo', pseudo); 
 
     }
 
     function appendPseudo() {
-        document.getElementById('hidden_pseudo').setAttribute('value', localStorage.getItem('pseudo'));
-        document.getElementById('hidden_pseudo').value = localStorage.getItem('pseudo');
+        const pseudo = localStorage.getItem('pseudo');
+        document.getElementById('pseudo').setAttribute('value', pseudo);
+        document.getElementById('logoutPseudo').setAttribute('value', pseudo);
     }
 
 </script>

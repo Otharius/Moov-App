@@ -90,7 +90,7 @@ router.get('/logout', (req,res) => {
 
 router.post('/logout', (req,res) => {
 
-    console.log(req.body.hidden_pseudo + ' vient de se déconnecter.')
+    console.log(req.body.logoutPseudo + ' vient de se déconnecter.')
     res.render('login')
 })
 
@@ -105,16 +105,24 @@ router.post('/changePassword', (req,res) => {
     const oldPassword = req.body.old;
     const newPassword = req.body.new;
     const newPassword2 = req.body.new2
-    const pseudo = req.body.hidden_pseudo;
+    const pseudo = req.body.pseudo;
+    
     const user = users.get(pseudo);
+    
 
-    if (newPassword === '' || newPassword2 === '') {
-        res.send('Veillez renseigner tout les champs');
+    if (user === undefined) {
+        res.send('Aucun utilisateur pour le pseudo [' + pseudo + ']');
         return;
     }
 
     if (!user.checkPassword(oldPassword)) {
-        res.send("Mot de passe incorrect");
+        res.send("Mauvais mot de passe pour "  + pseudo);
+        return;
+    }
+
+    console.log(req);
+    if (newPassword === '' || newPassword2 === '') {
+        res.send('Veillez renseigner tout les champs');
         return;
     }
 
@@ -135,5 +143,7 @@ router.post('/changePassword', (req,res) => {
 
     res.send('bon')
 })
+
+
 
 module.exports = router
