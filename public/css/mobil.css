@@ -1,59 +1,83 @@
-/*Début du  menu de connexion*/
-
-nav > ul {
-    margin: 0px;
+body{
     padding: 0px;
+    margin: 0px;
+}
+
+.topnav {
+    background-color: #FF8C00;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    float: left;
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+    float: left;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 17px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+
+  .nav_second {
+      width: 3.8rem;
+  }
+
+  .nav_text {
+    text-align: left;
+  }
+  
+  /* Change the color of links on hover */
+  .topnav a:hover {
+    background-color: crimson;
+    color: white;
+    height: 1.75rem;
+  }
+  
+  /* Add a color to the active/current link */
+  .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+  }
+  
+  svg {
+    fill: var(--clr-gray400);
+    width: 2rem;}
+
+/* * {
+    padding: 0;
+    margin: 0;
+}
+
+nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+}
+
+nav li a {
+    text-decoration: none;
+    width: 100%;
+    border: 1px solid red;
+    display: inline-block;
+    margin: none;
+    background-color: whitesmoke;
+    font-size: 15px;
 }
 
 nav li {
-    list-style-type: none;
-}
-
-nav > ul::after{
-    content: "";
-    display: block;
-    clear: both;
-}
-
-nav > ul > li {
-    float: left;
-    position: relative;
-    color: #fff; }
-
-nav {
-    width: 100%;
-    background-color: #FF8C00;
-}
-
-nav > ul > li:hover {
-    background-color: crimson;
-}
-
-nav a{
+    border: 1px solid green;
+    width: 18%;
+    text-align: center;
     display: inline-block;
-    text-decoration: none;
-    color: #fff;
-    padding: 1rem 2rem;
-}
+    margin: none;
+    background-color: whitesmoke;
+} */
 
-.home {
-    width: 50px;
-    margin-top: 1.5px;
-}
-
-.Home {
-    padding: 0px 0px;
-    padding-bottom: 2px;
-}
-
-.Home:hover {
-    background-color: dimgrey;
-}
-
-.Ac:hover {
-    background-color: dimgrey;
-}
- 
 /*Fin du menu de sélection*/
 /*Début connexion et inscription*/
 
@@ -176,7 +200,7 @@ nav a{
 /*Début de la page d'entrainement*/
 
 
-calender_div {
+.calender_div {
     margin-left: 4%;
     margin-right: 5%;
     border: 1px solid black;

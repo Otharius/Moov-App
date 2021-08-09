@@ -78,7 +78,6 @@ router.post('/login', (req,res,next) => {
 
     const session = sessions.getSession(user)
     console.log(session.user.pseudo + " vient de se connecter.");
-    console.log(req)
     res.render('home');
 
 })
@@ -104,9 +103,8 @@ router.post('/changePassword', (req,res) => {
 
     const oldPassword = req.body.old;
     const newPassword = req.body.new;
-    const newPassword2 = req.body.new2
+    const newPassword2 = req.body.new2;
     const pseudo = req.body.pseudo;
-    
     const user = users.get(pseudo);
     
 
@@ -115,14 +113,13 @@ router.post('/changePassword', (req,res) => {
         return;
     }
 
-    if (!user.checkPassword(oldPassword)) {
-        res.send("Mauvais mot de passe pour "  + pseudo);
+    if (newPassword === '' || newPassword2 === '') {
+        res.send('Veillez renseigner tout les champs');
         return;
     }
 
-    console.log(req);
-    if (newPassword === '' || newPassword2 === '') {
-        res.send('Veillez renseigner tout les champs');
+    if (!user.checkPassword(oldPassword)) {
+        res.send("Mauvais mot de passe pour "  + pseudo);
         return;
     }
 
@@ -130,7 +127,6 @@ router.post('/changePassword', (req,res) => {
         res.send('Le mot de passe doit être différent');
         return;
     }
-
 
     if (newPassword != newPassword2) {
         res.send('Confirmation de mot de passe incorrect');

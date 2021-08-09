@@ -1,0 +1,528 @@
+/*Début du  menu de connexion*/
+
+ /* .nav > ul {
+    margin: 0px;
+    padding: 0px;
+}  */
+@media screen and (max-width: 480px){
+    .nav_workout {
+        font-size: 5rem
+    }
+} 
+
+ .nav li {
+    list-style-type: none;
+    max-width: 20%;
+} 
+
+.nav > ul::after{
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.nav > ul > li {
+    float: left;
+    position: relative;
+    color: #fff; }
+
+
+.nav > ul > li:hover {
+    background-color: crimson;
+}
+
+.nav a{
+    display: inline-block;
+    text-decoration: none;
+    color:black;
+}
+
+.nav_workout, .nav_sleep, .nav_meal, .nav_profiles {
+    width: 7rem;
+    text-align: center;
+}
+
+.home {
+    width: 3rem;
+    margin-top: 1.5px;
+}
+
+.nav_workout {
+    float: left;
+}
+
+.Home {
+    padding: 0px 0px;
+    padding-bottom: 2px;
+}
+
+.Home:hover {
+    background-color: dimgrey;
+}
+
+.Ac:hover {
+    background-color: dimgrey;
+}
+ 
+/*Fin du menu de sélection*/
+/*Début connexion et inscription*/
+
+
+
+.container {
+    width: 400px;
+    max-width: 400px;
+    margin: 1rem;
+    padding: 2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    background: #ffffff;
+}
+
+.container,
+.form_input,
+.form_button {
+    font: 500 1rem 'Quicksand', sans-serif;
+}
+
+.form-hidden {
+    display: none;
+}
+
+.form > *:first-child {
+    margin-top: 0;
+}
+
+.form > *:last-child {
+    margin-bottom: 0;
+}
+
+.form_title {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.form_message {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.form_message-success {
+    color: #4bb544;
+}
+
+.form_message-error {
+    color: #cc3333;
+}
+
+.form_input-group {
+    margin-bottom: 1rem;
+}
+
+.form_input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: 4px;
+    border: 1px solid #dddddd;
+    outline: none;
+    background: #eeeeee;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.form_input:focus {
+    border-color: #009579;
+    background: #ffffff;
+}
+
+.form_input-error {
+    color: #cc3333;
+    border-color: #cc3333;
+}
+
+.form_input-error-message {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #cc3333;
+}
+
+.form_button {
+    width: 100%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    outline: none;
+    cursor: pointer;
+    background: #FF8C00;
+}
+
+.form_button:hover {
+    background: #bb7a0a;
+}
+
+.form_button:active {
+    transform: scale(0.98);
+}
+
+.form_text {
+    text-align: center;
+}
+
+.form_link {
+    color: #252c6a;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.form_link:hover {
+    text-decoration: underline;
+}
+
+/*Fin connexion et inscription*/
+/*Début de la page d'entrainement*/
+
+
+.calender_div {
+    margin-left: 4%;
+    margin-right: 5%;
+    border: 1px solid black;
+    width: 90%;
+    max-width: 90%;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);;
+}
+
+.body_div h1{
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.ca.lender_div, .work_yes, .work_no, .evolution, .documentary{
+    margin-left: 2%;
+    margin-right: 2%;
+    border: 1px solid black;
+    width: 95%;
+    max-width: 95%;
+    border-radius: 8px;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);;
+}
+
+.calender_div {
+    width: 92.5%;
+}
+
+.work_yes {
+    width: 35rem;
+    margin-right: 3%;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-left: 2%;
+    display: inline-block;
+}
+
+.work_no {
+    float: right;
+    width: 35rem;
+    margin-left: 3%;
+    border: 1px solid black;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-right: 3%;
+    
+}
+
+.evolution {
+    margin-top: 1rem;
+    display: inline-block;
+}
+
+
+/*Liste fait ou pas*/
+.do_work li{
+    display: inline-block;
+    width: 6rem;
+    padding: 1rem 2rem;
+    margin: 0;
+    border: 1px solid black;
+}
+
+.do_work li:hover{
+    cursor: pointer;
+}
+
+
+.yes {
+    background-color: green;
+    color: white;
+    border-color:green;
+    text-align: center;
+}
+
+.yes:hover {
+    background-color: rgb(14, 88, 14);
+}
+
+.yes:active {
+    transform: scale(0.98);
+}
+
+.little {
+    background-color: orange;
+    color: white;
+    border-color: orange;
+    text-align: center;
+}
+
+.little:hover{
+    background-color: rgb(202, 112, 3);
+}
+
+.little:active {
+    transform: scale(0.98);
+}
+
+.no {
+    background-color: red;
+    color: white;
+    border-color: red;
+    text-align: center;
+}
+
+.no:hover{
+    background-color: rgb(158, 4, 4);
+}
+
+.no:active {
+    transform: scale(0.98);
+}
+
+.difficulty td{
+    width: 30px;
+    border: 1px solid black;
+    text-align: center;
+    border-radius: 20px;
+    padding: 0.5rem;
+}
+
+.difficulty td:hover {
+    background-color: rgb(2, 2, 185);
+    color: white;
+    border-color: rgb(1, 1, 68);
+    cursor: pointer;
+}
+
+.difficulty td:active {
+    transform: scale(0.95);
+}
+
+.little_title{
+    text-align: center;
+    padding-top: 0.3rem;
+}
+
+.note_div {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    width: 31rem;
+    height: 15rem;
+    margin: 2rem;  
+}
+
+/*Fin de la page d'entrainement*/
+/*Début de la page d'accueil*/
+
+#entrainement {
+    padding: 20px 30px;
+}
+
+#entrainement .muscu {
+    background-color: orange;
+}
+
+#entrainement .aérobie {
+    background-color: green;
+}
+
+.aérobie, .muscu {
+    padding: 20px 30px;
+}
+
+#programme, #Evolution, #Calorie, #Forme, #Repas {
+    border: 1px solid black;
+}
+
+#auj {
+    text-align: center;
+} 
+
+/*Fin de la page d'accueil*/
+/*Début de la page de sommeil*/
+
+/*#Align {
+    padding-left: 10px;
+    background-color: blueviolet;
+    color: white;
+}*/
+
+.conseil {
+    color: darkblue;
+}
+
+.dur tr:nth-child(odd) {
+    background-color: #eee;
+}
+
+#Flex {
+    padding-left: 20px;
+
+}
+
+.gras {
+    font-weight: bold;
+}
+
+.Medit {
+    width: 400px;
+    margin-right: 50px;
+    border: 2px solid black;
+}
+
+.img td {
+    border: none;
+}
+
+.Medite {
+    width: 400px;
+    margin-left: 50px;
+    border: 2px solid black;
+}
+
+h3 {
+    margin-left: 5px;
+} 
+
+/*Fin de la page de sommeil*/
+/*Début de la page d'alimentation*/
+
+
+#Calorie, #Repas, #Conseil, #Besoin, #Ecart {
+    border: 1px solid black;
+}
+
+.manger {
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+table th, td {
+    padding: 20px 30px;
+    text-align: center;
+    border: 1px solid black;
+}
+div {
+    background-color: white;
+}
+
+.color {
+    background-color: #ddd;
+}
+
+/*#Calorie, #Ecart, #Conseil {
+    background-color: green;
+    color: white;
+}*/
+
+h3 {
+    margin-left: 5px;
+}
+
+#Quanti {
+    border: 1px solid darkblue;
+    width: 500px;
+    margin: 0px auto;  
+    background-color: #eee;  
+    padding: 5px 7px;
+}
+
+#Gl {
+    border: 1px solid white;
+}
+
+hr {
+    width: 1200px;
+    color: black;
+}
+
+.Gl, .Pr {
+    border: 2px solid black;
+}
+
+.Gl {
+    width: 600px;
+    margin-right: 20px;
+}
+
+.Pr {
+    width: 600px;
+    margin-left: 20px;
+}
+
+.txt {
+    text-align: left;
+}
+
+.com, .sim {
+    text-align: left;
+}
+
+.Prot {
+    text-align: left;
+}
+
+.Acide {
+    border-collapse: collapse;
+    border: 1px solid black;
+    padding: 0px 0px;
+    text-align: left;
+}
+
+.Red {
+    color: red;
+    font-size: 20px;
+}
+
+.Acide th {
+    background-color: #ddd;
+}
+
+p {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+h3, h1, h4 {
+    padding-left: 5px;
+}
+
+input{
+    padding: 20px 10px;
+    font-weight: bold;
+    font-weight: 50px;
+}
+
+.repas {
+    border: none;
+}
+
+.repas{
+    border: none;
+}
+
+.manger input {
+    padding: 20px 10px;
+}

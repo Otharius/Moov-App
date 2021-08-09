@@ -25,6 +25,10 @@ router.get('/profiles', (req,res) => {
     res.render('profiles')
 })
 
+router.get('/home', (req,res) => {
+    res.render('home')
+})
+
 module.exports = router
 
 
