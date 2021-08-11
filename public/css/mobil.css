@@ -5,7 +5,7 @@ body{
 
 .topnav {
     background-color: #FF8C00;
-    overflow: hidden;
+    overflow: scroll;
     position: fixed;
     bottom: 0;
     width: 100%;
@@ -528,7 +528,7 @@ input{
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
-.profil_box {
+.profil_box h2{
     text-align: center;
 }
 
@@ -580,26 +580,25 @@ input{
     transform: scale(0.98);
 }
 
-.input_deco {
-    width: 50%;
-    padding: 1rem 2rem;
-    font-weight: bold;
+
+.deco {
     font-size: 1.1rem;
+    padding: 1rem 1rem;
     color: #ffffff;
     border: none;
-    border-radius: 5px;
+    border-radius: 50%;
     outline: none;
     cursor: pointer;
     background: red;
     display: block;
-    margin: auto;
+    float: right;
 }
 
-.input_deco:hover {
+.deco:hover{
     background-color: rgb(158, 4, 4);
 }
 
-.input_deco:active {
+.deco:active {
     transform: scale(0.98);
 }
 
@@ -610,4 +609,11 @@ input{
 .svg_ball {
     width: 2.75rem;
     height: 1.75rem;
+}
+
+.input_deco {
+    border: none;
+    display: block;
+    float: right;
+    background-color: white;
 }

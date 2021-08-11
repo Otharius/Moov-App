@@ -1,73 +1,70 @@
-/*Début du  menu de connexion*/
-
- /* .nav > ul {
-    margin: 0px;
+/*Début de la barre de navigation*/
+body{
     padding: 0px;
-}  */
-@media screen and (max-width: 480px){
-    .nav_workout {
-        font-size: 5rem
-    }
-} 
-
- .nav li {
-    list-style-type: none;
-    max-width: 20%;
-} 
-
-.nav > ul::after{
-    content: "";
-    display: block;
-    clear: both;
+    margin: 0px;
 }
 
-.nav > ul > li {
+.topnav {
+    background-color: #FF8C00;
+    overflow: hidden;
+    width: 100%;
     float: left;
-    position: relative;
-    color: #fff; }
-
-
-.nav > ul > li:hover {
-    background-color: crimson;
-}
-
-.nav a{
-    display: inline-block;
-    text-decoration: none;
-    color:black;
-}
-
-.nav_workout, .nav_sleep, .nav_meal, .nav_profiles {
-    width: 7rem;
+  }
+  
+  /* Style the links inside the navigation bar */
+.topnav a {
+    float: left;
+    color: #f2f2f2;
     text-align: center;
+    padding: 14px 17px;
+    text-decoration: none;
+    font-size: 17px;
 }
 
-.home {
-    width: 3rem;
-    margin-top: 1.5px;
+.people, .moon {
+    height: 1.75rem;
+    width: 2rem;
 }
 
-.nav_workout {
-    float: left;
+.nav_second {
+    width: 3.8rem;
 }
 
-.Home {
-    padding: 0px 0px;
-    padding-bottom: 2px;
+.nav_people {
+    width: 2.76rem;
 }
 
-.Home:hover {
-    background-color: dimgrey;
+.nav_text {
+    text-align: left;
 }
 
-.Ac:hover {
-    background-color: dimgrey;
+.topnav a {
+    width: 7rem;
 }
- 
+
+.topnav a:hover {
+    background-color: crimson;
+    color: white;
+    height: 1.75rem;
+}
+
+.topnav a.active {
+    background-color: #bb7a0a;
+    color: white;
+}
+  
+.svg {
+    width: 2rem;
+    fill: white;
+}
+
+.svg_ball {
+    width: 2rem;
+    height: 1.75rem;
+}
+
 /*Fin du menu de sélection*/
 /*Début connexion et inscription*/
-
-
 
 .container {
     width: 400px;
@@ -128,7 +125,7 @@
     border: 1px solid #dddddd;
     outline: none;
     background: #eeeeee;
-    transition: background 0.2s, border-color 0.2s;
+    transition: background 0.2s, 0.2s;
 }
 
 .form_input:focus {
@@ -234,7 +231,6 @@
     padding: 1rem;
     border-radius: 8px;
     margin-right: 3%;
-    
 }
 
 .evolution {
@@ -379,7 +375,6 @@
 
 #Flex {
     padding-left: 20px;
-
 }
 
 .gras {
@@ -525,4 +520,115 @@ input{
 
 .manger input {
     padding: 20px 10px;
+}
+
+/*Début de la page de profil*/
+
+
+.profil_box {
+    float: left;
+    width: 40%;
+    max-width: 40%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    margin-left: 3%;
+    margin-top: -20%
+}
+
+.second_box {
+    float: right;
+    width: 40%;
+    max-width: 40%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+    margin-right: 3%;
+    margin-top: -20%
+}
+
+.profil_box h2{
+    text-align: center;
+}
+
+.second_box h2{
+    text-align: center;
+}
+
+.changePWD {
+    margin: 1rem;
+}
+
+.changePWD input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+        outline: none;
+        background: #eeeeee;
+        transition: background 0.2s, border-color 0.2s;
+}
+    
+.changePWD input:focus {
+    border-color: #009579;
+    background: #ffffff;
+}
+
+.input_submit {
+    width: 50%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    background: #FF8C00;
+    margin-left: 25%;
+    display: block;
+}
+
+.input_submit:hover {
+    background: #bb7a0a;
+}
+
+.input_submit:active {
+    transform: scale(0.98);
+}
+
+
+.deco {
+    font-size: 1.1rem;
+    padding: 1rem 1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 50%;
+    outline: none;
+    cursor: pointer;
+    background: red;
+    vertical-align: middle;
+}
+
+.deco:hover{
+    background-color: rgb(158, 4, 4);
+}
+
+.deco:active {
+    transform: scale(0.98);
+}
+
+.svg_workout {
+    fill: white;
+}
+
+.svg_ball {
+    width: 2.75rem;
+    height: 1.75rem;
+}
+
+.input_deco {
+    border: none;
+    display: block;
+    margin: auto;
+    background-color: white;
+    margin-top: 15%;
 }

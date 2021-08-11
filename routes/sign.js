@@ -1,13 +1,12 @@
 const express = require('express');
 const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
-const Session = require('../public/javascripts/session');
 const Sessions = require('../public/javascripts/sessions.js');
+const popup = require('popups')
 
 const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
-
 
 // Login handle
 
@@ -135,7 +134,6 @@ router.post('/changePassword', (req,res) => {
 
     user.withPassword(newPassword, true);
     users.save();
-
 
     res.send('bon')
 })

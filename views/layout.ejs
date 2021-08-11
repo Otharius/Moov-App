@@ -10,14 +10,15 @@
 <%- body %>
 </body>
 <script>
+    
     function savePseudo() {
         pseudo = document.getElementById('pseudo').value;
-        localStorage.setItem('pseudo', pseudo); 
-
+        localStorage.setItem('pseudo', pseudo);
     }
 
     function appendPseudo() {
         const pseudo = localStorage.getItem('pseudo');
+
         document.getElementById('pseudo').setAttribute('value', pseudo);
         document.getElementById('logoutPseudo').setAttribute('value', pseudo);
     }
