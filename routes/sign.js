@@ -2,7 +2,6 @@ const express = require('express');
 const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
 const Sessions = require('../public/javascripts/sessions.js');
-const popup = require('popups')
 
 const router = express.Router();
 const users = new Users().load();

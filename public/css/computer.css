@@ -365,16 +365,22 @@ body{
     color: white;
 }*/
 
+
+.etirement {
+    max-width: 15rem;
+}
+
 .conseil {
     color: darkblue;
 }
 
-.dur tr:nth-child(odd) {
+.sleep_table_time tr:nth-child(odd) {
     background-color: #eee;
 }
 
 #Flex {
     padding-left: 20px;
+
 }
 
 .gras {
@@ -382,7 +388,7 @@ body{
 }
 
 .Medit {
-    width: 400px;
+    width: 1rem;
     margin-right: 50px;
     border: 2px solid black;
 }
@@ -392,14 +398,42 @@ body{
 }
 
 .Medite {
-    width: 400px;
+    width: 1rem;
     margin-left: 50px;
     border: 2px solid black;
 }
 
 h3 {
-    margin-left: 5px;
+    text-align: center;
 } 
+
+.sleep_align {
+    margin-left: 3%;
+    margin-right: 3%;
+   
+}
+
+.sleep_quality {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.sleep_table_time {
+    border-collapse: collapse;
+    margin: auto;
+    
+}
+
+.sleep_table_time td{
+    width: 9rem;
+}
+
+.meditation {
+    border: 2px solid black;
+}
+
+.coldShower {
+    width: 50%;
+}
 
 /*Fin de la page de sommeil*/
 /*Début de la page d'alimentation*/
@@ -597,8 +631,8 @@ input{
 
 
 .deco {
-    font-size: 1.1rem;
-    padding: 1rem 1rem;
+    font-size: 1.3rem;
+    padding: 1.5rem 1.5rem;
     color: #ffffff;
     border: none;
     border-radius: 50%;

@@ -10,43 +10,40 @@ body{
     bottom: 0;
     width: 100%;
     float: left;
-  }
+}
   
-  /* Style the links inside the navigation bar */
-  .topnav a {
+.topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 17px;
     text-decoration: none;
     font-size: 17px;
-  }
+}
 
 .people, .moon {
     height: 1.75rem;
 }
 
-  .nav_second {
-      width: 3.8rem;
-  }
+.nav_second {
+    width: 3.8rem;
+}
 
-  .nav_people {
-      width: 2.76rem;
-  }
+.nav_people {
+    width: 2.76rem;
+}
 
-  .nav_text {
+.nav_text {
     text-align: left;
-  }
+}
   
-  /* Change the color of links on hover */
-  .topnav a:hover {
+.topnav a:hover {
     background-color: crimson;
     color: white;
     height: 1.75rem;
-  }
+}
   
-  /* Add a color to the active/current link */
-  .topnav a.active {
+    .topnav a.active {
     background-color: #bb7a0a;
     color: white;
   }
@@ -355,48 +352,71 @@ body{
 /*Fin de la page d'accueil*/
 /*Début de la page de sommeil*/
 
-/*#Align {
-    padding-left: 10px;
-    background-color: blueviolet;
-    color: white;
-}*/
+.table_stretch {
+    border-collapse: collapse;
+    border: 1px solid black;
+    width: 98%;
+    margin-right: 1%;
+    margin-left: 1%;
+}
+
+.table_stretch th, td {
+    border: 1px solid black;
+    text-align: center;
+}
 
 .conseil {
     color: darkblue;
 }
 
-.dur tr:nth-child(odd) {
+.sleep_table_time tr:nth-child(odd) {
     background-color: #eee;
-}
-
-#Flex {
-    padding-left: 20px;
-
 }
 
 .gras {
     font-weight: bold;
 }
 
-.Medit {
-    width: 400px;
-    margin-right: 50px;
-    border: 2px solid black;
-}
-
-.img td {
-    border: none;
-}
-
-.Medite {
-    width: 400px;
-    margin-left: 50px;
-    border: 2px solid black;
-}
 
 h3 {
-    margin-left: 5px;
+    text-align: center;
 } 
+
+.sleep_align {
+    margin-left: 3%;
+    margin-right: 3%;
+   
+}
+
+.sleep_quality, .shower, .meditation{
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.sleep_table_time {
+    border-collapse: collapse;
+    margin: auto;
+}
+
+.sleep_table_time td{
+    width: 9rem;
+    padding: 0.8rem 1.6rem;
+}
+
+
+.coldShower {
+    width: 95%;
+    margin-left: 2%;
+    border: 2px solid black;
+}
+
+.stretch_title {
+    background-color: blueviolet;
+    color: white;
+}
+
+.stretch_color {
+    background-color: #eee;
+}
 
 /*Fin de la page de sommeil*/
 /*Début de la page d'alimentation*/
@@ -411,11 +431,11 @@ h3 {
     border: 1px solid black;
 }
 
-table th, td {
+/* table th, td {
     padding: 20px 30px;
     text-align: center;
     border: 1px solid black;
-}
+} */
 div {
     background-color: white;
 }
