@@ -76,7 +76,11 @@ router.post('/login', (req,res,next) => {
 
     const session = sessions.getSession(user)
     console.log(session.user.pseudo + " vient de se connecter.");
-    res.render('home');
+    exports.user = session.user.pseudo;
+    console.log(typeof(exports.user));
+    
+    res.render('home', {firstname: session.user.firstname});
+
 
 })
 
@@ -136,7 +140,5 @@ router.post('/changePassword', (req,res) => {
 
     res.send('bon')
 })
-
-
 
 module.exports = router

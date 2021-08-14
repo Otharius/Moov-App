@@ -385,7 +385,6 @@ h3 {
 .sleep_align {
     margin-left: 3%;
     margin-right: 3%;
-   
 }
 
 .sleep_quality, .shower, .meditation{
@@ -421,122 +420,81 @@ h3 {
 /*Fin de la page de sommeil*/
 /*Début de la page d'alimentation*/
 
-
-#Calorie, #Repas, #Conseil, #Besoin, #Ecart {
-    border: 1px solid black;
+.calorie, .needed, .help{
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
-.manger {
-    border-collapse: collapse;
-    border: 1px solid black;
+.count_calorie {
+    width: 70%;
+    margin-left: 15%;
+    padding: 3% 5%;
 }
 
-/* table th, td {
-    padding: 20px 30px;
-    text-align: center;
-    border: 1px solid black;
-} */
-div {
-    background-color: white;
+.meal_align {
+    margin-left: 3%;
+    margin-right: 3%;
 }
 
-.color {
-    background-color: #ddd;
-}
-
-/*#Calorie, #Ecart, #Conseil {
-    background-color: green;
-    color: white;
-}*/
-
-h3 {
-    margin-left: 5px;
-}
-
-#Quanti {
-    border: 1px solid darkblue;
-    width: 500px;
-    margin: 0px auto;  
-    background-color: #eee;  
-    padding: 5px 7px;
-}
-
-#Gl {
-    border: 1px solid white;
-}
-
-hr {
-    width: 1200px;
-    color: black;
-}
-
-.Gl, .Pr {
+.meal_glucide {
+    width: 95%;
+    margin-left: 2%;
     border: 2px solid black;
 }
 
-.Gl {
-    width: 600px;
-    margin-right: 20px;
+
+.subtitles {
+    color: darkgreen;
+    font-size: 1.2rem;
 }
 
-.Pr {
-    width: 600px;
-    margin-left: 20px;
+.subtext {
+    margin-left: 4%;
+    margin-right: 3%;
 }
 
-.txt {
-    text-align: left;
-}
-
-.com, .sim {
-    text-align: left;
-}
-
-.Prot {
-    text-align: left;
-}
-
-.Acide {
-    border-collapse: collapse;
+.meal_number {
     border: 1px solid black;
-    padding: 0px 0px;
-    text-align: left;
-}
-
-.Red {
+    background-color: whitesmoke;
     color: red;
-    font-size: 20px;
 }
 
-.Acide th {
-    background-color: #ddd;
+.meal_number .number_list li {
+    margin-left: 8%;
 }
 
-p {
-    padding-left: 10px;
-    padding-right: 10px;
+.meal_title {
+    margin-left: 2%;
+    text-decoration: underline;
+    color: rgb(14, 88, 14);
 }
 
-h3, h1, h4 {
-    padding-left: 5px;
+.meal_middle_title {
+    font-size: 1.2rem;
+    text-decoration: underline;
+    margin-left: 2%;
 }
 
-input{
-    padding: 20px 10px;
+.meal_table {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+.meal_table th {
+    color: white;
+    background-color: olivedrab;
+}
+
+.meal_title_conclusion {
+    color:rgb(182, 4, 4);
+    margin-right: 2%;
     font-weight: bold;
-    font-weight: 50px;
+    font-size: 2rem;
 }
 
-.repas {
-    border: none;
-}
-
-.repas{
-    border: none;
-}
-
-.manger input {
-    padding: 20px 10px;
+.meal_conclusion {
+    color: red;
+    margin-left: 2%;
+    margin-right: 2%;    
 }
 
 /*Fin de la page d'alimentation*/

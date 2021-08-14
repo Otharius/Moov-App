@@ -410,29 +410,60 @@ h3 {
 .sleep_align {
     margin-left: 3%;
     margin-right: 3%;
-   
 }
 
-.sleep_quality {
+.sleep_quality, .shower, .meditation {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
 .sleep_table_time {
     border-collapse: collapse;
     margin: auto;
-    
 }
 
 .sleep_table_time td{
     width: 9rem;
 }
 
-.meditation {
+.coldShower {
+    width: 500px;
     border: 2px solid black;
 }
 
-.coldShower {
-    width: 50%;
+.sleep_div_img {
+    float: left;
+    margin-left: 5%;
+}
+
+.sleep_div_text {
+    width: 30%;
+    float: right;
+    margin-right: 10%;
+    font-size: 1.3rem;
+    margin-top: -1%;
+}
+
+.shower {
+    height: 500px;
+}
+
+.table_stretch {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 2.5%;
+}
+
+.stretch_title {
+    background-color: blueviolet;
+    color: white;
+}
+
+.stretch_color {
+    background-color: #eee;
+}
+
+.meditation {
+    height: 500px;
 }
 
 /*Fin de la page de sommeil*/

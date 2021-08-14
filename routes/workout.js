@@ -1,4 +1,5 @@
 const express = require('express');
+const user = require('./sign');
 const router = express.Router();
 
 // Workout handle
@@ -22,6 +23,8 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
+    console.log(typeof(user.user));
+    console.log(user.user)
     res.render('profiles')
 })
 
@@ -30,6 +33,4 @@ router.get('/home', (req,res) => {
 })
 
 module.exports = router
-
-
 
