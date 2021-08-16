@@ -4,9 +4,10 @@ const app = express();
 //const mongoose = require('mongoose');
 const expressEjsLayout = require('express-ejs-layouts');
 const http = require('http');
-const https = require('https')
-const fs = require('fs')
-const config = require('./config.json')
+const https = require('https');
+const fs = require('fs');
+const config = require('./config.json');
+const session = require('express-session');
 
 //mongoose
 // mongoose
@@ -25,10 +26,15 @@ app.use(express.urlencoded({extended : false}));
 app.use('/sign',require('./routes/sign'));
 app.use('/workout',require('./routes/workout'));
 app.use('/',require('./routes/index'));
+app.use(session({secret: 'secret-key',saveUninitialized: false,resave: false}));
+
 
 app.get('/', function(req,res) {
-    res.send('hello');
+    console.log('test');
+    console.log(req.session);
 });
+
+
 
 if (config.protocol === 'https') {
     const privateKey = fs.readFileSync(config.privateKeyPath, 'utf-8');

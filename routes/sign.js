@@ -74,13 +74,13 @@ router.post('/login', (req,res,next) => {
 
     sessions.login(user);
 
+
     const session = sessions.getSession(user)
     console.log(session.user.pseudo + " vient de se connecter.");
-    exports.user = session.user.pseudo;
-    console.log(typeof(exports.user));
-    
-    res.render('home', {firstname: session.user.firstname});
+    // req.session.test = 'test'
 
+    res.render('home');
+    // , {test: req.session.test}
 
 })
 

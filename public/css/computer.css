@@ -359,13 +359,6 @@ body{
 /*Fin de la page d'accueil*/
 /*Début de la page de sommeil*/
 
-/*#Align {
-    padding-left: 10px;
-    background-color: blueviolet;
-    color: white;
-}*/
-
-
 .etirement {
     max-width: 15rem;
 }
@@ -376,11 +369,6 @@ body{
 
 .sleep_table_time tr:nth-child(odd) {
     background-color: #eee;
-}
-
-#Flex {
-    padding-left: 20px;
-
 }
 
 .gras {
@@ -419,10 +407,13 @@ h3 {
 .sleep_table_time {
     border-collapse: collapse;
     margin: auto;
+    border: 1px solid black;
 }
 
 .sleep_table_time td{
     width: 9rem;
+    border: 1px solid black;
+    padding: 10px 20px;
 }
 
 .coldShower {
@@ -451,6 +442,13 @@ h3 {
     border-collapse: collapse;
     width: 95%;
     margin-left: 2.5%;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.table_stretch td, th{
+    border: 1px solid black;
+    padding: 20px 30px;
 }
 
 .stretch_title {
@@ -469,124 +467,68 @@ h3 {
 /*Fin de la page de sommeil*/
 /*Début de la page d'alimentation*/
 
+.calorie, .needed {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
 
-#Calorie, #Repas, #Conseil, #Besoin, #Ecart {
+.count_calorie {
+    float: left;
     border: 1px solid black;
+    border-radius: 8px;
+    background-color: #eeeeee;
+    padding: 1rem 2rem;
+    display: block;
+    width: 30%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+    margin-left: 20%;
 }
 
-.manger {
-    border-collapse: collapse;
-    border: 1px solid black;
+.count_calorie:focus {
+    border-color: #009579;
+    background-color: #ffffff;
 }
 
-table th, td {
-    padding: 20px 30px;
-    text-align: center;
-    border: 1px solid black;
-}
-div {
-    background-color: white;
-}
-
-.color {
-    background-color: #ddd;
+.ok_count_calorie {
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: green;
+    border: 1px solid green;
+    float: right;
+    margin-right: 40%;
+    margin-top: -0.3%;
 }
 
-/*#Calorie, #Ecart, #Conseil {
-    background-color: green;
+.ok_count_calorie:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+.ok_count_calorie:active {
+    transform: scale(0.98);
+    border: 1px solid #009579;
+    background-color: #009579;
     color: white;
-}*/
-
-h3 {
-    margin-left: 5px;
 }
 
-#Quanti {
-    border: 1px solid darkblue;
-    width: 500px;
-    margin: 0px auto;  
-    background-color: #eee;  
-    padding: 5px 7px;
-}
-
-#Gl {
-    border: 1px solid white;
-}
-
-hr {
-    width: 1200px;
-    color: black;
-}
-
-.Gl, .Pr {
-    border: 2px solid black;
-}
-
-.Gl {
-    width: 600px;
-    margin-right: 20px;
-}
-
-.Pr {
-    width: 600px;
-    margin-left: 20px;
-}
-
-.txt {
-    text-align: left;
-}
-
-.com, .sim {
-    text-align: left;
-}
-
-.Prot {
-    text-align: left;
-}
-
-.Acide {
-    border-collapse: collapse;
+.result_count_calorie {
+    margin: auto;
+    margin-top: 3%;
     border: 1px solid black;
-    padding: 0px 0px;
-    text-align: left;
+    border-radius: 15px;
+    width: 10%;
+    text-align: center;
+    padding: 1% 1%;
 }
 
-.Red {
-    color: red;
-    font-size: 20px;
+.calorie h3 {
+    margin-top: 3%;
 }
 
-.Acide th {
-    background-color: #ddd;
-}
-
-p {
-    padding-left: 10px;
-    padding-right: 10px;
-}
-
-h3, h1, h4 {
-    padding-left: 5px;
-}
-
-input{
-    padding: 20px 10px;
-    font-weight: bold;
-    font-weight: 50px;
-}
-
-.repas {
-    border: none;
-}
-
-.repas{
-    border: none;
-}
-
-.manger input {
-    padding: 20px 10px;
-}
-
+/*Fin de la page d'alimentation*/
 /*Début de la page de profil*/
 
 
