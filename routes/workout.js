@@ -23,8 +23,6 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
-    console.log(typeof(user.user));
-    console.log(user.user)
     res.render('profiles')
 })
 
