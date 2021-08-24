@@ -68,11 +68,12 @@
                     <div class="second_box">
                         <h2>Changer le mot de passe</h2>
                             <div class="changePWD">
-                                <% if(true){ %>
-                                    <h1>foo</h1>
-                                  <% } else{ %>  
-                                    <h1>bar</h1>
-                                 <% } %>
+                                <div class="form_message-error">
+                                    <% if(error){ %>
+                                      <p><%= message %></p>
+                                    <% } else{ %>  
+                                   <% } %>
+                                  </div>
                                 <input type="password" placeholder="Ancien mot de passe" name="old" id=""> <br>
                                 <input type="password" placeholder="Nouveau mot de passe" name="new" id=""><br>
                                 <input type="password" placeholder="Confirmer le nouveau mot de passe"  name="new2" id=""><br><br>

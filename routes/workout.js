@@ -23,7 +23,7 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
-    res.render('profiles', { title: "Profiles"})
+    res.render('profiles', { title: "Profiles", error: false})
 })
 
 router.get('/home', (req,res) => {

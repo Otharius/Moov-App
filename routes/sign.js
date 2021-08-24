@@ -9,7 +9,6 @@ const sessions = new Sessions();
 // Login handle
 
 router.get('/login', (req,res) => {
-    console.log(req.session)
     if (req.session === undefined) {
         console.log('Session introuvable dans le login')
     } else {
@@ -19,7 +18,7 @@ router.get('/login', (req,res) => {
 })
 
 router.get('/register', (req,res) => {
-    res.render('register', { title: "Register"});
+    res.render('register', { title: "Register", error: false});
 })
 
 // Register handle
@@ -34,17 +33,18 @@ router.post('/register', (req,res) => {
     const password2 = req.body.password2;
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
-        res.send('Veillez renseigner tout les champs');
+        res.render('register', { title: "Register", message: "Veillez renseigner tout les champs", error: true})
+
         return;
     }
 
     if (users.exist(pseudo)) {
-        res.send('Pseudo déjà utilisé');
+        res.render('register', { title: "Register", message: "Pseudo déjà utilisé", error: true})
         return;
     }
 
     if (password != password2) {
-        res.send('Mots de passe differents');
+        res.render('register', { title: "Register", message: "Mots de passe différents", error: true})
         return;
     }
 
@@ -53,7 +53,7 @@ router.post('/register', (req,res) => {
     users.add(user);
     users.save();
     console.log(req.session)
-    res.render('login', { title: "Login"});
+    res.render('login', { title: "Login", error: false});
 })
 
 router.post('/login', (req,res,next) => {
@@ -112,33 +112,33 @@ router.post('/changePassword', (req,res) => {
     const user = users.get(pseudo);
 
     if (user === undefined) {
-        res.send('Aucun utilisateur pour le pseudo [' + pseudo + ']');
+        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']'})
         return;
     }
 
     if (newPassword === '' || newPassword2 === '') {
-        res.send('Veillez renseigner tout les champs');
+        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs"})
         return;
     }
 
     if (!user.checkPassword(oldPassword)) {
-        res.send("Mauvais mot de passe pour "  + pseudo);
+        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo})
         return;
     }
 
     if (oldPassword === newPassword) {
-        res.send('Le mot de passe doit être différent');
+        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien"})
         return;
     }
 
     if (newPassword != newPassword2) {
-        res.send('Confirmation de mot de passe incorrect');
+        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect"})
         return;
     }
 
     user.withPassword(newPassword, true);
     users.save();
-    res.render('profiles')
+    res.render('profiles', { title: "Profiles", error: false})
 })
 
 module.exports = router
