@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const fs = require('fs')
+const data = require('../data/account.json');
+const Accounts = require('../public/javascripts/accouts');
+const Account = require('../public/javascripts/account');
+
 
 // Workout handle
  
@@ -11,7 +14,14 @@ router.get('/training', (req,res) => {
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    res.render('meal', { title: "Meal", calorie: 0})
+    const calorie = data[0].calorie
+    res.render('meal', { title: "Meal", calorie: calorie})
+})
+
+router.post('/addCal', (req,res) => {
+    const calorie = data[0].calorie + parseInt(req.body.cal);
+    //.load(calorie)
+    res.render('meal', { title: "Meal", calorie: calorie})
 })
 
 // Sleep handle

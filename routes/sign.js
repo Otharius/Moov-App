@@ -106,7 +106,6 @@ router.post('/logout', (req,res) => {
 // Profiles handle
  
 router.get('/home', (req,res) => {
-    console.log('yes')
     res.render('home', { title: "Home"})
 })
 
