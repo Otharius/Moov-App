@@ -1,6 +1,6 @@
 const express = require('express');
-const user = require('./sign');
 const router = express.Router();
+const fs = require('fs')
 
 // Workout handle
  
@@ -11,7 +11,7 @@ router.get('/training', (req,res) => {
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    res.render('meal', { title: "Meal"})
+    res.render('meal', { title: "Meal", calorie: 0})
 })
 
 // Sleep handle

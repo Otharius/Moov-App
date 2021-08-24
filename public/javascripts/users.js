@@ -10,7 +10,7 @@ class Users {
     }
 
     
-    
+ 
     add (user) {
         if (this.exist(user.pseudo)) {
             return false;
@@ -38,7 +38,7 @@ class Users {
             .withPassword(data[i].password));
         }
         return this;
-    }
+    } 
 
     save () {
         const objs = [];

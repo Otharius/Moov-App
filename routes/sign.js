@@ -2,10 +2,13 @@ const express = require('express');
 const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
 const Sessions = require('../public/javascripts/sessions.js');
+const Account = require('../public/javascripts/account');
+const Accounts = require('../public/javascripts/accouts')
 
 const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
+const accounts = new Accounts().load();
 // Login handle
 
 router.get('/login', (req,res) => {
@@ -49,9 +52,13 @@ router.post('/register', (req,res) => {
     }
 
     const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password, true);
+    const account = new Account(pseudo, 0, 0)
 
     users.add(user);
     users.save();
+    accounts.add(account);
+    accounts.save();
+    
     console.log(req.session)
     res.render('login', { title: "Login", error: false});
 })
@@ -74,7 +81,7 @@ router.post('/login', (req,res,next) => {
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('login', { title: "Login", message: "Mauvais mot de passe incorrect", error: true});
+        res.render('login', { title: "Login", message: "Mauvais mot de passe incorrect", error: true });
         return;
     }
 
@@ -82,7 +89,7 @@ router.post('/login', (req,res,next) => {
     // const session = sessions.getSession(user)
     // console.log(session.user.pseudo + " vient de se connecter.");
 
-    res.render('home', { title: "Home"} );
+    res.render('home', { title: "Home" } );
 })
 
 // Logout
