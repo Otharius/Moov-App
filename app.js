@@ -7,20 +7,23 @@ const https = require('https');
 const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
-//const mongoose = require('mongoose');
+const oneDay = 1000 * 60 * 60 * 24;
 
+//const mongoose = require('mongoose');
 //mongoose
 // mongoose
 //     .connect('mongodb://localhost/test',{useNewUrlParser: true, useUnifiedTopology : true})
 //     .then(() => console.log('connected,,'))
 //     .catch((err)=> console.log(err));
 //EJS
+
 app.set('view engine','ejs');
 app.use(expressEjsLayout);
 
 //BodyParser
 app.use(express.urlencoded({extended : false}));
 app.use('/sign',require('./routes/sign'))
+app.use(express.json());
 
 //CSS
 app.use(express.static(__dirname + '/public'));
@@ -29,18 +32,18 @@ app.use(express.static(__dirname + '/public'));
 // //Routes
 app.use('/workout',require('./routes/workout'));
 
+
 app.use(session({
     secret: 'secret-key',
     saveUninitialized: false,
-    resave: false}));
+    resave: false,
+}));
+
+app.use('/Sess', session);
 
 app.get('/', function(req,res) {
-    req.session.isAuth = true;
-    console.log(req.session);
-    res.render('login')
+    res.render('login', { title: "Login"})
 });
-
-
 
 if (config.protocol === 'https') {
     const privateKey = fs.readFileSync(config.privateKeyPath, 'utf-8');
@@ -54,3 +57,5 @@ if (config.protocol === 'https') {
 } else {
     console.log('Unkown protocol ' + config.protocol);
 }
+
+module.exports = session;
