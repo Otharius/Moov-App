@@ -15,7 +15,7 @@ router.get('/login', (req,res) => {
     } else {
         console.log('Session trouvable dans login')
     }
-    res.render('login', { title: "Login"})
+    res.render('login', { title: "Login", error: false})
 })
 
 router.get('/register', (req,res) => {
@@ -63,18 +63,18 @@ router.post('/login', (req,res,next) => {
     const password = req.body.password;
 
     if (pseudo === '' || password === '') {
-        res.send('Veillez renseigner tout les champs');
+        res.render('login', { title: "Login", message: "Veillez renseigner tout les champs", error: true})
         return;
     }
 
     if (!users.exist(pseudo)) {
-        res.send("Vous n'existez pas");
+        res.render('login', { title: "Login", message: "Utilisateur introuvable", error: true})
         return;
     }
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.send("Mauvais mot de passe pour " + pseudo);
+        res.render('login', { title: "Login", message: "Mauvais mot de passe incorrect", error: true});
         return;
     }
 
@@ -93,7 +93,7 @@ router.get('/logout', (req,res) => {
 router.post('/logout', (req,res) => {
 
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.')
-    res.render('login', { title: "Login"})
+    res.render('login', { title: "Login", error: false})
 })
 
 // Profiles handle

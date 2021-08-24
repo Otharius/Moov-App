@@ -102,6 +102,7 @@ body{
 
 .form_message-error {
     color: #cc3333;
+    text-align: center;
 }
 
 .form_input-group {

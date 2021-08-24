@@ -42,7 +42,7 @@ app.use(session({
 app.use('/Sess', session);
 
 app.get('/', function(req,res) {
-    res.render('login', { title: "Login"})
+    res.render('login', { title: "Login", error: false})
 });
 
 if (config.protocol === 'https') {
