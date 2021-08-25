@@ -12,15 +12,8 @@ class Accounts {
     
  
     add (account) {
-        if (this.exist(account.pseudo)) {
-            return false;
-        }
         this.accounts.set(account.pseudo, account);
         return true;
-    }
-
-    exist (pseudo) {
-        return this.accounts.has(pseudo);
     }
 
     get (pseudo) {

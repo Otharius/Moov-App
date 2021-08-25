@@ -4,6 +4,7 @@ const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
 
+const accounts = new Accounts().load();
 
 // Workout handle
  
@@ -19,9 +20,21 @@ router.get('/meal', (req,res) => {
 })
 
 router.post('/addCal', (req,res) => {
-    const calorie = data[0].calorie + parseInt(req.body.cal);
-    //.load(calorie)
+    const ajout = parseInt(req.body.cal)
+    console.log(typeof(5))
+
+    const calorie = data[0].calorie + ajout;
+    const account = new Account("Otharius", calorie, 0)
+    data[0].calorie = calorie;
+    accounts.add(account);
+    accounts.save()
     res.render('meal', { title: "Meal", calorie: calorie})
+ 
+
+
+    
+    //.load(calorie)
+
 })
 
 // Sleep handle
