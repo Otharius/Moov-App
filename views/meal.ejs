@@ -33,14 +33,16 @@
         <div class="calorie"><br>
             <h3>Compter les calories</h3><br>
             <form action="/workout/addCal" method="POST" id="" class="">
+                <input type="hidden" name="ok_count_calorie" id="ok_count_calorie">
                 <input type="tel" name="cal" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
-                <button class="ok_count_calorie">OK</button><br><br>
+                <button class="ok_count_calorie" onclick="mealAppendPseudo()">OK</button><br><br>
                 <p class="result_count_calorie"><%= calorie %> kcal</p>
             <br><br>
             </form>        
             <form action="/workout/resetCal" method="POST">
-            <button class="ok_count_calorie">Reset</button>
-        </form>
+                <input type="hidden" name="reset_count_calorie" id="reset_count_calorie">
+                <button class="reset_count_calorie" onclick="mealAppendPseudo()">Reset</button>
+            </form>
         </div>
 
         <br>

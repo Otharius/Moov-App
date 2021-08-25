@@ -15,33 +15,73 @@ router.get('/training', (req,res) => {
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    const calorie = data[0].calorie
-    res.render('meal', { title: "Meal", calorie: calorie})
+    // calorie à changer
+    res.render('meal', { title: "Meal", calorie: data[0].calorie})
 })
 
 router.post('/addCal', (req,res) => {
+    const pseudo = accounts.get(req.body.ok_count_calorie);
 
-    if (req.body.cal === null){
+    if (req.body.cal === ""){
+        res.render('meal', { title: "Meal", calorie: pseudo.calorie })
         return;
+
     }
 
-    const ajout = parseInt(req.body.cal);
+    
+    const calorie = pseudo.calorie + parseInt(req.body.cal);
+    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
 
-
-    const calorie = data[0].calorie + ajout;
-    const sleep = data[0].sleep;
-    const account = new Account("Otharius", calorie, sleep);
-    data[0].calorie = calorie;
+    pseudo.calorie = calorie;
     accounts.add(account);
     accounts.save();
     res.render('meal', { title: "Meal", calorie: calorie})
+})
 
+
+router.post('/homeAddCal', (req,res) => {
+    const pseudo = accounts.get(req.body.ok_count_calorie);
+
+    if (req.body.cal === ""){
+        res.render('home', { title: "Home", calorie: pseudo.calorie })
+        return;
+
+    }    
+    const calorie = pseudo.calorie + parseInt(req.body.cal);
+    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
+
+    pseudo.calorie = calorie;
+    accounts.add(account);
+    accounts.save();
+    res.render('home', { title: "Home", calorie: calorie})
+})
+
+router.post('/homeResetCal', (req,res) => {
+    const pseudo = accounts.get(req.body.reset_count_calorie);
+    const calorie = pseudo.calorie = 0;
+    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
+
+    accounts.add(account);
+    accounts.save();
+    res.render('home', { title: "Home", calorie: calorie})
 })
 
 router.post('/resetCal', (req,res) => {
-    const calorie = data[0].calorie = 0;
-    const sleep = data[0].sleep;
-    const account = new Account("Otharius", calorie, sleep)
+    const pseudo = accounts.get(req.body.reset_count_calorie);
+    const calorie = pseudo.calorie = 0;
+    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
+
+    accounts.add(account);
+    accounts.save();
+    res.render('meal', { title: "Meal", calorie: calorie})
+})
+
+
+router.post('/resetCal', (req,res) => {
+    const pseudo = accounts.get(req.body.reset_count_calorie);
+    const calorie = pseudo.calorie = 0;
+    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
+
     accounts.add(account);
     accounts.save();
     res.render('meal', { title: "Meal", calorie: calorie})
@@ -60,7 +100,7 @@ router.get('/profiles', (req,res) => {
 })
 
 router.get('/home', (req,res) => {
-    res.render('home', { title: "Home"})
+    res.render('home', { title: "Home", calorie: data[0].calorie})
 })
 
 module.exports = router

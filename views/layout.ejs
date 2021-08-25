@@ -22,5 +22,12 @@
         document.getElementById('logoutPseudo').setAttribute('value', pseudo);
     }
 
+    function mealAppendPseudo() {
+        const pseudo = localStorage.getItem('pseudo');
+
+        document.getElementById('ok_count_calorie').setAttribute('value', pseudo);
+        document.getElementById('reset_count_calorie').setAttribute('value', pseudo);
+    }
+
 </script>
 </html>

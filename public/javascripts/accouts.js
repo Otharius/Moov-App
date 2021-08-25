@@ -40,7 +40,6 @@ class Accounts {
         const buffer = JSON.stringify(objs);
         fs.writeFile('data/account.json', buffer, function (err) {
             if (err) throw err;
-            console.log('Fichier account créé !')
         })
     } 
 }

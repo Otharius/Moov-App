@@ -503,6 +503,21 @@ h3 {
     margin-top: -0.3%;
 }
 
+.reset_count_calorie {
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: red;
+    border: 1px solid red;
+    float: left;
+    margin-left: 5%;
+    margin-top: -8%;
+}
+
+.reset_count_calorie:active {
+    transform: scale(0.98);
+}
+
 .ok_count_calorie:hover {
     cursor: pointer;
     user-select: none;
@@ -524,6 +539,8 @@ h3 {
     text-align: center;
     padding: 1% 1%;
 }
+
+
 
 .calorie h3 {
     margin-top: 3%;

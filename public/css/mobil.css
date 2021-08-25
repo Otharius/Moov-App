@@ -426,15 +426,33 @@ h3 {
     padding: 3% 5%;
     color: seagreen;
     user-select: none ;
+    margin-bottom: -5%;
 }
 
 .ok_count_calorie:active {
     transform: scale(0.96);
 }
 
+.reset_count_calorie {
+    display: inline-block;
+    border-radius: 20px;
+    border: 1px solid rgb(182, 4, 4);
+    padding: 3% 5%;
+    color: red;
+    user-select: none;
+    background-color: white;
+    margin-left: 3%;
+    margin-top: -10%;
+    margin-bottom: 3%;
+}
+
+.reset_count_calorie:active {
+    transform: scale(0.98);
+}
+
 .count_calorie {
     width: 50%;
-    margin-left: 15%;
+    margin-left: 12%;
     padding: 3% 5%;
     background-color: #dddddd;
     display: inline-block;
