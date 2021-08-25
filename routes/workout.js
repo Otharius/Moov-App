@@ -20,21 +20,31 @@ router.get('/meal', (req,res) => {
 })
 
 router.post('/addCal', (req,res) => {
-    const ajout = parseInt(req.body.cal)
-    console.log(typeof(5))
+
+    if (req.body.cal === null){
+        return;
+    }
+
+    const ajout = parseInt(req.body.cal);
+
 
     const calorie = data[0].calorie + ajout;
-    const account = new Account("Otharius", calorie, 0)
+    const sleep = data[0].sleep;
+    const account = new Account("Otharius", calorie, sleep);
     data[0].calorie = calorie;
     accounts.add(account);
-    accounts.save()
+    accounts.save();
     res.render('meal', { title: "Meal", calorie: calorie})
- 
 
+})
 
-    
-    //.load(calorie)
-
+router.post('/resetCal', (req,res) => {
+    const calorie = data[0].calorie = 0;
+    const sleep = data[0].sleep;
+    const account = new Account("Otharius", calorie, sleep)
+    accounts.add(account);
+    accounts.save();
+    res.render('meal', { title: "Meal", calorie: calorie})
 })
 
 // Sleep handle
