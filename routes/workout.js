@@ -3,8 +3,6 @@ const router = express.Router();
 const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
-const popup = require('window-popup').windowPopup;
-
 
 const accounts = new Accounts().load();
 

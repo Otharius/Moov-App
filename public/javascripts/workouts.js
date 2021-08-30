@@ -1,47 +1,49 @@
-const data = require('../../data/account.json')
-const Account = require('./account');
+const data = require('../../data/workout.json');
+const Workout = require('./workout');
 const fs = require('fs')
 
-class Accounts {
-    
-    accounts = new Map();
+class Workouts {
+
+    workouts = new Map();
 
     constructor() {
     }
 
     
  
-    add (account) {
-        this.accounts.set(account.pseudo, account);
+    add (workout) {
+        this.workouts.set(workout.pseudo, workout);
         return true;
     }
 
     get (pseudo) {
-        return this.accounts.get(pseudo);
+        return this.workouts.get(pseudo);
     }
 
     load () {
-        for (let i=0; i<data.length; i++) {
-            this.add(new Account(
-                data[i].pseudo,
-                data[i].calorie,
-                data[i].sleep
+            this.add(new Workout(
+                data.type,
+                data.serie,
+                data.rep,
+                data.repos,
+                data.time,
+                data.date,
+                data.note,
             )
         );
-        }
         return this;
     } 
 
-    save () {
+    save (pseudo) {
         const objs = [];
-        for (let account of this.accounts.values()) {
-            objs.push(account.toObject());
+        for (let workout of this.workouts.values()) {
+            objs.push(workout.toObject());
         }
         const buffer = JSON.stringify(objs);
-        fs.writeFile('data/account.json', buffer, function (err) {
+        fs.writeFile('data/' + pseudo + '.json', buffer, function (err) {
             if (err) throw err;
         })
     } 
 }
 
-module.exports = Accounts
+module.exports = Workouts

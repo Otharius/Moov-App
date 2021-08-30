@@ -4,12 +4,15 @@ const User = require('../public/javascripts/user');
 const Sessions = require('../public/javascripts/sessions.js');
 const Account = require('../public/javascripts/account');
 const Accounts = require('../public/javascripts/accouts');
+const Workout = require('../public/javascripts/workout');
+const Workouts = require('../public/javascripts/workouts');
 const data = require('../data/account.json');
 
 const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
 const accounts = new Accounts().load();
+const workouts = new Workouts().load();
 // Login handle
 
 
@@ -53,19 +56,21 @@ router.post('/register', (req,res) => {
     }
 
     const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password, true);
-    const account = new Account(pseudo, 0, 0)
+    const account = new Account(pseudo, 0, 0);
+    const workout = new Workout('', 0, 0, 0, 0, '', '')
 
     users.add(user);
     users.save();
     accounts.add(account);
     accounts.save();
-    
+    workouts.add(workout);
+    workouts.save(pseudo);
+
     res.render('login', { title: "Login", error: false});
 })
 
-router.post('/login', (req,res,next) => {
+router.post('/login', (req,res) => {
 
-    //const sess = req.session;
     const pseudo = req.body.pseudo;
     const password = req.body.password;
 
@@ -87,11 +92,8 @@ router.post('/login', (req,res,next) => {
 
 
     sessions.login(user);
-    console.log(user.pseudo + " vient de se connecter")
-    // const session = sessions.getSession(user)
-    // console.log(session.user.pseudo + " vient de se connecter.");
-
-    res.render('home', { title: "Home", calorie: data[0].calorie } );
+    console.log(user.pseudo + " vient de se connecter");
+    res.render('home', { title: "Home", calorie: data.calorie } );
 })
 
 // Logout

@@ -1,7 +1,6 @@
 
-class Account {
+class Workout {
 
-    pseudo = '';
     type = '';
     serie = '';
     rep = '';
@@ -11,8 +10,7 @@ class Account {
     note = '';
 
     
-    constructor(pseudo, type, serie, rep, repos, time, date, note){
-        this.pseudo = pseudo;
+    constructor(type, serie, rep, repos, time, date, note){
         this.type = type;
         this.serie = serie;
         this.rep = rep;
@@ -22,18 +20,17 @@ class Account {
         this.note = note;
     }
 
-    addCal(calorie) {
-        this.calorie = calorie;
-        return this;
-    }
-
     toObject() {
         return {
-            "pseudo": this.pseudo,
-            "calorie": this.calorie,
-            "sleep": this.sleep,
+            "type": this.type,
+            "serie": this.serie,
+            "rep": this.rep,
+            "repos": this.repos,
+            "time": this.time,
+            "date": this.date,
+            "note": this.note,
         }
     }
 }
 
-module.exports = Account
+module.exports = Workout
