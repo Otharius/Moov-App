@@ -106,5 +106,10 @@ router.get('/home', (req,res) => {
     res.render('home', { title: "Home", calorie: data[0].calorie})
 })
 
+router.post('/addWorkout', (req,res) => {
+    console.log(req.body);
+    res.render('training', { title: "Training"})
+})
+
 module.exports = router
 

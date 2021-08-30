@@ -39,7 +39,6 @@ router.post('/register', (req,res) => {
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
         res.render('register', { title: "Register", message: "Veillez renseigner tout les champs", error: true})
-
         return;
     }
 
@@ -61,7 +60,6 @@ router.post('/register', (req,res) => {
     accounts.add(account);
     accounts.save();
     
-    console.log(req.session)
     res.render('login', { title: "Login", error: false});
 })
 

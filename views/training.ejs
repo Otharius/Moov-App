@@ -28,9 +28,9 @@
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
       </svg></a>
 
-  </div>  
+  </div>  <br>
    <!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
+
 
 <!-- The Modal -->
 <div id="myModal" class="modal">
@@ -38,7 +38,28 @@
   <!-- Modal content -->
   <div class="modal-content">
     <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
+    <form action="/workout/addWorkout" method="POST">
+        <select name="type" id="">
+            <option value="">Type</option>
+        </select>
+        <select name="heure" id="">
+            <option value="">Heure</option>
+        </select>
+        <select name="duree" id="">
+            <option value="">Durée</option>
+        </select>
+        <select name="rep" id="">
+            <option value="">Rep</option>
+        </select>
+        <select name="serie" id="">
+            <option value="">Série</option>
+        </select>
+        <select name="repos" id="">
+            <option value="">Repos</option>
+        </select>
+        <input type="text" placeholder="Détail" name="detail">
+        <button type="submit">Valider</button>
+    </form>
   </div>
 
 </div> 
@@ -46,43 +67,7 @@
         <div class="body_div">
             <div class="calender_div">
                 <h1>Plannification des entrainements</h1>
-                <select name="" id="work_type">
-                    <option value="">Musculation</option>
-                    <option value="">Course</option>
-                </select>
-                <!--Dans une pop-up-->
-                <select name="" id="work_exercice" class="work_exercice">
-                    <!--Apparition des options de musculation avec js-->
-                </select>
-                <!--Dans une pop-up-->
-                <select name="" id="running_exercice" class="running_exercice">
-                    <!--Apparition des options de course avec js-->
-                </select>
-                <input type="text">
-                <select name="" id="work_date" class="work_date">
-                    <option value="" id="date">Aujourd'hui</option>
-                    <option value="" id="date1">Demain</option>
-                    <option value="" id="date2"></option>
-                    <option value="" id="date3"></option>
-                </select>
-
-                <select name="" id="" class="work_time">
-                    <option value="" selected>9:15</option>
-                    <option value="">9:30</option>
-                    <option value="">9:45</option>
-                    <option value="">10:00</option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                    <option value=""></option>
-                </select>
-
-                <button id="valid">Valider</button>
+                <button id="myBtn">Créer son entrainement</button>
             </div><br><br>
             <div class="work_div">
                   <div class="work_yes">
