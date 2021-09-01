@@ -3,13 +3,20 @@ const router = express.Router();
 const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
+const test = require('../public/javascripts/workout');
+const Workouts = require('../public/javascripts/workouts');
+const Event = test.Event;
+const Seance = test.Seance;
+const Preview = test.Preview;
+const Jobs = test.Jobs
+
+
 
 const accounts = new Accounts().load();
 
 // Workout handle
  
 router.get('/training', (req,res) => {
-        
     res.render('training', { title: "Training"});
 })
 
@@ -101,11 +108,16 @@ router.get('/profiles', (req,res) => {
 })
 
 router.get('/home', (req,res) => {
-    res.render('home', { title: "Home", calorie: data[0].calorie})
+    res.render('home', { title: "Home", calorie: data.calorie})
 })
 
 router.post('/addWorkout', (req,res) => {
-    console.log(req.body);
+    const pseudo = req.body.pseudo;
+    const workouts = new Workouts().load(pseudo, true);
+    const programs = new Jobs(req.body.date,0,0,req.body.detail, req.body.duration,'',req.body.exercice,req.body.repetition,req.body.pause);
+    workouts.add(programs);
+    workouts.save(pseudo, true);
+    //const data = require('../data/' + pseudo + '.json');
     res.render('training', { title: "Training"})
 })
 

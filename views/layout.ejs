@@ -29,6 +29,12 @@
         document.getElementById('reset_count_calorie').setAttribute('value', pseudo);
     }
 
+    function trainingAppendPseudo() {
+        const pseudo = localStorage.getItem('pseudo');
+
+        document.getElementById('addTraining').setAttribute('value', pseudo)
+    }
+
     var modal = document.getElementById("myModal");
     var btn = document.getElementById("myBtn");
     var span = document.getElementsByClassName("close")[0];

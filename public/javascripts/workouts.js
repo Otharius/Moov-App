@@ -1,9 +1,12 @@
-const data = require('../../data/workout.json');
-const Workout = require('./workout');
+const a = require('./workout');
+const Event = a.Event;
+const Seance = a.Seance;
+const Preview = a.Preview;
+const Jobs = a.Jobs
 const fs = require('fs')
 
 class Workouts {
-
+    
     workouts = new Map();
 
     constructor() {
@@ -20,18 +23,47 @@ class Workouts {
         return this.workouts.get(pseudo);
     }
 
-    load () {
-            this.add(new Workout(
-                data.type,
-                data.serie,
-                data.rep,
-                data.repos,
-                data.time,
-                data.date,
-                data.note,
+    load (pseudo, x) {
+
+    if(x){
+        const data = require('../../data/' + pseudo + '.json')
+
+        for (let i=0; i<data.length; i++) {
+            this.add(new Jobs(
+                data[i].date,
+                data[i].difficulty,
+                data[i].done,
+                data[i].detail,
+                data[i].duration,
+                data[i].note,
+                data[i].exercice,
+                data[i].repetition,
+                data[i].pause
             )
         );
+        }
         return this;
+    }
+    else {
+        const data = require('../../data/workout.json')
+
+        for (let i=0; i<data.length; i++) {
+            this.add(new Jobs(
+                data[i].date,
+                data[i].difficulty,
+                data[i].done,
+                data[i].detail,
+                data[i].duration,
+                data[i].note,
+                data[i].exercice,
+                data[i].repetition,
+                data[i].pause
+            )
+        );
+        }
+        return this;
+    }
+
     } 
 
     save (pseudo) {

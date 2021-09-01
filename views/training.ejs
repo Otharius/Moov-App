@@ -40,25 +40,36 @@
     <span class="close">&times;</span>
     <form action="/workout/addWorkout" method="POST">
         <select name="type" id="">
-            <option value="">Type</option>
+            <option value="musculation">Musculation</option>
+            <option value="course">Course</option>
+        </select>
+        <select name="date" id="">
+            <option value="auj">Aujourd'hui</option>
+            <option value="demain">Demain</option>
         </select>
         <select name="heure" id="">
             <option value="">Heure</option>
         </select>
-        <select name="duree" id="">
+        <select name="duration" id="">
             <option value="">Durée</option>
         </select>
-        <select name="rep" id="">
+        <select name="repetition" id="">
             <option value="">Rep</option>
         </select>
         <select name="serie" id="">
-            <option value="">Série</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
         </select>
         <select name="repos" id="">
             <option value="">Repos</option>
         </select>
+        <select name="exercice" id="">
+            <option value="pompe">pompe</option>
+            <option value="squat">squat</option>
+        </select>
         <input type="text" placeholder="Détail" name="detail">
-        <button type="submit">Valider</button>
+        <input type="hidden" name="pseudo" id="addTraining">
+        <button type="submit" onclick="trainingAppendPseudo()">Valider</button>
     </form>
   </div>
 

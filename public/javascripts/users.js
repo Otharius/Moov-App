@@ -40,7 +40,7 @@ class Users {
         return this;
     } 
 
-    save () {
+    save (pseudo) {
         const objs = [];
         for (let user of this.users.values()) {
             objs.push(user.toObject());
@@ -48,7 +48,7 @@ class Users {
         const buffer = JSON.stringify(objs);
         fs.writeFile('data/users.json', buffer, function (err) {
             if (err) throw err;
-            console.log('Fichier créé !')
+            console.log('Nouvel utilisateur: ' + pseudo + ' !')
         })
     } 
 }
