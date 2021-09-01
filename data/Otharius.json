@@ -1,1 +1,1 @@
-[{"event":[{"date":"demain","seance":[{"difficulty":0,"detail":"","done":0,"preview":[{"duration":"","note":"","jobs":[{"exercice":"pompe","serie":""}]}]}]}]}]
+[{"event":[{"date":"Ajourd'hui","id":1,"seance":[{"difficulty":0,"detail":"no","done":false,"type":2,"preview":[{"duration":"no","note":"pompe","jobs":[{"exercice":5,"serie":10,"repetition":1}]}]}]}]}],[{"event":[{"date":"auj","id":1,"seance":[{"difficulty":0,"detail":"musculation","done":0,"type":"","preview":[{"duration":"","note":"","jobs":[{"exercice":"pompe","serie":""}]}]}]}]}]

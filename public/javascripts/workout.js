@@ -2,6 +2,7 @@
 class Event {
 
     date = '';
+    lastId = 0;
 
     
     constructor(date){
@@ -23,6 +24,7 @@ class Seance extends Event {
         this.done = done;
         this.detail = detail;
         this.type = type;
+        this.id = this.getNewId()
     }
 }
 
@@ -31,8 +33,8 @@ class Preview extends Seance {
     duration = 0;
     note = '';
 
-    constructor(date, difficulty, done, detail, duration, note){
-        super(date,difficulty,done,detail)
+    constructor(date, difficulty, done, type, detail, duration, note){
+        super(date,difficulty,done,type,detail)
         this.duration = duration;
         this.note = note;
     }
@@ -45,8 +47,8 @@ class Jobs extends Preview {
     repetition = 0;
     pause = 0;
 
-    constructor(date, difficulty, done, detail, duration, note, exercice, serie, repetition, pause){
-        super(date, difficulty, done, detail, duration, note)
+    constructor(date, difficulty, done, type, detail, duration, note, exercice, serie, repetition, pause){
+        super(date, difficulty, done, type, detail, duration, note)
         this.exercice = exercice;
         this.serie = serie;
         this.repetition = repetition;
@@ -54,10 +56,12 @@ class Jobs extends Preview {
     }
 
     toObject() {
+        console.log(this.id)
         return {
             "event":[
                 {
                     "date": this.date,
+                    "id": this.id,
                     "seance": [
                         {
                             "difficulty": this.difficulty,
@@ -85,6 +89,15 @@ class Jobs extends Preview {
 
             
         }
+    }
+
+    getNewId() {
+        if (this.lastId < 100000 ) {
+            this.lastId = this.lastId + 1;
+        } else {
+            this.lastId = 1;
+        }
+        return this.lastId;
     }
 
 }

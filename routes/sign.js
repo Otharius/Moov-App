@@ -69,7 +69,7 @@ router.post('/register', (req,res) => {
     accounts.add(account);
     accounts.save();
     workouts.add(workout);
-    workouts.save(pseudo);
+    workouts.save(pseudo, true);
 
     res.render('login', { title: "Login", error: false});
 })

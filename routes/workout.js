@@ -24,7 +24,7 @@ router.get('/training', (req,res) => {
  
 router.get('/meal', (req,res) => {
     // calorie à changer
-    res.render('meal', { title: "Meal", calorie: data[0].calorie})
+    res.render('meal', { title: "Meal", calorie: data.calorie})
 })
 
 router.post('/addCal', (req,res) => {
@@ -114,9 +114,9 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     const pseudo = req.body.pseudo;
     const workouts = new Workouts().load(pseudo, true);
-    const programs = new Jobs(req.body.date,0,0,req.body.detail, req.body.duration,'',req.body.exercice,req.body.repetition,req.body.pause);
+    const programs = new Jobs(req.body.date, 0, 0, req.body.type, req.body.detail, req.body.duration, '', req.body.exercice, req.body.repetition, req.body.pause);
     workouts.add(programs);
-    workouts.save(pseudo, true);
+    workouts.save(pseudo, false);
     //const data = require('../data/' + pseudo + '.json');
     res.render('training', { title: "Training"})
 })

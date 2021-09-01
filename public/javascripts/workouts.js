@@ -33,6 +33,7 @@ class Workouts {
                 data[i].date,
                 data[i].difficulty,
                 data[i].done,
+                data[i].type,
                 data[i].detail,
                 data[i].duration,
                 data[i].note,
@@ -52,6 +53,7 @@ class Workouts {
                 data[i].date,
                 data[i].difficulty,
                 data[i].done,
+                data[i].type,
                 data[i].detail,
                 data[i].duration,
                 data[i].note,
@@ -66,15 +68,38 @@ class Workouts {
 
     } 
 
-    save (pseudo) {
+    save (pseudo, create) {
         const objs = [];
         for (let workout of this.workouts.values()) {
             objs.push(workout.toObject());
         }
-        const buffer = JSON.stringify(objs);
-        fs.writeFile('data/' + pseudo + '.json', buffer, function (err) {
+
+        if (create) {
+            console.log(objs)
+            const buffer = JSON.stringify(objs);
+            fs.writeFile('data/' + pseudo + '.json', buffer, function (err) {
+            console.log("Fichier d'entrainement créé pour " + pseudo + ' !')
+            if (err) throw err;
+        },            fs.appendFile('data/' + pseudo + '.json', ",", function (err) {
             if (err) throw err;
         })
+        )
+        
+        }
+
+        else {
+            const buffer = JSON.stringify(objs);
+            fs.appendFile('data/' + pseudo + '.json', buffer, function (err) {
+            console.log("Nouvel entrainement pour " + pseudo + ' !')
+            if (err) throw err;
+        },
+            fs.appendFile('data/' + pseudo + '.json', ",", function (err) {
+            if (err) throw err;
+        }
+         
+        )
+        )}
+        
     } 
 }
 
