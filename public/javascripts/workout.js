@@ -56,7 +56,6 @@ class Jobs extends Preview {
     }
 
     toObject() {
-        console.log(this.id)
         return {
             "event":[
                 {

@@ -5,26 +5,25 @@ const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
 const test = require('../public/javascripts/workout');
 const Workouts = require('../public/javascripts/workouts');
+
 const Event = test.Event;
 const Seance = test.Seance;
 const Preview = test.Preview;
-const Jobs = test.Jobs
-
-
+const Jobs = test.Jobs;
 
 const accounts = new Accounts().load();
 
 // Workout handle
  
 router.get('/training', (req,res) => {
-    res.render('training', { title: "Training"});
+    const ok = false;
+    res.render('training', { title: "Training", ok});
 })
 
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    // calorie à changer
-    res.render('meal', { title: "Meal", calorie: data.calorie})
+    res.render('meal', { title: "Meal", calorie: data.calorie});
 })
 
 router.post('/addCal', (req,res) => {
@@ -33,16 +32,16 @@ router.post('/addCal', (req,res) => {
     if (req.body.cal === ""){
         res.render('meal', { title: "Meal", calorie: pseudo.calorie })
         return;
-
     }
 
-    
     const calorie = pseudo.calorie + parseInt(req.body.cal);
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
 
     pseudo.calorie = calorie;
+
     accounts.add(account);
     accounts.save();
+
     res.render('meal', { title: "Meal", calorie: calorie})
 })
 
@@ -51,16 +50,17 @@ router.post('/homeAddCal', (req,res) => {
     const pseudo = accounts.get(req.body.ok_count_calorie);
 
     if (req.body.cal === ""){
-        res.render('home', { title: "Home", calorie: pseudo.calorie })
+        res.render('home', { title: "Home", calorie: pseudo.calorie });
         return;
-
     }    
+
     const calorie = pseudo.calorie + parseInt(req.body.cal);
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
-
     pseudo.calorie = calorie;
+
     accounts.add(account);
     accounts.save();
+
     res.render('home', { title: "Home", calorie: calorie})
 })
 
@@ -71,7 +71,8 @@ router.post('/homeResetCal', (req,res) => {
 
     accounts.add(account);
     accounts.save();
-    res.render('home', { title: "Home", calorie: calorie})
+
+    res.render('home', { title: "Home", calorie: calorie});
 })
 
 router.post('/resetCal', (req,res) => {
@@ -81,6 +82,7 @@ router.post('/resetCal', (req,res) => {
 
     accounts.add(account);
     accounts.save();
+
     res.render('meal', { title: "Meal", calorie: calorie})
 })
 
@@ -92,6 +94,7 @@ router.post('/resetCal', (req,res) => {
 
     accounts.add(account);
     accounts.save();
+
     res.render('meal', { title: "Meal", calorie: calorie})
 })
 
@@ -114,11 +117,17 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     const pseudo = req.body.pseudo;
     const workouts = new Workouts().load(pseudo, true);
-    const programs = new Jobs(req.body.date, 0, 0, req.body.type, req.body.detail, req.body.duration, '', req.body.exercice, req.body.repetition, req.body.pause);
+    const programs = new Jobs(req.body.date, 0, false, req.body.detail, req.body.type, req.body.duration, '', req.body.exercice, req.body.serie, req.body.repetition, req.body.pause);
+    const Data = require('../data/' + pseudo + '.json')
+
     workouts.add(programs);
     workouts.save(pseudo, false);
-    //const data = require('../data/' + pseudo + '.json');
-    res.render('training', { title: "Training"})
+
+    const date = programs.date;
+    const duration = programs.duration;
+    const detail = programs.detail;
+    const ok = true;
+    res.render('training', { title: "Training", ok, date, duration, detail})
 })
 
 module.exports = router

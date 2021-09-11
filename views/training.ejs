@@ -32,52 +32,77 @@
    <!-- Trigger/Open The Modal -->
 
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <form action="/workout/addWorkout" method="POST">
-        <select name="type" id="">
-            <option value="musculation">Musculation</option>
-            <option value="course">Course</option>
-        </select><br>
-        <select name="date" id="">
-            <option value="auj">Aujourd'hui</option>
-            <option value="demain">Demain</option>
-        </select><br>
-        <select name="heure" id="">
-            <option value="">Heure</option>
-        </select><br>
-        <select name="duration" id="">
-            <option value="">Durée</option>
-        </select><br>
-        <select name="repetition" id="">
-            <option value="">Rep</option>
-        </select><br>
-        <select name="serie" id="">
-            <option value="1">1</option>
-            <option value="2">2</option>
-        </select><br>
-        <select name="repos" id="">
-            <option value="">Repos</option>
-        </select><br>
-        <select name="exercice" id="">
-            <option value="pompe">pompe</option>
-            <option value="squat">squat</option>
-        </select><br>
-        <input type="text" placeholder="Détail" name="detail">
-        <input type="hidden" name="pseudo" id="addTraining">
-        <button type="submit" onclick="trainingAppendPseudo()">Valider</button>
-    </form>
-  </div>
-</div> 
         <br><br><br><br>
         <div class="body_div">
             <div class="calender_div">
                 <h1>Plannification des entrainements</h1>
                 <button id="myBtn">Créer son entrainement</button>
+                
+<!-- The Modal -->
+<div id="myModal" class="training_modal">
+
+    <!-- Modal content -->
+    <div class="modal_training_content">
+      <span class="training_close">&times;</span>
+      <form action="/workout/addWorkout" method="POST">
+            <h1>Création de l'entrainement</h1>
+            <h5 class="training_create_title">Choisir la date, l'heure et la durée de la séance</h5>
+
+                Date:
+                <input type="date" name="" id="" required>
+
+                Durée:
+                <input type="number" max="59" value="1" min="1" name="duration">
+                <select name="Unity" id="">
+                    <option value="">Heure</option>
+                    <option value="">Minute</option>
+                </select><br>
+
+                Heure:
+                <input type="time"><br>
+
+                Nom de la séance:
+                <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value=""><br>
+
+            <h5 class="training_create_title">Le type de la séance</h5>
+                
+                Type:
+                <select name="type" id="" required>
+                    <option value="musculation">Musculation</option>
+                    <option value="course">Course</option>
+                </select><br>
+
+            <h5 class="training_create_title">Les exercices de la séance</h5>
+
+                Nombre de répétition:
+                <input type="number" name="" id="" min="1" max="50" value="1" required><br>
+
+                Nombre de série:
+                <input type="number" name="" id="" min="1" max="10" value="1" required><br>
+
+                Temps de repos:
+                <input type="number" name="" id="" min="0" max="59" value="30" required>
+                <select name="" id="">
+                    <option value="">Seconde</option>
+                    <option value="">Minute</option>
+                </select><br>
+
+                Exercice:
+                <select name="exercice" id="" required>
+                    <option value="pompe">pompe</option>
+                    <option value="squat">squat</option>
+                </select><br>
+
+            <h5 class="training_create_title">Les notes de la séance</h5>
+                <input type="text" placeholder="Détail" name="detail">
+
+
+
+          <input type="hidden" name="pseudo" id="addTraining">
+          <button type="submit" onclick="trainingAppendPseudo()">Valider</button> 
+      </form>
+    </div>
+  </div> 
             </div><br><br>
             <div class="work_div">
                   <div class="work_yes">
@@ -119,7 +144,10 @@
                   </div>
                   <div class="work_no">
                     <h1>Séances à venir</h1>
-                    <p class="job">Type: date et heure + bouton déttail pop up</p>
+                    <% if(ok){ %>
+                        <p><%= date %>: <%= detail %>, <%= duration %>h</p>
+                      <% } else{ %>  
+                     <% } %>
                   </div>
 
                 </div><br>

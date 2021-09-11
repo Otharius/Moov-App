@@ -26,6 +26,7 @@ router.get('/login', (req,res) => {
     } else {
         console.log('Session trouvable dans login')
     }
+    
     res.render('login', { title: "Login", error: false})
 })
 
@@ -66,8 +67,10 @@ router.post('/register', (req,res) => {
 
     users.add(user);
     users.save(user.pseudo);
+
     accounts.add(account);
     accounts.save();
+
     workouts.add(workout);
     workouts.save(pseudo, true);
 
@@ -95,10 +98,11 @@ router.post('/login', (req,res) => {
         return;
     }
 
-
     sessions.login(user);
     console.log(user.pseudo + " vient de se connecter");
+
     const data = require('../data/account.json');
+
     res.render('home', { title: "Home", calorie: data.calorie } );
 })
 
@@ -108,7 +112,6 @@ router.get('/logout', (req,res) => {
 })
 
 router.post('/logout', (req,res) => {
-
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.')
     res.render('login', { title: "Login", error: false})
 })
