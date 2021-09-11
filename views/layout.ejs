@@ -35,9 +35,9 @@
         document.getElementById('addTraining').setAttribute('value', pseudo)
     }
 
-    var modal = document.getElementById("myModal");
-    var btn = document.getElementById("myBtn");
-    var span = document.getElementsByClassName("training_close")[0];
+    const modal = document.getElementById("myModal");
+    const btn = document.getElementById("myBtn");
+    const span = document.getElementsByClassName("training_close")[0];
 
     btn.onclick = function() {
       modal.style.display = "block";
@@ -52,6 +52,18 @@
         modal.style.display = "none";
       }
     } 
+
+    function addExercice() {
+      const element = '<div><h5 class="training_create_title">Les exercices de la séance</h5><br>Nombre de répétition:<input type="number" name="" id="" min="1" max="50" value="1" required><br>Nombre de série:<input type="number" name="" id="" min="1" max="10" value="1" required><br>Temps de repos:<input type="number" name="" id="" min="0" max="59" value="30" required><select name="" id=""><option value="">Seconde</option><option value="">Minute</option></select><br>Exercice:<select name="exercice" id="" required><option value="pompe">pompe</option><option value="squat">squat</option></select><br></div>'
+      let section = document.querySelector('section');
+      var para = document.createElement('div');
+      para.className = 'aa'
+      para.innerHTML = element;
+     section.appendChild(para);
+    }
+
+
+
 
 </script>
 </html>
