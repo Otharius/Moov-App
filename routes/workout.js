@@ -17,7 +17,8 @@ const accounts = new Accounts().load();
  
 router.get('/training', (req,res) => {
     const ok = false;
-    res.render('training', { title: "Training", ok});
+    a = ["pompe", "squat", "traction"]
+    res.render('training', { title: "Training", ok, exercice: a});
 })
 
 // Meal handle
@@ -116,18 +117,24 @@ router.get('/home', (req,res) => {
 
 router.post('/addWorkout', (req,res) => {
     const pseudo = req.body.pseudo;
-    const workouts = new Workouts().load(pseudo, true);
-    const programs = new Jobs(req.body.date, 0, false, req.body.detail, req.body.type, req.body.duration, '', req.body.exercice, req.body.serie, req.body.repetition, req.body.pause);
-    const Data = require('../data/' + pseudo + '.json')
+    //const workouts = new Workouts().load(pseudo, true);
+    //const programs = new Jobs(req.body.date, 0, false, req.body.detail, req.body.type, req.body.duration, '', req.body.exercice, req.body.serie, req.body.repetition, req.body.pause);
+    //const Data = require('../data/' + pseudo + '.json')
 
-    workouts.add(programs);
-    workouts.save(pseudo, false);
+    //workouts.add(programs);
+    //workouts.save(pseudo, false);
+    console.log(req.body)
+    const ex1 = req.body.exercice[0]
+    const ex2 = req.body.exercice[1]
 
-    const date = programs.date;
-    const duration = programs.duration;
-    const detail = programs.detail;
-    const ok = true;
-    res.render('training', { title: "Training", ok, date, duration, detail})
+    //const date = programs.date;
+    //const duration = programs.duration;
+    //const detail = programs.detail;
+    //const ok = true;
+
+    exerciceChoice = ["pompe", "squat", "traction", "dips"]
+
+    res.render('training', { title: "Training", ok:false, exercice: exerciceChoice})
 })
 
 module.exports = router
