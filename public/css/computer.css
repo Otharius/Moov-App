@@ -183,6 +183,24 @@ body{
 /*Fin connexion et inscription*/
 /*Début de la page d'entrainement*/
 
+.create_workout_button {
+    display: inline-block;
+    width: 30%;
+}
+
+.container_button_workout {
+    width: 100%;
+}
+
+.button_change {
+    float: right;
+}
+
+.button_see {
+    margin-left: 5%;
+    margin-right: 2.5%;
+}
+
 .addExercice {
     padding: 10px 20px;
     border: 1px solid black;
@@ -261,7 +279,7 @@ body{
     display: inline-block;
 }
 
-.exerciceChoice {
+.exerciceChoice, .ExerciceChoice {
     text-decoration: none;
     border: none;
     text-align: center;
@@ -281,7 +299,6 @@ body{
 .do_work li:hover{
     cursor: pointer;
 }
-
 
 .yes {
     background-color: green;
@@ -359,7 +376,7 @@ body{
     margin: 2rem;  
 }
 
-.training_modal {
+.training_modal, .see_training_modal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -721,8 +738,6 @@ h3 {
     background-color: white;
     margin-top: 15%;
 }
-
-
   
   .select-box {
     position: relative;
@@ -732,7 +747,7 @@ h3 {
   }
   
   .select-box .options-container {
-    background: #2f3640;
+    background: #FF8C00;
     color: #f5f6fa;
     max-height: 0;
     width: 100%;
@@ -744,8 +759,8 @@ h3 {
     order: 1;
   }
   
-  .selected {
-    background: #2f3640;
+  .selected, .select {
+    background: #FF8C00;
     border-radius: 8px;
     margin-bottom: 8px;
     color: #f5f6fa;
@@ -754,7 +769,7 @@ h3 {
     order: 0;
   }
   
-  .selected::after {
+  .selected::after, .select::after {
     content: "";
     background: url("img/arrow-down.svg");
     background-size: contain;
@@ -776,7 +791,7 @@ h3 {
     margin-top: 54px;
   }
   
-  .select-box .options-container.active + .selected::after {
+  .select-box .options-container.active + .selected::after, .select-box .options-container.active + select::after{
     transform: rotateX(180deg);
     top: -6px;
   }
@@ -788,18 +803,18 @@ h3 {
   }
   
   .select-box .options-container::-webkit-scrollbar-thumb {
-    background: #525861;
+    background: #FF8C00;
     border-radius: 0 8px 8px 0;
   }
   
   .select-box .option,
-  .selected {
+  .selected, .select {
     padding: 12px 24px;
     cursor: pointer;
   }
   
   .select-box .option:hover {
-    background: #414b57;
+    background: crimson;
   }
   
   .select-box label {
@@ -820,7 +835,7 @@ h3 {
     position: absolute;
     border-radius: 8px 8px 0 0;
     z-index: 100;
-    border: 8px solid #2f3640;
+    border: 8px solid crimson;
   
     opacity: 0;
     pointer-events: none;

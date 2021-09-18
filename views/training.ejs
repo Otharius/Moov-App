@@ -35,21 +35,20 @@
         <div class="body_div">
             <div class="calender_div">
                 <h1>Plannification des entrainements</h1>
-                <button id="myBtn">Créer son entrainement</button>
+
+                <div class="container_button_workout">
+                    <button id="myBtn" class="create_workout_button button_create">Créer son entrainement</button>
+                    <button id="See_exercice" class="create_workout_button button_see">Voir les exercices</button>
+                    <button id="change_exercice" class="create_workout_button button_change">Modifier exercices</button>
+                </div>
+               
                 
-
-
+<!--Première pop-up pour la création de l'entrainement-->
 <div id="myModal" class="training_modal">
-    
-
     <div class="modal_training_content">
       <span class="training_close">&times;</span>
       <form action="/workout/addWorkout" method="POST">
             <h1>Création de l'entrainement</h1>
-
-
-
-
 
             <h5 class="training_create_title">Choisir la date, l'heure et la durée de la séance</h5>
 
@@ -147,7 +146,20 @@
           <button type="submit" onclick="trainingAppendPseudo()">Valider</button> 
       </form>
     </div>
-  </div> 
+</div> 
+<!--Fin de la pop-up de création d'entrainement-->
+<!--Début de la pop-up pour voir tout les exercices possibles-->
+
+<div id="mySecondModal" class="see_training_modal">
+    <div class="modal_training_content">
+        <span class="training_close">&times;</span>
+        <h3>Liste des exercices qui existent</h3>
+    </div>
+</div>
+
+<!--Fin de la pop-up pour voir tt les exerices possibles-->
+
+
             </div><br><br>
             <div class="work_div">
                   <div class="work_yes">
@@ -202,8 +214,10 @@
             <div class="documentary">
                 <h1>Documentation</h1>
             </div><br>
-            </div>
-        </div>
+    </div>
+</div>
+
+
 
 
     </body>

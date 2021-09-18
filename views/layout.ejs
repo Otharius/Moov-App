@@ -53,22 +53,40 @@
     }
 
     window.onclick = function(event) {
-      if (event.target == modal1) {
+      if (event.target == modal1 || event.target == modal2) {
         modal1.style.display = "none";
+        modal2.style.display = "none";
       }
     } 
   
+
+  // Ouvre une popup sur la page pour voir tt les entrainements possibles    
+
+    const modal2 = document.getElementById("mySecondModal");
+    const button = document.getElementById("See_exercice");
+    const Close = document.getElementsByClassName("training_close")[1];
+
+    button.onclick = function() {
+  
+      modal2.style.display = "block";
+    }
+
+    Close.onclick = function() {
+      modal2.style.display = "none";
+    }
+  
+
 // ------------------------------------------------------
 
     function addExercice() {
      
-        const element = '<br><div class="content_exercice">'+
-          '<div class="select-box"><div class="options-container"><div class="option"><input type="radio"class="radio"id="Pompe"name="category" value=""/>'+
+        const element = '<br><div class="Content_exercice">'+
+          '<div class="Select-box"><div class="optionsContainer"><div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value=""/>'+
         '<label for="automobiles">Pompe</label></div>'+
-        '<div class="option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
-        '<div class="option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
-        '<div class="selected" id="selected" onclick="optionMove()">Sélectionner un exercice</div>'+
-        '<div class="search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="exerciceChoice" value=""/></div></div>'+
+        '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
+        '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
+        '<div class="Selected" id="selected" onclick="optionMove()">Sélectionner un exercice</div>'
+        '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="ExerciceChoice" value=""/></div></div>'+
         '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
         '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
         '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
@@ -105,20 +123,9 @@
         }
       });
 
-      function optionMove() {
-        optionsContainer.classList.toggle("active");
-
-        searchBox.value = "";
-        filterList("");
-
-        if (optionsContainer.classList.contains("active")) {
-          searchBox.focus();
-        }
-      }
 
       optionsList.forEach(o => {
         o.addEventListener("click", () => {
-          alert(selected)
           selected.innerHTML = o.querySelector("label").innerHTML;
           optionsContainer.classList.remove("active");
           document.getElementById('exerciceChoice').value = selected.innerHTML
@@ -141,6 +148,56 @@
         });
       };
 
+
+      function optionMove() {
+
+          alert("test a")
+          const select = document.getElementById('selected');
+          const OptionsContainer = document.querySelector(".optionsContainer");
+          const boxSearch = document.querySelector(".Search-box");
+
+          const Options = document.querySelectorAll(".radio");
+
+          OptionsContainer.classList.toggle("active");
+
+          boxSearch.value = "";
+
+          filterList("");
+
+
+        if (OptionsContainer.classList.contains("active")) {
+          boxSearch.focus();
+        }
+        alert("z")
+}
+        
+
+      //   Options.forEach(o => {
+      //     x.addEventListener("click", () => {
+      //       select.innerHTML = x.querySelector("label").innerHTML;
+      //       OptionsContainer.ClassList.remove("active");
+      //       document.getElementById('ExerciceChoice').value = select.innerHTML
+      //       alert("a")
+      //     });
+      //   });
+
+      //   boxSearch.addEventListener("keyup", function(e) {
+      //     filter_List(e.target.value);
+      //     alert("b")
+      //   });
+
+      //   const filter_List = searchTerm => {
+      //   searchTerm = searchTerm.toLowerCase();
+      //   optionsList.forEach(option => {
+      //     alert("c")
+      //     let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+      //     if (label.indexOf(searchTerm) != -1) {
+      //       option.style.display = "block";
+      //     } else {
+      //       option.style.display = "none";
+      //     }
+      //   });}
+      
 
 
 // ------------------------------------------------------------------------------------

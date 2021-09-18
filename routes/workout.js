@@ -124,8 +124,7 @@ router.post('/addWorkout', (req,res) => {
     //workouts.add(programs);
     //workouts.save(pseudo, false);
     console.log(req.body)
-    const ex1 = req.body.exercice[0]
-    const ex2 = req.body.exercice[1]
+ 
 
     //const date = programs.date;
     //const duration = programs.duration;
