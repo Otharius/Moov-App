@@ -38,6 +38,13 @@
 
                 <div class="container_button_workout">
                     <button id="myBtn" class="create_workout_button button_create">Créer son entrainement</button>
+                </div><br>
+
+                <div class="display_workout">
+                    Titre + date + heure
+                </div><br>
+
+                <div class="container_button_workout">
                     <button id="See_exercice" class="create_workout_button button_see">Voir les exercices</button>
                     <button id="change_exercice" class="create_workout_button button_change">Modifier exercices</button>
                 </div>
@@ -87,7 +94,9 @@
                 </div>  
                 
                 <br>  
-
+    
+                <section>
+                        
                     <div class="content_exercice">  
 
                         <div class="select-box">
@@ -96,17 +105,17 @@
 
                                 <div class="option">
                                     <input type="radio"class="radio"id="Pompe"name="category" value=""/>
-                                    <label for="automobiles">Pompe</label>
+                                    <label for="Pompe">Pompe</label>
                                 </div>
                   
                                 <div class="option">
                                     <input type="radio" class="radio" id="Squat" name="category" value=""/>
-                                    <label for="film">Squat</label>
+                                    <label for="Squat">Squat</label>
                                 </div>
                     
                                 <div class="option">
                                     <input type="radio" class="radio" id="Traction" name="category" value=""/>
-                                    <label for="science">Traction</label>
+                                    <label for="Traction">Traction</label>
                                 </div>
 
                           </div>
@@ -133,8 +142,8 @@
                             <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
                             <br><br>
                             
-                    </div>    
-                    <section></section>
+                    </div>
+                </section>
 
                 
                
@@ -164,11 +173,15 @@
             <div class="work_div">
                   <div class="work_yes">
                     <h1>Séance faite</h1>
-                    <ul class="do_work">
-                        <li class="yes">Fait</li>
-                        <li class="little">Fait en partie</li>
-                        <li class="no">Non-fait</li>
-                    </ul>
+                        <div class="done_none">
+                            <input type="radio" class="yes work_done" name="done" id="yes">
+                            <label for="yes">Fait</label>
+                            <input type="radio" class="little work_done" name="done" id="little">
+                            <label for="little">Fait en partie</label>
+                            <input type="radio" class="no work_done" name="done" id="no">
+                            <label for="no">Non-fait</label>
+                        </div>
+                
                         <h3 class="little_title">Difficulté, couleur reste qd clique</h3>
                     <table class="difficulty" align="center">
                         <tr>
@@ -198,7 +211,9 @@
                         <h3 class="little_title">Note</h3>
                         <p>Très dur</p>
                     </div>
+                    <button class="value_button">Valider</button>
                   </div>
+
                   <div class="work_no">
                     <h1>Séances à venir</h1>
                     <% if(ok){ %>

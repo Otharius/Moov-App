@@ -81,125 +81,118 @@
     function addExercice() {
      
         const element = '<br><div class="Content_exercice">'+
-          '<div class="Select-box"><div class="optionsContainer"><div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value=""/>'+
-        '<label for="automobiles">Pompe</label></div>'+
-        '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
-        '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
-        '<div class="Selected" id="selected" onclick="optionMove()">Sélectionner un exercice</div>'
-        '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="ExerciceChoice" value=""/></div></div>'+
-        '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
-        '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
-        '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
-        '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'
-
+          '<div class="select-box"><div class="Options-container">'+
+          '<div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value=""/><label for="automobiles">Pompe</label></div>'+
+          '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
+          '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
+          '<div class="select" id="selected" onclick="optionMove()">Sélectionner un exercice</div>'+
+          '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="ExerciceChoice" value=""/></div></div>'+
+          '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
+          '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
+          '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
+          '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'
         
-
         let section = document.querySelector('section');
         let seance = document.createElement('div');
 
         seance.innerHTML = element;
         section.appendChild(seance);
-
     }
+
+
+
+    function optionMove() {
+
+    let select = document.querySelector(".select");
+    let OptionsContainer = document.querySelector(".Options-container");
+    let SearchBox = document.querySelector(".Search-box input");
+    let OptionsList = document.querySelectorAll(".Option");
+
+    select.addEventListener("click", () => {
+    OptionsContainer.classList.toggle("active");
+    SearchBox.value = "";
+    filterList("");
+
+    if (OptionsContainer.classList.contains("active")) {
+      SearchBox.focus();
+      }
+    });
+
+
+    OptionsList.forEach(x => {
+      x.addEventListener("click", () => {
+        select.innerHTML = x.querySelector("label").innerHTML;
+        OptionsContainer.classList.remove("active");
+        document.getElementById('ExerciceChoice').value = select.innerHTML
+      });
+    });
+
+    SearchBox.addEventListener("keyup", function(f) {
+      filterList(f.target.value);
+    });
+
+    const filterList = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      OptionsList.forEach(option => {
+        let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
+    };
+    }
+
+
+  // Gère la sélection du choix de l'exercice
+
     
 
-// Gère la sélection du choix de l'exercice
+    let selected = document.querySelector(".selected");
+    let optionsContainer = document.querySelector(".options-container");
+    let searchBox = document.querySelector(".search-box input");
+    let optionsList = document.querySelectorAll(".option");
+
+    selected.addEventListener("click", () => {
+    optionsContainer.classList.toggle("active");
+    searchBox.value = "";
+    filterList("");
+
+    if (optionsContainer.classList.contains("active")) {
+      searchBox.focus();
+      }
+    });
 
 
-      let selected = document.querySelector(".selected");
-      const optionsContainer = document.querySelector(".options-container");
-      const searchBox = document.querySelector(".search-box input");
+    optionsList.forEach(o => {
+      o.addEventListener("click", () => {
+        selected.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer.classList.remove("active");
+        document.getElementById('exerciceChoice').value = selected.innerHTML
+      });
+    });
 
-      const optionsList = document.querySelectorAll(".option");
+    searchBox.addEventListener("keyup", function(e) {
+      filterList(e.target.value);
+    });
 
-      selected.addEventListener("click", () => {
-        optionsContainer.classList.toggle("active");
-
-        searchBox.value = "";
-        filterList("");
-
-        if (optionsContainer.classList.contains("active")) {
-          searchBox.focus();
+    const filterList = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      optionsList.forEach(option => {
+        let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
         }
       });
+    };
+
+  // Fin de la gestion de menu de l'exercice 
 
 
-      optionsList.forEach(o => {
-        o.addEventListener("click", () => {
-          selected.innerHTML = o.querySelector("label").innerHTML;
-          optionsContainer.classList.remove("active");
-          document.getElementById('exerciceChoice').value = selected.innerHTML
-        });
-      });
-
-      searchBox.addEventListener("keyup", function(e) {
-        filterList(e.target.value);
-      });
-
-      const filterList = searchTerm => {
-        searchTerm = searchTerm.toLowerCase();
-        optionsList.forEach(option => {
-          let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-          if (label.indexOf(searchTerm) != -1) {
-            option.style.display = "block";
-          } else {
-            option.style.display = "none";
-          }
-        });
-      };
 
 
-      function optionMove() {
-
-          alert("test a")
-          const select = document.getElementById('selected');
-          const OptionsContainer = document.querySelector(".optionsContainer");
-          const boxSearch = document.querySelector(".Search-box");
-
-          const Options = document.querySelectorAll(".radio");
-
-          OptionsContainer.classList.toggle("active");
-
-          boxSearch.value = "";
-
-          filterList("");
-
-
-        if (OptionsContainer.classList.contains("active")) {
-          boxSearch.focus();
-        }
-        alert("z")
-}
-        
-
-      //   Options.forEach(o => {
-      //     x.addEventListener("click", () => {
-      //       select.innerHTML = x.querySelector("label").innerHTML;
-      //       OptionsContainer.ClassList.remove("active");
-      //       document.getElementById('ExerciceChoice').value = select.innerHTML
-      //       alert("a")
-      //     });
-      //   });
-
-      //   boxSearch.addEventListener("keyup", function(e) {
-      //     filter_List(e.target.value);
-      //     alert("b")
-      //   });
-
-      //   const filter_List = searchTerm => {
-      //   searchTerm = searchTerm.toLowerCase();
-      //   optionsList.forEach(option => {
-      //     alert("c")
-      //     let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-      //     if (label.indexOf(searchTerm) != -1) {
-      //       option.style.display = "block";
-      //     } else {
-      //       option.style.display = "none";
-      //     }
-      //   });}
-      
-
-
-// ------------------------------------------------------------------------------------
 </script>
 </html>

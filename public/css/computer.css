@@ -1,11 +1,23 @@
+/* Initialisation des variables*/
+
+
+
+
 /*Début de la barre de navigation*/
 body{
+    --orange:#FF8C00;
+    --sucess:#4bb544;
+    --error:#cc3333;
+    --orangeFoncé:#bb7a0a;
+    --focus:#009579;
+
+
     padding: 0px;
     margin: 0px;
 }
 
 .topnav {
-    background-color: #FF8C00;
+    background-color: var(--orange);
     overflow: hidden;
     width: 100%;
     float: left;
@@ -49,7 +61,7 @@ body{
 }
 
 .topnav a.active {
-    background-color: #bb7a0a;
+    background-color: var(--orangeFoncé);
     color: white;
 }
   
@@ -105,11 +117,11 @@ body{
 }
 
 .form_message-success {
-    color: #4bb544;
+    color: var(--sucess);
 }
 
 .form_message-error {
-    color: #cc3333;
+    color: var(--error);
     text-align: center;
 }
 
@@ -135,14 +147,14 @@ body{
 }
 
 .form_input-error {
-    color: #cc3333;
-    border-color: #cc3333;
+    color: var(--error);
+    border-color: var(--error);
 }
 
 .form_input-error-message {
     margin-top: 0.5rem;
     font-size: 0.85rem;
-    color: #cc3333;
+    color: var(--error);
 }
 
 .form_button {
@@ -155,11 +167,11 @@ body{
     border-radius: 4px;
     outline: none;
     cursor: pointer;
-    background: #FF8C00;
+    background: var(--orange);
 }
 
 .form_button:hover {
-    background: #bb7a0a;
+    background: var(--orangeFoncé);
 }
 
 .form_button:active {
@@ -288,6 +300,13 @@ body{
     font-size: 1.5rem;
 }
 
+.yes {
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: crimson;
+}
+
 .do_work li{
     display: inline-block;
     width: 6rem;
@@ -323,7 +342,7 @@ body{
 }
 
 .little:hover{
-    background-color: rgb(202, 112, 3);
+    background-color: var(--orangeFoncé);
 }
 
 .little:active {
@@ -376,6 +395,91 @@ body{
     margin: 2rem;  
 }
 
+.button_create {
+    border-radius: 15px;
+    color: white;
+    background-color: crimson;
+    border: none;
+    height: 5%;
+    width: 50%;
+    cursor: pointer;
+}
+
+.button_create:active {
+    transform: scale(0.98);
+}
+
+.display_workout {
+    border: 1px solid black;
+}
+
+.button_see, .button_change {
+    border-radius: 10px;
+    color: white;
+    background-color: tomato;
+    border: none;
+    width: 25%;
+    height: 5%;
+    cursor: pointer;
+}
+
+.button_see:active, .button_change:active, .value_button:active {
+    transform: scale(0.98);
+}
+
+.value_button {
+    text-align: center;
+    color: white;
+    background-color: steelblue;
+    border: none;
+    padding: 2% 8%;
+    border-radius: 20px;
+    margin: auto;
+}
+
+.work_done + label{
+    padding: 0.5rem 1rem;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #6c757d;
+    border: 1px solid transparent;
+    transition: all 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.work_done {
+    display: none;
+}
+
+.yes:checked + label{
+    color: white;
+    background-color: green;
+}
+
+.yes + label {
+    float: left;
+}
+
+.no + label {
+    float: right;
+}
+
+.little + label {
+    margin: auto;
+}
+
+.little:checked + label{
+    color: white;
+    background-color: orange;
+}
+
+.no:checked + label{
+    color: white;
+    background-color: red;
+}
+
 .training_modal, .see_training_modal {
     display: none; 
     position: fixed; 
@@ -409,6 +513,10 @@ body{
     color: red;
     text-decoration: none;
     cursor: pointer;
+  }
+
+  .done_none {
+      border: 1px solid black;
   }
 
 /*Fin de la page d'entrainement*/
@@ -569,7 +677,7 @@ h3 {
 }
 
 .count_calorie:focus {
-    border-color: #009579;
+    border-color: var(--focus);
     background-color: #ffffff;
 }
 
@@ -606,8 +714,8 @@ h3 {
 
 .ok_count_calorie:active {
     transform: scale(0.98);
-    border: 1px solid #009579;
-    background-color: #009579;
+    border: 1px solid var(--focus);
+    background-color: var(--focus);
     color: white;
 }
 
@@ -674,7 +782,7 @@ h3 {
 }
     
 .changePWD input:focus {
-    border-color: #009579;
+    border-color: var(--focus);
     background: #ffffff;
 }
 
@@ -688,13 +796,13 @@ h3 {
     border-radius: 10px;
     outline: none;
     cursor: pointer;
-    background: #FF8C00;
+    background: var(--orange);
     margin-left: 25%;
     display: block;
 }
 
 .input_submit:hover {
-    background: #bb7a0a;
+    background: var(--orangeFoncé);
 }
 
 .input_submit:active {
@@ -747,7 +855,7 @@ h3 {
   }
   
   .select-box .options-container {
-    background: #FF8C00;
+    background: var(--orange);
     color: #f5f6fa;
     max-height: 0;
     width: 100%;
@@ -760,7 +868,7 @@ h3 {
   }
   
   .selected, .select {
-    background: #FF8C00;
+    background: var(--orange);
     border-radius: 8px;
     margin-bottom: 8px;
     color: #f5f6fa;
@@ -803,7 +911,7 @@ h3 {
   }
   
   .select-box .options-container::-webkit-scrollbar-thumb {
-    background: #FF8C00;
+    background: var(--orange);
     border-radius: 0 8px 8px 0;
   }
   

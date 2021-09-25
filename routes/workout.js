@@ -46,7 +46,7 @@ router.post('/addCal', (req,res) => {
     res.render('meal', { title: "Meal", calorie: calorie})
 })
 
-
+// Ajoute des calories sur la page d'accueil
 router.post('/homeAddCal', (req,res) => {
     const pseudo = accounts.get(req.body.ok_count_calorie);
 
@@ -65,6 +65,7 @@ router.post('/homeAddCal', (req,res) => {
     res.render('home', { title: "Home", calorie: calorie})
 })
 
+// Remet à 0 le nombre de calorie sur la page d'accueil
 router.post('/homeResetCal', (req,res) => {
     const pseudo = accounts.get(req.body.reset_count_calorie);
     const calorie = pseudo.calorie = 0;
@@ -76,18 +77,7 @@ router.post('/homeResetCal', (req,res) => {
     res.render('home', { title: "Home", calorie: calorie});
 })
 
-router.post('/resetCal', (req,res) => {
-    const pseudo = accounts.get(req.body.reset_count_calorie);
-    const calorie = pseudo.calorie = 0;
-    const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
-
-    accounts.add(account);
-    accounts.save();
-
-    res.render('meal', { title: "Meal", calorie: calorie})
-})
-
-
+// Remet à 0 le nombre de calorie sur la page d'alimentation
 router.post('/resetCal', (req,res) => {
     const pseudo = accounts.get(req.body.reset_count_calorie);
     const calorie = pseudo.calorie = 0;
@@ -115,6 +105,7 @@ router.get('/home', (req,res) => {
     res.render('home', { title: "Home", calorie: data.calorie})
 })
 
+// Ajoute des entrainements
 router.post('/addWorkout', (req,res) => {
     const pseudo = req.body.pseudo;
     //const workouts = new Workouts().load(pseudo, true);

@@ -17,7 +17,7 @@ const users = new Users().load();
 const sessions = new Sessions();
 const accounts = new Accounts().load();
 
-// Login handle
+
 
 
 router.get('/login', (req,res) => {
@@ -34,8 +34,9 @@ router.get('/register', (req,res) => {
     res.render('register', { title: "Register", error: false});
 })
 
-// Register handle
 
+
+// Ajoute un nouvel utilisateur dans l'application
 router.post('/register', (req,res) => {
 
     const pseudo = req.body.pseudo;
@@ -77,6 +78,8 @@ router.post('/register', (req,res) => {
     res.render('login', { title: "Login", error: false});
 })
 
+
+// Système de connexion pour l'application
 router.post('/login', (req,res) => {
 
     const pseudo = req.body.pseudo;
@@ -111,17 +114,22 @@ router.post('/login', (req,res) => {
 router.get('/logout', (req,res) => {
 })
 
+
+// Système de déconnexion
 router.post('/logout', (req,res) => {
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.')
     res.render('login', { title: "Login", error: false})
 })
 
-// Profiles handle
+
  
 router.get('/home', (req,res) => {
     res.render('home', { title: "Home"})
 })
 
+
+
+// Système pour changer le mot de passe
 router.post('/changePassword', (req,res) => {
 
     const oldPassword = req.body.old;
