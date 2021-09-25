@@ -81,16 +81,17 @@
     function addExercice() {
      
         const element = '<br><div class="Content_exercice">'+
-          '<div class="select-box"><div class="Options-container">'+
-          '<div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value=""/><label for="automobiles">Pompe</label></div>'+
+          '<div class="select-box"><div class="op">'+
+          '<div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value="" style="display: none"/><label for="automobiles">Pompe</label></div>'+
           '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
           '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
-          '<div class="select" id="selected" onclick="optionMove()">Sélectionner un exercice</div>'+
-          '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="ExerciceChoice" value=""/></div></div>'+
+          '<div class="select" id="selected" onclick="test()">Sélectionner un exercice</div>'+
+          '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="Choice" value=""/></div></div>'+
           '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
           '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
           '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
-          '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'
+          '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'+
+          '<style>.rad {display = "none}</style>'
         
         let section = document.querySelector('section');
         let seance = document.createElement('div');
@@ -99,7 +100,46 @@
         section.appendChild(seance);
     }
 
+    function test() {
+      let select = document.querySelector(".select")
+      let OptionsContainer = document.querySelector(".op");
+      let SearchBox = document.querySelector(".Search-box input");
+      let OptionsList = document.querySelectorAll(".Option");
+      OptionsContainer.classList.toggle("active");
+      SearchBox.value = "";
+      filterList("");
 
+      if (OptionsContainer.classList.contains("active")) {
+      SearchBox.focus();
+      }
+    
+      OptionsList.forEach(x => {
+      x.addEventListener("click", () => {
+        select.innerHTML = x.querySelector("label").innerHTML;
+        OptionsContainer.classList.remove("active");
+        document.getElementById('Choice').value = select.innerHTML
+      });
+    });
+
+    SearchBox.addEventListener("keyup", function(f) {
+      filterList(f.target.value);
+    });
+
+    // const filterList = searchTerm => {
+    //   searchTerm = searchTerm.toLowerCase();
+    //   OptionsList.forEach(option => {
+    //     let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+    //     if (label.indexOf(searchTerm) != -1) {
+    //       option.style.display = "block";
+    //     } else {
+    //       option.style.display = "none";
+    //     }
+    //   });
+    // };
+    
+
+      //alert("select")
+    }
 
     function optionMove() {
 
@@ -118,6 +158,9 @@
       }
     });
 
+    SearchBox.addEventListener("keyup", function(f) {
+      filterList(f.target.value);
+    });
 
     OptionsList.forEach(x => {
       x.addEventListener("click", () => {
@@ -127,9 +170,7 @@
       });
     });
 
-    SearchBox.addEventListener("keyup", function(f) {
-      filterList(f.target.value);
-    });
+
 
     const filterList = searchTerm => {
       searchTerm = searchTerm.toLowerCase();
@@ -157,7 +198,7 @@
     selected.addEventListener("click", () => {
     optionsContainer.classList.toggle("active");
     searchBox.value = "";
-    filterList("");
+    filterlist("");
 
     if (optionsContainer.classList.contains("active")) {
       searchBox.focus();
