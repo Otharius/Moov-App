@@ -224,6 +224,12 @@ body{
 
 .content_exercice {
     border: 1px solid red;
+    display: block;
+}
+
+.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
+    display: none;
+    border: 1px solid red;
 }
 
 .icon {

@@ -93,48 +93,88 @@
     }
 
   // Gère la création d'exercice 
-      const addExercice = document.querySelector(".addExercice")  
-      let firstEx = document.querySelector(".content_exercice")
-      let secondEx = document.querySelector(".content_exercice2")
-      let thirdEx = document.querySelector(".content_exercice3")
-      let fourEx = document.querySelector(".content_exercice4")
-      let fiveEx = document.querySelector(".content_exercice5")
-      let deleteExercice2 = document.getElementById("deleteEx2") 
+      const addExercice = document.querySelector(".addExercice") 
+      exercice = [document.querySelector(".content_exercice"),document.querySelector(".content_exercice2"),document.querySelector(".content_exercice3"),document.querySelector(".content_exercice4"),document.querySelector(".content_exercice5")];
+      deleteEx = [document.getElementById("deleteEx2"),document.getElementById("deleteEx3"),document.getElementById("deleteEx4"),document.getElementById("deleteEx5")]
       i = 0
       
       addExercice.addEventListener("click", () => {
         if (i == 0){
-          secondEx.style.display = "block"
+          exercice[1].style.display = "block"
         };
         if (i == 1){
-          thirdEx.style.display = "block"
+          exercice[2].style.display = "block"
         }
         if (i == 2){
-          fourEx.style.display = "block"
+          exercice[3].style.display = "block"
         }
         if (i == 3){
-          fiveEx.style.display = "block"
+          exercice[4].style.display = "block"
         }
         i = i + 1
       })
 
-      deleteEx2.addEventListener("click", () => {
-        secondEx.style.display = "none"
+      deleteEx[0].addEventListener("click", () => {
+        if (i == 0){
+          exercice[1].style.display = "none"
+        };
+        if (i == 1){
+          exercice[2].style.display = "none"
+        }
+        if (i == 2){
+          exercice[3].style.display = "none"
+        }
+        if (i == 3){
+          exercice[4].style.display = "none"
+        }
         i = i - 1
       });
 
-      deleteEx3.addEventListener("click", () => {
-        thirdEx.style.display = "none"
+      deleteEx[1].addEventListener("click", () => {
+        if (i == 0){
+          exercice[1].style.display = "none"
+        };
+        if (i == 1){
+          exercice[2].style.display = "none"
+        }
+        if (i == 2){
+          exercice[3].style.display = "none"
+        }
+        if (i == 3){
+          exercice[4].style.display = "none"
+        }
         i = i - 1
       });
 
-      deleteEx4.addEventListener("click", () => {
-        fourEx.style.display = "none"
+      deleteEx[2].addEventListener("click", () => {
+        if (i == 0){
+          exercice[1].style.display = "none"
+        };
+        if (i == 1){
+          exercice[2].style.display = "none"
+        }
+        if (i == 2){
+          exercice[3].style.display = "none"
+        }
+        if (i == 3){
+          exercice[4].style.display = "none"
+        }
         i = i - 1
       });
 
-      deleteEx5.addEventListener("click", () => {
-        fiveEx.style.display = "none"
+      deleteEx[3].addEventListener("click", () => {
+        if (i == 0){
+          exercice[1].style.display = "none"
+        };
+        if (i == 1){
+          exercice[2].style.display = "none"
+        }
+        if (i == 2){
+          exercice[3].style.display = "none"
+        }
+        if (i == 3){
+          exercice[4].style.display = "none"
+        }
         i = i - 1
       })
 

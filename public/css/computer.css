@@ -241,6 +241,14 @@ body{
 
 .content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
     display: none;
+    border: 1px solid red;
+}
+
+.delete {
+    border: 1px solid blue;
+    margin: 5px;
+    width: 50px;
+    border-radius: 30%;
 }
 
 .icon {
