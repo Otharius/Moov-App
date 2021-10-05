@@ -53,9 +53,10 @@
     }
 
     window.onclick = function(event) {
-      if (event.target == modal1 || event.target == modal2) {
+      if (event.target == modal1 || event.target == modal2 || event.target == modal3) {
         modal1.style.display = "none";
         modal2.style.display = "none";
+        modal3.style.display = "none";
       }
     } 
   
@@ -76,120 +77,76 @@
     }
   
 
-// ------------------------------------------------------
+// Ouvre une popup pour voir le degrès d'intensité
 
-    function addExercice() {
-     
-        const element = '<br><div class="Content_exercice">'+
-          '<div class="select-box"><div class="op">'+
-          '<div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value="" style="display: none"/><label for="automobiles">Pompe</label></div>'+
-          '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
-          '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
-          '<div class="select" id="selected" onclick="test()">Sélectionner un exercice</div>'+
-          '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="Choice" value=""/></div></div>'+
-          '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
-          '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
-          '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
-          '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'+
-          '<style>.rad {display = "none}</style>'
-        
-        let section = document.querySelector('section');
-        let seance = document.createElement('div');
+    const modal3 = document.getElementById("myThirdModal");
+    const Button = document.getElementById("See_intensity");
+    const close = document.getElementsByClassName("training_close")[2];
 
-        seance.innerHTML = element;
-        section.appendChild(seance);
+    Button.onclick = function() {
+  
+      modal3.style.display = "block";
     }
 
-    function test() {
-      let select = document.querySelector(".select")
-      let OptionsContainer = document.querySelector(".op");
-      let SearchBox = document.querySelector(".Search-box input");
-      let OptionsList = document.querySelectorAll(".Option");
-      OptionsContainer.classList.toggle("active");
-      SearchBox.value = "";
-      filterList("");
-
-      if (OptionsContainer.classList.contains("active")) {
-      SearchBox.focus();
-      }
-    
-      OptionsList.forEach(x => {
-      x.addEventListener("click", () => {
-        select.innerHTML = x.querySelector("label").innerHTML;
-        OptionsContainer.classList.remove("active");
-        document.getElementById('Choice').value = select.innerHTML
-      });
-    });
-
-    SearchBox.addEventListener("keyup", function(f) {
-      filterList(f.target.value);
-    });
-
-    // const filterList = searchTerm => {
-    //   searchTerm = searchTerm.toLowerCase();
-    //   OptionsList.forEach(option => {
-    //     let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-    //     if (label.indexOf(searchTerm) != -1) {
-    //       option.style.display = "block";
-    //     } else {
-    //       option.style.display = "none";
-    //     }
-    //   });
-    // };
-    
-
-      //alert("select")
+    close.onclick = function() {
+      modal3.style.display = "none";
     }
 
-    function optionMove() {
-
-    let select = document.querySelector(".select");
-    let OptionsContainer = document.querySelector(".Options-container");
-    let SearchBox = document.querySelector(".Search-box input");
-    let OptionsList = document.querySelectorAll(".Option");
-
-    select.addEventListener("click", () => {
-    OptionsContainer.classList.toggle("active");
-    SearchBox.value = "";
-    filterList("");
-
-    if (OptionsContainer.classList.contains("active")) {
-      SearchBox.focus();
-      }
-    });
-
-    SearchBox.addEventListener("keyup", function(f) {
-      filterList(f.target.value);
-    });
-
-    OptionsList.forEach(x => {
-      x.addEventListener("click", () => {
-        select.innerHTML = x.querySelector("label").innerHTML;
-        OptionsContainer.classList.remove("active");
-        document.getElementById('ExerciceChoice').value = select.innerHTML
-      });
-    });
-
-
-
-    const filterList = searchTerm => {
-      searchTerm = searchTerm.toLowerCase();
-      OptionsList.forEach(option => {
-        let label = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
-        if (label.indexOf(searchTerm) != -1) {
-          option.style.display = "block";
-        } else {
-          option.style.display = "none";
+  // Gère la création d'exercice 
+      const addExercice = document.querySelector(".addExercice")  
+      let firstEx = document.querySelector(".content_exercice")
+      let secondEx = document.querySelector(".content_exercice2")
+      let thirdEx = document.querySelector(".content_exercice3")
+      let fourEx = document.querySelector(".content_exercice4")
+      let fiveEx = document.querySelector(".content_exercice5")
+      let deleteExercice2 = document.getElementById("deleteEx2") 
+      i = 0
+      
+      addExercice.addEventListener("click", () => {
+        if (i == 0){
+          secondEx.style.display = "block"
+        };
+        if (i == 1){
+          thirdEx.style.display = "block"
         }
-      });
-    };
-    }
+        if (i == 2){
+          fourEx.style.display = "block"
+        }
+        if (i == 3){
+          fiveEx.style.display = "block"
+        }
+        i = i + 1
+      })
 
+      deleteEx2.addEventListener("click", () => {
+        secondEx.style.display = "none"
+        i = i - 1
+      });
+
+      deleteEx3.addEventListener("click", () => {
+        thirdEx.style.display = "none"
+        i = i - 1
+      });
+
+      deleteEx4.addEventListener("click", () => {
+        fourEx.style.display = "none"
+        i = i - 1
+      });
+
+      deleteEx5.addEventListener("click", () => {
+        fiveEx.style.display = "none"
+        i = i - 1
+      })
+
+
+   
+
+
+  // Fin de la gestion de création d'exercice
 
   // Gère la sélection du choix de l'exercice
 
-    
-
+  
     let selected = document.querySelector(".selected");
     let optionsContainer = document.querySelector(".options-container");
     let searchBox = document.querySelector(".search-box input");
@@ -233,6 +190,24 @@
   // Fin de la gestion de menu de l'exercice 
 
 
+        // const element = '<br><div class="Content_exercice">'+
+        //   '<div class="select-box"><div class="op">'+
+        //   '<div class="Option"><input type="radio"class="radio"id="Pompe"name="category" value="" style="display: none"/><label for="automobiles">Pompe</label></div>'+
+        //   '<div class="Option"><input type="radio" class="radio" id="Squat" name="category" value=""/><label for="film">Squat</label></div>'+
+        //   '<div class="Option"><input type="radio" class="radio" id="Traction" name="category" value=""/><label for="science">Traction</label></div></div>'+
+        //   '<div class="select" id="selected" onclick="test()">Sélectionner un exercice</div>'+
+        //   '<div class="Search-box"><input type="text" placeholder="Trouver un exercice" name="exerice" id="Choice" value=""/></div></div>'+
+        //   '<br>Nombre de répétition:<input type="number" name="repetition" id="" min="1" max="50" value="1" required>'+
+        //   '<br>Nombre de série:<input type="number" name="serie" id="" min="1" max="10" value="1" required>'+
+        //   '<br>Temps de repos:<label for=""><input type="number" name="reposMin" id="" min="0" max="30" value="0" required>Minute</label>'+
+        //   '<label for=""><input type="number" name="reposSec" id="" min="0" max="59" value="30" required>Seconde</label><br><br></div>'+
+        //   '<style>.rad {display = "none}</style>'
+        
+        // let section = document.querySelector('section');
+        // let seance = document.createElement('div');
+
+        // seance.innerHTML = element;
+        // section.appendChild(seance);
 
 
 </script>

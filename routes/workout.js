@@ -122,9 +122,16 @@ router.post('/addWorkout', (req,res) => {
     //const detail = programs.detail;
     //const ok = true;
 
-    exerciceChoice = ["pompe", "squat", "traction", "dips"]
+    exerciceChoice = ["pompe", "squat", "traction", "dips", "Développé couché"]
 
     res.render('training', { title: "Training", ok:false, exercice: exerciceChoice})
+})
+
+router.post('/afterWorkout', (req,res) => {
+    const done = req.body.done;
+    const difficulty = req.body.difficulty;
+    
+    res.render('training', { title:"Training", ok:false})
 })
 
 module.exports = router

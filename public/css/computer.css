@@ -236,6 +236,11 @@ body{
 
 .content_exercice {
     border: 1px solid red;
+    display: block;
+}
+
+.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
+    display: none;
 }
 
 .icon {
@@ -254,15 +259,19 @@ body{
     width: 95%;
     max-width: 95%;
     border-radius: 8px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
 .calender_div {
     width: 92.5%;
 }
 
+.work_div {
+    border: 1px solid black;
+}
+
 .work_yes {
-    width: 35rem;
+    width: 42%;
     margin-right: 3%;
     border: 1px solid black;
     padding: 1rem;
@@ -273,7 +282,7 @@ body{
 
 .work_no {
     float: right;
-    width: 35rem;
+    width: 42%;
     margin-left: 3%;
     border: 1px solid black;
     padding: 1rem;
@@ -359,23 +368,38 @@ body{
     transform: scale(0.98);
 }
 
-.difficulty td{
-    width: 30px;
-    border: 1px solid black;
-    text-align: center;
-    border-radius: 20px;
-    padding: 0.5rem;
+
+.dif:checked + label {
+    background-color: rgb(2, 2, 185); 
+    border-color: rgb(1, 1, 68);
+    color: white;
 }
 
-.difficulty td:hover {
-    background-color: rgb(2, 2, 185);
-    color: white;
-    border-color: rgb(1, 1, 68);
+.dif {
+    display: none;
+}
+
+.difficulty label{
+    margin: auto;
+    border: 1px solid black;
+}
+
+.dif + label{
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    transition: all 0.2s ease-in-out;
+    border: 1px solid black;
+    user-select: none;
+}
+
+.dif:hover + label{
     cursor: pointer;
 }
 
-.difficulty td:active {
-    transform: scale(0.95);
+.dif_start + label{
+    margin-left: 20%;
 }
 
 .little_title{
@@ -385,9 +409,10 @@ body{
 
 .note_div {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    width: 31rem;
+    width: 90%;
     height: 15rem;
-    margin: 2rem;  
+    margin: auto;  
+
 }
 
 .button_create {
@@ -454,15 +479,21 @@ body{
 }
 
 .yes + label {
-    float: left;
+    float: right;
+    text-align: center;
+    margin-right: 20%
 }
 
 .no + label {
     float: right;
+    text-align: center;    
+    margin-right: 5%;
 }
 
 .little + label {
-    margin: auto;
+    float: right;
+    text-align: center;  
+    margin-right: 5%;  
 }
 
 .little:checked + label{
@@ -475,7 +506,7 @@ body{
     background-color: red;
 }
 
-.training_modal, .see_training_modal {
+.training_modal, .see_training_modal, .table_intensity_modal {
     display: none; 
     position: fixed; 
     z-index: 1; 
@@ -488,14 +519,23 @@ body{
     background-color: rgba(0,0,0,0.4); 
   }
 
-.modal_training_content {
+.modal_training_content{
     background-color: #fefefe;
     margin: 15% auto; 
     padding: 20px;
     border: 1px solid #888;
-    width: 80%; 
+    width: 80%;
   }
   
+  .table_intensity_content {
+    width: 30%;
+    height: 500px;
+    border: 1px solid #888;
+    background-color: white;
+    margin: 15% auto; 
+    padding: 20px;
+  }
+
   .training_close {
     color: #aaa;
     float: right;
@@ -510,10 +550,66 @@ body{
     cursor: pointer;
   }
 
-  .done_none {
-      border: 1px solid black;
+  .table_intensity {
+      border-collapse: collapse;
+      border: 3px solid black;
+      width: 100%;
+      text-align: center;
   }
 
+  .table_intensity td {
+      border: 1px solid black;
+      font-size: 1.5rem;
+  }
+
+  .table_intensity th, .table_intensity .intensity_9{
+    color: white;
+    background-color: black;
+}
+
+.table_intensity .intensity_8{
+    color: white;
+    background-color: crimson;
+}
+
+.table_intensity .intensity_7{
+    color: white;
+    background-color: red;
+}
+
+.table_intensity .intensity_6{
+    color: white;
+    background-color: chocolate;
+}
+
+.table_intensity .intensity_5{
+    background-color: coral;
+}
+
+.table_intensity .intensity_4{
+    background-color: darksalmon;
+}
+
+.table_intensity .intensity_3{
+    background-color: yellow;
+}
+
+.table_intensity .intensity_2{
+    background-color: #5bad81;
+}
+
+.table_intensity .intensity_1{
+    background-color: #7ae2ab ;
+}
+
+.table_intensity .intensity_0{
+    background-color:   #b2fed6;
+}
+
+.intensity_title {
+    cursor: pointer;
+    font-size: 1.2rem;
+}
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
 
