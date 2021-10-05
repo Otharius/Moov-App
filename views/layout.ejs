@@ -115,64 +115,64 @@
       })
 
       deleteEx[0].addEventListener("click", () => {
-        if (i == 0){
+        if (i == 1){
           exercice[1].style.display = "none"
         };
-        if (i == 1){
+        if (i == 2){
           exercice[2].style.display = "none"
         }
-        if (i == 2){
+        if (i == 3){
           exercice[3].style.display = "none"
         }
-        if (i == 3){
+        if (i == 4){
           exercice[4].style.display = "none"
         }
         i = i - 1
       });
 
       deleteEx[1].addEventListener("click", () => {
-        if (i == 0){
+        if (i == 1){
           exercice[1].style.display = "none"
         };
-        if (i == 1){
+        if (i == 2){
           exercice[2].style.display = "none"
         }
-        if (i == 2){
+        if (i == 3){
           exercice[3].style.display = "none"
         }
-        if (i == 3){
+        if (i == 4){
           exercice[4].style.display = "none"
         }
         i = i - 1
       });
 
       deleteEx[2].addEventListener("click", () => {
-        if (i == 0){
+        if (i == 1){
           exercice[1].style.display = "none"
         };
-        if (i == 1){
+        if (i == 2){
           exercice[2].style.display = "none"
         }
-        if (i == 2){
+        if (i == 3){
           exercice[3].style.display = "none"
         }
-        if (i == 3){
+        if (i == 4){
           exercice[4].style.display = "none"
         }
         i = i - 1
       });
 
       deleteEx[3].addEventListener("click", () => {
-        if (i == 0){
+        if (i == 1){
           exercice[1].style.display = "none"
         };
-        if (i == 1){
+        if (i == 2){
           exercice[2].style.display = "none"
         }
-        if (i == 2){
+        if (i == 3){
           exercice[3].style.display = "none"
         }
-        if (i == 3){
+        if (i == 4){
           exercice[4].style.display = "none"
         }
         i = i - 1
@@ -226,6 +226,172 @@
         }
       });
     };
+
+
+    let selected2 = document.querySelector(".selected2");
+    let optionsContainer2 = document.querySelector(".options-container2");
+    let searchBox2 = document.querySelector(".search-box2 input");
+    let optionsList2 = document.querySelectorAll(".option2");
+
+    selected2.addEventListener("click", () => {
+    optionsContainer2.classList.toggle("active");
+    searchBox2.value = "";
+    filterList2("");
+
+    if (optionsContainer2.classList.contains("active")) {
+      searchBox2.focus();
+      }
+    });
+
+
+    optionsList2.forEach(o => {
+      o.addEventListener("click", () => {
+        selected2.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer2.classList.remove("active");
+        document.getElementById('exerciceChoice2').value = selected2.innerHTML
+      });
+    });
+
+    searchBox2.addEventListener("keyup", function(e) {
+      filterList2(e.target.value);
+    });
+
+    const filterList2 = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      optionsList2.forEach(option => {
+        let label2 = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label2.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
+    };
+
+
+    let selected3 = document.querySelector(".selected3");
+    let optionsContainer3 = document.querySelector(".options-container3");
+    let searchBox3 = document.querySelector(".search-box3 input");
+    let optionsList3 = document.querySelectorAll(".option3");
+
+    selected3.addEventListener("click", () => {
+    optionsContainer3.classList.toggle("active");
+    searchBox3.value = "";
+    filterList3("");
+
+    if (optionsContainer3.classList.contains("active")) {
+      searchBox3.focus();
+      }
+    });
+
+
+    optionsList3.forEach(o => {
+      o.addEventListener("click", () => {
+        selected3.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer3.classList.remove("active");
+        document.getElementById('exerciceChoice3').value = selected3.innerHTML
+      });
+    });
+
+    searchBox3.addEventListener("keyup", function(e) {
+      filterList3(e.target.value);
+    });
+
+    const filterList3 = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      optionsList3.forEach(option => {
+        let label3 = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label3.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
+    };
+
+
+    let selected4 = document.querySelector(".selected4");
+    let optionsContainer4 = document.querySelector(".options-container4");
+    let searchBox4 = document.querySelector(".search-box4 input");
+    let optionsList4 = document.querySelectorAll(".option4");
+
+    selected4.addEventListener("click", () => {
+    optionsContainer4.classList.toggle("active");
+    searchBox4.value = "";
+    filterList4("");
+
+    if (optionsContainer4.classList.contains("active")) {
+      searchBox4.focus();
+      }
+    });
+
+
+    optionsList4.forEach(o => {
+      o.addEventListener("click", () => {
+        selected4.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer4.classList.remove("active");
+        document.getElementById('exerciceChoice4').value = selected4.innerHTML
+      });
+    });
+
+    searchBox4.addEventListener("keyup", function(e) {
+      filterList4(e.target.value);
+    });
+
+    const filterList4 = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      optionsList4.forEach(option => {
+        let label4 = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label4.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
+    };
+
+
+    let selected5 = document.querySelector(".selected5");
+    let optionsContainer5 = document.querySelector(".options-container5");
+    let searchBox5 = document.querySelector(".search-box5 input");
+    let optionsList5 = document.querySelectorAll(".option5");
+
+    selected5.addEventListener("click", () => {
+    optionsContainer5.classList.toggle("active");
+    searchBox5.value = "";
+    filterList5("");
+
+    if (optionsContainer5.classList.contains("active")) {
+      searchBox5.focus();
+      }
+    });
+
+
+    optionsList5.forEach(o => {
+      o.addEventListener("click", () => {
+        selected5.innerHTML = o.querySelector("label").innerHTML;
+        optionsContainer5.classList.remove("active");
+        document.getElementById('exerciceChoice5').value = selected5.innerHTML
+      });
+    });
+
+    searchBox5.addEventListener("keyup", function(e) {
+      filterList5(e.target.value);
+    });
+
+    const filterList5 = searchTerm => {
+      searchTerm = searchTerm.toLowerCase();
+      optionsList5.forEach(option => {
+        let label5 = option.firstElementChild.nextElementSibling.innerText.toLowerCase();
+        if (label5.indexOf(searchTerm) != -1) {
+          option.style.display = "block";
+        } else {
+          option.style.display = "none";
+        }
+      });
+    };
+
+
 
   // Fin de la gestion de menu de l'exercice 
 
