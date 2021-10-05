@@ -618,6 +618,146 @@ body{
     cursor: pointer;
     font-size: 1.2rem;
 }
+
+.select-box, .select-box2, .select-box3, .select-box4, .select-box5 {
+    position: relative;
+    display: flex;
+    width: 400px;
+    flex-direction: column;
+    margin: auto;
+  }
+  
+  .select-box .options-container, .select-box2 .options-container2, .select-box3 .options-container3, .select-box4 .options-container4, .select-box5 .options-container5{
+    background: var(--orange);
+    color: #f5f6fa;
+    max-height: 0;
+    width: 100%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+  
+    order: 1;
+  }
+  
+  .selected, .selected2, .selected3, .selected4, .selected5 {
+    background: var(--orange);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #f5f6fa;
+    position: relative;
+    text-align: center;
+    font-size: 1.3rem;
+    order: 0;
+  }
+  
+  .selected::after, .selected2::after, .selected3::after, .selected4::after , .selected5::after  {
+    content: "";
+    background: url("img/arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 5px;
+  
+    transition: all 0.4s;
+  }
+  
+  .select-box .options-container.active, .select-box2 .options-container2.active, .select-box3 .options-container3.active,
+  .select-box4 .options-container4.active, .select-box5 .options-container5.active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 54px;
+  }
+  
+  .select-box .options-container.active + .selected::after, .select-box2 .options-container2.active + .selected2::after,
+  .select-box3 .options-container3.active + .selected3::after, .select-box4 .options-container4.active + .selected4::after,
+  .select-box5 .options-container5.active + .selected5::after{
+    transform: rotateX(180deg);
+    top: -6px;
+  }
+  
+  .select-box .options-container::-webkit-scrollbar, .options-container2::-webkit-scrollbar, .options-container3::-webkit-scrollbar,
+  .options-container4::-webkit-scrollbar,  .options-container5::-webkit-scrollbar{
+    width: 8px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .select-box .options-container::-webkit-scrollbar-thumb, .options-container2::-webkit-scrollbar-thumb, .options-container3::-webkit-scrollbar-thumb,
+  .options-container4::-webkit-scrollbar-thumb,  .options-container5::-webkit-scrollbar-thumb {
+    background: var(--orange);
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .select-box .option,
+  .selected, .select-box2 .option2, .selected2,
+  .select-box3 .option3, .selected3, .select-box4 .option4, .selected4, .select-box5 .option5, .selected5  {
+    padding: 12px 24px;
+    cursor: pointer;
+  }
+  
+  .select-box .option:hover, .select-box2 .option2:hover, .select-box3 .option3:hover,
+  .select-box4 .option4:hover, .select-box5 .option5:hover {
+    background: crimson;
+  }
+  
+  .select-box label, .select-box2 label, .select-box3 label, .select-box4 label, .select-box5 label{
+
+    cursor: pointer;
+  }
+  
+  .select-box .option .radio, .select-box2 .option2 .radio, .select-box3 .option3 .radio,
+  .select-box4 .option4 .radio, .select-box5 .option5 .radio{ 
+    display: none;
+  }
+  
+  /* Searchbox */
+  
+  .search-box input, .search-box2 input, .search-box3 input, .search-box4 input, .search-box5 input {
+    width: 100%;
+    padding: 12px 16px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    position: absolute;
+    border-radius: 8px 8px 0 0;
+    z-index: 100;
+    border: 8px solid crimson;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s;
+  }
+  
+  .search-box input:focus, .search-box2 input:focus, .search-box3 input:focus, .search-box4 input:focus, .search-box5 input:focus {
+    outline: none;
+  }
+  
+.select-box .options-container.active ~ .search-box input,
+.select-box2 .options-container2.active ~ .search-box2 input,
+.select-box3 .options-container3.active ~ .search-box3 input,
+.select-box4 .options-container4.active ~ .search-box4 input,
+.select-box5 .options-container5.active ~ .search-box5 input {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.precisionEx {
+    border: 1px solid green;
+}
+
+.exPart1 {
+    border: 1px solid black;
+}
+
+.exPart2 {
+    border: 1px solid yellow;
+}
+
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
 
@@ -946,128 +1086,3 @@ h3 {
     margin-top: 15%;
 }
   
-  .select-box, .select-box2, .select-box3, .select-box4, .select-box5 {
-    position: relative;
-    display: flex;
-    width: 400px;
-    flex-direction: column;
-  }
-  
-  .select-box .options-container, .select-box2 .options-container2, .select-box3 .options-container3, .select-box4 .options-container4, .select-box5 .options-container5{
-    background: var(--orange);
-    color: #f5f6fa;
-    max-height: 0;
-    width: 100%;
-    opacity: 0;
-    transition: all 0.4s;
-    border-radius: 8px;
-    overflow: hidden;
-  
-    order: 1;
-  }
-  
-  .selected, .selected2, .selected3, .selected4, .selected5 {
-    background: var(--orange);
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #f5f6fa;
-    position: relative;
-  
-    order: 0;
-  }
-  
-  .selected::after, .selected2::after, .selected3::after, .selected4::after , .selected5::after  {
-    content: "";
-    background: url("img/arrow-down.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-  
-    position: absolute;
-    height: 100%;
-    width: 32px;
-    right: 10px;
-    top: 5px;
-  
-    transition: all 0.4s;
-  }
-  
-  .select-box .options-container.active, .select-box2 .options-container2.active, .select-box3 .options-container3.active,
-  .select-box4 .options-container4.active, .select-box5 .options-container5.active {
-    max-height: 240px;
-    opacity: 1;
-    overflow-y: scroll;
-    margin-top: 54px;
-  }
-  
-  .select-box .options-container.active + .selected::after, .select-box2 .options-container2.active + .selected2::after,
-  .select-box3 .options-container3.active + .selected3::after, .select-box4 .options-container4.active + .selected4::after,
-  .select-box5 .options-container5.active + .selected5::after{
-    transform: rotateX(180deg);
-    top: -6px;
-  }
-  
-  .select-box .options-container::-webkit-scrollbar, .options-container2::-webkit-scrollbar, .options-container3::-webkit-scrollbar,
-  .options-container4::-webkit-scrollbar,  .options-container5::-webkit-scrollbar{
-    width: 8px;
-    background: white;
-    border: 1px solid black;
-    border-radius: 0 8px 8px 0;
-  }
-  
-  .select-box .options-container::-webkit-scrollbar-thumb, .options-container2::-webkit-scrollbar-thumb, .options-container3::-webkit-scrollbar-thumb,
-  .options-container4::-webkit-scrollbar-thumb,  .options-container5::-webkit-scrollbar-thumb {
-    background: var(--orange);
-    border-radius: 0 8px 8px 0;
-  }
-  
-  .select-box .option,
-  .selected, .select-box2 .option2, .selected2,
-  .select-box3 .option3, .selected3, .select-box4 .option4, .selected4, .select-box5 .option5, .selected5  {
-    padding: 12px 24px;
-    cursor: pointer;
-  }
-  
-  .select-box .option:hover, .select-box2 .option2:hover, .select-box3 .option3:hover,
-  .select-box4 .option4:hover, .select-box5 .option5:hover {
-    background: crimson;
-  }
-  
-  .select-box label, .select-box2 label, .select-box3 label, .select-box4 label, .select-box5 label{
-
-    cursor: pointer;
-  }
-  
-  .select-box .option .radio, .select-box2 .option2 .radio, .select-box3 .option3 .radio,
-  .select-box4 .option4 .radio, .select-box5 .option5 .radio{ 
-    display: none;
-  }
-  
-  /* Searchbox */
-  
-  .search-box input, .search-box2 input, .search-box3 input, .search-box4 input, .search-box5 input {
-    width: 100%;
-    padding: 12px 16px;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    position: absolute;
-    border-radius: 8px 8px 0 0;
-    z-index: 100;
-    border: 8px solid crimson;
-  
-    opacity: 0;
-    pointer-events: none;
-    transition: all 0.4s;
-  }
-  
-  .search-box input:focus, .search-box2 input:focus, .search-box3 input:focus, .search-box4 input:focus, .search-box5 input:focus {
-    outline: none;
-  }
-  
-  .select-box .options-container.active ~ .search-box input,
- .select-box2 .options-container2.active ~ .search-box2 input,
- .select-box3 .options-container3.active ~ .search-box3 input,
- .select-box4 .options-container4.active ~ .search-box4 input,
- .select-box5 .options-container5.active ~ .search-box5 input {
-    opacity: 1;
-    pointer-events: auto;
-  }
