@@ -234,21 +234,19 @@ body{
     cursor: pointer;
 }
 
-.content_exercice {
-    border: 1px solid red;
-    display: block;
-}
-
-.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
-    display: none;
-    border: 1px solid red;
-}
 
 .delete {
-    border: 1px solid blue;
     margin: 5px;
     width: 50px;
     border-radius: 30%;
+}
+
+.delete:hover {
+    cursor: pointer;
+}
+
+.delete:active {
+    transform: scale(0.98);
 }
 
 .icon {
@@ -666,6 +664,21 @@ body{
     transition: all 0.4s;
   }
   
+  .content_exercice {
+    border: 1px solid black;
+    display: block;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
+    display: none;
+    border: 1px solid black;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+
   .select-box .options-container.active, .select-box2 .options-container2.active, .select-box3 .options-container3.active,
   .select-box4 .options-container4.active, .select-box5 .options-container5.active {
     max-height: 240px;
@@ -751,11 +764,38 @@ body{
 }
 
 .exPart1 {
-    border: 1px solid black;
+    width: 49.8%;
+    float: left;
+    height: 20%;
+    margin-top: 2%;
+    margin-left: 2%;
 }
 
 .exPart2 {
-    border: 1px solid yellow;
+    width: 47.8%;
+    float: right;
+    height: 20%;
+    margin-top: 2%;
+}
+
+.content_precision {
+    display: inline-block;
+    font-size: 1.2rem;
+    width: 100%;
+}
+
+.number_exercice {
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.number_line {
+    width: 80%;
+    color: black;
+}
+ .option input[type = radio] {
+    color: green;
 }
 
 /*Fin de la page d'entrainement*/
@@ -776,14 +816,6 @@ body{
 .aérobie, .muscu {
     padding: 20px 30px;
 }
-
-#programme, #Evolution, #Calorie, #Forme, #Repas {
-    border: 1px solid black;
-}
-
-#auj {
-    text-align: center;
-} 
 
 /*Fin de la page d'accueil*/
 /*Début de la page de sommeil*/
@@ -863,7 +895,7 @@ h3 {
     margin-top: -1%;
 }
 
-.shower {
+.shower, .meditation {
     height: 500px;
 }
 
@@ -887,10 +919,6 @@ h3 {
 
 .stretch_color {
     background-color: #eee;
-}
-
-.meditation {
-    height: 500px;
 }
 
 /*Fin de la page de sommeil*/

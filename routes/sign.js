@@ -114,7 +114,39 @@ router.post('/login', (req,res) => {
 router.get('/logout', (req,res) => {
 })
 
+router.get('/forgot', (req,res) => {
+    res.render('forgot', { title: "Forgot"})
+})
 
+
+router.post('/sendMail', (req,res) => {
+    let transporter = nodemailer.createTransport({
+        host: "",  // enter host name
+        port: 487, //enter port name
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: 'llepennec101@gmail.com', // write your smtp account user name
+          pass: 'Loic1234' // write your smtp account user password
+        },
+        tls : { 
+              rejectUnauthorized : false  // Important for sendimg mail from localhost
+        }
+      
+      });
+    
+      // send mail with defined transport object
+      let info = transporter.sendMail({
+        from: 'llepennec101@gmail.com', // sender address
+        to: "llepennecpro@gmail.com", // list of receivers
+        subject: subject, // Subject line
+        text: "Bonjour, Monsieur", // plain text body
+        html: body // html body
+      });
+    
+      console.log("Message sent: %s", info.messageId);
+    }
+        
+)
 // Système de déconnexion
 router.post('/logout', (req,res) => {
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.')

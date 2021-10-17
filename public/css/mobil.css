@@ -1,10 +1,17 @@
 body{
+
+    --orange:#FF8C00;
+    --sucess:#4bb544;
+    --error:#cc3333;
+    --orangeFoncé:#bb7a0a;
+    --focus:#009579;
+
     padding: 0px;
     margin: 0px;
 }
 
 .topnav {
-    background-color: #FF8C00;
+    background-color: var(--orange);
     overflow: scroll;
     position: fixed;
     bottom: 0;
@@ -237,7 +244,7 @@ body{
 }
 
 
-.training_modal, .see_training_modal {
+.training_modal, .see_training_modal, .table_intensity_modal {
     display: none;
     position: fixed;
     z-index: 1; 
@@ -349,8 +356,226 @@ body{
     height: 15rem;
     margin: 2rem;  
 }
+  
+  .table_intensity_content {
+    width: 30%;
+    height: 500px;
+    border: 1px solid #888;
+    background-color: white;
+    margin: 15% auto; 
+    padding: 20px;
+  }
+
+.table_intensity {
+    border-collapse: collapse;
+    border: 3px solid black;
+    width: 100%;
+    text-align: center;
+}
+
+.table_intensity td {
+    border: 1px solid black;
+    font-size: 1.5rem;
+}
+
+.table_intensity th, .table_intensity .intensity_9{
+  color: white;
+  background-color: black;
+}
+
+.table_intensity .intensity_8{
+  color: white;
+  background-color: crimson;
+}
+
+.table_intensity .intensity_7{
+  color: white;
+  background-color: red;
+}
+
+.table_intensity .intensity_6{
+  color: white;
+  background-color: chocolate;
+}
+
+.table_intensity .intensity_5{
+  background-color: coral;
+}
+
+.table_intensity .intensity_4{
+  background-color: darksalmon;
+}
+
+.table_intensity .intensity_3{
+  background-color: yellow;
+}
+
+.table_intensity .intensity_2{
+  background-color: #5bad81;
+}
+
+.table_intensity .intensity_1{
+  background-color: #7ae2ab ;
+}
+
+.table_intensity .intensity_0{
+  background-color:   #b2fed6;
+}
+
+.select-box, .select-box2, .select-box3, .select-box4, .select-box5 {
+    position: relative;
+    display: flex;
+    width: 90%;
+    flex-direction: column;
+  }
+  
+.select-box .options-container, .select-box2 .options-container2, .select-box3 .options-container3, .select-box4 .options-container4, .select-box5 .options-container5 {
+    background: var(--orange);
+    color: #f5f6fa;
+    max-height: 0;
+    width: 90%;
+    opacity: 0;
+    transition: all 0.4s;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-left: 10%;
+    order: 1;
+    text-align: center;
+  }
+  
+.selected, .selected2, .selected3, .selected4, .selected5 {
+    background: var(--orange);
+    border-radius: 8px;
+    margin-bottom: 8px;
+    color: #f5f6fa;
+    position: relative;
+    order: 0;
+    width: 95.3%;
+    margin-left:-0.3%;
+    text-align: center;
+  }
+  
+.selected::after, .selected2::after, .selected3::after, .selected4::after , .selected5::after {
+    content: "";
+    background: url("img/arrow-down.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+  
+    position: absolute;
+    height: 100%;
+    width: 32px;
+    right: 10px;
+    top: 5px;
+  
+  }
+  
+.content_exercice {
+    border: 1px solid black;
+    display: block;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    }
+
+.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
+        display: none;
+        border: 1px solid black;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+
+.select-box .options-container.active, .select-box2 .options-container2.active, .select-box3 .options-container3.active,
+.select-box4 .options-container4.active, .select-box5 .options-container5.active {
+    max-height: 240px;
+    opacity: 1;
+    overflow-y: scroll;
+    margin-top: 54px;
+  }
+  
+.select-box .options-container.active + .selected::after, .select-box2 .options-container2.active + .selected2::after,
+.select-box3 .options-container3.active + .selected3::after, .select-box4 .options-container4.active + .selected4::after,
+.select-box5 .options-container5.active + .selected5::after {
+    transform: rotateX(180deg);
+    top: -6px;
+  }
+  
+.select-box .options-container::-webkit-scrollbar, .options-container2::-webkit-scrollbar, .options-container3::-webkit-scrollbar,
+.options-container4::-webkit-scrollbar,  .options-container5::-webkit-scrollbar {
+    width: 8px;
+    background: white;
+    border: 1px solid black;
+    border-radius: 0 8px 8px 0;
+  }
+  
+.select-box .options-container::-webkit-scrollbar-thumb, .options-container2::-webkit-scrollbar-thumb, .options-container3::-webkit-scrollbar-thumb,
+.options-container4::-webkit-scrollbar-thumb,  .options-container5::-webkit-scrollbar-thumb {
+    background: var(--orange);
+    border-radius: 0 8px 8px 0;
+  }
+  
+.select-box .option,
+.selected, .select-box2 .option2, .selected2,
+.select-box3 .option3, .selected3, .select-box4 .option4, .selected4, .select-box5 .option5, .selected5   {
+    padding: 12px 24px;
+    cursor: pointer;
+  }
+  
+.select-box .option:hover, .select-box2 .option2:hover, .select-box3 .option3:hover,
+.select-box4 .option4:hover, .select-box5 .option5:hover {
+    background-color: var(--orangeFoncé);
+  }
+  
+.select-box label, .select-box2 label, .select-box3 label, .select-box4 label, .select-box5 label {
+    cursor: pointer;
+  }
+  
+.select-box .option .radio, .select-box2 .option2 .radio, .select-box3 .option3 .radio,
+.select-box4 .option4 .radio, .select-box5 .option5 .radio {
+    display: none;
+  }
 
 
+  /* Searchbox */
+  
+.search-box input, .search-box2 input, .search-box3 input, .search-box4 input, .search-box5 input {
+    width: 90%;
+    padding: 12px 16px;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    position: absolute;
+    border-radius: 8px 8px 0 0;
+    z-index: 100;
+    border: 8px solid var(--orangeFoncé);
+    opacity: 0;
+    pointer-events: none;
+    margin-left: 10%;
+    text-align: center;
+  }
+  
+.search-box input:focus, .search-box2 input:focus, .search-box3 input:focus, .search-box4 input:focus, .search-box5 input:focus {
+    outline: none;
+  }
+  
+.select-box .options-container.active ~ .search-box input,
+.select-box2 .options-container2.active ~ .search-box2 input,
+.select-box3 .options-container3.active ~ .search-box3 input,
+.select-box4 .options-container4.active ~ .search-box4 input,
+.select-box5 .options-container5.active ~ .search-box5 input {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+.number_exercice {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: saddlebrown;
+}
+
+.number_line {
+    width: 80%;
+    margin: auto;
+    border: 0.5px solid black
+}
 
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
@@ -708,111 +933,3 @@ h3 {
 }
 
 
-.select-box {
-    position: relative;
-    display: flex;
-    width: 90%;
-    flex-direction: column;
-  }
-  
-  .select-box .options-container {
-    background: #2f3640;
-    color: #f5f6fa;
-    max-height: 0;
-    width: 90%;
-    opacity: 0;
-    transition: all 0.4s;
-    border-radius: 8px;
-    overflow: hidden;
-  
-    order: 1;
-  }
-  
-  .selected {
-    background: #2f3640;
-    border-radius: 8px;
-    margin-bottom: 8px;
-    color: #f5f6fa;
-    position: relative;
-    order: 0;
-  }
-  
-  .selected::after {
-    content: "";
-    background: url("img/arrow-down.svg");
-    background-size: contain;
-    background-repeat: no-repeat;
-  
-    position: absolute;
-    height: 100%;
-    width: 32px;
-    right: 10px;
-    top: 5px;
-  
-  }
-  
-  .select-box .options-container.active {
-    max-height: 240px;
-    opacity: 1;
-    overflow-y: scroll;
-    margin-top: 54px;
-  }
-  
-  .select-box .options-container.active + .selected::after {
-    transform: rotateX(180deg);
-    top: -6px;
-  }
-  
-  .select-box .options-container::-webkit-scrollbar {
-    width: 8px;
-    background: #0d141f;
-    border-radius: 0 8px 8px 0;
-  }
-  
-  .select-box .options-container::-webkit-scrollbar-thumb {
-    background: #525861;
-    border-radius: 0 8px 8px 0;
-  }
-  
-  .select-box .option,
-  .selected {
-    padding: 12px 24px;
-    cursor: pointer;
-  }
-  
-  .select-box .option:hover {
-    background: #414b57;
-  }
-  
-  .select-box label {
-    cursor: pointer;
-  }
-  
-  .select-box .option .radio {
-    display: none;
-  }
-  
-  /* Searchbox */
-  
-  .search-box input {
-    width: 90%;
-    padding: 12px 16px;
-    font-family: "Roboto", sans-serif;
-    font-size: 16px;
-    position: absolute;
-    border-radius: 8px 8px 0 0;
-    z-index: 100;
-    border: 8px solid #2f3640;
-  
-    opacity: 0;
-    pointer-events: none;
-  }
-  
-  .search-box input:focus {
-    outline: none;
-  }
-  
-  .select-box .options-container.active ~ .search-box input {
-    opacity: 1;
-    pointer-events: auto;
-  }
