@@ -2,7 +2,7 @@
 lastId = 0;
 maxId = 100000;
 
-getNewId() {
+function getNewId() {
     if (lastId < maxId ) {
         lastId++;
     } else {
@@ -11,12 +11,12 @@ getNewId() {
     return lastId;
 }
 
-/**
+/*
  * The base class for all workout data objects.
  */
 class Event {
 
-    const id = getNewId();
+    id = getNewId();
 
 }
 
@@ -67,10 +67,15 @@ class Seance extends Event {
         this.jobs = [];
     }
 
+    add(job) {
+        this.jobs.push(job);
+        return this;
+    }
+
     jobsToObjects() {
         const objects = [];
-        for (job in jobs) {
-            objects.add(job.toObject())
+        for (let job of this.jobs) {
+            objects.push(job.toObject())
         }
         return objects;
     }
@@ -87,8 +92,48 @@ class Seance extends Event {
 
 }
 
+class Workout extends Event {
+
+    seances;
+
+    constructor() {
+        super();
+        this.seances = [];
+    }
+
+    add(seance) {
+        this.seances.push(seance);
+        return this;
+    }
+
+    // data is the array of Seances
+    load(data) {
+        for (let i=0; i<data.length; i++) {
+            const s = data[i];
+            const seance = new Seance(s.date, s.difficulty, s.done, s.detail, s.type);
+            for (let j=0; j<s.jobs.length; j++) {
+                const j = s.jobs[j];
+                const job = new Job(j.exercice, j.repetitions, j.series, j.pause);
+                seance.add(job);
+            }
+            this.add(seance);
+        }
+        return this;
+    }
+
+    toObject() {
+        const objects = [];
+        for (let seance of this.seances) {
+            objects.push(seance.toObject())
+        }
+        return objects;
+    }
+
+}
+
 module.exports = {
     Event,
     Job,
-    Seance
+    Seance,
+    Workout
 }

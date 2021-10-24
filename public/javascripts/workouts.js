@@ -1,8 +1,8 @@
-const a = require('./workout');
-const Event = a.Event;
-const Seance = a.Seance;
-const Preview = a.Preview;
-const Jobs = a.Jobs
+const workoutClass = require('./workout');
+const Event = workoutClass.Event;
+const Seance = workoutClass.Seance;
+const Job = workoutClass.Job
+const Workout = workoutClass.Workout
 const fs = require('fs')
 
 class Workouts {
@@ -11,12 +11,10 @@ class Workouts {
 
     constructor() {
     }
-
-    
  
     add (workout) {
         this.workouts.set(workout.pseudo, workout);
-        return true;
+        return this;
     }
 
     get (pseudo) {
@@ -25,48 +23,14 @@ class Workouts {
 
     load (pseudo, x) {
 
-    if(x){
         const data = require('../../data/' + pseudo + '.json')
 
-        for (let i=0; i<data.length; i++) {
-            this.add(new Jobs(
-                data[i].date,
-                data[i].difficulty,
-                data[i].done,
-                data[i].type,
-                data[i].detail,
-                data[i].duration,
-                data[i].note,
-                data[i].exercice,
-                data[i].repetition,
-                data[i].pause
-            )
-        );
-        }
-        return this;
-    }
-    else {
-        const data = require('../../data/workout.json')
+        new Workout().load(data);
 
-        for (let i=0; i<data.length; i++) {
-            this.add(new Jobs(
-                data[i].date,
-                data[i].difficulty,
-                data[i].done,
-                data[i].type,
-                data[i].detail,
-                data[i].duration,
-                data[i].note,
-                data[i].exercice,
-                data[i].repetition,
-                data[i].pause
-            )
-        );
-        }
+
         return this;
     }
 
-    } 
 
     save (pseudo, create) {
         const objs = [];

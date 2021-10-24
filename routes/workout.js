@@ -3,13 +3,12 @@ const router = express.Router();
 const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
-const test = require('../public/javascripts/workout');
+const workoutClass = require('../public/javascripts/workout');
 const Workouts = require('../public/javascripts/workouts');
-
-const Event = test.Event;
-const Seance = test.Seance;
-const Preview = test.Preview;
-const Jobs = test.Jobs;
+const Event = workoutClass.Event;
+const Seance = workoutClass.Seance;
+const Job = workoutClass.Job;
+const Workout = workoutClass.Workout;
 
 const accounts = new Accounts().load();
 
@@ -108,26 +107,31 @@ router.get('/home', (req,res) => {
 
 // Ajoute des entrainements
 router.post('/addWorkout', (req,res) => {
+
     const pseudo = req.body.pseudo;
-    const workouts = new Workouts().load(pseudo, true);
-    const programs = new Jobs(req.body.date, 0, false, req.body.detail, req.body.type, req.body.duration, '', req.body.exercice, req.body.serie, req.body.repetition, req.body.pause);
-    const Data = require('../data/' + pseudo + '.json')
+    let seance = new Seance(req.body.date, null, false, req.body.detail, req.body.type);
+    
+    console.log(req.body);
+    console.log('-----------');
+    for (let i = 0; i<req.body.repetition.length; i++) {
+        
+        const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
+        seance.add(job)
+    }
 
-    workouts.add(programs);
-    workouts.save(pseudo, false);
-    console.log(req.body)
- 
+    //let job = new Job(req.body.exercice[0], req.body.repetition[0], req.body.serie[0], req.body.reposSec[0]);
+    
+    const workout = new Workout().add(seance);
+    new Workouts().load(pseudo, true).add(workout).save("Otharius", false);
+    console.log(seance);
 
-    const date = programs.date;
-    const duration = programs.duration;
-    const detail = programs.detail;
-    const ok = true;
+    exerciceChoice = ["pompe", "squat", "traction", "dips", "Développé couché"];
 
-    exerciceChoice = ["pompe", "squat", "traction", "dips", "Développé couché"]
-
-    res.render('training', { title: "Training", ok:false, exercice: exerciceChoice})
+    res.render('training', { title: "Training", ok:false, exercice: exerciceChoice});
 })
 
+
+// Je ne sais plus à quoi cela sert
 router.post('/afterWorkout', (req,res) => {
     const done = req.body.done;
     const difficulty = req.body.difficulty;
