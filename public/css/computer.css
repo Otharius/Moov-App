@@ -11,6 +11,10 @@ body{
     margin: 0px;
 }
 
+.body_div {
+    margin-top: 50px;
+}
+
 .topnav {
     background-color: var(--orange);
     overflow: hidden;
@@ -796,6 +800,12 @@ body{
 }
  .option input[type = radio] {
     color: green;
+}
+
+.background_img {
+    background: url(/public/images/running.jpg) no-repeat;
+    display: block;
+    float: left;
 }
 
 /*Fin de la page d'entrainement*/

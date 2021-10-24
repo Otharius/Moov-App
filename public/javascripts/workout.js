@@ -1,109 +1,94 @@
 
+lastId = 0;
+maxId = 100000;
+
+getNewId() {
+    if (lastId < maxId ) {
+        lastId++;
+    } else {
+        lastId = 1;
+    }
+    return lastId;
+}
+
+/**
+ * The base class for all workout data objects.
+ */
 class Event {
 
-    date = '';
-    lastId = 0;
-
-    
-    constructor(date){
-        this.date = date;
-    }
+    const id = getNewId();
 
 }
 
-class Seance extends Event {
-    
-    difficulty = 1;
-    done = false;
-    detail = '';
-    type = '';
+class Job extends Event {
 
-    constructor(date,difficulty, done, detail, type){
-        super(date);
-        this.difficulty = difficulty;
-        this.done = done;
-        this.detail = detail;
-        this.type = type;
-        this.id = this.getNewId()
-    }
-}
+    exercice;
+    repetitions;
+    series;
+    pause;
 
-class Preview extends Seance {
-
-    duration = 0;
-    note = '';
-
-    constructor(date, difficulty, done, type, detail, duration, note){
-        super(date,difficulty,done,type,detail)
-        this.duration = duration;
-        this.note = note;
-    }
-}
-
-class Jobs extends Preview {
-
-    exercice = '';
-    serie = 0;
-    repetition = 0;
-    pause = 0;
-
-    constructor(date, difficulty, done, type, detail, duration, note, exercice, serie, repetition, pause){
-        super(date, difficulty, done, type, detail, duration, note)
+    constructor(exercice, repetitions, series, pause) {
+        super();
         this.exercice = exercice;
-        this.serie = serie;
-        this.repetition = repetition;
+        this.repetitions = repetitions;
+        this.series = series;
         this.pause = pause;
     }
 
     toObject() {
         return {
-            "event":[
-                {
-                    "date": this.date,
-                    "id": this.id,
-                    "seance": [
-                        {
-                            "difficulty": this.difficulty,
-                            "detail": this.detail,
-                            "done": this.done,
-                            "type": this.type,
-                            "preview": [
-                                {
-                                    "duration": this.duration,
-                                    "note": this.note,
-                                    "jobs": [
-                                        {
-                                            "exercice": this.exercice,
-                                            "serie": this.serie,
-                                            "repetition": this.repetition,
-                                            "pause": this.pause
-                                        }
-                                    ]
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ]
-
-            
+            "id": this.id,
+            "exercice": this.exercice,
+            "repetitions": this.repetitions,
+            "series": this.series,
+            "pause": this.pause
         }
     }
+}
 
-    getNewId() {
-        if (this.lastId < 100000 ) {
-            this.lastId = this.lastId + 1;
-        } else {
-            this.lastId = 1;
+class Seance extends Event {
+    
+    date = '';
+    difficulty = 1;
+    done = false;
+    detail = '';
+    type = '';
+    jobs;
+    duration = null;
+    note = null;
+
+    constructor(date, difficulty, done, detail, type) {
+        super();
+        this.date = date;
+        this.difficulty = difficulty;
+        this.done = done;
+        this.detail = detail;
+        this.type = type;
+        this.jobs = [];
+    }
+
+    jobsToObjects() {
+        const objects = [];
+        for (job in jobs) {
+            objects.add(job.toObject())
         }
-        return this.lastId;
+        return objects;
+    }
+
+    toObject() {
+        return {
+            "id": this.id,
+            "date": this.date,
+            "difficulty" : this.difficulty,
+            "done": this.done,
+            "jobs": this.jobsToObjects()
+        }
     }
 
 }
 
 module.exports = {
     Event,
-    Seance,
-    Preview,
-    Jobs
+    Job,
+    Seance
 }

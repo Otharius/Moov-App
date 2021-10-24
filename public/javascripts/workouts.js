@@ -80,10 +80,7 @@ class Workouts {
             fs.writeFile('data/' + pseudo + '.json', buffer, function (err) {
             console.log("Fichier d'entrainement créé pour " + pseudo + ' !')
             if (err) throw err;
-        },            
-            fs.appendFile('data/' + pseudo + '.json', ",", function (err) {
-            if (err) throw err;
-        })
+        }          
         )
         
         }
@@ -93,12 +90,7 @@ class Workouts {
             fs.appendFile('data/' + pseudo + '.json', buffer, function (err) {
             console.log("Nouvel entrainement pour " + pseudo + ' !')
             if (err) throw err;
-        },
-            fs.appendFile('data/' + pseudo + '.json', ",", function (err) {
-            if (err) throw err;
         }
-         
-        )
         )}
         
     } 

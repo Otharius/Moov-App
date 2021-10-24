@@ -392,8 +392,24 @@
 
 
   // Fin de la gestion de menu de l'exercice 
+  
+document.body.onload = addElement;
 
+function addElement () {
+  // crée un nouvel élément div
+  var div = document.createElement("div");
+  var input = document.createElement('input')
+  input.setAttribute('type', 'radio')
+  input.setAttribute('name', 'category')
+  input.setAttribute('class', workout)
+  var content = document.createTextNode('<div>Hi there and greetings!>');
+  // ajoute le nœud texte au nouveau div créé
+  div.appendChild(newContent);
 
+  // ajoute le nouvel élément créé et son contenu dans le DOM
+  var currentDiv = document.getElementById('div1');
+  document.body.insertBefore(newDiv, currentDiv);
+}
 
 </script>
 </html>

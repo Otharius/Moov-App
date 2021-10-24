@@ -28,7 +28,7 @@
         <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
       </svg></a>
 
-</div> <br> <br><br><br><br>
+</div> <br> 
        
 <div class="body_div">
     <div class="calender_div">
@@ -53,31 +53,60 @@
             <div class="modal_training_content">
             <span class="training_close">&times;</span>
             <form action="/workout/addWorkout" method="POST">
-                    <h1>Création de l'entrainement</h1>
+                    <h1>Nouvel entrainement</h1>
 
-                    <h5 class="training_create_title">Choisir la date, l'heure et la durée de la séance</h5>
+                        <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value="" class="training_name"><br>
 
-                        Nom de la séance:
-                        <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value=""><br>
-
-                        Date:
-                        <input type="date" name="date" id="" >
-
-                        Durée:
-                        <input type="number" max="5" value="1" min="0" name="durationHeure">h 
-                        <input type="number" max="59" value="0" min="0" name="durationMin">min <br>
-
-
-                        Heure:
-                        <input type="time"><br>
-
-                    <h5 class="training_create_title">Le type de la séance</h5>
+                        <div>
+                            <label for="date">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
+                                    <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
+                                  </svg>
+                            </label>
+                            <input type="date" name="date" id="date"><br><br>
+                        </div>
+                      
                         
-                        Type:
-                        <select name="type" id="" required>
-                            <option value="musculation">Musculation</option>
-                            <option value="course">Course</option>
-                        </select><br>
+                        <div>
+                            <label for="heure">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+                                    <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+                                  </svg>
+                            </label>
+
+                            <input type="number" max="5" value="1" min="0" name="durationHeure" id="heure">h 
+                            <input type="number" max="59" value="0" min="0" name="durationMin">min <br><br>
+                        </div>
+
+
+                        <div>
+                            <label for="time">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                                  </svg>
+                            </label>
+
+                            <input type="time" id="time"><br><br>
+                        </div>
+
+
+                        <div>
+                            <label for="type">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                                  </svg>
+                            </label>
+
+                            <select name="type" id="type" required class="type_exercice">
+                                <option value="musculation" class="option_type">Musculation</option>
+                                <option value="course" class="option_type">Course</option>
+                            </select><br><br>
+
+                            
+                        </div>
+                   
 
                     <div>
                         <h5 class="training_create_title">Les exercices de la séance</h5> 
@@ -119,7 +148,7 @@
                                         <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
                                         <label for="Développé couché">Développé couché</label>
                                     </div>
-
+                                    
                                 </div>
                         
                                 <div class="selected">
@@ -211,7 +240,7 @@
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
-                            </div>
+                            </div><br>
                         </div><br><br>
 
                         <!--Exercice 3-->
@@ -273,7 +302,7 @@
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
-                            </div>
+                            </div><br>
                         </div><br><br>
 
                         <!--Exerice 4-->
@@ -340,7 +369,7 @@
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
-                            </div>
+                            </div><br>
                         </div><br><br>
 
                         <!--Exercice 5-->
@@ -403,7 +432,7 @@
                                     <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
                                     <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
                                     </svg>
-                            </div>
+                            </div><br>
                         </div>
                         
                     
