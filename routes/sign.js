@@ -5,7 +5,6 @@ const Sessions = require('../public/javascripts/sessions.js');
 const Account = require('../public/javascripts/account');
 const Accounts = require('../public/javascripts/accouts');
 const test = require('../public/javascripts/workout');
-const Workouts = require('../public/javascripts/workouts');
 
 const Event = test.Event;
 const Seance = test.Seance;
@@ -63,8 +62,6 @@ router.post('/register', (req,res) => {
 
     const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password, true);
     const account = new Account(pseudo, 0, 0);
-    const workout = new Jobs("Ajourd'hui", 0, false, 'no', 2, 'no', 'pompe', 5, 10, 1);
-    const workouts = new Workouts().load(pseudo, false);
 
     users.add(user);
     users.save(user.pseudo);
@@ -72,8 +69,6 @@ router.post('/register', (req,res) => {
     accounts.add(account);
     accounts.save();
 
-    workouts.add(workout);
-    workouts.save(pseudo, true);
 
     res.render('login', { title: "Login", error: false});
 })
@@ -97,7 +92,7 @@ router.post('/login', (req,res) => {
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('login', { title: "Login", message: "Mauvais mot de passe incorrect", error: true });
+        res.render('login', { title: "Login", message: "Mot de passe incorrect", error: true });
         return;
     }
 

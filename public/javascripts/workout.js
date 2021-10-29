@@ -1,26 +1,6 @@
+const fs = require('fs');
 
-lastId = 0;
-maxId = 100000;
-
-function getNewId() {
-    if (lastId < maxId ) {
-        lastId++;
-    } else {
-        lastId = 1;
-    }
-    return lastId;
-}
-
-/*
- * The base class for all workout data objects.
- */
-class Event {
-
-    id = getNewId();
-
-}
-
-class Job extends Event {
+class Job {
 
     exercice;
     repetitions;
@@ -28,26 +8,17 @@ class Job extends Event {
     pause;
 
     constructor(exercice, repetitions, series, pause) {
-        super();
         this.exercice = exercice;
         this.repetitions = repetitions;
         this.series = series;
         this.pause = pause;
     }
 
-    toObject() {
-        return {
-            "id": this.id,
-            "exercice": this.exercice,
-            "repetitions": this.repetitions,
-            "series": this.series,
-            "pause": this.pause
-        }
-    }
 }
 
-class Seance extends Event {
+class Seance {
     
+    name = '';
     date = '';
     difficulty = 1;
     done = false;
@@ -57,8 +28,8 @@ class Seance extends Event {
     duration = null;
     note = null;
 
-    constructor(date, difficulty, done, detail, type) {
-        super();
+    constructor(name, date, difficulty, done, detail, type) {
+        this.name = name;
         this.date = date;
         this.difficulty = difficulty;
         this.done = done;
@@ -72,32 +43,15 @@ class Seance extends Event {
         return this;
     }
 
-    jobsToObjects() {
-        const objects = [];
-        for (let job of this.jobs) {
-            objects.push(job.toObject())
-        }
-        return objects;
-    }
-
-    toObject() {
-        return {
-            "id": this.id,
-            "date": this.date,
-            "difficulty" : this.difficulty,
-            "done": this.done,
-            "jobs": this.jobsToObjects()
-        }
-    }
-
 }
 
-class Workout extends Event {
+class Workout {
 
+    pseudo;
     seances;
 
-    constructor() {
-        super();
+    constructor(pseudo) {
+        this.pseudo = pseudo;
         this.seances = [];
     }
 
@@ -106,33 +60,24 @@ class Workout extends Event {
         return this;
     }
 
-    // data is the array of Seances
-    load(data) {
-        for (let i=0; i<data.length; i++) {
-            const s = data[i];
-            const seance = new Seance(s.date, s.difficulty, s.done, s.detail, s.type);
-            for (let j=0; j<s.jobs.length; j++) {
-                const j = s.jobs[j];
-                const job = new Job(j.exercice, j.repetitions, j.series, j.pause);
-                seance.add(job);
-            }
-            this.add(seance);
+    load() {
+        try {
+            this.seances = require('../../data/'+ this.pseudo +'.json').seances;
+        } catch  (error) {
+            this.seances = [];
         }
         return this;
     }
 
-    toObject() {
-        const objects = [];
-        for (let seance of this.seances) {
-            objects.push(seance.toObject())
-        }
-        return objects;
+    save () {
+        fs.writeFile('data/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
+            console.log("Nouvel entrainement pour " +  + ' !')
+            if (err) throw err;
+        })
     }
-
 }
 
 module.exports = {
-    Event,
     Job,
     Seance,
     Workout

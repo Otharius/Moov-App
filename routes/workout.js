@@ -4,7 +4,6 @@ const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
 const workoutClass = require('../public/javascripts/workout');
-const Workouts = require('../public/javascripts/workouts');
 const Event = workoutClass.Event;
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
@@ -109,21 +108,15 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
 
     const pseudo = req.body.pseudo;
-    let seance = new Seance(req.body.date, null, false, req.body.detail, req.body.type);
+    //let data = require('../data/'+ pseudo +'.json');
     
-    console.log(req.body);
-    console.log('-----------');
+    let seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
+    
     for (let i = 0; i<req.body.repetition.length; i++) {
-        
         const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
         seance.add(job)
     }
-
-    //let job = new Job(req.body.exercice[0], req.body.repetition[0], req.body.serie[0], req.body.reposSec[0]);
-    
-    const workout = new Workout().add(seance);
-    new Workouts().load(pseudo, true).add(workout).save("Otharius", false);
-    console.log(seance);
+    new Workout(pseudo).load().add(seance).save();
 
     exerciceChoice = ["pompe", "squat", "traction", "dips", "Développé couché"];
 
