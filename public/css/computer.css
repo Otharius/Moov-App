@@ -811,20 +811,9 @@ body{
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
 
-#entrainement {
-    padding: 20px 30px;
-}
-
-#entrainement .muscu {
-    background-color: orange;
-}
-
-#entrainement .aérobie {
-    background-color: green;
-}
-
-.aérobie, .muscu {
-    padding: 20px 30px;
+.test {
+    color: blue;
+    font-size: 1.2rem;
 }
 
 /*Fin de la page d'accueil*/

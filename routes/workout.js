@@ -14,9 +14,13 @@ const accounts = new Accounts().load();
 // Workout handle
  
 router.get('/training', (req,res) => {
-    const ok = false;
-    a = ["pompe", "squat", "traction"]
-    res.render('training', { title: "Training", ok, exercice: a});
+    const ex =  require('../data/exercice.json').exercice
+
+    res.render('training', { 
+        title: "Training",
+        data: require('../data/Otharius.json').seances,
+        exercice: ex,
+    });
 })
 
 // Meal handle
@@ -118,9 +122,14 @@ router.post('/addWorkout', (req,res) => {
     }
     new Workout(pseudo).load().add(seance).save();
 
-    exerciceChoice = ["pompe", "squat", "traction", "dips", "Développé couché"];
+    const data =  require('../data/' + pseudo + '.json').seances
+    const ex =  require('../data/exercice.json').exercice
 
-    res.render('training', { title: "Training", ok:false, exercice: exerciceChoice});
+    res.render('training', { 
+        title: "Training",
+        data: data,
+        exercice: ex,
+    });
 })
 
 

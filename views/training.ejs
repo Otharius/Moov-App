@@ -128,27 +128,14 @@
                             <div class="select-box">
 
                                 <div class="options-container">
-
-                                    <div class="option choix1">
-                                        <input type="radio"class="radio "id="Pompe"name="category" value="Pompe"/>
-                                        <label for="Pompe">Pompe</label>
-                                    </div>
-                        
-                                    <div class="option">
-                                        <input type="radio" class="radio" id="Squat" name="category" value="Squat"/>
-                                        <label for="Squat">Squat</label>
-                                    </div>
-                            
-                                    <div class="option">
-                                        <input type="radio" class="radio" id="Traction" name="category" value="Traction"/>
-                                        <label for="Traction">Traction</label>
-                                    </div>
-
-                                    <div class="option">
-                                        <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
-                                        <label for="Développé couché">Développé couché</label>
-                                    </div>
                                     
+                                    <% for(var i=0; i < exercice.length; i++) { %>
+                                        <div class="option">
+                                            <input type="radio" class="radio" id=" <%=exercice[i]%> " name="category" value=" <%=exercice[i]%>">
+                                            <label for=" <%=exercice[i]%>"> <%=exercice[i]%></label>
+                                        </div>
+                                    <% } %>
+                                                                 
                                 </div>
                         
                                 <div class="selected">
@@ -187,25 +174,12 @@
                             <div class="select-box2">
                                 <div class="options-container2">
 
-                                    <div class="option2">
-                                        <input type="radio"class="radio choix1"id="Pompe"name="category" value="Pompe"/>
-                                        <label for="Pompe">Pompe</label>
-                                    </div>
-                            
-                                    <div class="option2">
-                                        <input type="radio" class="radio" id="Squat" name="category" value="Squat"/>
-                                        <label for="Squat">Squat</label>
-                                    </div>
-                                
-                                    <div class="option2">
-                                        <input type="radio" class="radio" id="Traction" name="category" value="Traction"/>
-                                        <label for="Traction">Traction</label>
-                                    </div>
-
-                                    <div class="option2">
-                                        <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
-                                        <label for="Développé couché">Développé couché</label>
-                                    </div>
+                                    <% for(var i=0; i < exercice.length; i++) { %>
+                                        <div class="option2">
+                                            <input type="radio" class="radio" id=" <%=exercice[i]%> " name="category" value=" <%=exercice[i]%>">
+                                            <label for=" <%=exercice[i]%>"> <%=exercice[i]%></label>
+                                        </div>
+                                    <% } %>
 
                                 </div>
                             
@@ -250,25 +224,12 @@
                             <div class="select-box3">
                                 <div class="options-container3">
 
-                                    <div class="option3">
-                                        <input type="radio"class="radio choix1"id="Pompe"name="category" value="Pompe"/>
-                                        <label for="Pompe">Pompe</label>
-                                    </div>
-                        
-                                    <div class="option3">
-                                        <input type="radio" class="radio" id="Squat" name="category" value="Squat"/>
-                                        <label for="Squat">Squat</label>
-                                    </div>
-                            
-                                    <div class="option3">
-                                        <input type="radio" class="radio" id="Traction" name="category" value="Traction"/>
-                                        <label for="Traction">Traction</label>
-                                    </div>
-
-                                    <div class="option3">
-                                        <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
-                                        <label for="Développé couché">Développé couché</label>
-                                    </div>
+                                    <% for(var i=0; i < exercice.length; i++) { %>
+                                        <div class="option3">
+                                            <input type="radio" class="radio" id=" <%=exercice[i]%> " name="category" value=" <%=exercice[i]%>">
+                                            <label for=" <%=exercice[i]%>"> <%=exercice[i]%></label>
+                                        </div>
+                                    <% } %>
 
                                 </div>
                         
@@ -312,30 +273,12 @@
                             <div class="select-box4">
                                 <div class="options-container4">
 
-                                    <div class="option4">
-                                        <input type="radio"class="radio choix1"id="Pompe"name="category" value="Pompe"/>
-                                        <label for="Pompe">Pompe</label>
-                                    </div>
-                        
-                                    <div class="option4">
-                                        <input type="radio" class="radio" id="Squat" name="category" value="Squat"/>
-                                        <label for="Squat">Squat</label>
-                                    </div>
-                        
-                                    <div class="option4">
-                                        <input type="radio" class="radio" id="Traction" name="category" value="Traction"/>
-                                        <label for="Traction">Traction</label>
-                                    </div>
-
-                                    <div class="option4">
-                                        <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
-                                        <label for="Développé couché">Développé couché</label>
-                                    </div>
-
-                                    <div class="option4">
-                                        <input type="radio" class="radio" id="Soulevé de terre" name="category" value="Soulevé de terre"/>
-                                        <label for="Soulevé de terre">Soulevé de terre</label>
-                                    </div>
+                                    <% for(var i=0; i < exercice.length; i++) { %>
+                                        <div class="option4">
+                                            <input type="radio" class="radio" id=" <%=exercice[i]%> " name="category" value=" <%=exercice[i]%>">
+                                            <label for=" <%=exercice[i]%>"> <%=exercice[i]%></label>
+                                        </div>
+                                    <% } %>
 
                                 </div>
                         
@@ -379,25 +322,12 @@
                             <div class="select-box5">
                                 <div class="options-container5">
 
-                                    <div class="option5">
-                                        <input type="radio"class="radio choix1"id="Pompe"name="category" value="Pompe"/>
-                                        <label for="Pompe">Pompe</label>
-                                    </div>
-                    
-                                    <div class="option5">
-                                        <input type="radio" class="radio" id="Squat" name="category" value="Squat"/>
-                                        <label for="Squat">Squat</label>
-                                    </div>
-                        
-                                    <div class="option5">
-                                        <input type="radio" class="radio" id="Traction" name="category" value="Traction"/>
-                                        <label for="Traction">Traction</label>
-                                    </div>
-
-                                    <div class="option5">
-                                        <input type="radio" class="radio" id="Développé couché" name="category" value="Développé couché"/>
-                                        <label for="Développé couché">Développé couché</label>
-                                    </div>
+                                    <% for(var i=0; i < exercice.length; i++) { %>
+                                        <div class="option5">
+                                            <input type="radio" class="radio" id=" <%=exercice[i]%> " name="category" value=" <%=exercice[i]%>">
+                                            <label for=" <%=exercice[i]%>"> <%=exercice[i]%></label>
+                                        </div>
+                                    <% } %>
 
                                 </div>
                     
@@ -588,15 +518,18 @@
                         <p>Très dur</p>
                     </div>
                     <button class="value_button">Valider</button>
-            </form>
+            </form>          
         </div>
-
+       
         <div class="work_no">
             <h1>Séances à venir</h1>
-                <% if(ok){ %>
-                    <p><%= date %>: <%= detail %>, <%= duration %></p>
-                    <% } else{ %>  
-                    <% } %>
+            <table>
+                <% for(var i=0; i < data.length; i++) { %>
+                   <tr>
+                     <td class="test" onclick="test()">Séance <%=i + 1%>:<%= data[i].name %></td>
+                   </tr>
+                <% } %>
+                </table>
         </div>
 
     </div>
