@@ -6,7 +6,7 @@ const Account = require('../public/javascripts/account');
 const Accounts = require('../public/javascripts/accouts');
 const workoutClass = require('../public/javascripts/workout');
 const Workout = workoutClass.Workout;
-const store = require('store')
+const store = require('store');
 
 const router = express.Router();
 const users = new Users().load();
@@ -26,9 +26,7 @@ router.get('/login', (req,res) => {
     res.render('login', { title: "Login", error: false})
 })
 
-router.get('/register/:id', (req,res) => {
-    req.params.id = 'test'
-    console.log(req.params.id)
+router.get('/register', (req,res) => {
     res.render('register', { title: "Register", error: false});
 })
 
@@ -101,8 +99,9 @@ router.post('/login', (req,res) => {
     const cal = accounts.get(req.body.pseudo);
     console.log(user.pseudo + " vient de se connecter");
     req.params.pseudo = pseudo
-    store.set('user', { pseudo:pseudo })
-    
+    store.set('user', { pseudo:pseudo });
+
+
     res.render('home', { title: "Home", calorie: cal.calorie } );
 })
 
