@@ -69,9 +69,16 @@ class Workout {
         return this;
     }
 
-    save () {
+    save (pseudo) {
         fs.writeFile('data/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
-            console.log("Nouvel entrainement pour " +  + ' !')
+            console.log("Nouvel entrainement pour " + pseudo + ' !')
+            if (err) throw err;
+        })
+    }
+
+    create (pseudo) {
+        fs.writeFile('data/' + pseudo + '.json', '', function (err) {
+            console.log("Fichier workout créée pour " + pseudo + " !")
             if (err) throw err;
         })
     }

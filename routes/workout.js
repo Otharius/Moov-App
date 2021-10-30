@@ -1,32 +1,34 @@
 const express = require('express');
 const router = express.Router();
-const data = require('../data/account.json');
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
 const workoutClass = require('../public/javascripts/workout');
-const Event = workoutClass.Event;
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Workout = workoutClass.Workout;
+const Users = require('../public/javascripts/users');
+const store = require('store')
 
+const users = new Users().load();
 const accounts = new Accounts().load();
 
 // Workout handle
  
 router.get('/training', (req,res) => {
-    const ex =  require('../data/exercice.json').exercice
-
+    const pseudo = store.get('user').pseudo;
     res.render('training', { 
         title: "Training",
-        data: require('../data/Otharius.json').seances,
-        exercice: ex,
+        data: require('../data/' + pseudo + '.json').seances,
+        exercice: require('../data/exercice.json').exercice,
     });
 })
 
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    res.render('meal', { title: "Meal", calorie: data.calorie});
+    const pseudo = store.get('user').pseudo;
+    const calorie = accounts.get(pseudo);
+    res.render('meal', { title: "Meal", calorie: calorie.calorie});
 })
 
 router.post('/addCal', (req,res) => {
@@ -101,11 +103,23 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
-    res.render('profiles', { title: "Profiles", error: false})
+    const pseudo = store.get('user').pseudo;
+    const user = users.get(pseudo);
+    console.log(user)
+    res.render('profiles', { 
+        title: "Profiles", 
+        error: false,
+        pseudo: user.pseudo,
+        name: user.name,
+        firstname: user.firstname,
+        email: user.email
+    })
 })
 
 router.get('/home', (req,res) => {
-    res.render('home', { title: "Home", calorie: data.calorie})
+    const pseudo = store.get('user').pseudo;
+    const calorie = accounts.get(pseudo);
+    res.render('home', { title: "Home", calorie: calorie.calorie})
 })
 
 // Ajoute des entrainements

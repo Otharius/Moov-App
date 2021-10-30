@@ -56,12 +56,10 @@
                 <!--Boîte de profil-->
                     <div class="profil_box" >
                         <h2>-- Utilisateur --</h2>
-                            <p id="p2">Nom</p>
-                            <p id="p3">Prénom</p>
-                            <p id="p4">Age</p>
-                            <p id="p5">mail</p>
-                            <p id="p6">Poids</p>
-                            <p id="no">Taille</p>
+                            <p id="p2">Pseudo: <%= pseudo %></p>
+                            <p id="p3">Nom: <%= name %></p>
+                            <p id="p4">Prénom: <%= firstname %></p>
+                            <p id="p5">Adresse mail: <%= email %></p>
                     </div>
                 <!--Boîte libre-->
                 <form action="/sign/changePassword" method="POST">

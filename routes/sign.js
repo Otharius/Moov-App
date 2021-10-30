@@ -4,12 +4,9 @@ const User = require('../public/javascripts/user');
 const Sessions = require('../public/javascripts/sessions.js');
 const Account = require('../public/javascripts/account');
 const Accounts = require('../public/javascripts/accouts');
-const test = require('../public/javascripts/workout');
-
-const Event = test.Event;
-const Seance = test.Seance;
-const Preview = test.Preview;
-const Jobs = test.Jobs;
+const workoutClass = require('../public/javascripts/workout');
+const Workout = workoutClass.Workout;
+const store = require('store')
 
 const router = express.Router();
 const users = new Users().load();
@@ -29,7 +26,9 @@ router.get('/login', (req,res) => {
     res.render('login', { title: "Login", error: false})
 })
 
-router.get('/register', (req,res) => {
+router.get('/register/:id', (req,res) => {
+    req.params.id = 'test'
+    console.log(req.params.id)
     res.render('register', { title: "Register", error: false});
 })
 
@@ -62,6 +61,7 @@ router.post('/register', (req,res) => {
 
     const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password, true);
     const account = new Account(pseudo, 0, 0);
+    const workout = new Workout(pseudo)
 
     users.add(user);
     users.save(user.pseudo);
@@ -69,6 +69,7 @@ router.post('/register', (req,res) => {
     accounts.add(account);
     accounts.save();
 
+    workout.create(pseudo)
 
     res.render('login', { title: "Login", error: false});
 })
@@ -96,12 +97,13 @@ router.post('/login', (req,res) => {
         return;
     }
 
-    sessions.login(user);
+
+    const cal = accounts.get(req.body.pseudo);
     console.log(user.pseudo + " vient de se connecter");
-
-    const data = require('../data/account.json');
-
-    res.render('home', { title: "Home", calorie: data.calorie } );
+    req.params.pseudo = pseudo
+    store.set('user', { pseudo:pseudo })
+    
+    res.render('home', { title: "Home", calorie: cal.calorie } );
 })
 
 // Logout
@@ -115,33 +117,7 @@ router.get('/forgot', (req,res) => {
 
 
 router.post('/sendMail', (req,res) => {
-    let transporter = nodemailer.createTransport({
-        host: "",  // enter host name
-        port: 487, //enter port name
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: 'llepennec101@gmail.com', // write your smtp account user name
-          pass: 'Loic1234' // write your smtp account user password
-        },
-        tls : { 
-              rejectUnauthorized : false  // Important for sendimg mail from localhost
-        }
-      
-      });
-    
-      // send mail with defined transport object
-      let info = transporter.sendMail({
-        from: 'llepennec101@gmail.com', // sender address
-        to: "llepennecpro@gmail.com", // list of receivers
-        subject: subject, // Subject line
-        text: "Bonjour, Monsieur", // plain text body
-        html: body // html body
-      });
-    
-      console.log("Message sent: %s", info.messageId);
-    }
-        
-)
+    })
 // Système de déconnexion
 router.post('/logout', (req,res) => {
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.')
