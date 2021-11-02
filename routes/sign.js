@@ -7,7 +7,7 @@ const Accounts = require('../public/javascripts/accouts');
 const workoutClass = require('../public/javascripts/workout');
 const Workout = workoutClass.Workout;
 const store = require('store');
-
+const session = require('express-session');
 const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
@@ -16,17 +16,12 @@ const accounts = new Accounts().load();
 
 
 
-router.get('/login', (req,res) => {
-    if (req.session === undefined) {
-        console.log('Session introuvable dans le login')
-    } else {
-        console.log('Session trouvable dans login')
-    }
-    
+router.get('/login', (req,res) => { 
     res.render('login', { title: "Login", error: false})
 })
 
 router.get('/register', (req,res) => {
+    console.log(req.sessionID);
     res.render('register', { title: "Register", error: false});
 })
 
@@ -98,9 +93,10 @@ router.post('/login', (req,res) => {
 
     const cal = accounts.get(req.body.pseudo);
     console.log(user.pseudo + " vient de se connecter");
-    req.params.pseudo = pseudo
+    req.query.pseudo = pseudo
     store.set('user', { pseudo:pseudo });
 
+    console.log("LOGIN" + pseudo);
 
     res.render('home', { title: "Home", calorie: cal.calorie } );
 })

@@ -20,7 +20,7 @@ router.get('/training', (req,res) => {
     res.render('training', { 
         title: "Training",
         data: require('../data/' + pseudo + '.json').seances,
-        exercice: require('../data/musculationExercice.json').exercice,
+        exMuscu: require('../data/musculationExercice.json').exercice
     });
 })
 
@@ -104,7 +104,9 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
-    const pseudo = store.get('user').pseudo;
+    console.log("PROFILES" + req.query.pseudo);
+    const pseudo = "Otharius";
+    //const pseudo = store.get('user').pseudo;
     const user = users.get(pseudo);
     res.render('profiles', { 
         title: "Profiles", 
@@ -114,6 +116,7 @@ router.get('/profiles', (req,res) => {
         firstname: user.firstname,
         email: user.email
     })
+   
 })
 
 router.get('/home', (req,res) => {

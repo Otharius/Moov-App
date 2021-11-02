@@ -7,7 +7,7 @@ const https = require('https');
 const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
-const oneDay = 1000 * 60 * 60 * 24;
+
 
 //const mongoose = require('mongoose');
 //mongoose
@@ -32,19 +32,24 @@ app.use(express.static(__dirname + '/public'));
 // //Routes
 app.use('/workout',require('./routes/workout'));
 
-
+app.set('trust proxy', 1);
 app.use(session({
-    secret: 'secret-key',
+    secret: 'keyboard cat',
+    //resave: false,
     saveUninitialized: false,
-    resave: false,
-}));
+    cookie: { //secure: true,
+              maxAge: 60000 }
+  }));
 
-
-app.use('/Sess', session);
 
 app.get('/', function(req,res) {
+    const pseudo = req.session.pseudo = 'tatata';
+    console.log("PSEUDO:"+pseudo);
+    console.log("AUEHNTIFICATED"+req.session.authenticated);
+    console.log("SESSIONID"+ req.sessionID)
     res.render('login', { title: "Login", error: false})
 });
+
 
 if (config.protocol === 'https') {
     const privateKey = fs.readFileSync(config.privateKeyPath, 'utf-8');
