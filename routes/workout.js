@@ -14,9 +14,20 @@ const users = new Users().load();
 const accounts = new Accounts().load();
 
 // Workout handle
- 
+
+function sessionSecure (req, res) {
+    if (req.session.pseudo == null ) {
+        res.redirect('login', { title: "Login", error: false});
+    }
+}
+
+router.get('/login', (req,res) => { 
+    res.render('login', { title: "Login", error: false})
+})
+
 router.get('/training', (req,res) => {
-    const pseudo = store.get('user').pseudo;
+    sessionSecure(req, res);
+    const pseudo = req.session.pseudo;
     res.render('training', { 
         title: "Training",
         data: require('../data/' + pseudo + '.json').seances,
@@ -27,22 +38,26 @@ router.get('/training', (req,res) => {
 // Meal handle
  
 router.get('/meal', (req,res) => {
+    sessionSecure(req, res);
+
     const pseudo = req.session.pseudo
     const calorie = accounts.get(pseudo);
+
     res.render('meal', { title: "Meal", calorie: calorie.calorie});
 })
 
 router.post('/addCal', (req,res) => {
-    const pseudo = accounts.get(req.body.ok_count_calorie);
+    sessionSecure(req,res);
+
+    const pseudo = accounts.get(req.session.pseudo);
 
     if (req.body.cal === ""){
-        res.render('meal', { title: "Meal", calorie: pseudo.calorie })
+        res.render('Meal', { title: "Meal", calorie: pseudo.calorie });
         return;
-    }
+    }    
 
     const calorie = pseudo.calorie + parseInt(req.body.cal);
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
-
     pseudo.calorie = calorie;
 
     accounts.add(account);
@@ -53,6 +68,7 @@ router.post('/addCal', (req,res) => {
 
 // Ajoute des calories sur la page d'accueil
 router.post('/homeAddCal', (req,res) => {
+    sessionSecure(req,res);
 
     const pseudo = accounts.get(req.session.pseudo);
 
@@ -73,6 +89,8 @@ router.post('/homeAddCal', (req,res) => {
 
 // Remet à 0 le nombre de calorie sur la page d'accueil
 router.post('/homeResetCal', (req,res) => {
+    sessionSecure(req,res);
+
     const pseudo = accounts.get(req.session.pseudo);
     const calorie = pseudo.calorie = 0;
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
@@ -85,6 +103,8 @@ router.post('/homeResetCal', (req,res) => {
 
 // Remet à 0 le nombre de calorie sur la page d'alimentation
 router.post('/resetCal', (req,res) => {
+    sessionSecure(req,res);
+
     const pseudo = accounts.get(req.session.pseudo);
     const calorie = pseudo.calorie = 0;
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
@@ -98,6 +118,7 @@ router.post('/resetCal', (req,res) => {
 // Sleep handle
  
 router.get('/sleep', (req,res) => {
+    sessionSecure(req,res);
     res.render('sleep', { title: "Sleep"})
 })
 
@@ -105,6 +126,8 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
+    sessionSecure(req,res);
+
     const pseudo = req.session.pseudo;
     const user = users.get(pseudo);
     res.render('profiles', { 
@@ -119,6 +142,8 @@ router.get('/profiles', (req,res) => {
 })
 
 router.get('/home', (req,res) => {
+    sessionSecure(req,res);
+
     const pseudo = req.session.pseudo;
     const calorie = accounts.get(pseudo);
     res.render('home', { 
@@ -129,6 +154,7 @@ router.get('/home', (req,res) => {
 
 // Ajoute des entrainements
 router.post('/addWorkout', (req,res) => {
+    sessionSecure(req,res);
 
     const pseudo = req.session.pseudo;
     
