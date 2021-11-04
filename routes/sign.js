@@ -7,7 +7,6 @@ const Accounts = require('../public/javascripts/accouts');
 const workoutClass = require('../public/javascripts/workout');
 const Workout = workoutClass.Workout;
 const store = require('store');
-const session = require('express-session');
 const router = express.Router();
 const users = new Users().load();
 const sessions = new Sessions();
@@ -17,11 +16,13 @@ const accounts = new Accounts().load();
 
 
 router.get('/login', (req,res) => { 
+
     res.render('login', { title: "Login", error: false})
 })
 
 router.get('/register', (req,res) => {
-    console.log(req.sessionID);
+
+    console.log(req.session)
     res.render('register', { title: "Register", error: false});
 })
 
@@ -71,8 +72,12 @@ router.post('/register', (req,res) => {
 // Système de connexion pour l'application
 router.post('/login', (req,res) => {
 
+
     const pseudo = req.body.pseudo;
     const password = req.body.password;
+
+    sess = req.session;
+    sess.pseudo = pseudo;
 
     if (pseudo === '' || password === '') {
         res.render('login', { title: "Login", message: "Veillez renseigner tout les champs", error: true})
@@ -93,10 +98,8 @@ router.post('/login', (req,res) => {
 
     const cal = accounts.get(req.body.pseudo);
     console.log(user.pseudo + " vient de se connecter");
-    req.query.pseudo = pseudo
     store.set('user', { pseudo:pseudo });
 
-    console.log("LOGIN" + pseudo);
 
     res.render('home', { title: "Home", calorie: cal.calorie } );
 })
@@ -121,7 +124,7 @@ router.post('/logout', (req,res) => {
 
 
  
-router.get('/home', (req,res) => {
+router.get('/home', (req,res) => {    
     res.render('home', { title: "Home"})
 })
 

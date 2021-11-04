@@ -8,6 +8,8 @@ const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
 
+const bodyParser = require('body-parser');
+
 
 //const mongoose = require('mongoose');
 //mongoose
@@ -17,36 +19,37 @@ const session = require('express-session');
 //     .catch((err)=> console.log(err));
 //EJS
 
+var sessionValue = null;
+
 app.set('view engine','ejs');
 app.use(expressEjsLayout);
 
 //BodyParser
-app.use(express.urlencoded({extended : false}));
-app.use('/sign',require('./routes/sign'))
-app.use(express.json());
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+// app.use(express.urlencoded({extended : false}));
+// app.use(express.json());
+app.use(router);
 //CSS
 app.use(express.static(__dirname + '/public'));
 
 
 // //Routes
-app.use('/workout',require('./routes/workout'));
+app.use('/workout', require('./routes/workout'));
+app.use('/sign', require('./routes/sign'));
+
 
 app.set('trust proxy', 1);
-app.use(session({
-    secret: 'keyboard cat',
-    //resave: false,
-    saveUninitialized: false,
-    cookie: { //secure: true,
-              maxAge: 60000 }
+router.use(session({
+    resave: false,
+    saveUninitialized: true,
+    secret: "anyrandomstring",
   }));
 
 
-app.get('/', function(req,res) {
-    const pseudo = req.session.pseudo = 'tatata';
-    console.log("PSEUDO:"+pseudo);
-    console.log("AUEHNTIFICATED"+req.session.authenticated);
-    console.log("SESSIONID"+ req.sessionID)
+router.get('/', function(req,res) {
     res.render('login', { title: "Login", error: false})
 });
 
@@ -65,3 +68,4 @@ if (config.protocol === 'https') {
 }
 
 module.exports = session;
+module.exports = app

@@ -27,7 +27,7 @@ router.get('/training', (req,res) => {
 // Meal handle
  
 router.get('/meal', (req,res) => {
-    const pseudo = store.get('user').pseudo;
+    const pseudo = req.session.pseudo
     const calorie = accounts.get(pseudo);
     res.render('meal', { title: "Meal", calorie: calorie.calorie});
 })
@@ -53,7 +53,8 @@ router.post('/addCal', (req,res) => {
 
 // Ajoute des calories sur la page d'accueil
 router.post('/homeAddCal', (req,res) => {
-    const pseudo = accounts.get(req.body.ok_count_calorie);
+
+    const pseudo = accounts.get(req.session.pseudo);
 
     if (req.body.cal === ""){
         res.render('home', { title: "Home", calorie: pseudo.calorie });
@@ -72,7 +73,7 @@ router.post('/homeAddCal', (req,res) => {
 
 // Remet à 0 le nombre de calorie sur la page d'accueil
 router.post('/homeResetCal', (req,res) => {
-    const pseudo = accounts.get(req.body.reset_count_calorie);
+    const pseudo = accounts.get(req.session.pseudo);
     const calorie = pseudo.calorie = 0;
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
 
@@ -84,7 +85,7 @@ router.post('/homeResetCal', (req,res) => {
 
 // Remet à 0 le nombre de calorie sur la page d'alimentation
 router.post('/resetCal', (req,res) => {
-    const pseudo = accounts.get(req.body.reset_count_calorie);
+    const pseudo = accounts.get(req.session.pseudo);
     const calorie = pseudo.calorie = 0;
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
 
@@ -104,9 +105,7 @@ router.get('/sleep', (req,res) => {
 // Profiles handle
  
 router.get('/profiles', (req,res) => {
-    console.log("PROFILES" + req.query.pseudo);
-    const pseudo = "Otharius";
-    //const pseudo = store.get('user').pseudo;
+    const pseudo = req.session.pseudo;
     const user = users.get(pseudo);
     res.render('profiles', { 
         title: "Profiles", 
@@ -120,7 +119,7 @@ router.get('/profiles', (req,res) => {
 })
 
 router.get('/home', (req,res) => {
-    const pseudo = store.get('user').pseudo;
+    const pseudo = req.session.pseudo;
     const calorie = accounts.get(pseudo);
     res.render('home', { 
         title: "Home", 
@@ -131,7 +130,7 @@ router.get('/home', (req,res) => {
 // Ajoute des entrainements
 router.post('/addWorkout', (req,res) => {
 
-    const pseudo = req.body.pseudo;
+    const pseudo = req.session.pseudo;
     
     let seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     
