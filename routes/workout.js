@@ -7,54 +7,76 @@ const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Workout = workoutClass.Workout;
 const Users = require('../public/javascripts/users');
-const store = require('store');
-
 
 const users = new Users().load();
 const accounts = new Accounts().load();
 
-// Workout handle
 
+
+// FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo == null ) {
-        res.redirect('login', { title: "Login", error: false});
-    }
-}
+        res.redirect('login', { 
+            title: "Login", 
+            error: false,
+        });
+    };
+};
 
+
+
+// LA PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
-    res.render('login', { title: "Login", error: false})
-})
+    res.render('login', { 
+        title: "Login", 
+        error: false,
+    });
+});
 
+
+
+// LA PAGE D4ENTRAINEMENT
 router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const pseudo = req.session.pseudo;
+
     res.render('training', { 
         title: "Training",
         data: require('../data/' + pseudo + '.json').seances,
-        exMuscu: require('../data/musculationExercice.json').exercice
+        exMuscu: require('../data/musculationExercice.json').exercice,
     });
-})
+});
 
-// Meal handle
- 
+
+
+// LA PAGE D'ALIMENTATION 
 router.get('/meal', (req,res) => {
     sessionSecure(req, res);
 
-    const pseudo = req.session.pseudo
+    const pseudo = req.session.pseudo;
     const calorie = accounts.get(pseudo);
 
-    res.render('meal', { title: "Meal", calorie: calorie.calorie});
-})
+    res.render('meal', { 
+        title: "Meal", 
+        calorie: calorie.calorie,
+    });
+});
 
+
+
+// L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/addCal', (req,res) => {
     sessionSecure(req,res);
 
     const pseudo = accounts.get(req.session.pseudo);
 
     if (req.body.cal === ""){
-        res.render('Meal', { title: "Meal", calorie: pseudo.calorie });
+        res.render('Meal', { 
+            title: "Meal", 
+            calorie: pseudo.calorie, 
+        });
         return;
-    }    
+    };
 
     const calorie = pseudo.calorie + parseInt(req.body.cal);
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
@@ -63,19 +85,27 @@ router.post('/addCal', (req,res) => {
     accounts.add(account);
     accounts.save();
 
-    res.render('meal', { title: "Meal", calorie: calorie})
-})
+    res.render('meal', { 
+        title: "Meal", 
+        calorie: calorie,
+    });
+});
 
-// Ajoute des calories sur la page d'accueil
+
+
+// AJOUT DES CALORIES SUR LA PAGE D'ACCUEIL
 router.post('/homeAddCal', (req,res) => {
     sessionSecure(req,res);
 
     const pseudo = accounts.get(req.session.pseudo);
 
     if (req.body.cal === ""){
-        res.render('home', { title: "Home", calorie: pseudo.calorie });
+        res.render('home', { 
+            title: "Home", 
+            calorie: pseudo.calorie,
+        });
         return;
-    }    
+    };    
 
     const calorie = pseudo.calorie + parseInt(req.body.cal);
     const account = new Account(pseudo.pseudo, calorie, pseudo.sleep);
@@ -84,10 +114,15 @@ router.post('/homeAddCal', (req,res) => {
     accounts.add(account);
     accounts.save();
 
-    res.render('home', { title: "Home", calorie: calorie})
-})
+    res.render('home', { 
+        title: "Home", 
+        calorie: calorie,
+    });
+});
 
-// Remet à 0 le nombre de calorie sur la page d'accueil
+
+
+// REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ACCUEIL
 router.post('/homeResetCal', (req,res) => {
     sessionSecure(req,res);
 
@@ -98,10 +133,15 @@ router.post('/homeResetCal', (req,res) => {
     accounts.add(account);
     accounts.save();
 
-    res.render('home', { title: "Home", calorie: calorie});
-})
+    res.render('home', { 
+        title: "Home", 
+        calorie: calorie,
+    });
+});
 
-// Remet à 0 le nombre de calorie sur la page d'alimentation
+
+
+// REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/resetCal', (req,res) => {
     sessionSecure(req,res);
 
@@ -112,19 +152,25 @@ router.post('/resetCal', (req,res) => {
     accounts.add(account);
     accounts.save();
 
-    res.render('meal', { title: "Meal", calorie: calorie})
-})
+    res.render('meal', { 
+        title: "Meal", 
+        calorie: calorie,
+    });
+});
 
-// Sleep handle
+
  
+// PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
     sessionSecure(req,res);
-    res.render('sleep', { title: "Sleep"})
-})
+    res.render('sleep', { 
+        title: "Sleep",
+    });
+});
 
 
-// Profiles handle
- 
+
+ // PAGE DE PROFILE
 router.get('/profiles', (req,res) => {
     sessionSecure(req,res);
 
@@ -136,11 +182,13 @@ router.get('/profiles', (req,res) => {
         pseudo: user.pseudo,
         name: user.name,
         firstname: user.firstname,
-        email: user.email
-    })
-   
-})
+        email: user.email,
+    });
+});
 
+
+
+// LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
 
@@ -148,11 +196,13 @@ router.get('/home', (req,res) => {
     const calorie = accounts.get(pseudo);
     res.render('home', { 
         title: "Home", 
-        calorie: calorie.calorie
-    })
-})
+        calorie: calorie.calorie,
+    });
+});
 
-// Ajoute des entrainements
+
+
+// AJOUTE DES ENTRAINEMENTS
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
 
@@ -162,8 +212,9 @@ router.post('/addWorkout', (req,res) => {
     
     for (let i = 0; i<req.body.repetition.length; i++) {
         const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
-        seance.add(job)
-    }
+        seance.add(job);
+    };
+
     new Workout(pseudo).load().add(seance).save();
 
     const data =  require('../data/' + pseudo + '.json').seances;
@@ -174,20 +225,22 @@ router.post('/addWorkout', (req,res) => {
         title: "Training",
         data: data,
         exMuscu: exMuscu,
-        exCourse: exCourse
+        exCourse: exCourse,
     });
-})
+});
 
 
-// Je ne sais plus à quoi cela sert
+
+// L'AFTER ENTRAINEMENT 
 router.post('/afterWorkout', (req,res) => {
     const done = req.body.done;
     const difficulty = req.body.difficulty;
     
     res.render('training', { 
         title:"Training", 
-    })
-})
+    });
+});
 
-module.exports = router
 
+
+module.exports = router;

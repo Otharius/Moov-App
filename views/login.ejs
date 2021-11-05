@@ -1,48 +1,57 @@
 <title><%= title %></title>
-<div class="container">
-    <form class="form" id="login" action="/sign/login" method="POST">
-        <h1 class="form_title">Connexion</h1>
-        <div class="form_message-error">
-          <% if(error){ %>
-            <p><%= message %></p>
-          <% } else{ %>  
-         <% } %>
-        </div>
-        <div class="form__input-group"> 
-          <input type="text" class="form_input" autofocus placeholder="Pseudo" id="pseudo" value="" name="pseudo">
-          <div class="form_input-error-message"></div>
-        </div>
-        <div class="form_input-group">
-          <input type="password" class="form_input" autofocus placeholder="Mot de passe" id="mdp" value="" name="password">
-          <div class="form_input-error-message"></div>
-        </div>
-        <button class="form_button" type="submit" id="connection" onclick="savePseudo()">Connexion</button>
-    </form>
-    <form>
-      <p class="form_text">
-        <a href="/sign/forgot" class="form_link">Mot de passe oublié ?</a>
-      </p>
-      <p class="form_text">
-        <a class="form_link" href="/sign/register" id="linkCreateAccount">Vous n'avez pas de compte ? Créez-en un.</a>
-      </p>
-    </form>
-    
-    <style>
-          body {
-        --color-primary: #009579;
-        --color-primary-dark: #007f67;
-        --color-secondary: #252c6a;
-        --color-error: #cc3333;
-        --color-success: #4bb544;
-        --border-radius: 4px;
 
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 18px;
-        background-size: cover;
-    }
-    </style>
+<div class="container">
+
+  <form class="form" id="login" action="/sign/login" method="POST">
+    
+      <h1 class="form_title">Connexion</h1>
+
+      <div class="form_message-error">
+        <% if(error){ %>
+          <p><%= message %></p>
+        <% } else{ %>  
+        <% } %>
+      </div>
+
+      <div class="form__input-group"> 
+        <input type="text" class="form_input" autofocus placeholder="Pseudo" id="pseudo" value="" name="pseudo">
+        <div class="form_input-error-message"></div>
+      </div>
+
+      <div class="form_input-group">
+        <input type="password" class="form_input" autofocus placeholder="Mot de passe" id="mdp" value="" name="password">
+        <div class="form_input-error-message"></div>
+      </div>
+
+      <button class="form_button" type="submit" id="connection">Connexion</button>
+  </form>
+
+  <form>
+    <p class="form_text">
+      <a href="/sign/forgot" class="form_link">Mot de passe oublié ?</a>
+    </p>
+
+    <p class="form_text">
+      <a class="form_link" href="/sign/register" id="linkCreateAccount">Vous n'avez pas de compte ? Créez-en un.</a>
+    </p>
+  </form>
+  
+  <style>
+        body {
+      --color-primary: #009579;
+      --color-primary-dark: #007f67;
+      --color-secondary: #252c6a;
+      --color-error: #cc3333;
+      --color-success: #4bb544;
+      --border-radius: 4px;
+
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      background-size: cover;
+  }
+  </style>
 </div>
