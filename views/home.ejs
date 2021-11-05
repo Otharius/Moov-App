@@ -48,15 +48,25 @@
 
 <div>
     <h3>Programme du jour</h3>
-        <table>
-            <tr>
-                <td>
-                    <!--Programme du jour-->
-                    <input type="text" placeholder="Programme du jour">
-                </td>
-            </tr>
-        </table>
+    <table>
+        <% for(var i=0; i < data.length; i++) { %>
+           <tr>
+             <td class="test">Séance <%=i + 1%>:<%= data[i].name %></td>
+           </tr>
+        <% } %>
+    </table>
 </div>
+
+<br>
+
+
+    <% if(admin){ %>
+        <div class=""></div>
+            <p>Bravo tu es admin</p>
+        </div>
+    <% } else{ %>  
+    <% } %>
+
 
 <br>
 

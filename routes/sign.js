@@ -11,11 +11,21 @@ const users = new Users().load();
 const accounts = new Accounts().load();
 
 
+title = {
+    "home": "My App - Home",
+    "login": "My App - Login",
+    "training": "My App - Training",
+    "meal": "My App - Meal",
+    "profiles": "My App - Profiles",
+    "sleep": "My App - Sleep",
+    "register": "My App - Register",
+};
+
 
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
     res.render('login', { 
-        title: "Login", 
+        title: title.login, 
         error: false,
     });
 });
@@ -25,7 +35,7 @@ router.get('/login', (req,res) => {
 // LA PAGE DE CREATION DE COMPTE
 router.get('/register', (req,res) => {
     res.render('register', { 
-        title: "Register",
+        title: title.register,
         error: false,
     });
 });
@@ -43,17 +53,17 @@ router.post('/register', (req,res) => {
     const password2 = req.body.password2;
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
-        res.render('register', { title: "Register", message: "Veillez renseigner tout les champs", error: true});
+        res.render('register', { title: title.register, message: "Veillez renseigner tout les champs", error: true});
         return;
     };
 
     if (users.exist(pseudo)) {
-        res.render('register', { title: "Register", message: "Pseudo déjà utilisé", error: true});
+        res.render('register', { title: title.register, message: "Pseudo déjà utilisé", error: true});
         return;
     };
 
     if (password != password2) {
-        res.render('register', { title: "Register", message: "Mots de passe différents", error: true});
+        res.render('register', { title: title.register, message: "Mots de passe différents", error: true});
         return;
     };
 
@@ -70,7 +80,7 @@ router.post('/register', (req,res) => {
     workout.create(pseudo);
 
     res.render('login', { 
-        title: "Login", 
+        title: title.login, 
         error: false,
     });
 });
@@ -89,27 +99,30 @@ router.post('/login', (req,res) => {
 
 
     if (pseudo === '' || password === '') {
-        res.render('login', { title: "Login", message: "Veillez renseigner tout les champs", error: true});
+        res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true});
         return;
     };
 
     if (!users.exist(pseudo)) {
-        res.render('login', { title: "Login", message: "Utilisateur introuvable", error: true});
+        res.render('login', { title: title.login, message: "Utilisateur introuvable", error: true});
         return;
     };
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('login', { title: "Login", message: "Mot de passe incorrect", error: true });
+        res.render('login', { title: title.login, message: "Mot de passe incorrect", error: true });
         return;
     };
 
 
     console.log(user.pseudo + " vient de se connecter");
+    const data =  require('../data/' + pseudo + '.json').seances;
 
     res.render('home', { 
-        title: "Home",
+        title: title.home,
         calorie: cal.calorie,
+        admin: true,
+        data:data,
     });
 });
 
@@ -118,7 +131,7 @@ router.post('/login', (req,res) => {
 // PAGE POUR LA SELECTION DU MAIL POUR LE MOT DE PASSE
 router.get('/forgot', (req,res) => {
     res.render('forgot', { 
-        title: "Forgot",
+        title: "My App - Forgot",
     });
 });
 
@@ -130,11 +143,13 @@ router.post('/sendMail', (req,res) => {
 
 
 
+
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
+    req.session.destroy();
     console.log(req.body.logoutPseudo + ' vient de se déconnecter.');
     res.render('login', { 
-        title: "Login", 
+        title: title.home, 
         error: false,
     });
 });

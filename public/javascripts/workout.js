@@ -12,9 +12,9 @@ class Job {
         this.repetitions = repetitions;
         this.series = series;
         this.pause = pause;
-    }
+    };
 
-}
+};
 
 class Seance {
     
@@ -36,14 +36,14 @@ class Seance {
         this.detail = detail;
         this.type = type;
         this.jobs = [];
-    }
+    };
 
     add(job) {
         this.jobs.push(job);
         return this;
-    }
+    };
 
-}
+};
 
 class Workout {
 
@@ -53,36 +53,34 @@ class Workout {
     constructor(pseudo) {
         this.pseudo = pseudo;
         this.seances = [];
-    }
+    };
 
     add(seance) {
         this.seances.push(seance);
         return this;
-    }
+    };
 
     load() {
         try {
             this.seances = require('../../data/'+ this.pseudo +'.json').seances;
         } catch  (error) {
             this.seances = [];
-        }
+        };
         return this;
-    }
+    };
 
-    save (pseudo) {
+    save () {
         fs.writeFile('data/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
-            console.log("Nouvel entrainement pour " + pseudo + ' !')
             if (err) throw err;
-        })
-    }
+        });
+    };
 
     create (pseudo) {
         fs.writeFile('data/' + pseudo + '.json', '', function (err) {
-            console.log("Fichier workout créée pour " + pseudo + " !")
             if (err) throw err;
-        })
-    }
-}
+        });
+    };
+};
 
 module.exports = {
     Job,
