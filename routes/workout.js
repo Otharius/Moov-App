@@ -13,10 +13,24 @@ const accounts = new Accounts().load();
 
 
 
+//FONCTION SI ON A PAS D'ENTRAINEMENT
+function oldOrNew (data) {
+    try {
+        if (data.length) {
+           return true;
+        }
+    } catch  (error) {
+        return false;
+    };
+
+}
+
+
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
-    if (req.session.pseudo == null ) {
-        res.redirect('login', { 
+    if (req.session.pseudo === undefined) {
+        res.redirect('login', {
+            style: false, 
             title: title.login, 
             error: false,
         });
@@ -24,10 +38,37 @@ function sessionSecure (req, res) {
 };
 
 
+// FONCTION RAJOUTE DES CALORIES
+function addCalorie (user, ajoutCalorie) {
+    if (ajoutCalorie === "") {
+        return false;
+    }; 
+
+    user.calorie = user.calorie + parseInt(ajoutCalorie);
+
+    const account = new Account(user.pseudo, user.calorie, user.sleep);
+    accounts.add(account);
+    accounts.save();
+
+    return user.calorie;
+};
+
+
+
+// FONCTION REMISE A 0 DES CALORIES
+function resetCalorie (user) {
+    const account = new Account(user.pseudo, 0, user.sleep);
+    accounts.add(account);
+    accounts.save();
+    return 0;
+}
+
+
 
 // LA PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
-    res.render('login', { 
+    res.render('login', {
+        style: false, 
         title: title.login, 
         error: false,
     });
@@ -35,14 +76,16 @@ router.get('/login', (req,res) => {
 
 
 
-// LA PAGE D4ENTRAINEMENT
+// LA PAGE D'ENTRAINEMENT
 router.get('/training', (req,res) => {
     sessionSecure(req, res);
-    const pseudo = req.session.pseudo;
+    const data = require('../data/' + req.session.pseudo + '.json').seances;
 
     res.render('training', { 
+        style: true,
         title: title.training,
-        data: require('../data/' + pseudo + '.json').seances,
+        data: data,
+        old: oldOrNew(data),
         exMuscu: require('../data/musculationExercice.json').exercice,
     });
 });
@@ -53,12 +96,10 @@ router.get('/training', (req,res) => {
 router.get('/meal', (req,res) => {
     sessionSecure(req, res);
 
-    const pseudo = req.session.pseudo;
-    const user = accounts.get(pseudo);
-
     res.render('meal', { 
+        style: true,
         title: title.meal, 
-        calorie: user.calorie,
+        calorie: accounts.get(req.session.pseudo).calorie,
     });
 });
 
@@ -67,28 +108,16 @@ router.get('/meal', (req,res) => {
 // L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/addCal', (req,res) => {
     sessionSecure(req,res);
-    const pseudo = req.session.pseudo;
-    const user = accounts.get(pseudo);
+    let user = accounts.get(req.session.pseudo);
+    const event = addCalorie(user, req.body.cal);
 
-    if (req.body.cal === ""){
-        res.render('Meal', { 
-            title: title.meal, 
-            calorie: user.calorie, 
-        });
-        return;
-    };
-
-    const calorie = user.calorie + parseInt(req.body.cal);
-    const account = new Account(user.pseudo, calorie, user.sleep);
-    user.calorie = calorie;
-
-    accounts.add(account);
-    accounts.save();
 
     res.render('meal', { 
+        style: true,
         title: title.meal, 
-        calorie: calorie,
+        calorie: event === false ? user.calorie : event, 
     });
+    
 });
 
 
@@ -97,33 +126,18 @@ router.post('/addCal', (req,res) => {
 router.post('/homeAddCal', (req,res) => {
     sessionSecure(req,res);
 
-    const pseudo = req.session.pseudo;
-    const user = accounts.get(pseudo);
-    const data =  require('../data/' + pseudo + '.json').seances;
-
-    if (req.body.cal === ""){
-        res.render('home', { 
-            title: title.home, 
-            calorie: user.calorie,
-            admin: true,
-            data: data,
-        });
-        return;
-    };    
-
-    const calorie = user.calorie + parseInt(req.body.cal);
-    const account = new Account(user.pseudo, calorie, user.sleep);
-    user.calorie = calorie;
-
-    accounts.add(account);
-    accounts.save();
+    let user = accounts.get(req.session.pseudo);
+    const data =  require('../data/' + user.pseudo + '.json').seances;
+    const event = addCalorie(user, req.body.cal);
 
     res.render('home', { 
+        style: true,
         title: title.home, 
-        calorie: calorie,
+        calorie: event === false ? user.calorie : event, 
         admin: true,
         data: data,
-    });
+        old: oldOrNew(data),
+     });
 });
 
 
@@ -134,18 +148,15 @@ router.post('/homeResetCal', (req,res) => {
 
     const pseudo = req.session.pseudo;
     const user = accounts.get(pseudo);
-    const calorie = user.calorie = 0;
-    const account = new Account(user.pseudo, calorie, user.sleep);
     const data =  require('../data/' + pseudo + '.json').seances;
 
-    accounts.add(account);
-    accounts.save();
-
     res.render('home', { 
+        style: true,
         title: title.home, 
-        calorie: calorie,
+        calorie: resetCalorie(user),
         admin: true,
-        data:data,
+        data: data,
+        old: oldOrNew(data),
     });
 });
 
@@ -155,26 +166,22 @@ router.post('/homeResetCal', (req,res) => {
 router.post('/resetCal', (req,res) => {
     sessionSecure(req,res);
 
-    const pseudo = req.session.pseudo;
-    const user = accounts.get(pseudo);
-    const calorie = user.calorie = 0;
-    const account = new Account(user.pseudo, calorie, user.sleep);
-
-    accounts.add(account);
-    accounts.save();
+    const user = accounts.get(req.session.pseudo);
 
     res.render('meal', { 
+        style: true,
         title: title.meal, 
-        calorie: calorie,
+        calorie: resetCalorie(user),
     });
 });
 
 
- 
+
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
     sessionSecure(req,res);
     res.render('sleep', { 
+        style: true,
         title: title.sleep,
     });
 });
@@ -187,7 +194,9 @@ router.get('/profiles', (req,res) => {
 
     const pseudo = req.session.pseudo;
     const user = users.get(pseudo);
+
     res.render('profiles', { 
+        style: true,
         title: title.profiles, 
         error: false,
         pseudo: user.pseudo,
@@ -208,10 +217,12 @@ router.get('/home', (req,res) => {
     const data =  require('../data/' + pseudo + '.json').seances;
 
     res.render('home', { 
+        style: true,
         title: title.home, 
         calorie: user.calorie,
         admin: true,
         data: data,
+        old: oldOrNew(data),
     });
 });
 
@@ -221,8 +232,8 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
 
+    console.log(req.body)
     const pseudo = req.session.pseudo;
-    
     let seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     
     for (let i = 0; i<req.body.repetition.length; i++) {

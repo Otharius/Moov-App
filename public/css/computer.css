@@ -22,56 +22,31 @@ body{
     float: left;
   }
   
-  /* Style the links inside the navigation bar */
 .topnav a {
     float: left;
     color: #f2f2f2;
     text-align: center;
     padding: 14px 17px;
-    text-decoration: none;
+    width: 10%;
     font-size: 17px;
+    height: 4%;
 }
 
-.people, .moon {
-    height: 1.75rem;
-    width: 2rem;
-}
-
-.nav_second {
-    width: 3.8rem;
-}
-
-.nav_people {
-    width: 2.76rem;
-}
-
-.nav_text {
-    text-align: left;
-}
-
-.topnav a {
-    width: 7rem;
-}
-
-.topnav a:hover {
+.nav_second:hover {
     background-color: crimson;
     color: white;
-    height: 1.70rem;
 }
 
-.topnav a.active {
+.nav_home {
     background-color: var(--orangeFoncé);
-    color: white;
 }
   
 .svg {
     width: 2rem;
-    fill: white;
 }
 
-.svg_ball {
-    width: 2rem;
-    height: 1.75rem;
+.color {
+    fill: white;
 }
 
 /*Fin du menu de sélection*/
@@ -1031,8 +1006,16 @@ h3 {
     text-align: center;
 }
 
+.profil_box p {
+    margin-left: 2%;
+}
+
 .changePWD {
     margin: 1rem;
+}
+
+.profil_title {
+    font-size: 2rem;
 }
 
 .changePWD input {

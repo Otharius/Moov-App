@@ -76,7 +76,7 @@ class Workout {
     };
 
     create (pseudo) {
-        fs.writeFile('data/' + pseudo + '.json', '', function (err) {
+        fs.writeFile('data/' + pseudo + '.json', '[]', function (err) {
             if (err) throw err;
         });
     };

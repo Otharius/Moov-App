@@ -22,9 +22,11 @@ title = {
 };
 
 
+
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
     res.render('login', { 
+        style:false,
         title: title.login, 
         error: false,
     });
@@ -35,6 +37,7 @@ router.get('/login', (req,res) => {
 // LA PAGE DE CREATION DE COMPTE
 router.get('/register', (req,res) => {
     res.render('register', { 
+        style:false,
         title: title.register,
         error: false,
     });
@@ -53,17 +56,17 @@ router.post('/register', (req,res) => {
     const password2 = req.body.password2;
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
-        res.render('register', { title: title.register, message: "Veillez renseigner tout les champs", error: true});
+        res.render('register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (users.exist(pseudo)) {
-        res.render('register', { title: title.register, message: "Pseudo déjà utilisé", error: true});
+        res.render('register', { title: title.register, message: "Pseudo déjà utilisé", error: true, style: false,});
         return;
     };
 
     if (password != password2) {
-        res.render('register', { title: title.register, message: "Mots de passe différents", error: true});
+        res.render('register', { title: title.register, message: "Mots de passe différents", error: true, style:false});
         return;
     };
 
@@ -80,6 +83,7 @@ router.post('/register', (req,res) => {
     workout.create(pseudo);
 
     res.render('login', { 
+        syle: false,
         title: title.login, 
         error: false,
     });
@@ -99,18 +103,18 @@ router.post('/login', (req,res) => {
 
 
     if (pseudo === '' || password === '') {
-        res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true});
+        res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (!users.exist(pseudo)) {
-        res.render('login', { title: title.login, message: "Utilisateur introuvable", error: true});
+        res.render('login', { title: title.login, message: "Utilisateur introuvable", error: true, style: false});
         return;
     };
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('login', { title: title.login, message: "Mot de passe incorrect", error: true });
+        res.render('login', { title: title.login, message: "Mot de passe incorrect", error: true, style: false });
         return;
     };
 
@@ -118,12 +122,29 @@ router.post('/login', (req,res) => {
     console.log(user.pseudo + " vient de se connecter");
     const data =  require('../data/' + pseudo + '.json').seances;
 
-    res.render('home', { 
-        title: title.home,
-        calorie: cal.calorie,
-        admin: true,
-        data:data,
-    });
+    try {
+        if (data.length) {
+            res.render('home', { 
+                style: true,
+                title: title.home,
+                calorie: cal.calorie,
+                admin: true,
+                old: true,
+                data:data,
+            });
+        }
+    } catch  (error) {
+        
+        res.render('home', { 
+            style: true,
+            title: title.home,
+            calorie: cal.calorie,
+            admin: true,
+            old: false,
+            data:data,
+        });
+    };
+
 });
 
 
@@ -146,10 +167,11 @@ router.post('/sendMail', (req,res) => {
 
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
+    console.log(req.session.pseudo + ' vient de se déconnecter.');
     req.session.destroy();
-    console.log(req.body.logoutPseudo + ' vient de se déconnecter.');
     res.render('login', { 
-        title: title.home, 
+        style: false,
+        title: title.login, 
         error: false,
     });
 });
@@ -194,6 +216,7 @@ router.post('/changePassword', (req,res) => {
     users.save();
     res.render('profiles', { 
         title: "Profiles",
+        style: true,
         error: false,
         pseudo: user.pseudo,
         name: user.name,
