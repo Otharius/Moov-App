@@ -128,7 +128,7 @@ router.post('/login', (req,res) => {
                 style: true,
                 title: title.home,
                 calorie: cal.calorie,
-                admin: true,
+                admin: users.get(pseudo).boost,
                 old: true,
                 data:data,
             });
@@ -139,7 +139,7 @@ router.post('/login', (req,res) => {
             style: true,
             title: title.home,
             calorie: cal.calorie,
-            admin: true,
+            admin: users.get(pseudo).boost,
             old: false,
             data:data,
         });

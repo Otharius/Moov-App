@@ -5,13 +5,15 @@ class User {
     pseudo = '';
     name = '';
     firstname = '';
+    boost = false;
     email = '';
     password = '';
 
-    constructor(pseudo, name, firstname) {
+    constructor(pseudo, name, firstname, boost) {
         this.pseudo = pseudo;
         this.name = name;
         this.firstname = firstname;
+        this.boost = boost;
     }
 
     withPassword(password, encrypt=false) {
@@ -37,8 +39,9 @@ class User {
             "pseudo": this.pseudo,
             "name": this.name,
             "firstname": this.firstname,
+            "boost": this.boost,
             "email": this.email,
-            "password": this.password
+            "password": this.password,
         }
     }
 

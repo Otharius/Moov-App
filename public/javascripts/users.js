@@ -32,7 +32,8 @@ class Users {
             this.add(new User(
                 data[i].pseudo,
                 data[i].name,
-                data[i].firstname
+                data[i].firstname,
+                data[i].boost,
             )
             .withEmail(data[i].email)
             .withPassword(data[i].password));

@@ -51,6 +51,20 @@
         </div>
     </form>
 
+    <div class="">
+        <% if(admin){ %>
+            
+                <p>Bravo tu es admin</p>
+            
+        <% } else{ %>  
+    
+            <form action="/workout/passAdmin" method="POST">
+                <button class="ok_count_calorie">Passez admin</button>
+            </form>
+    
+        <% } %>
+        </div>
+    
     <br><br><br><br><br><br>
     <br><br><br><br><br><br>
     <br><br><br><br><br><br>

@@ -7,6 +7,7 @@ const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Workout = workoutClass.Workout;
 const Users = require('../public/javascripts/users');
+const User = require('../public/javascripts/user');
 
 const users = new Users().load();
 const accounts = new Accounts().load();
@@ -95,6 +96,7 @@ router.get('/training', (req,res) => {
 // LA PAGE D'ALIMENTATION 
 router.get('/meal', (req,res) => {
     sessionSecure(req, res);
+    console.log(req.session.pseudo)
 
     res.render('meal', { 
         style: true,
@@ -134,7 +136,7 @@ router.post('/homeAddCal', (req,res) => {
         style: true,
         title: title.home, 
         calorie: event === false ? user.calorie : event, 
-        admin: true,
+        admin: users.get(pseudo).boost,
         data: data,
         old: oldOrNew(data),
      });
@@ -154,7 +156,7 @@ router.post('/homeResetCal', (req,res) => {
         style: true,
         title: title.home, 
         calorie: resetCalorie(user),
-        admin: true,
+        admin: users.get(pseudo).boost,
         data: data,
         old: oldOrNew(data),
     });
@@ -203,6 +205,7 @@ router.get('/profiles', (req,res) => {
         name: user.name,
         firstname: user.firstname,
         email: user.email,
+        admin: users.get(pseudo).boost,
     });
 });
 
@@ -220,7 +223,7 @@ router.get('/home', (req,res) => {
         style: true,
         title: title.home, 
         calorie: user.calorie,
-        admin: true,
+        admin: users.get(pseudo).boost,
         data: data,
         old: oldOrNew(data),
     });
@@ -261,15 +264,43 @@ router.post('/addWorkout', (req,res) => {
 router.post('/afterWorkout', (req,res) => {
     const done = req.body.done;
     const difficulty = req.body.difficulty;
+    const exMuscu =  require('../data/musculationExercice.json').exercice;
+    const exCourse = require('../data/courseExercice.json').exercice;
     const pseudo = req.session.pseudo;
     const data =  require('../data/' + pseudo + '.json').seances;
     
     res.render('training', { 
         title: title.training, 
         data: data,
+        style: true,
+        old: oldOrNew(data),
+        exMuscu: exMuscu,
+        exCourse: exCourse,
     });
 });
 
+
+
+// PASSER ADMIN
+router.post('/passAdmin', (req,res) => {
+    const pseudo = req.session.pseudo;
+    const user = users.get(pseudo)
+    user.boost = true;
+    const p = new User(user.pseudo, user.name, user.firstname, user.boost);
+    users.add(p);
+    users.save();
+
+    res.render('profiles', { 
+        style: true,
+        title: title.profiles, 
+        error: false,
+        pseudo: user.pseudo,
+        name: user.name,
+        firstname: user.firstname,
+        email: user.email,
+        admin: users.get(pseudo).boost,
+    });
+})
 
 
 module.exports = router;
