@@ -56,6 +56,7 @@ class Workout {
     };
 
     add(seance) {
+        // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"Otharius","seances":[]}
         this.seances.push(seance);
         return this;
     };

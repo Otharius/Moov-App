@@ -235,7 +235,6 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
 
-    console.log(req.body)
     const pseudo = req.session.pseudo;
     let seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     
@@ -251,10 +250,13 @@ router.post('/addWorkout', (req,res) => {
     const exCourse = require('../data/courseExercice.json').exercice;
 
     res.render('training', { 
-        title: title.training,
+        style: true,
+        title: title.home, 
         data: data,
+        old: oldOrNew(data),
         exMuscu: exMuscu,
         exCourse: exCourse,
+
     });
 });
 

@@ -122,28 +122,16 @@ router.post('/login', (req,res) => {
     console.log(user.pseudo + " vient de se connecter");
     const data =  require('../data/' + pseudo + '.json').seances;
 
-    try {
-        if (data.length) {
-            res.render('home', { 
-                style: true,
-                title: title.home,
-                calorie: cal.calorie,
-                admin: users.get(pseudo).boost,
-                old: true,
-                data:data,
-            });
-        }
-    } catch  (error) {
-        
-        res.render('home', { 
-            style: true,
-            title: title.home,
-            calorie: cal.calorie,
-            admin: users.get(pseudo).boost,
-            old: false,
-            data:data,
-        });
-    };
+
+    res.render('home', { 
+        style: true,
+        title: title.home,
+        calorie: cal.calorie,
+        admin: users.get(pseudo).boost,
+        old: true,
+        data:data,
+    });
+
 
 });
 
