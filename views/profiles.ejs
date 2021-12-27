@@ -24,10 +24,10 @@
 
         <div class="profil_box" >
             <h2 class="profil_title">-- Utilisateur --</h2>
-                <p><strong> Pseudo: </strong><%= pseudo %></p>
-                <p><strong> Nom: </strong><%= name %></p>
-                <p><strong> Prénom: </strong><%= firstname %></p>
-                <p><strong> Adresse mail: </strong><%= email %></p>
+                <p><strong> Pseudo: </strong><%= user.pseudo %></p>
+                <p><strong> Nom: </strong><%= user.name %></p>
+                <p><strong> Prénom: </strong><%= user.firstname %></p>
+                <p><strong> Adresse mail: </strong><%= user.email %></p>
                 <p><strong>Poids: </strong>80kg</p>
                 <p><strong>Taille: </strong>1.80m</p>
         </div>
@@ -52,7 +52,7 @@
     </form>
 
     <div class="">
-        <% if(admin){ %>
+        <% if(user.boost){ %>
             
                 <p>Bravo tu es admin</p>
             

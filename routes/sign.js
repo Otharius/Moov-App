@@ -3,7 +3,7 @@ const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
 const Account = require('../public/javascripts/account');
 const Accounts = require('../public/javascripts/accouts');
-const workoutClass = require('../public/javascripts/workout');
+const workoutClass = require('../public/javascripts/workouts');
 const Workout = workoutClass.Workout;
 const router = express.Router();
 
@@ -21,6 +21,15 @@ title = {
     "register": "My App - Register",
 };
 
+function oldOrNew (data) {
+    try {
+        if (data.length) {
+           return true;
+        };
+    } catch  (error) {
+        return false;
+    };
+};
 
 
 // PAGE DE CONNEXION
@@ -128,8 +137,8 @@ router.post('/login', (req,res) => {
         title: title.home,
         calorie: cal.calorie,
         admin: users.get(pseudo).boost,
-        old: true,
-        data:data,
+        old: oldOrNew(data),
+        data: data,
     });
 
 
@@ -176,27 +185,27 @@ router.post('/changePassword', (req,res) => {
     const user = users.get(pseudo);
 
     if (user === undefined) {
-        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']',pseudo: user.pseudo,name: user.name,firstname: user.firstname, email: user.email});
+        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user,});
         return;
     };
 
     if (newPassword === '' || newPassword2 === '') {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs",pseudo: user.pseudo,name: user.name,firstname: user.firstname, email: user.email});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs", user: user,});
         return;
     };
 
     if (!user.checkPassword(oldPassword)) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo, pseudo: user.pseudo,name: user.name, firstname: user.firstname, email: user.email});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo, user: user,});
         return;
     };
 
     if (oldPassword === newPassword) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien", pseudo: user.pseudo,name: user.name, firstname: user.firstname, email: user.email});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien", user: user,});
         return;
     };
 
     if (newPassword != newPassword2) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect", pseudo: user.pseudo,name: user.name, firstname: user.firstname, email: user.email});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect", user: user,});
         return;
     };
 
@@ -206,10 +215,7 @@ router.post('/changePassword', (req,res) => {
         title: "Profiles",
         style: true,
         error: false,
-        pseudo: user.pseudo,
-        name: user.name,
-        firstname: user.firstname, 
-        email: user.email,
+        user: user,
     });
 });
 

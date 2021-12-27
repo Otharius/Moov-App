@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Accounts = require('../public/javascripts/accouts');
 const Account = require('../public/javascripts/account');
-const workoutClass = require('../public/javascripts/workout');
+const workoutClass = require('../public/javascripts/workouts');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Workout = workoutClass.Workout;
@@ -11,6 +11,7 @@ const User = require('../public/javascripts/user');
 
 const users = new Users().load();
 const accounts = new Accounts().load();
+const workouts = new Workout('Otharius').load();
 
 
 
@@ -19,12 +20,11 @@ function oldOrNew (data) {
     try {
         if (data.length) {
            return true;
-        }
+        };
     } catch  (error) {
         return false;
     };
-
-}
+};
 
 
 // FONCTION POUR LA SECURISATION DES SESSIONS
@@ -96,7 +96,6 @@ router.get('/training', (req,res) => {
 // LA PAGE D'ALIMENTATION 
 router.get('/meal', (req,res) => {
     sessionSecure(req, res);
-    console.log(req.session.pseudo)
 
     res.render('meal', { 
         style: true,
@@ -201,11 +200,7 @@ router.get('/profiles', (req,res) => {
         style: true,
         title: title.profiles, 
         error: false,
-        pseudo: user.pseudo,
-        name: user.name,
-        firstname: user.firstname,
-        email: user.email,
-        admin: users.get(pseudo).boost,
+        user: user,
     });
 });
 
@@ -296,13 +291,30 @@ router.post('/passAdmin', (req,res) => {
         style: true,
         title: title.profiles, 
         error: false,
-        pseudo: user.pseudo,
-        name: user.name,
-        firstname: user.firstname,
-        email: user.email,
-        admin: users.get(pseudo).boost,
+        user: user,
     });
 })
+
+
+
+// SUPPRIMER UNE SEANCE
+router.post('/deleteWorkout', (req, res) => {
+
+    workouts.delete().save();
+    const user = users.get(req.session.pseudo);
+    const data =  require('../data/' + req.session.pseudo + '.json').seances;
+    
+    res.render('home', { 
+        style: true,
+        title: title.home, 
+        calorie: user.calorie,
+        admin: user.boost,
+        data: data,
+        old: oldOrNew(data),
+    });
+})
+
+
 
 
 module.exports = router;

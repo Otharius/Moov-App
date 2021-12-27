@@ -1,4 +1,5 @@
 const fs = require('fs');
+const { createDeflateRaw } = require('zlib');
 
 class Job {
 
@@ -20,7 +21,7 @@ class Seance {
     
     name = '';
     date = '';
-    difficulty = 1;
+    difficulty = null;
     done = false;
     detail = '';
     type = '';
@@ -38,7 +39,7 @@ class Seance {
         this.jobs = [];
     };
 
-    add(job) {
+    add (job) {
         this.jobs.push(job);
         return this;
     };
@@ -55,18 +56,24 @@ class Workout {
         this.seances = [];
     };
 
-    add(seance) {
-        // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"Otharius","seances":[]}
+    add (seance) {
+        // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"tatata","seances":[]}. Tout cela au minimum
         this.seances.push(seance);
         return this;
     };
 
-    load() {
+    load () {
         try {
             this.seances = require('../../data/'+ this.pseudo +'.json').seances;
         } catch  (error) {
             this.seances = [];
         };
+        return this;
+    };
+
+    delete () {
+
+        this.seances.shift();
         return this;
     };
 

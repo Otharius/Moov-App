@@ -29,7 +29,15 @@
         <div class="work_yes">
             <h1>Séance faite</h1>
             <form action="afterWorkout" method="POST">
-                <p>Nom de l'exercice du date</p>
+
+                <select name="" id="">
+                    <% for(var i=0; i < data.length; i++) { %>
+                        <option value=""> <%=data[i].name %> </option>
+                    <% } %>
+                </select>
+                
+
+
                     <div class="done_none">
                         <input type="radio" class="yes work_done" name="done" id="yes" value="yes">
                         <label for="yes">Fait</label>

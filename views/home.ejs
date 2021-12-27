@@ -8,6 +8,11 @@
                 <% for(var i=0; i < data.length; i++) { %>
                     <tr>
                       <td class="test">Séance <%=i + 1%>:<%= data[i].name %></td>
+                      <td class="test">
+                          <form action="/workout/deleteWorkout" method="post">
+                              <button>Supprimer</button>
+                          </form>
+                      </td>
                     </tr>
                  <% } %>
             <% } else{ %> 
