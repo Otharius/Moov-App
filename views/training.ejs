@@ -32,8 +32,8 @@
             <form action="/workout/deleteWorkout" method="post">
                 <select name="supprimer" id="">
                 
-                    <% for(var i=0; i < data.length; i++) { %>
-                        <option value="<%= i %>" name="supprimer"> <%=data[i].name %> </option>
+                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                        <option value="<%= i %>" name="supprimer"> <%=userData.workout.seances[i].name %> </option>
                     <% } %>
                 </select>
                 <button>Supprimer</button>
@@ -112,9 +112,9 @@
 
             <table>
                 <% if(old){ %>
-                    <% for(var i=0; i < data.length; i++) { %>
+                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <tr>
-                          <td class="test">Séance <%=i + 1%>:<%= data[i].name %></td>
+                          <td class="test">Séance <%=i + 1%>:<%= userData.workout.seances[i].name %></td>
                         </tr>
                      <% } %>
                 <% } else{ %> 

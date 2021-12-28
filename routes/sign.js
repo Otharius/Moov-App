@@ -2,11 +2,8 @@ const express = require('express');
 const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
 const workoutClass = require('../public/javascripts/userData');
-const Workout = workoutClass.Workout;
-const UserData = workoutClass.UserData;
 const router = express.Router();
 const users = new Users().load();
-const usersData = new Map();
 
 title = {
     "home": "My App - Home",
@@ -81,13 +78,14 @@ router.post('/register', (req,res) => {
     users.add(user);
     users.save(user.pseudo);
 
-    let userData = usersData.get(pseudo);
+    let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
         console.log('Creation des données de ' + user.pseudo);
         const data = new UserData(pseudo);
         data.save();
-        usersData.set(pseudo, data);
+        workoutClass.setData(pseudo, data);
     }
+
 
 
     res.render('login', { 
@@ -125,20 +123,19 @@ router.post('/login', (req,res) => {
 
     console.log(user.pseudo + " vient de se connecter");
     
-    let userData = usersData.get(pseudo);
+    let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
         console.log('Chargement des données de ' + user.pseudo);
-        userData = new UserData(pseudo).load();
-        usersData.set(pseudo, userData);
-    }
+        userData = new workoutClass.UserData(pseudo).load();
+        workoutClass.setData(pseudo, userData);
+    };
 
     res.render('home', { 
         style: true,
         title: title.home,
-        calorie: userData.health.calories,
         admin: users.get(pseudo).boost,
         old: oldOrNew(userData.workout.seances),
-        data: userData.workout.seances,
+        userData: workoutClass.getData(req.session.pseudo),
     });
 
 
@@ -220,3 +217,4 @@ router.post('/changePassword', (req,res) => {
 });
 
 module.exports = router;
+                  

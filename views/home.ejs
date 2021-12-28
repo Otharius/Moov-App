@@ -5,9 +5,9 @@
         <table>
 
             <% if(old){ %>
-                <% for(var i=0; i < data.length; i++) { %>
+                <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <tr>
-                      <td class="test">Séance <%=i + 1%>:<%= data[i].name %></td>
+                      <td class="test">Séance <%=i + 1%>:<%= userData.workout.seances[i].name %></td>
                     </tr>
                  <% } %>
             <% } else{ %> 
@@ -97,7 +97,7 @@
         
         <br><br>
 
-        <p class="result_count_calorie"><%= calorie %> kcal</p>
+        <p class="result_count_calorie"><%= userData.health.calories %> kcal</p>
 
     <br><br>
 

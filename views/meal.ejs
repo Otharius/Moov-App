@@ -9,9 +9,9 @@
     <br>
 
     <form action="/workout/addCal" method="POST">
-        <input type="tel" name="cal" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
+        <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
         <button class="ok_count_calorie">OK</button><br><br>
-        <p class="result_count_calorie"><%= calorie %> kcal</p>
+        <p class="result_count_calorie"><%= userData.health.calories %> kcal</p>
 
         <br><br>
 

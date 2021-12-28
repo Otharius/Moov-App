@@ -1,17 +1,15 @@
 const express = require('express');
 const router = express.Router();
+
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
-const Workout = workoutClass.Workout;
-const UserData = workoutClass.UserData;
+
 const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
-const exMuscu =  require('../data/musculationExercice.json').exercice;
-
 const users = new Users().load();
-const usersData = new Map();
 
+const exMuscu =  require('../data/musculationExercice.json').exercice;
 
 
 //FONCTION SI ON A PAS D'ENTRAINEMENT
@@ -39,29 +37,19 @@ function sessionSecure (req, res) {
 
 
 // FONCTION RAJOUTE DES CALORIES
-function addCalorie (user, ajoutCalorie) {
+function addCalorie (calories, ajoutCalorie) {
     if (ajoutCalorie === "") {
         return false;
     }; 
-
-    user.calorie = user.calorie + parseInt(ajoutCalorie);
-
-    const account = new Account(user.pseudo, user.calorie, user.sleep);
-    accounts.add(account);
-    accounts.save();
-
-    return user.calorie;
+    return calories + parseInt(ajoutCalorie);
 };
 
 
 
 // FONCTION REMISE A 0 DES CALORIES
 function resetCalorie (user) {
-    const account = new Account(user.pseudo, 0, user.sleep);
-    accounts.add(account);
-    accounts.save();
     return 0;
-}
+};
 
 
 
@@ -78,15 +66,14 @@ router.get('/login', (req,res) => {
 
 // LA PAGE D'ENTRAINEMENT
 router.get('/training', (req,res) => {
-    console.log(req.session.pseudo);
     sessionSecure(req, res);
-    const data = require('../data/' + req.session.pseudo + '.json').seances;
+    const data = workoutClass.getData(req.session.pseudo)
 
     res.render('training', { 
         style: true,
         title: title.training,
-        data: data,
-        old: oldOrNew(data),
+        userData: data,
+        old: oldOrNew(data.workout.seances),
         exMuscu: require('../data/musculationExercice.json').exercice,
     });
 });
@@ -100,7 +87,7 @@ router.get('/meal', (req,res) => {
     res.render('meal', { 
         style: true,
         title: title.meal, 
-        calorie: accounts.get(req.session.pseudo).calorie,
+        userData: workoutClass.getData(req.session.pseudo),
     });
 });
 
@@ -110,12 +97,15 @@ router.get('/meal', (req,res) => {
 router.post('/addCal', (req,res) => {
     sessionSecure(req,res);
     const pseudo = req.session.pseudo;
-    const userData = usersData.get(pseudo);
-    userData.health.setCalorie(req.body.cal);
+    const userData = workoutClass.getData(pseudo);
+
+    console.log(typeof(req.body.calories));
+
+    userData.health.setCalories(45);
     res.render('meal', { 
         style: true,
         title: title.meal, 
-        calorie: userData.health.calories 
+        userData: userData.get(req.session.pseudo),
     });
     
 });
@@ -134,8 +124,7 @@ router.post('/homeAddCal', (req,res) => {
         style: true,
         title: title.home, 
         calorie: event === false ? user.calorie : event, 
-        admin: users.get(pseudo).boost,
-        data: data,
+        userData: workoutClass.getData(req.session.pseudo),
         old: oldOrNew(data),
      });
 });
@@ -148,14 +137,13 @@ router.post('/homeResetCal', (req,res) => {
 
     const pseudo = req.session.pseudo;
     const user = accounts.get(pseudo);
-    const data =  require('../data/' + pseudo + '.json').seances;
+    //const data =  require('../data/' + pseudo + '.json').seances;
 
     res.render('home', { 
         style: true,
         title: title.home, 
         calorie: resetCalorie(user),
-        admin: users.get(pseudo).boost,
-        data: data,
+        userData: data.get(req.session.pseudo),
         old: oldOrNew(data),
     });
 });
@@ -184,6 +172,7 @@ router.get('/sleep', (req,res) => {
     res.render('sleep', { 
         style: true,
         title: title.sleep,
+        userData: workoutClass.getData(req.session.pseudo),
     });
 });
 
@@ -209,20 +198,17 @@ router.get('/profiles', (req,res) => {
 
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
-    console.log(req.session.pseudo);
     sessionSecure(req,res);
 
     const pseudo = req.session.pseudo;
-    const user = accounts.get(pseudo);
-    const data =  require('../data/' + pseudo + '.json').seances;
+    const data = workoutClass.getData(req.session.pseudo);
 
     res.render('home', { 
         style: true,
         title: title.home, 
-        calorie: user.calorie,
         admin: users.get(pseudo).boost,
-        data: data,
-        old: oldOrNew(data),
+        userData: data,
+        old: oldOrNew(data.workout.seances),
     });
 });
 
@@ -232,23 +218,21 @@ router.get('/home', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
 
-    const pseudo = req.session.pseudo;
-    let seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
-    
+    const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     for (let i = 0; i<req.body.repetition.length; i++) {
         const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
         seance.add(job);
     };
-
-    new Workout(pseudo).load().add(seance).save();
-
-    const data =  require('../data/' + pseudo + '.json').seances;
+    
+    const data =  workoutClass.getData(req.session.pseudo);
+    data.workout.add(seance);
+    data.save();
 
     res.render('training', { 
         style: true,
         title: title.home, 
-        data: data,
-        old: oldOrNew(data),
+        userData: data,
+        old: oldOrNew(data.workout.seances),
         exMuscu: exMuscu,
     });
 });
@@ -297,16 +281,16 @@ router.post('/passAdmin', (req,res) => {
 
 // SUPPRIMER UNE SEANCE
 router.post('/deleteWorkout', (req, res) => {
-    workouts.delete(req.body.supprimer).save();
-    const user = users.get(req.session.pseudo);
-    const data =  require('../data/' + req.session.pseudo + '.json').seances;
+    const pseudo = req.session.pseudo;
+    const data =  workoutClass.getData(pseudo);
+    data.workout.delete(req.body.supprimer);
+    data.save();
+   
     
     res.render('training', { 
         style: true,
         title: title.training, 
-        calorie: user.calorie,
-        admin: user.boost,
-        data: data,
+        userData: workoutClass.getData(pseudo),
         old: oldOrNew(data),
         exMuscu: exMuscu,
     });

@@ -13,7 +13,6 @@ class Job {
         this.series = series;
         this.pause = pause;
     };
-
 };
 
 class Seance {
@@ -53,6 +52,12 @@ class Workout {
         this.seances = [];
     };
 
+    load(data) {
+        for (let s of data.workout.seances) {
+            this.add(s);
+        }
+    }
+
     add(seance) {
         // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"tatata","seances":[]}. Tout cela au minimum
         this.seances.push(seance);
@@ -74,17 +79,22 @@ class Health {
     constructor() {
         this.calories = 0;
         this.sleep = 0;
+    };
+
+    load(data) {
+        this.calories = data.health.calories;
+        this.sleep = data.health.sleep;
     }
 
     setCalories(value) {
         this.calories = value;
         return this;
-    }
+    };
 
     setSleep(value) {
         this.sleep = value;
         return this;
-    }
+    };
 };
 
 class UserData {
@@ -99,12 +109,17 @@ class UserData {
         this.workout = new Workout();
     };
 
+    addSeance(data) {
+        return this.workout.addSeance(data);
+    }
+
     load() {
+        this.health = new Health();
+        this.workout = new Workout();
         try {
-            const loaded = require('../../data/' + this.pseudo + '.json');
-            console.log(loaded);
-            this.health = loaded.health;
-            this.workout = loaded.workout;
+            const data = require('../../data/' + this.pseudo + '.json');
+            this.health.load(data);
+            this.workout.load(data);
         } catch (error) {
             this.health = new Health();
             this.workout = new Workout();
@@ -127,10 +142,22 @@ class UserData {
 
 }
 
+const getData = (pseudo) => {
+    return map.get(pseudo);
+}
+
+const setData = (pseudo, data) => {
+    return map.set(pseudo, data);
+}
+
+const map = new Map();
+
 module.exports = {
     Job,
     Seance,
     Workout,
     Health,
     UserData,
+    setData,
+    getData,
 }
