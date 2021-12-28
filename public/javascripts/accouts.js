@@ -1,6 +1,6 @@
-const data = require('../../data/account.json')
+const data = require('../../data/account.json');
 const Account = require('./account');
-const fs = require('fs')
+const fs = require('fs');
 
 class Accounts {
     
@@ -25,7 +25,7 @@ class Accounts {
             this.add(new Account(
                 data[i].pseudo,
                 data[i].calorie,
-                data[i].sleep
+                data[i].sleep,
             )
         );
         };
@@ -44,4 +44,4 @@ class Accounts {
     };
 };
 
-module.exports = Accounts
+module.exports = Accounts;

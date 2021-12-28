@@ -35,7 +35,7 @@ function oldOrNew (data) {
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
     res.render('login', { 
-        style:false,
+        style: false,
         title: title.login, 
         error: false,
     });
@@ -92,7 +92,7 @@ router.post('/register', (req,res) => {
     workout.create(pseudo);
 
     res.render('login', { 
-        syle: false,
+        style: false,
         title: title.login, 
         error: false,
     });

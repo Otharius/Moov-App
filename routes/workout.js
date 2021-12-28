@@ -9,9 +9,12 @@ const Workout = workoutClass.Workout;
 const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
 
+const exCourse = require('../data/courseExercice.json').exercice;
+const exMuscu =  require('../data/musculationExercice.json').exercice;
+
 const users = new Users().load();
 const accounts = new Accounts().load();
-const workouts = new Workout('Otharius').load();
+const workouts = new Workout().load();
 
 
 
@@ -79,6 +82,7 @@ router.get('/login', (req,res) => {
 
 // LA PAGE D'ENTRAINEMENT
 router.get('/training', (req,res) => {
+    console.log(req.session.pseudo);
     sessionSecure(req, res);
     const data = require('../data/' + req.session.pseudo + '.json').seances;
 
@@ -180,6 +184,7 @@ router.post('/resetCal', (req,res) => {
 
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
+    console.log(req.session.pseudo);
     sessionSecure(req,res);
     res.render('sleep', { 
         style: true,
@@ -191,6 +196,7 @@ router.get('/sleep', (req,res) => {
 
  // PAGE DE PROFILE
 router.get('/profiles', (req,res) => {
+    console.log(req.session.pseudo);
     sessionSecure(req,res);
 
     const pseudo = req.session.pseudo;
@@ -208,6 +214,7 @@ router.get('/profiles', (req,res) => {
 
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
+    console.log(req.session.pseudo);
     sessionSecure(req,res);
 
     const pseudo = req.session.pseudo;
@@ -241,8 +248,6 @@ router.post('/addWorkout', (req,res) => {
     new Workout(pseudo).load().add(seance).save();
 
     const data =  require('../data/' + pseudo + '.json').seances;
-    const exMuscu =  require('../data/musculationExercice.json').exercice;
-    const exCourse = require('../data/courseExercice.json').exercice;
 
     res.render('training', { 
         style: true,
@@ -250,8 +255,6 @@ router.post('/addWorkout', (req,res) => {
         data: data,
         old: oldOrNew(data),
         exMuscu: exMuscu,
-        exCourse: exCourse,
-
     });
 });
 
@@ -261,8 +264,7 @@ router.post('/addWorkout', (req,res) => {
 router.post('/afterWorkout', (req,res) => {
     const done = req.body.done;
     const difficulty = req.body.difficulty;
-    const exMuscu =  require('../data/musculationExercice.json').exercice;
-    const exCourse = require('../data/courseExercice.json').exercice;
+    
     const pseudo = req.session.pseudo;
     const data =  require('../data/' + pseudo + '.json').seances;
     
@@ -272,7 +274,6 @@ router.post('/afterWorkout', (req,res) => {
         style: true,
         old: oldOrNew(data),
         exMuscu: exMuscu,
-        exCourse: exCourse,
     });
 });
 
@@ -287,11 +288,13 @@ router.post('/passAdmin', (req,res) => {
     users.add(p);
     users.save();
 
-    res.render('profiles', { 
+
+    res.render('training', { 
+        title: title.training, 
+        data: data,
         style: true,
-        title: title.profiles, 
-        error: false,
-        user: user,
+        old: oldOrNew(data),
+        exMuscu: exMuscu,
     });
 })
 
@@ -299,18 +302,18 @@ router.post('/passAdmin', (req,res) => {
 
 // SUPPRIMER UNE SEANCE
 router.post('/deleteWorkout', (req, res) => {
-
-    workouts.delete().save();
+    workouts.delete(req.body.supprimer).save();
     const user = users.get(req.session.pseudo);
     const data =  require('../data/' + req.session.pseudo + '.json').seances;
     
-    res.render('home', { 
+    res.render('training', { 
         style: true,
-        title: title.home, 
+        title: title.training, 
         calorie: user.calorie,
         admin: user.boost,
         data: data,
         old: oldOrNew(data),
+        exMuscu: exMuscu,
     });
 })
 

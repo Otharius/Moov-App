@@ -1,5 +1,4 @@
 const fs = require('fs');
-const { createDeflateRaw } = require('zlib');
 
 class Job {
 
@@ -71,9 +70,10 @@ class Workout {
         return this;
     };
 
-    delete () {
-
-        this.seances.shift();
+    delete (place) {
+        console.log("PLACE" + place);
+        this.seances.splice(place, 1);
+        //this.seances.shift();
         return this;
     };
 

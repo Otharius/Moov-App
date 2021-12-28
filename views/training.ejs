@@ -28,13 +28,20 @@
     <div class="work_div">
         <div class="work_yes">
             <h1>Séance faite</h1>
-            <form action="afterWorkout" method="POST">
 
-                <select name="" id="">
+            <form action="/workout/deleteWorkout" method="post">
+                <select name="supprimer" id="">
+                
                     <% for(var i=0; i < data.length; i++) { %>
-                        <option value=""> <%=data[i].name %> </option>
+                        <option value="<%= i %>" name="supprimer"> <%=data[i].name %> </option>
                     <% } %>
                 </select>
+                <button>Supprimer</button>
+            </form>
+
+            <form action="afterWorkout" method="POST">
+
+
                 
 
 

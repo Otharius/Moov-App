@@ -1,9 +1,8 @@
-
 class Account {
 
     pseudo = '';
     calorie = 0;
-    sleep = 0
+    sleep = 0;
 
     
     constructor(pseudo, calorie, sleep){
@@ -22,8 +21,8 @@ class Account {
             "pseudo": this.pseudo,
             "calorie": this.calorie,
             "sleep": this.sleep,
-        }
-    }
-}
+        };
+    };
+};
 
-module.exports = Account
+module.exports = Account;
