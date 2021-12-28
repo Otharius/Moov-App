@@ -17,7 +17,7 @@ class Job {
 };
 
 class Seance {
-    
+
     name = '';
     date = '';
     difficulty = null;
@@ -38,7 +38,7 @@ class Seance {
         this.jobs = [];
     };
 
-    add (job) {
+    add(job) {
         this.jobs.push(job);
         return this;
     };
@@ -47,51 +47,90 @@ class Seance {
 
 class Workout {
 
-    pseudo;
     seances;
 
-    constructor(pseudo) {
-        this.pseudo = pseudo;
+    constructor() {
         this.seances = [];
     };
 
-    add (seance) {
+    add(seance) {
         // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"tatata","seances":[]}. Tout cela au minimum
         this.seances.push(seance);
         return this;
     };
 
-    load () {
+    delete(place) {
+        this.seances.splice(place, 1);
+        return this;
+    };
+
+};
+
+class Health {
+
+    calories;
+    sleep;
+
+    constructor() {
+        this.calories = 0;
+        this.sleep = 0;
+    }
+
+    setCalories(value) {
+        this.calories = value;
+        return this;
+    }
+
+    setSleep(value) {
+        this.sleep = value;
+        return this;
+    }
+};
+
+class UserData {
+
+    pseudo;
+    health;
+    workout;
+
+    constructor(pseudo) {
+        this.pseudo = pseudo;
+        this.health = new Health();
+        this.workout = new Workout();
+    };
+
+    load() {
         try {
-            this.seances = require('../../data/'+ this.pseudo +'.json').seances;
-        } catch  (error) {
-            this.seances = [];
+            const loaded = require('../../data/' + this.pseudo + '.json');
+            console.log(loaded);
+            this.health = loaded.health;
+            this.workout = loaded.workout;
+        } catch (error) {
+            this.health = new Health();
+            this.workout = new Workout();
+            this.save();
         };
         return this;
     };
 
-    delete (place) {
-        console.log("PLACE" + place);
-        this.seances.splice(place, 1);
-        //this.seances.shift();
-        return this;
-    };
-
-    save () {
+    save() {
         fs.writeFile('data/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
             if (err) throw err;
         });
     };
 
-    create (pseudo) {
+    create(pseudo) {
         fs.writeFile('data/' + pseudo + '.json', '[]', function (err) {
             if (err) throw err;
         });
     };
-};
+
+}
 
 module.exports = {
     Job,
     Seance,
-    Workout
+    Workout,
+    Health,
+    UserData,
 }

@@ -1,20 +1,16 @@
 const express = require('express');
 const router = express.Router();
-const Accounts = require('../public/javascripts/accouts');
-const Account = require('../public/javascripts/account');
-const workoutClass = require('../public/javascripts/workouts');
+const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Workout = workoutClass.Workout;
+const UserData = workoutClass.UserData;
 const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
-
-const exCourse = require('../data/courseExercice.json').exercice;
 const exMuscu =  require('../data/musculationExercice.json').exercice;
 
 const users = new Users().load();
-const accounts = new Accounts().load();
-const workouts = new Workout().load();
+const usersData = new Map();
 
 
 
@@ -113,14 +109,13 @@ router.get('/meal', (req,res) => {
 // L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/addCal', (req,res) => {
     sessionSecure(req,res);
-    let user = accounts.get(req.session.pseudo);
-    const event = addCalorie(user, req.body.cal);
-
-
+    const pseudo = req.session.pseudo;
+    const userData = usersData.get(pseudo);
+    userData.health.setCalorie(req.body.cal);
     res.render('meal', { 
         style: true,
         title: title.meal, 
-        calorie: event === false ? user.calorie : event, 
+        calorie: userData.health.calories 
     });
     
 });
