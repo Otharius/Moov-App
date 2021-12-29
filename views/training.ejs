@@ -42,6 +42,15 @@
 
             <form action="afterWorkout" method="POST">
 
+                <select name="rpe" id="">
+                
+                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                        <% if(userData.workout.seances[i].done === false){ %>
+                            <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                        <% } %>  
+                    <% } %>
+                </select>
+<!-- 
                     <div class="done_none">
                         <input type="radio" class="yes work_done" name="done" id="yes" value="yes">
                         <label for="yes">Fait</label>
@@ -51,7 +60,7 @@
                         <label for="no">Non-fait</label>
                     </div>
 
-                    <br><br><br><br>
+                    <br><br><br><br> -->
 
                     <h3 id="See_intensity" class="intensity_title little_title">Difficulté de la séance</h3>
 
@@ -61,7 +70,7 @@
 
                     <div class="difficulty">
                             
-                        <input type="radio" name="difficulty" class="dif dif_start" id="d0" value="0">
+                        <input type="radio" name="difficulty" class="dif dif_start" id="d0" value="0" required>
                         <label for="d0">0</label>
 
                         <input type="radio" name="difficulty" class="dif" id="d1" value="1">
@@ -96,9 +105,11 @@
                     <br>
 
                     <div class="note_div" align=center>
-                        <h3 class="little_title">Note</h3>
-                        <p>Très dur</p>
+                        <textarea name="test" id="" cols="30" rows="10">
+                            
+                        </textarea>
                     </div>
+
 
                     <button class="value_button">Valider</button>
             </form>          

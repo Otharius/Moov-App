@@ -99,8 +99,6 @@ router.post('/addCal', (req,res) => {
     const pseudo = req.session.pseudo;
     const userData = workoutClass.getData(pseudo);
 
-    console.log(typeof(req.body.calories));
-
     userData.health.setCalories(45);
     res.render('meal', { 
         style: true,
@@ -167,7 +165,6 @@ router.post('/resetCal', (req,res) => {
 
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
-    console.log(req.session.pseudo);
     sessionSecure(req,res);
     res.render('sleep', { 
         style: true,
@@ -240,16 +237,20 @@ router.post('/addWorkout', (req,res) => {
 
 // L'AFTER ENTRAINEMENT 
 router.post('/afterWorkout', (req,res) => {
-    const done = req.body.done;
-    const difficulty = req.body.difficulty;
-    
+    const seanceDifficulty = req.body.difficulty;
     const pseudo = req.session.pseudo;
-    const data =  require('../data/' + pseudo + '.json').seances;
+    const data = workoutClass.getData(pseudo);
+    const s = data.workout.seances[req.body.rpe];
+    s.difficulty = seanceDifficulty;
+    s.done = true;
+    data.save();
+    console.log(req.body)
+    
     
     res.render('training', { 
-        title: title.training, 
-        data: data,
         style: true,
+        title: title.training, 
+        userData: data,
         old: oldOrNew(data),
         exMuscu: exMuscu,
     });
