@@ -30,20 +30,17 @@
             <h1>Séance faite</h1>
 
             <form action="/workout/deleteWorkout" method="post">
+
                 <select name="supprimer" id="">
                 
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <option value="<%= i %>" name="supprimer"> <%=userData.workout.seances[i].name %> </option>
+                        <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
                     <% } %>
                 </select>
                 <button>Supprimer</button>
             </form>
 
             <form action="afterWorkout" method="POST">
-
-
-                
-
 
                     <div class="done_none">
                         <input type="radio" class="yes work_done" name="done" id="yes" value="yes">

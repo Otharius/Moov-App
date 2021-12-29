@@ -180,7 +180,6 @@ router.get('/sleep', (req,res) => {
 
  // PAGE DE PROFILE
 router.get('/profiles', (req,res) => {
-    console.log(req.session.pseudo);
     sessionSecure(req,res);
 
     const pseudo = req.session.pseudo;

@@ -81,7 +81,7 @@ router.post('/register', (req,res) => {
     let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
         console.log('Creation des données de ' + user.pseudo);
-        const data = new UserData(pseudo);
+        const data = new workoutClass.UserData(pseudo);
         data.save();
         workoutClass.setData(pseudo, data);
     }

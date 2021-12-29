@@ -7,6 +7,7 @@ const https = require('https');
 const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
+const handlebars = require('handlebars');
 
 
 // App set
