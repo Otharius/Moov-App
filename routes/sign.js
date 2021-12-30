@@ -103,7 +103,7 @@ router.post('/login', (req,res) => {
     const pseudo = req.body.pseudo;
     const password = req.body.password;
 
-    req.session.pseudo = pseudo;
+    
 
     if (pseudo === '' || password === '') {
         res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
@@ -121,6 +121,7 @@ router.post('/login', (req,res) => {
         return;
     };
 
+    req.session.pseudo = pseudo;
     console.log(user.pseudo + " vient de se connecter");
     
     let userData = workoutClass.getData(pseudo);
@@ -133,11 +134,10 @@ router.post('/login', (req,res) => {
     res.render('home', { 
         style: true,
         title: title.home,
-        admin: users.get(pseudo).boost,
+        user: users.get(pseudo),
         old: oldOrNew(userData.workout.seances),
         userData: workoutClass.getData(req.session.pseudo),
     });
-
 
 });
 
@@ -182,27 +182,27 @@ router.post('/changePassword', (req,res) => {
     const user = users.get(pseudo);
 
     if (user === undefined) {
-        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user,});
+        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user, style: true,});
         return;
     };
 
     if (newPassword === '' || newPassword2 === '') {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs", user: user,});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs", user: user, style: true,});
         return;
     };
 
     if (!user.checkPassword(oldPassword)) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo, user: user,});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo, user: user, style: true,});
         return;
     };
 
     if (oldPassword === newPassword) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien", user: user,});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien", user: user, style: true,});
         return;
     };
 
     if (newPassword != newPassword2) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect", user: user,});
+        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect", user: user, style: true,});
         return;
     };
 

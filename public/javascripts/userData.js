@@ -59,7 +59,6 @@ class Workout {
     }
 
     add(seance) {
-        // Pour que le push fonctionne, il faut que ds le json ce soit comme ça: {"pseudo":"tatata","seances":[]}. Tout cela au minimum
         this.seances.push(seance);
         return this;
     };
@@ -75,16 +74,28 @@ class Health {
 
     calories;
     sleep;
+    body;
+    height;
 
     constructor() {
         this.calories = 0;
         this.sleep = 0;
+        this.body = [];
+        this.height = [];
+    };
+
+    add(body, height) {
+        this.body.push(body)
+        this.height.push(height);
+        return this;
     };
 
     load(data) {
         this.calories = data.health.calories;
         this.sleep = data.health.sleep;
-    }
+        this.body = data.health.body;
+        this.height = data.health.height;
+    };
 
     setCalories(value) {
         this.calories = value;
@@ -111,7 +122,7 @@ class UserData {
 
     addSeance(data) {
         return this.workout.addSeance(data);
-    }
+    };
 
     load() {
         this.health = new Health();
@@ -144,11 +155,11 @@ class UserData {
 
 const getData = (pseudo) => {
     return map.get(pseudo);
-}
+};
 
 const setData = (pseudo, data) => {
     return map.set(pseudo, data);
-}
+};
 
 const map = new Map();
 

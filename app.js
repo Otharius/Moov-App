@@ -41,7 +41,7 @@ app.use('/sign', require('./routes/sign'));
 
 // Page quand on lance le serveur
 router.get('/', function(req,res) {
-    res.render('login', { title: "Login", error: false, style: false})
+    res.render('login', { title: "My App - Login", error: false, style: false})
 });
 
 

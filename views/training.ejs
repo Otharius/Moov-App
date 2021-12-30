@@ -137,6 +137,32 @@
 
     <div class= "evolution">
         <h1>Evolution</h1>
+
+    <table>        
+        <% if(a){ %>
+            <% for(var i=0; i < userData.health.height.length; i++) { %>
+            <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
+                <tr>
+                  <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
+                  <td>Votre IMC: <%=imc %></td>
+                </tr>
+             <% } %>
+        <% } else{ %> 
+            <p>Entrez vos données !</p> 
+        <% } %>
+    </table>
+   
+        <form action="setIMC" method="POST">
+
+            <input type="number" max="500" value="50" min="30" name="body" id="mass">
+            <label for="mass">kg</label><br>
+
+            <input type="number" max="250" value="100" min="60" name="height" id="height">
+            <label for="height">cm</label>
+
+            <button class="">Valider</button>
+
+        </form>
     </div>
     
     <br><br><br>

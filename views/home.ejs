@@ -11,7 +11,7 @@
                     </tr>
                  <% } %>
             <% } else{ %> 
-                <p>Pas encore d'entrainement ?</p> 
+                <p>Pas encore d'entrainement ? Viens d'entrainer !</p> 
             <% } %>
                 
         </table>
@@ -20,7 +20,7 @@
 <br>
 
     <div class="">
-    <% if(admin){ %>
+    <% if(user.boost){ %>
         
             <p>Bravo tu es admin</p>
         
@@ -92,7 +92,7 @@
     <br>
 
     <form action="/workout/homeAddCal" method="POST">
-        <input type="tel" name="cal" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
+        <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
         <button class="ok_count_calorie">OK</button>
         
         <br><br>

@@ -3,6 +3,7 @@
 <head>
     <link href="/css/computer.css" media="(min-width: 768px)" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/mobil.css" media="(max-width: 480px)" type="text/css">
+    
     <meta name="viewport" content="width=device-width"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
@@ -56,19 +57,23 @@
 
   <%- body %>
 </body>
-
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
 
 
 // Ouvre une popup sur la page d'entrainement    
 
   const modal1 = document.getElementById("myModal");
+  const dialog = document.getElementById("dialog");
   const btn = document.getElementById("myBtn");
   const span = document.getElementsByClassName("training_close")[0];
 
   btn.onclick = function() {
 
     modal1.style.display = "block";
+    dialog.style.display = "block";
+
   }
 
   span.onclick = function() {
@@ -412,5 +417,9 @@
     });
   };
 
+
+  $( function() {
+    $( "#dialog" ).dialog();
+  } );
 </script>
 </html>

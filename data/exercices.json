@@ -1,9 +1,16 @@
 {
-    "exercice": [
+    "exerciceWorkout": [
         "Pompe",
         "Squat",
         "Soulevé de terre",
         "Développé couché",
         "Traction"
+    ],
+
+    "exerciceRun": [
+        "30'30",
+        "20'20",
+        "15'15",
+        "10'10"
     ]
 }
