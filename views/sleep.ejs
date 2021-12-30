@@ -88,6 +88,25 @@
 
 <br>
 
+<div>
+
+    <form action="/meal_sleep/addSleep" method="POST">
+        <input type="tel" name="sleep" class="count_calorie" maxlength="5" placeholder="Entrer le nombre">
+        <button class="ok_count_calorie">OK</button><br><br>
+        <p class="result_count_calorie"><%= userData.health.sleep %> h</p>
+
+        <br><br>
+
+    </form>        
+
+    <form action="/meal_sleep/resetSleep" method="POST">
+        <button class="reset_count_calorie">Reset</button>
+    </form>
+
+</div>
+
+<br>
+
 <div class="shower">
     
     <br>

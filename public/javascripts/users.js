@@ -49,7 +49,6 @@ class Users {
         const buffer = JSON.stringify(objs);
         fs.writeFile('data/users.json', buffer, function (err) {
             if (err) throw err;
-            console.log('Nouvel utilisateur: ' + pseudo + ' !')
         })
     } 
 }

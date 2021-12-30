@@ -4,7 +4,16 @@
         "Squat",
         "Soulevé de terre",
         "Développé couché",
-        "Traction"
+        "Traction pronation",
+        "Développé clavicule",
+        "Dips",
+        "Curls",
+        "Traction supination",
+        "Développé incliné",
+        "Développé décliné",
+        "Fentes",
+        "Oiseau",
+        "Trap T raise"
     ],
 
     "exerciceRun": [

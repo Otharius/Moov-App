@@ -15,6 +15,8 @@ title = {
     "register": "My App - Register",
 };
 
+
+
 function oldOrNew (data) {
     try {
         if (data.length) {
@@ -24,6 +26,7 @@ function oldOrNew (data) {
         return false;
     };
 };
+
 
 
 // PAGE DE CONNEXION
@@ -97,13 +100,22 @@ router.post('/register', (req,res) => {
 
 
 
+// LA PAGE DE CONNEXION
+router.get('/login', (req,res) => { 
+    res.render('login', {
+        style: false, 
+        title: title.login, 
+        error: false,
+    });
+});
+
+
+
 // SYSTEME DE CONNEXION 
 router.post('/login', (req,res) => {
 
     const pseudo = req.body.pseudo;
     const password = req.body.password;
-
-    
 
     if (pseudo === '' || password === '') {
         res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
@@ -157,8 +169,6 @@ router.post('/sendMail', (req,res) => {
     });
 
 
-
-
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
     console.log(req.session.pseudo + ' vient de se déconnecter.');
@@ -171,50 +181,6 @@ router.post('/logout', (req,res) => {
 });
 
 
-
-// SYSTEME DE CHANGEMENT DE MOT DE PASSE
-router.post('/changePassword', (req,res) => {
-
-    const oldPassword = req.body.old;
-    const newPassword = req.body.new;
-    const newPassword2 = req.body.new2;
-    const pseudo = req.session.pseudo;
-    const user = users.get(pseudo);
-
-    if (user === undefined) {
-        res.render('Profiles', { title: "Profiles", error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user, style: true,});
-        return;
-    };
-
-    if (newPassword === '' || newPassword2 === '') {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Veillez renseigner tout les champs", user: user, style: true,});
-        return;
-    };
-
-    if (!user.checkPassword(oldPassword)) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Mauvais mot de passe pour " + pseudo, user: user, style: true,});
-        return;
-    };
-
-    if (oldPassword === newPassword) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Le mot de passe doit être différent de l'ancien", user: user, style: true,});
-        return;
-    };
-
-    if (newPassword != newPassword2) {
-        res.render('Profiles', { title: "Profiles", error: true, message: "Confirmation de mot de passse incorrect", user: user, style: true,});
-        return;
-    };
-
-    user.withPassword(newPassword, true);
-    users.save();
-    res.render('profiles', { 
-        title: "Profiles",
-        style: true,
-        error: false,
-        user: user,
-    });
-});
 
 module.exports = router;
                   

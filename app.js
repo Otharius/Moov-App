@@ -37,6 +37,10 @@ app.use(express.static(__dirname + '/public'));
 //Routes
 app.use('/workout', require('./routes/workout'));
 app.use('/sign', require('./routes/sign'));
+app.use('/meal_sleep', require('./routes/meal_sleep'));
+app.use('/home', require('./routes/home'));
+app.use('/profiles', require('./routes/profiles'));
+
 
 
 // Page quand on lance le serveur

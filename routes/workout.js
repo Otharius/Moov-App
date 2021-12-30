@@ -12,8 +12,9 @@ const users = new Users().load();
 const exMuscu =  require('../data/exercices.json').exerciceWorkout;
 
 
+
 //FONCTION SI ON A PAS D'ENTRAINEMENT
-function oldOrNew (data) {
+function dataLenght (data) {
     try {
         if (data.length) {
            return true;
@@ -23,15 +24,6 @@ function oldOrNew (data) {
     };
 };
 
-function bodyOrNot (data) {
-    try {
-        if (data.health.body.length) {
-           return true;
-        };
-    } catch (error) {
-        return false;
-    };
-}
 
 
 // FONCTION POUR LA SECURISATION DES SESSIONS
@@ -46,26 +38,6 @@ function sessionSecure (req, res) {
 };
 
 
-// FONCTION RAJOUTE DES CALORIES
-function addCalorie (calories) {
-    if (calories === "") {
-        return 0;
-    }; 
-    return parseInt(calories);
-};
-
-
-
-// LA PAGE DE CONNEXION
-router.get('/login', (req,res) => { 
-    res.render('login', {
-        style: false, 
-        title: title.login, 
-        error: false,
-    });
-});
-
-
 
 // LA PAGE D'ENTRAINEMENT
 router.get('/training', (req,res) => {
@@ -76,140 +48,9 @@ router.get('/training', (req,res) => {
         style: true,
         title: title.training,
         userData: userData,
-        old: oldOrNew(userData.workout.seances),
+        old: dataLenght(userData.workout.seances),
         exMuscu: exMuscu,
-        a: true,
-    });
-});
-
-
-
-// LA PAGE D'ALIMENTATION 
-router.get('/meal', (req,res) => {
-    sessionSecure(req, res);
-
-    res.render('meal', { 
-        style: true,
-        title: title.meal, 
-        userData: workoutClass.getData(req.session.pseudo),
-    });
-});
-
-
-
-// L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
-router.post('/addCal', (req,res) => {
-    sessionSecure(req,res);
-    const userData =  workoutClass.getData(req.session.pseudo);
-    
-
-    userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
-    userData.save();
-
-    res.render('meal', { 
-        style: true,
-        title: title.meal, 
-        userData: userData,
-    });
-    
-});
-
-
-
-// AJOUT DES CALORIES SUR LA PAGE D'ACCUEIL
-router.post('/homeAddCal', (req,res) => {
-    sessionSecure(req,res);
-
-    const userData =  workoutClass.getData(req.session.pseudo);
-
-    userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
-    userData.save();
-
-    res.render('home', { 
-        style: true,
-        title: title.home, 
-        userData: workoutClass.getData(req.session.pseudo),
-        old: oldOrNew(userData.workout.seances),
-        user: users.get(req.session.pseudo)
-     });
-});
-
-
-
-// REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ACCUEIL
-router.post('/homeResetCal', (req,res) => {
-    sessionSecure(req,res);
-
-    const userData =  workoutClass.getData(req.session.pseudo);
-    userData.health.setCalories(0);
-    userData.save();
-
-    res.render('home', { 
-        style: true,
-        title: title.home, 
-        userData: workoutClass.getData(req.session.pseudo),
-        old: oldOrNew(userData.workout.seances),
-        user: users.get(req.session.pseudo)
-    });
-});
-
-
-
-// REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ALIMENTATION
-router.post('/resetCal', (req,res) => {
-    sessionSecure(req,res);
-
-    const userData =  workoutClass.getData(req.session.pseudo);
-    userData.health.setCalories(0);
-    userData.save();
-
-    res.render('meal', { 
-        style: true,
-        title: title.meal, 
-        userData: workoutClass.getData(req.session.pseudo),
-    });
-});
-
-
-
-// PAGE DE SOMMEIL
-router.get('/sleep', (req,res) => {
-    sessionSecure(req,res);
-    res.render('sleep', { 
-        style: true,
-        title: title.sleep,
-        userData: workoutClass.getData(req.session.pseudo),
-    });
-});
-
-
-
- // PAGE DE PROFILE
-router.get('/profiles', (req,res) => {
-    sessionSecure(req,res);
-
-    res.render('profiles', { 
-        style: true,
-        title: title.profiles, 
-        error: false,
-        user: users.get(req.session.pseudo),
-    });
-});
-
-
-
-// LA PAGE D'ACCUEIL
-router.get('/home', (req,res) => {
-    sessionSecure(req,res);
-
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('home', { 
-        style: true,
-        title: title.home, 
-        user: users.get(req.session.pseudo),
-        userData: userData,
-        old: oldOrNew(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
     });
 });
 
@@ -233,7 +74,8 @@ router.post('/addWorkout', (req,res) => {
         style: true,
         title: title.home, 
         userData: userData,
-        old: oldOrNew(userData.workout.seances),
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
     });
 });
@@ -254,30 +96,11 @@ router.post('/afterWorkout', (req,res) => {
         style: true,
         title: title.training, 
         userData: userData,
-        old: oldOrNew(userData),
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
     });
 });
-
-
-
-// PASSER ADMIN
-router.post('/passAdmin', (req,res) => {
-    const pseudo = req.session.pseudo;
-    const user = users.get(pseudo)
-    user.boost = true;
-    const p = new User(user.pseudo, user.name, user.firstname, user.boost);
-    users.add(p);
-    users.save();
-
-    res.render('training', { 
-        title: title.training, 
-        data: data,
-        style: true,
-        old: oldOrNew(data),
-        exMuscu: exMuscu,
-    });
-})
 
 
 
@@ -292,7 +115,8 @@ router.post('/deleteWorkout', (req, res) => {
         style: true,
         title: title.training, 
         userData: userData,
-        old: oldOrNew(userData),
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
     });
 });
@@ -311,7 +135,8 @@ router.post('/setIMC', (req, res) => {
             style: true,
             title: title.training, 
             userData: workoutClass.getData(pseudo),
-            old: oldOrNew(userData),
+            old: dataLenght(userData.workout.seances),
+            userBody: dataLenght(userData.health.body),
             exMuscu: exMuscu,
         });
     };
@@ -322,10 +147,12 @@ router.post('/setIMC', (req, res) => {
         style: true,
         title: title.training, 
         userData: workoutClass.getData(pseudo),
-        old: oldOrNew(userData),
-        a: bodyOrNot(userData),
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
     });
 })
+
+
 
 module.exports = router;

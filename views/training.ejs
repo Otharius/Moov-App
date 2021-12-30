@@ -139,7 +139,7 @@
         <h1>Evolution</h1>
 
     <table>        
-        <% if(a){ %>
+        <% if(userBody){ %>
             <% for(var i=0; i < userData.health.height.length; i++) { %>
             <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
                 <tr>
