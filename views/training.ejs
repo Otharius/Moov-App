@@ -144,7 +144,7 @@
             <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
                 <tr>
                   <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                  <td>Votre IMC: <%=imc %></td>
+                  <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
                 </tr>
              <% } %>
         <% } else{ %> 

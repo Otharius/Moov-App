@@ -71,7 +71,6 @@ router.get('/login', (req,res) => {
 router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
-    console.log(userData.health)
 
     res.render('training', { 
         style: true,
@@ -319,9 +318,6 @@ router.post('/setIMC', (req, res) => {
 
     userData.health.add(parseInt(body), parseInt(height));
     userData.save()
-
-    console.log(userData);
-    console.log(userData.health.body[0])
     res.render('training', { 
         style: true,
         title: title.training, 
