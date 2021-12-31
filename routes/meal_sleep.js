@@ -48,7 +48,7 @@ router.post('/resetCal', (req,res) => {
     userData.health.setCalories(0);
     userData.save();
 
-    res.render('meal', { 
+    res.render('principal/meal', { 
         style: true,
         title: title.meal, 
         userData: workoutClass.getData(req.session.pseudo),
@@ -66,7 +66,7 @@ router.post('/addCal', (req,res) => {
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
 
-    res.render('meal', { 
+    res.render('principal/meal', { 
         style: true,
         title: title.meal, 
         userData: userData,
@@ -80,7 +80,7 @@ router.post('/addCal', (req,res) => {
 router.get('/meal', (req,res) => {
     sessionSecure(req, res);
 
-    res.render('meal', { 
+    res.render('principal/meal', { 
         style: true,
         title: title.meal, 
         userData: workoutClass.getData(req.session.pseudo),
@@ -98,7 +98,7 @@ router.post('/addCal', (req,res) => {
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
 
-    res.render('meal', { 
+    res.render('principal/eal', { 
         style: true,
         title: title.meal, 
         userData: userData,
@@ -119,7 +119,7 @@ router.post('/addCal', (req,res) => {
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
     sessionSecure(req,res);
-    res.render('sleep', { 
+    res.render('principal/sleep', { 
         style: true,
         title: title.sleep,
         userData: workoutClass.getData(req.session.pseudo),

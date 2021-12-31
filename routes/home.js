@@ -27,7 +27,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.redirect('login', {
+        res.redirect('/sign/login', {
             style: false, 
             title: title.login, 
             error: false,
@@ -53,7 +53,7 @@ router.get('/home', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('home', { 
+    res.render('principal/home', { 
         style: true,
         title: title.home, 
         user: users.get(req.session.pseudo),
@@ -73,7 +73,7 @@ router.post('/homeAddCal', (req,res) => {
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
 
-    res.render('home', { 
+    res.render('principal/home', { 
         style: true,
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),
@@ -92,7 +92,7 @@ router.post('/homeResetCal', (req,res) => {
     userData.health.setCalories(0);
     userData.save();
 
-    res.render('home', { 
+    res.render('principal/home', { 
         style: true,
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),

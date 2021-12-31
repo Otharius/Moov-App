@@ -7,7 +7,6 @@ const https = require('https');
 const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
-const handlebars = require('handlebars');
 
 
 // App set
@@ -45,7 +44,7 @@ app.use('/profiles', require('./routes/profiles'));
 
 // Page quand on lance le serveur
 router.get('/', function(req,res) {
-    res.render('login', { title: "My App - Login", error: false, style: false})
+    res.render('principal/login', { title: "My App - Login", error: false, style: false})
 });
 
 

@@ -28,8 +28,11 @@
                 <p><strong> Nom: </strong><%= user.name %></p>
                 <p><strong> Prénom: </strong><%= user.firstname %></p>
                 <p><strong> Adresse mail: </strong><%= user.email %></p>
-                <p><strong>Poids: </strong>80kg</p>
-                <p><strong>Taille: </strong>1.80m</p>
+
+                <% let i = userData.health.body.length - 1%>
+
+                <p><strong>Poids: </strong><%= userData.health.body[i] %>kg</p>
+                <p><strong>Taille: </strong><%= userData.health.height[i]/100 %> m</p>
         </div>
 
     <form action="/profiles/changePassword" method="POST">
@@ -64,10 +67,11 @@
     
         <% } %>
         </div>
+
+        <%- include('forgot.ejs') %>
     
     <br><br><br><br><br><br>
     <br><br><br><br><br><br>
     <br><br><br><br><br><br>
     <br><br><br><br><br><br>
-
 </div>

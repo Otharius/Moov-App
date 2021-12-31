@@ -91,7 +91,7 @@ router.post('/register', (req,res) => {
 
 
 
-    res.render('login', { 
+    res.render('principal/login', { 
         style: false,
         title: title.login, 
         error: false,
@@ -102,7 +102,7 @@ router.post('/register', (req,res) => {
 
 // LA PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
-    res.render('login', {
+    res.render('principal/login', {
         style: false, 
         title: title.login, 
         error: false,
@@ -143,7 +143,7 @@ router.post('/login', (req,res) => {
         workoutClass.setData(pseudo, userData);
     };
 
-    res.render('home', { 
+    res.render('principal/home', { 
         style: true,
         title: title.home,
         user: users.get(pseudo),

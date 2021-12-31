@@ -56,7 +56,7 @@ router.post('/passAdmin', (req,res) => {
     users.add(p);
     users.save();
 
-    res.render('profiles', { 
+    res.render('principal/profiles', { 
         style: true,
         title: title.profiles, 
         error: false,
@@ -69,11 +69,13 @@ router.post('/passAdmin', (req,res) => {
  // PAGE DE PROFILE
  router.get('/profiles', (req,res) => {
     sessionSecure(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('profiles', { 
+    res.render('principal/profiles', { 
         style: true,
         title: title.profiles, 
         error: false,
+        userData : userData,
         user: users.get(req.session.pseudo),
     });
 });
@@ -116,8 +118,8 @@ router.post('/changePassword', (req,res) => {
 
     user.withPassword(newPassword, true);
     users.save();
-    res.render('profiles', { 
-        title: "Profiles",
+    res.render('principal/profiles', { 
+        title: title.profiles,
         style: true,
         error: false,
         user: user,

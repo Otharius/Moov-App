@@ -257,7 +257,7 @@ body {
 }
 
 .work_yes {
-    width: 42%;
+    width: 41%;
     margin-right: 3%;
     border: 1px solid black;
     padding: 1rem;
@@ -268,7 +268,7 @@ body {
 
 .work_no {
     float: right;
-    width: 42%;
+    width: 41%;
     margin-left: 3%;
     border: 1px solid black;
     padding: 1rem;

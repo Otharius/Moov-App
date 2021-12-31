@@ -29,7 +29,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.redirect('login', {
+        res.redirect('/sign/login', {
             style: false, 
             title: title.login, 
             error: false,
@@ -44,7 +44,7 @@ router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('training', { 
+    res.render('principal/training', { 
         style: true,
         title: title.training,
         userData: userData,
@@ -70,7 +70,7 @@ router.post('/addWorkout', (req,res) => {
     userData.workout.add(seance);
     userData.save();
 
-    res.render('training', { 
+    res.render('principal/training', { 
         style: true,
         title: title.home, 
         userData: userData,
@@ -92,7 +92,7 @@ router.post('/afterWorkout', (req,res) => {
     s.done = true;
     userData.save();
     
-    res.render('training', { 
+    res.render('principal/training', { 
         style: true,
         title: title.training, 
         userData: userData,
@@ -111,7 +111,7 @@ router.post('/deleteWorkout', (req, res) => {
     userData.workout.delete(req.body.supprimer);
     userData.save();
    
-    res.render('training', { 
+    res.render('principal/training', { 
         style: true,
         title: title.training, 
         userData: userData,
@@ -130,20 +130,12 @@ router.post('/setIMC', (req, res) => {
     const body = req.body.body;
     const height = req.body.height;
 
-    if (body === '' || height === '') {
-        res.render('training', { 
-            style: true,
-            title: title.training, 
-            userData: workoutClass.getData(pseudo),
-            old: dataLenght(userData.workout.seances),
-            userBody: dataLenght(userData.health.body),
-            exMuscu: exMuscu,
-        });
+    if (body != '' && height != '') {
+        userData.health.add(parseInt(body), parseInt(height));
+        userData.save()
     };
 
-    userData.health.add(parseInt(body), parseInt(height));
-    userData.save()
-    res.render('training', { 
+    res.render('principal/training', { 
         style: true,
         title: title.training, 
         userData: workoutClass.getData(pseudo),
