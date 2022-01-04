@@ -68,6 +68,18 @@ class Workout {
         return this;
     };
 
+    getSeance() {
+        let a = [];
+        
+        for (let i = 0; this.seances.length; i++) {
+            if (this.seances[i].difficulty === null) {
+                a.push(this.seances[i]);
+            } 
+        };
+        return a;
+    };
+
+
 };
 
 class Health {
@@ -82,6 +94,11 @@ class Health {
         this.sleep = 0;
         this.body = [];
         this.height = [];
+    };
+
+    delete(place) {
+        this.body.splice(place, 1);
+        this.height.splice(place, 1);
     };
 
     add(body, height) {
@@ -108,6 +125,30 @@ class Health {
     };
 };
 
+
+class Running {
+
+    range;
+    time;
+    place;
+    exercices;
+
+    constructor () {
+        this.range = 0;
+        this.time = 0;
+        this.place = "";
+        this.exercices = [];
+    };
+
+    load () {
+        this.range = data.running.range;
+        this.time = data.running.time;
+        this.place = data.running.place;
+        this.exercices = data.running.exercices;
+    };
+
+}
+
 class UserData {
 
     pseudo;
@@ -118,22 +159,27 @@ class UserData {
         this.pseudo = pseudo;
         this.health = new Health();
         this.workout = new Workout();
+        this.running = new Running();
     };
 
     addSeance(data) {
         return this.workout.addSeance(data);
     };
 
+
     load() {
         this.health = new Health();
         this.workout = new Workout();
+        this.running = new Running();
         try {
             const data = require('../../data/' + this.pseudo + '.json');
             this.health.load(data);
             this.workout.load(data);
+            this.running.load(data)
         } catch (error) {
             this.health = new Health();
             this.workout = new Workout();
+            this.running = new Running();
             this.save();
         };
         return this;

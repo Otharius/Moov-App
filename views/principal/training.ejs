@@ -69,37 +69,12 @@
 
 
                     <div class="difficulty">
-                            
-                        <input type="radio" name="difficulty" class="dif dif_start" id="d0" value="0" required>
-                        <label for="d0">0</label>
 
-                        <input type="radio" name="difficulty" class="dif" id="d1" value="1">
-                        <label for="d1">1</label>
+                        <% for(var i=0; i < 10; i++) { %>
+                            <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                        <label for="d<%=i%>"><%=i%></label>
+                        <% } %>
                         
-                        <input type="radio" name="difficulty" class="dif" id="d2" value="2">
-                        <label for="d2">2</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d3" value="3">
-                        <label for="d3">3</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d4" value="4">
-                        <label for="d4">4</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d5" value="5">
-                        <label for="d5">5</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d6"  value="6">
-                        <label for="d6">6</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d7" value="7">
-                        <label for="d7">7</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d8" value="8">
-                        <label for="d8">8</label>
-
-                        <input type="radio" name="difficulty" class="dif" id="d9" value="9">
-                        <label for="d9">9</label>
-
                     </div>
                             
                     <br>
@@ -139,6 +114,7 @@
         <h1>Evolution</h1>
 
     <table>        
+        <% let len = userData.health.height.length - 1 %>
         <% if(userBody){ %>
             <% for(var i=0; i < userData.health.height.length; i++) { %>
             <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
@@ -154,13 +130,26 @@
    
         <form action="setIMC" method="POST">
 
-            <input type="number" max="500" value="50" min="30" name="body" id="mass">
+            <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
             <label for="mass">kg</label><br>
 
-            <input type="number" max="250" value="100" min="60" name="height" id="height">
+            <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
             <label for="height">cm</label>
 
             <button class="">Valider</button>
+
+        </form>
+
+        <form action="/workout/deleteIMC" method="post">
+
+            <select name="supprimerIMC" id="">
+            
+                <% for(var i=0; i < userData.health.body.length; i++) { %>
+                    <option value="<%= i %>" name="supprimerIMC"> <%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %></option>
+                <% } %>
+            </select>
+
+            <button>Supprimer</button>
 
         </form>
     </div>
@@ -179,15 +168,12 @@
     <%- include('../extern/newWorkout.ejs') %>
 </div> 
 
-
 <div id="mySecondModal" class="see_training_modal">
     <div class="modal_training_content">
         <span class="training_close">&times;</span>
         <h3>Liste des exercices qui existent</h3>
     </div>
 </div>
-
-
 
  <div id="myThirdModal" class="table_intensity_modal">
     <%- include('../extern/intensityTable.ejs') %>

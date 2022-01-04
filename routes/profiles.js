@@ -27,7 +27,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.redirect('login', {
+        res.render('/login', {
             style: false, 
             title: title.login, 
             error: false,

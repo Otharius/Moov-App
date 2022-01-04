@@ -29,7 +29,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.redirect('/sign/login', {
+        res.render('principal/login', {
             style: false, 
             title: title.login, 
             error: false,
@@ -43,6 +43,7 @@ function sessionSecure (req, res) {
 router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
+    
 
     res.render('principal/training', { 
         style: true,
@@ -69,6 +70,9 @@ router.post('/addWorkout', (req,res) => {
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.workout.add(seance);
     userData.save();
+    console.log('------------------');
+    //console.log(userData.workout.getSeance());
+    console.log('------------------');
 
     res.render('principal/training', { 
         style: true,
@@ -143,7 +147,27 @@ router.post('/setIMC', (req, res) => {
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
     });
-})
+});
+
+
+
+// SUPPRIMER Une IMC
+router.post('/deleteIMC', (req, res) => {
+    const pseudo = req.session.pseudo;
+    const userData =  workoutClass.getData(pseudo);
+    userData.health.delete(req.body.supprimer);
+    userData.save();
+   
+    res.render('principal/training', { 
+        style: true,
+        title: title.training, 
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+    });
+});
+
 
 
 

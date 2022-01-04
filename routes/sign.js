@@ -42,7 +42,7 @@ router.get('/login', (req,res) => {
 
 // LA PAGE DE CREATION DE COMPTE
 router.get('/register', (req,res) => {
-    res.render('register', { 
+    res.render('principal/register', { 
         style:false,
         title: title.register,
         error: false,
@@ -134,11 +134,9 @@ router.post('/login', (req,res) => {
     };
 
     req.session.pseudo = pseudo;
-    console.log(user.pseudo + " vient de se connecter");
     
     let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
-        console.log('Chargement des données de ' + user.pseudo);
         userData = new workoutClass.UserData(pseudo).load();
         workoutClass.setData(pseudo, userData);
     };
@@ -171,7 +169,6 @@ router.post('/sendMail', (req,res) => {
 
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
-    console.log(req.session.pseudo + ' vient de se déconnecter.');
     req.session.destroy();
     res.render('login', { 
         style: false,
