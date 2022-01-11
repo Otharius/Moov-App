@@ -60,6 +60,10 @@ router.get('/training', (req,res) => {
 // AJOUTE DES ENTRAINEMENTS
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    const i = Number(req.body.copier);
+    const newSeance = userData.workout.seances;
 
     const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     for (let i = 0; i<req.body.repetition.length; i++) {
@@ -67,16 +71,13 @@ router.post('/addWorkout', (req,res) => {
         seance.add(job);
     };
     
-    const userData =  workoutClass.getData(req.session.pseudo);
+
+    
     userData.workout.add(seance);
     userData.save();
-    console.log('------------------');
-    //console.log(userData.workout.getSeance());
-    console.log('------------------');
-
     res.render('principal/training', { 
         style: true,
-        title: title.home, 
+        title: title.training, 
         userData: userData,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
@@ -167,7 +168,6 @@ router.post('/deleteIMC', (req, res) => {
         exMuscu: exMuscu,
     });
 });
-
 
 
 

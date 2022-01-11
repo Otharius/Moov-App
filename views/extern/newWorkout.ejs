@@ -45,17 +45,25 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
                         </svg>
-                    </label>
+                    </label> 
 
                     <select name="type" id="type" required class="type_exercice">
                         <option value="musculation" class="option_type">Musculation</option>
                         <option value="course" class="option_type">Course</option>
                     </select>
+
+
+
+                    <select name="copier" id="" aria-valuemax="">
+                        <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                            <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                        <% } %>
+                    </select>
                     
                     <br><br>
 
-                    <label for="checker">Ne pas sélectionner les exercices</label>
-                    <input type="checkbox" name="exercice_checker" value="false" id="checker">
+                    <label for="checker">Copier une scéance</label>
+                    <input type="checkbox" name="same_exercice" value="" id="checker">
 
                 </div>
             

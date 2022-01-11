@@ -79,7 +79,6 @@ class Workout {
         return a;
     };
 
-
 };
 
 class Health {
@@ -126,29 +125,6 @@ class Health {
 };
 
 
-class Running {
-
-    range;
-    time;
-    place;
-    exercices;
-
-    constructor () {
-        this.range = 0;
-        this.time = 0;
-        this.place = "";
-        this.exercices = [];
-    };
-
-    load () {
-        this.range = data.running.range;
-        this.time = data.running.time;
-        this.place = data.running.place;
-        this.exercices = data.running.exercices;
-    };
-
-}
-
 class UserData {
 
     pseudo;
@@ -159,7 +135,6 @@ class UserData {
         this.pseudo = pseudo;
         this.health = new Health();
         this.workout = new Workout();
-        this.running = new Running();
     };
 
     addSeance(data) {
@@ -170,16 +145,13 @@ class UserData {
     load() {
         this.health = new Health();
         this.workout = new Workout();
-        this.running = new Running();
         try {
             const data = require('../../data/' + this.pseudo + '.json');
             this.health.load(data);
             this.workout.load(data);
-            this.running.load(data)
         } catch (error) {
             this.health = new Health();
             this.workout = new Workout();
-            this.running = new Running();
             this.save();
         };
         return this;
