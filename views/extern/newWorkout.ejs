@@ -52,19 +52,6 @@
                         <option value="course" class="option_type">Course</option>
                     </select>
 
-
-
-                    <select name="copier" id="" aria-valuemax="">
-                        <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                            <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
-                        <% } %>
-                    </select>
-                    
-                    <br><br>
-
-                    <label for="checker">Copier une scéance</label>
-                    <input type="checkbox" name="same_exercice" value="" id="checker">
-
                 </div>
             
             <div>
@@ -86,25 +73,14 @@
                     <hr class="number_line"><br>
                     <div class="select-box">
 
-                        <div class="options-container">
-                            
+                        <select name="category" id="">
                             <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <div class="option">
-                                    <input type="radio" class="radio" id=" <%=exMuscu[i]%> " name="category" value=" <%=exMuscu[i]%>">
-                                    <label for=" <%=exMuscu[i]%>"> <%=exMuscu[i]%></label>
-                                </div>
+                                <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
                             <% } %>
-                                                            
-                        </div>
-                
-                        <div class="selected">
-                            Sélectionner un exercice
-                        </div>
-                
-                        <div class="search-box">
-                            <input type="text" placeholder="Trouver un exercice" name="exercice" id="exerciceChoice" value="" autocomplete="off"/>
-                        </div>
+                        </select>
 
+                        </div>
+    
                     </div>
 
                     <div class="content_precision">
@@ -124,206 +100,40 @@
                             <br><br>
                         </div>  
                     </div>
-                </div><br><br>
-
-                <!--Exercice 2-->
-                <div class="content_exercice2"> 
-                    <p class="number_exercice">Exercice 2</p> 
-                    <hr class="number_line"><br>
-                    <div class="select-box2">
-                        <div class="options-container2">
-
-                            <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <div class="option">
-                                    <input type="radio" class="radio" id=" <%=exMuscu[i]%> " name="category" value=" <%=exMuscu[i]%>">
-                                    <label for=" <%=exMuscu[i]%>"> <%=exMuscu[i]%></label>
-                                </div>
-                            <% } %>
-
+                    <div class="content_exercice">  
+                        <p class="number_exercice">Exerice 1</p>
+                        <hr class="number_line"><br>
+                        <div class="select-box">
+    
+                            <select name="exercice" id="">
+                                <% for(var i=0; i < exMuscu.length; i++) { %>
+                                    <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
+                                <% } %>
+                            </select>
+    
+                            </div>
+        
                         </div>
-                    
-                        <div class="selected2">
-                            Sélectionner un exercice
+    
+                        <div class="content_precision">
+                            <div class="exPart1">
+                                Nombre de répétition:
+                                <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
+    
+                                Nombre de série:
+                                <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
+                            </div>
+    
+                            <div class="exPart2">
+                                Temps de repos:
+                                <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
+    
+                                <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
+                                <br><br>
+                            </div>  
                         </div>
-                    
-                        <div class="search-box2">
-                            <input type="text" placeholder="Trouver un exercice" name="exercice" id="exerciceChoice2" value="" autocomplete="off"/>
-                        </div>
-
-                    </div>
-
-                    <div class="exPart1">
-                        Nombre de répétition:
-                        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-                        Nombre de série:
-                        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                    </div>
-
-                    <div class="exPart2">
-                        Temps de repos:
-                        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                        <br><br>
-                    </div>
-
-                    <div class="delete" id="deleteEx2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </div><br>
-                </div><br><br>
-
-                <!--Exercice 3-->
-                <div class="content_exercice3"> 
-                    <p class="number_exercice">Exercice 3</p> 
-                    <hr class="number_line"><br>
-                    <div class="select-box3">
-                        <div class="options-container3">
-
-                            <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <div class="option">
-                                    <input type="radio" class="radio" id=" <%=exMuscu[i]%> " name="category" value=" <%=exMuscu[i]%>">
-                                    <label for=" <%=exMuscu[i]%>"> <%=exMuscu[i]%></label>
-                                </div>
-                            <% } %>
-
-                        </div>
-                
-                        <div class="selected3">
-                            Sélectionner un exercice
-                        </div>
-                
-                        <div class="search-box3">
-                            <input type="text" placeholder="Trouver un exercice" name="exercice" id="exerciceChoice3" value="" autocomplete="off"/>
-                        </div>
-
-                    </div>
-
-                    <div class="exPart1">
-                        Nombre de répétition:
-                        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-                        Nombre de série:
-                        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                    </div>
-
-                    <div class="exPart2">
-                        Temps de repos:
-                        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                            <br><br>
-                    </div>
-                    <div class="delete" id="deleteEx3">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </div><br>
-                </div><br><br>
-
-                <!--Exerice 4-->
-                <div class="content_exercice4">  
-                    <p class="number_exercice">Exercice 4</p> 
-                    <hr class="number_line"><br>
-                    <div class="select-box4">
-                        <div class="options-container4">
-
-                            <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <div class="option">
-                                    <input type="radio" class="radio" id=" <%=exMuscu[i]%> " name="category" value=" <%=exMuscu[i]%>">
-                                    <label for=" <%=exMuscu[i]%>"> <%=exMuscu[i]%></label>
-                                </div>
-                            <% } %>
-
-                        </div>
-                
-                        <div class="selected4">
-                        Sélectionner un exercice
-                        </div>
-                
-                        <div class="search-box4">
-                        <input type="text" placeholder="Trouver un exercice" name="exercice" id="exerciceChoice4" value="" autocomplete="off"/>
-                        </div>
-
-                    </div>
-
-                    <div class="exPart1">
-                        Nombre de répétition:
-                        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-                        Nombre de série:
-                        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                    </div>
-
-                    <div class="exPart2">
-                        Temps de repos:
-                        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                        <br><br>
-                    </div>
-                    <div class="delete" id="deleteEx4">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </div><br>
-                </div><br><br>
-
-                <!--Exercice 5-->
-                <div class="content_exercice5">  
-                    <p class="number_exercice">Exercice 5</p> 
-                    <hr class="number_line"><br>
-                    <div class="select-box5">
-                        <div class="options-container5">
-
-                            <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <div class="option">
-                                    <input type="radio" class="radio" id=" <%=exMuscu[i]%> " name="category" value=" <%=exMuscu[i]%>">
-                                    <label for=" <%=exMuscu[i]%>"> <%=exMuscu[i]%></label>
-                                </div>
-                            <% } %>
-
-                        </div>
+                </div><br><br>   
             
-                        <div class="selected5">
-                            Sélectionner un exercice
-                        </div>
-                
-                        <div class="search-box5">
-                            <input type="text" placeholder="Trouver un exercice" name="exercice" id="exerciceChoice5" value="" autocomplete="off"/>
-                        </div>
-
-                    </div>
-                    
-                    <div class="exPart1">
-                        Nombre de répétition:
-                        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-                        Nombre de série:
-                        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                    </div>
-
-                    <div class="exPart2">
-                        Temps de repos:
-                        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                        <br><br>
-                    </div>
-
-                    <div class="delete" id="deleteEx5">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-                            <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-                        </svg>
-                    </div><br>
-                </div>
-                
             
                 <h5 class="training_create_title">Les notes de la séance</h5>
                 <input type="text" placeholder="Détail" name="detail">

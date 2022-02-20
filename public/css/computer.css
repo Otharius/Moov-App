@@ -595,16 +595,23 @@ body {
     font-size: 1.2rem;
 }
 
-.select-box, .select-box2, .select-box3, .select-box4, .select-box5 {
-    position: relative;
+h2 {
+    margin: 16px;
+  }
+  
+  .container {
+    margin-top: 100px;
+    padding: 32px;
+  }
+  
+  .select-box {
     display: flex;
     width: 400px;
     flex-direction: column;
-    margin: auto;
   }
   
-  .select-box .options-container, .select-box2 .options-container2, .select-box3 .options-container3, .select-box4 .options-container4, .select-box5 .options-container5{
-    background: var(--orange);
+  .select-box .options-container {
+    background: #2f3640;
     color: #f5f6fa;
     max-height: 0;
     width: 100%;
@@ -616,18 +623,17 @@ body {
     order: 1;
   }
   
-  .selected, .selected2, .selected3, .selected4, .selected5 {
-    background: var(--orange);
+  .selected {
+    background: #2f3640;
     border-radius: 8px;
     margin-bottom: 8px;
     color: #f5f6fa;
     position: relative;
-    text-align: center;
-    font-size: 1.3rem;
+  
     order: 0;
   }
   
-  .selected::after, .selected2::after, .selected3::after, .selected4::after , .selected5::after  {
+  .selected::after {
     content: "";
     background: url("img/arrow-down.svg");
     background-size: contain;
@@ -642,75 +648,48 @@ body {
     transition: all 0.4s;
   }
   
-  .content_exercice {
-    border: 1px solid black;
-    display: block;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-.content_exercice1, .content_exercice2, .content_exercice3, .content_exercice4, .content_exercice5 {
-    display: none;
-    border: 1px solid black;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-
-  .select-box .options-container.active, .select-box2 .options-container2.active, .select-box3 .options-container3.active,
-  .select-box4 .options-container4.active, .select-box5 .options-container5.active {
+  .select-box .options-container.active {
     max-height: 240px;
     opacity: 1;
     overflow-y: scroll;
-    margin-top: 54px;
   }
   
-  .select-box .options-container.active + .selected::after, .select-box2 .options-container2.active + .selected2::after,
-  .select-box3 .options-container3.active + .selected3::after, .select-box4 .options-container4.active + .selected4::after,
-  .select-box5 .options-container5.active + .selected5::after{
+  .select-box .options-container.active + .selected::after {
     transform: rotateX(180deg);
     top: -6px;
   }
   
-  .select-box .options-container::-webkit-scrollbar, .options-container2::-webkit-scrollbar, .options-container3::-webkit-scrollbar,
-  .options-container4::-webkit-scrollbar,  .options-container5::-webkit-scrollbar{
+  .select-box .options-container::-webkit-scrollbar {
     width: 8px;
-    background: white;
-    border: 1px solid black;
+    background: #0d141f;
     border-radius: 0 8px 8px 0;
   }
   
-  .select-box .options-container::-webkit-scrollbar-thumb, .options-container2::-webkit-scrollbar-thumb, .options-container3::-webkit-scrollbar-thumb,
-  .options-container4::-webkit-scrollbar-thumb,  .options-container5::-webkit-scrollbar-thumb {
-    background: var(--orange);
+  .select-box .options-container::-webkit-scrollbar-thumb {
+    background: #525861;
     border-radius: 0 8px 8px 0;
   }
   
   .select-box .option,
-  .selected, .select-box2 .option2, .selected2,
-  .select-box3 .option3, .selected3, .select-box4 .option4, .selected4, .select-box5 .option5, .selected5  {
+  .selected {
     padding: 12px 24px;
     cursor: pointer;
   }
   
-  .select-box .option:hover, .select-box2 .option2:hover, .select-box3 .option3:hover,
-  .select-box4 .option4:hover, .select-box5 .option5:hover {
-    background: crimson;
+  .select-box .option:hover {
+    background: #414b57;
   }
   
-  .select-box label, .select-box2 label, .select-box3 label, .select-box4 label, .select-box5 label{
-
+  .select-box label {
     cursor: pointer;
   }
   
-  .select-box .option .radio, .select-box2 .option2 .radio, .select-box3 .option3 .radio,
-  .select-box4 .option4 .radio, .select-box5 .option5 .radio{ 
+  .select-box .option .radio {
     display: none;
   }
-  
   /* Searchbox */
   
-  .search-box input, .search-box2 input, .search-box3 input, .search-box4 input, .search-box5 input {
+  .search-box input {
     width: 100%;
     padding: 12px 16px;
     font-family: "Roboto", sans-serif;
@@ -724,15 +703,11 @@ body {
     transition: all 0.4s;
   }
   
-  .search-box input:focus, .search-box2 input:focus, .search-box3 input:focus, .search-box4 input:focus, .search-box5 input:focus {
+  .search-box input:focus{
     outline: none;
   }
   
-.select-box .options-container.active ~ .search-box input,
-.select-box2 .options-container2.active ~ .search-box2 input,
-.select-box3 .options-container3.active ~ .search-box3 input,
-.select-box4 .options-container4.active ~ .search-box4 input,
-.select-box5 .options-container5.active ~ .search-box5 input {
+.select-box .options-container.active ~ .search-box input {
     opacity: 1;
     pointer-events: auto;
 }
@@ -1094,3 +1069,78 @@ h3 {
     margin-top: 15%;
 }
   
+::selection{
+    color: #fff;
+    background: #6F36FF;
+}
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    max-width: 450px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.06);
+    border: 1px solid black;
+    display: none;
+}
+.wrapper header{
+    font-size: 23px;
+    font-weight: 500;
+    padding: 17px 30px;
+    border-bottom: 1px solid #ccc;
+}
+.wrapper header.active{
+    cursor: move;
+    user-select: none;
+}
+.wrapper .content{
+    display: flex;
+    padding: 30px 30px 40px 30px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.content .icon{
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+    border: 5px solid #6F36FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content .icon i{
+    color: #6F36FF;
+    font-size: 60px;
+}
+.content .title{
+    margin: 15px 0;
+    font-size: 29px;
+    font-weight: 500;
+}
+.content p{
+    font-size: 16px;
+    text-align: center;
+}
+
+.wrapper_close {
+    color: #aaa;
+    float: right;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.wrapper_close:hover,
+.wrapper_close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.wrapper_table, .wrapper_table tr, .wrapper_table tr td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}

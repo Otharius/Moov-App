@@ -61,6 +61,7 @@ router.get('/training', (req,res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    console.log(req.body)
 
     const i = Number(req.body.copier);
     const newSeance = userData.workout.seances;
