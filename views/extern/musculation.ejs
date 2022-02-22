@@ -1,0 +1,80 @@
+<h5 class="training_create_title">Les exercices de la séance</h5> 
+<div class="addExercice">
+    <label for="plus">
+        <p class="plus" id="plus">Ajouter un exercice</p>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="plus icon" viewBox="0 0 16 16" id="plus">
+                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
+        </svg>
+    </label>
+</div>  
+
+<br><br>
+<!--Exercice 1-->
+
+
+<div class="content_exercice">  
+    <p class="number_exercice">Exerice 1</p>
+    <hr class="number_line"><br>
+<div class="select-box">
+
+    <select name="exercice" id="">
+        <% for(var i=0; i < exMuscu.length; i++) { %>
+            <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
+        <% } %>
+    </select>
+
+</div>
+
+<div class="content_precision">
+    <div class="exPart1">
+        Nombre de répétition:
+        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
+
+        Nombre de série:
+        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
+    </div>
+
+    <div class="exPart2">
+        Temps de repos:
+        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
+
+        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
+        <br><br>
+    </div>  
+</div>
+</div>
+
+<div>
+    <p class="number_exercice">Exerice 2</p>
+    <hr class="number_line"><br>
+
+        <select name="exercice" id="">
+            <% for(var i=0; i < exMuscu.length; i++) { %>
+                <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
+            <% } %>
+        </select>
+
+
+        <div class="content_precision">
+            <div class="exPart1">
+                Nombre de répétition:
+                <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
+
+                Nombre de série:
+                <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
+            </div>
+
+            <div class="exPart2">
+                Temps de repos:
+                <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
+
+                <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
+                <br><br>
+            </div>  
+        </div>
+
+        <button type="submit" class="send_workout">Valider</button> 
+    
+
+</div><br><br>   

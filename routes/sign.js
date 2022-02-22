@@ -90,7 +90,7 @@ router.post('/register', (req,res) => {
     }
 
 
-
+ 
     res.render('principal/login', { 
         style: false,
         title: title.login, 
@@ -170,7 +170,7 @@ router.post('/sendMail', (req,res) => {
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
     req.session.destroy();
-    res.render('login', { 
+    res.render('principal/login', { 
         style: false,
         title: title.login, 
         error: false,

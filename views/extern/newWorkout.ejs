@@ -1,143 +1,66 @@
-<div class="modal_training_content">
-    <span class="training_close">&times;</span>
-    <form action="/workout/addWorkout" method="POST">
-            <h1>Nouvel entrainement</h1>
+<span class="training_close" id="btnDraggable" onclick="closeDiv()">&times; Fermer</span>
+<header>
+<form action="/workout/addWorkout" method="POST">
+    <h1 class="title_workout">Nouvel entrainement</h1>
 
-                <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value="" class="training_name"><br>
+        <div class="intro_workout">
+            <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value="" class="training_name"><br>
 
-                <div>
-                    <label for="date">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar" viewBox="0 0 16 16">
-                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zM1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4H1z"/>
-                        </svg>
-                    </label>
-                    <input type="date" name="date" id="date">
-                    
-                    <br><br>
-                    
-                </div>
-                
-                <div>
-                    <label for="heure">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
-                            <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
-                            <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
-                        </svg>
-                    </label>
-
-                    <input type="number" max="5" value="1" min="0" name="durationHeure" id="heure">h 
-                    <input type="number" max="59" value="0" min="0" name="durationMin">min <br><br>
-                </div>
-
-                <div>
-                    <label for="time">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
-                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
-                        </svg>
-                    </label>
-
-                    <input type="time" id="time"><br><br>
-                </div>
-
-                <div>
-                    <label for="type">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                        </svg>
-                    </label> 
-
-                    <select name="type" id="type" required class="type_exercice">
-                        <option value="musculation" class="option_type">Musculation</option>
-                        <option value="course" class="option_type">Course</option>
-                    </select>
-
-                </div>
+            <input type="date" name="date" id="date" class="">
             
-            <div>
-                <h5 class="training_create_title">Les exercices de la séance</h5> 
-                <div class="addExercice">
-                    <label for="plus">
-                        <p class="plus" id="plus">Ajouter un exercice</p>
+            <br><br>
+        </div><br><br>
 
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="plus icon" viewBox="0 0 16 16" id="plus">
-                                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-                        </svg>
-                    </label>
-                </div>  
                 
-                <br><br>
-                <!--Exercice 1-->
-                <div class="content_exercice">  
-                    <p class="number_exercice">Exerice 1</p>
-                    <hr class="number_line"><br>
-                    <div class="select-box">
+        <div class="into_workout">
+            <label for="heure">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-stopwatch" viewBox="0 0 16 16">
+                    <path d="M8.5 5.6a.5.5 0 1 0-1 0v2.9h-3a.5.5 0 0 0 0 1H8a.5.5 0 0 0 .5-.5V5.6z"/>
+                    <path d="M6.5 1A.5.5 0 0 1 7 .5h2a.5.5 0 0 1 0 1v.57c1.36.196 2.594.78 3.584 1.64a.715.715 0 0 1 .012-.013l.354-.354-.354-.353a.5.5 0 0 1 .707-.708l1.414 1.415a.5.5 0 1 1-.707.707l-.353-.354-.354.354a.512.512 0 0 1-.013.012A7 7 0 1 1 7 2.071V1.5a.5.5 0 0 1-.5-.5zM8 3a6 6 0 1 0 .001 12A6 6 0 0 0 8 3z"/>
+                </svg>
+            </label>
 
-                        <select name="category" id="">
-                            <% for(var i=0; i < exMuscu.length; i++) { %>
-                                <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
-                            <% } %>
-                        </select>
+            <input type="number" max="5" value="1" min="0" name="durationHeure" id="heure">h 
+            <input type="number" max="59" value="0" min="0" name="durationMin">min <br><br>
+        </div>
 
-                        </div>
-    
-                    </div>
-
-                    <div class="content_precision">
-                        <div class="exPart1">
-                            Nombre de répétition:
-                            <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-                            Nombre de série:
-                            <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                        </div>
-
-                        <div class="exPart2">
-                            Temps de repos:
-                            <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                            <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                            <br><br>
-                        </div>  
-                    </div>
-                    <div class="content_exercice">  
-                        <p class="number_exercice">Exerice 1</p>
-                        <hr class="number_line"><br>
-                        <div class="select-box">
-    
-                            <select name="exercice" id="">
-                                <% for(var i=0; i < exMuscu.length; i++) { %>
-                                    <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
-                                <% } %>
-                            </select>
-    
-                            </div>
         
-                        </div>
-    
-                        <div class="content_precision">
-                            <div class="exPart1">
-                                Nombre de répétition:
-                                <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-    
-                                Nombre de série:
-                                <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-                            </div>
-    
-                            <div class="exPart2">
-                                Temps de repos:
-                                <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-    
-                                <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                                <br><br>
-                            </div>  
-                        </div>
-                </div><br><br>   
-            
-            
-                <h5 class="training_create_title">Les notes de la séance</h5>
-                <input type="text" placeholder="Détail" name="detail">
-            
-                <button type="submit">Valider</button> 
-        </form>
-    </div>
+
+        <div>
+            <label for="time">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                    <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                    <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                </svg>
+            </label>
+
+            <input type="time" id="time"><br><br>
+        </div>
+
+        <div>
+            <label for="type">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                </svg>
+            </label> 
+
+            <select name="type" id="type_seance" required class="type_exercice">
+                <option value="musculation" class="option_type" onclick="choix()">Musculation</option>
+                <option value="course" class="option_type" onclick="choix()">Course</option>
+            </select>
+
+        </div>
+        
+        <h5 class="training_create_title">Les notes de la séance</h5>
+        <input type="text" placeholder="Détail" name="detail">
+        
+        <div id="musculation" class="musculation">
+            <%- include('../extern/musculation.ejs') %>
+        </div>
+        
+        <div class="running" id="running">
+            <%- include('../extern/running.ejs') %>
+        </div>
+        
+</form>
+</header>

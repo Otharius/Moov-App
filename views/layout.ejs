@@ -57,12 +57,10 @@
 
   <%- body %>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
-
 const wrapper = document.querySelector(".wrapper"),
 header = wrapper.querySelector("header");
+
 function onDrag({movementX, movementY}){
     let getStyle = window.getComputedStyle(wrapper);
     let leftVal = parseInt(getStyle.left);
@@ -79,45 +77,52 @@ function onDrag({movementX, movementY}){
     header.removeEventListener("mousemove", onDrag);
 });
 
+
 function closeDiv () {
-  const test = document.getElementById('wrapper');
+  const div = document.getElementById('wrapper');
   const btn = document.getElementById('btnDraggable');
   
-  if (test.style.display == 'block') {
-    test.style.display = 'none';
-    btn.innerText = 'Ouvrir le div';
-
+  if (div.style.display == 'block') {
+    div.style.display = 'none';
+    choix()
   } else {
-    test.style.display = 'block';
-    test.style.position = 'absolute';
-    btn.innerText = 'Fermer le div';
+    div.style.display = 'block';
+    div.style.position = 'absolute';
+    choix()
   };
+};
+
+function intensity_div () {
+  const div = document.getElementById('table_intensity_content');
+  const btn = document.getElementById('btnTable');
+  
+  if (div.style.display == 'block') {
+    div.style.display = 'none';
+  } else {
+    div.style.display = 'block';
+    div.style.position = 'absolute';
+  };
+};
+
+function choix () {
+  const select = document.getElementById('type_seance');
+  const choix = select.options[select.selectedIndex].value;
+  const a = document.getElementById('musculation');
+  const b = document.getElementById('running');
+  if (choix == 'musculation') {
+    a.style.display = 'block';
+    b.style.display = 'none';
+  } else {
+    a.style.display = 'none';
+    b.style.display = 'block';
+  };
+};
+
+function reload () {
+  location.reload()
 }
 
 
-// Ouvre une popup sur la page d'entrainement    
-
-  const modal1 = document.getElementById("myModal");
-  const dialog = document.getElementById("dialog");
-  const btn = document.getElementById("myBtn");
-  const span = document.getElementsByClassName("training_close")[0];
-
-  btn.onclick = function() {
-
-    modal1.style.display = "block";
-    dialog.style.display = "block";
-
-  }
-
-  span.onclick = function() {
-    modal1.style.display = "none";
-  }
-
-  window.onclick = function(event) {
-    if (event.target == modal1 || event.target == modal2 || event.target == modal3) {
-      modal1.style.display = "none";
-    }
-} 
-
+  
 </script>
 </html>

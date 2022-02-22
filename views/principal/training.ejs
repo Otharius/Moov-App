@@ -5,7 +5,7 @@
         <h1>Planification des entrainements</h1>
 
         <div class="container_button_workout">
-            <button id="myBtn" class="create_workout_button button_create">Créer son entrainement</button>
+            <button onclick="closeDiv()" id="btnDraggable" class="create_workout_button button_create">Créer son entrainement</button>
         </div>
         
         <br>
@@ -13,36 +13,11 @@
         <div class="display_workout">
             Titre + date + heure
         </div>
-        <button onclick="closeDiv()" id="btnDraggable">Ouvrir le div</button>
 
 <!--LE DRAGGABLE-->
 
-<div class="wrapper" id="wrapper">
-    <% if(old){ %>
-        <header><%= userData.workout.seances[0].name %> &nbsp;&nbsp;&nbsp; <span class="wrapper_close" id="wrapper_close" onclick="closeDiv()">&times; Fermer</span></header>
-        <div class="content">
-            <p>Type: <%= userData.workout.seances[0].type %></p>
-            <p>Date: <%= userData.workout.seances[0].date %></p>
-    
-            <table class="wrapper_table">
-    
-                <% for(var i=0; i < userData.workout.seances[0].jobs.length; i++) { %>
-                    <tr>
-                        <td><%= userData.workout.seances[0].jobs[i].exercice %></td>
-                        <td><%= userData.workout.seances[0].jobs[i].series %></td>
-                        <td><%= userData.workout.seances[0].jobs[i].repetitions %></td>
-                        <td><%= userData.workout.seances[0].jobs[i].pause %></td>
-                    </tr>
-                <% } %>
-                
-            </table>
-         <% } %>
-    <% } else{ %> 
-        <p>Pas encore d'entrainement ?</p> 
-    <% } %>
 
-    </div>
-  </div>
+
 
 <!--LE DRAGGABLE-->
 
@@ -94,10 +69,16 @@
 
                     <br><br><br><br> -->
 
-                    <h3 id="See_intensity" class="intensity_title little_title">Difficulté de la séance</h3>
+                    <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
 
-               
+                    <div class="table_intensity_content wrap" id="table_intensity_content">
+                        
+                        <%- include('../extern/intensityTable.ejs') %>
+
+                    </div>
+
                     <br><br>
+                    <button onclick="reload()">Reload</button>
 
 
                     <div class="difficulty">
@@ -196,10 +177,6 @@
     
 </div>
 
-<div id="myModal" class="training_modal">
-    <%- include('../extern/newWorkout.ejs') %>
-</div> 
-
 
 <div id="mySecondModal" class="see_training_modal">
     <div class="modal_training_content">
@@ -212,5 +189,8 @@
     <%- include('../extern/intensityTable.ejs') %>
 </div>
 
+<div id="wrapper" class="wrapper">
+    <%- include('../extern/newWorkout.ejs') %>
+</div> 
 
   </div>
