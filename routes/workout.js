@@ -10,6 +10,7 @@ const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
 const users = new Users().load();
 
+const exerciceType = require('../data/exercices.json').exerciceType;
 const exMuscu =  require('../data/exercices.json').exerciceWorkout;
 
 
@@ -52,6 +53,7 @@ router.get('/training', (req,res) => {
         userData: userData,
         old: dataLenght(userData.workout.seances),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
         userBody: dataLenght(userData.health.body),
     });
 });
@@ -67,16 +69,15 @@ router.post('/addWorkout', (req,res) => {
     const newSeance = userData.workout.seances;
 
     const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
-    console.log(req.body)
 
-    if (req.body.type == 'musculation') {
+    if (req.body.type == exerciceType[0]) {
         for (let i = 0; i<req.body.repetition.length; i++) {
             const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
             seance.add(job);
         };    
     };
 
-    if (req.body.type == 'course') {
+    if (req.body.type == exerciceType[1]) {
         const job = new Run(req.body.start, req.body.arrival, req.body.bounds, req.body.time);
         seance.add(job);
     };
@@ -89,9 +90,11 @@ router.post('/addWorkout', (req,res) => {
         style: true,
         title: title.training, 
         userData: userData,
+        exerciceType: exerciceType,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
     });
 });
 
@@ -114,6 +117,7 @@ router.post('/afterWorkout', (req,res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
     });
 });
 
@@ -133,6 +137,7 @@ router.post('/deleteWorkout', (req, res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
     });
 });
 
@@ -157,6 +162,7 @@ router.post('/setIMC', (req, res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
     });
 });
 
@@ -176,6 +182,7 @@ router.post('/deleteIMC', (req, res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
+        exerciceType: exerciceType,
     });
 });
 

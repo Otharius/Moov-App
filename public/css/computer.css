@@ -5,6 +5,7 @@ body {
     --error:#cc3333;
     --orangeFoncé:#bb7a0a;
     --focus:#009579;
+    --hoverRed:rgb(158, 4, 4);
 
 
     padding: 0px;
@@ -170,11 +171,6 @@ body {
 /*Fin connexion et inscription*/
 /*Début de la page d'entrainement*/
 
-.create_workout_button {
-    display: inline-block;
-    width: 30%;
-}
-
 .container_button_workout {
     width: 100%;
 }
@@ -238,7 +234,7 @@ body {
     text-align: center;
 }
 
-.calender_div, .work_yes, .work_no, .evolution, .documentary{
+.calender_div, .evolution, .documentary{
     margin-left: 2%;
     margin-right: 2%;
     border: 1px solid black;
@@ -252,24 +248,22 @@ body {
     width: 92.5%;
 }
 
-.work_div {
-    border: 1px solid black;
-}
-
 .work_yes {
-    width: 41%;
+    width: 42%;
     margin-right: 3%;
     border: 1px solid black;
     padding: 1rem;
     border-radius: 8px;
     margin-left: 2%;
-    display: inline-block;
+    display: block;
+    float: left;
 }
 
 .work_no {
+    display: block;
     float: right;
-    width: 41%;
-    margin-left: 3%;
+    width: 42%;
+    margin-left: 2%;
     border: 1px solid black;
     padding: 1rem;
     border-radius: 8px;
@@ -399,24 +393,6 @@ body {
     height: 15rem;
 }
 
-.button_create {
-    border-radius: 15px;
-    color: white;
-    background-color: crimson;
-    border: none;
-    height: 5%;
-    width: 50%;
-    cursor: pointer;
-}
-
-.button_create:active {
-    transform: scale(0.98);
-}
-
-.display_workout {
-    border: 1px solid black;
-}
-
 .button_see, .button_change {
     border-radius: 10px;
     color: white;
@@ -436,9 +412,10 @@ body {
     color: white;
     background-color: steelblue;
     border: none;
-    padding: 2% 8%;
-    border-radius: 20px;
+    padding: 3% 10%;
+    border-radius: 25px;
     margin: auto;
+    display: block;
 }
 
 .work_done + label{
@@ -694,6 +671,28 @@ body {
 .type_exercice {
     width: 15%;
     padding: 0.5% 1%;
+}
+
+.option_type {
+    width: 150px;
+}
+
+.exercice_delete {
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 1% 7%;
+    border-radius: 15px;
+    font-size: 1.1rem;
+}
+
+.exercice_delete:active {
+    transform: scale(0.98);
+}
+
+.exercice_delete:hover {
+    background-color: var(--hoverRed);
+    cursor: pointer;
 }
 
 /*Fin de la page d'entrainement*/
@@ -1008,10 +1007,6 @@ h3 {
     margin-top: 15%;
 }
   
-::selection{
-    color: #fff;
-    background: #6F36FF;
-}
 .wrapper{
     position: absolute;
     top: 50%;

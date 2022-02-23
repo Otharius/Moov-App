@@ -5,28 +5,32 @@
         <h1>Planification des entrainements</h1>
 
         <div class="container_button_workout">
-            <button onclick="closeDiv()" id="btnDraggable" class="create_workout_button button_create">Créer son entrainement</button>
+            <button onclick="closeCreateDiv()" id="btnDraggable" class="">Créer son entrainement</button>
+        </div>
+
+        <div>
+            <button>Modifier</button>
         </div>
         
-        <br>
-
-        <div class="display_workout">
-            Titre + date + heure
-        </div>
-
-<!--LE DRAGGABLE-->
-
-
-
-
-<!--LE DRAGGABLE-->
-
         <br>
 
         <div class="container_button_workout">
             <button id="See_exercice" class="create_workout_button button_see">Voir les exercices</button>
             <button id="change_exercice" class="create_workout_button button_change">Modifier exercices</button>
         </div>
+
+        <br><br>
+
+        <form action="/workout/deleteWorkout" method="post">
+
+            <select name="supprimer" id="">
+            
+                <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                    <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                <% } %>
+            </select>
+            <button class="exercice_delete">Supprimer</button>
+        </form>
                
     </div>
     
@@ -36,16 +40,7 @@
         <div class="work_yes">
             <h1>Séance faite</h1>
 
-            <form action="/workout/deleteWorkout" method="post">
 
-                <select name="supprimer" id="">
-                
-                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
-                    <% } %>
-                </select>
-                <button>Supprimer</button>
-            </form>
 
             <form action="afterWorkout" method="POST">
 
@@ -78,8 +73,6 @@
                     </div>
 
                     <br><br>
-                    <button onclick="reload()">Reload</button>
-
 
                     <div class="difficulty">
 
@@ -98,7 +91,7 @@
                         </textarea>
                     </div>
 
-
+                    <br>
                     <button class="value_button">Valider</button>
             </form>          
         </div>
@@ -185,12 +178,16 @@
     </div>
 </div>
 
- <div id="myThirdModal" class="table_intensity_modal">
+<div id="myThirdModal" class="table_intensity_modal">
     <%- include('../extern/intensityTable.ejs') %>
 </div>
 
-<div id="wrapper" class="wrapper">
+<div id="wrapper" class="move_div wrapper">
     <%- include('../extern/newWorkout.ejs') %>
-</div> 
+</div>
 
-  </div>
+<div id="changeWorkout" class="changeWorkout">
+    <%- include('../extern/changeWorkout.ejs') %>
+</div>
+
+

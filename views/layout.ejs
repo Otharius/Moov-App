@@ -58,7 +58,7 @@
   <%- body %>
 </body>
 <script>
-const wrapper = document.querySelector(".wrapper"),
+const wrapper = document.querySelector(".move_div"),
 header = wrapper.querySelector("header");
 
 function onDrag({movementX, movementY}){
@@ -78,7 +78,7 @@ function onDrag({movementX, movementY}){
 });
 
 
-function closeDiv () {
+function closeCreateDiv () {
   const div = document.getElementById('wrapper');
   const btn = document.getElementById('btnDraggable');
   
