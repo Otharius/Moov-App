@@ -15,6 +15,21 @@ class Job {
     };
 };
 
+class Run {
+
+    start;
+    arrival;
+    bounds;
+    time;
+
+    constructor(start, arrival, bounds, time){
+        this.start = start;
+        this.arrival = arrival;
+        this.bounds = bounds;
+        this.time = time;
+    };
+};
+
 class Seance {
 
     name = '';
@@ -183,6 +198,7 @@ const map = new Map();
 
 module.exports = {
     Job,
+    Run,
     Seance,
     Workout,
     Health,

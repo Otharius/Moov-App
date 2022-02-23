@@ -4,6 +4,7 @@ const router = express.Router();
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
+const Run = workoutClass.Run;
 
 const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
@@ -66,8 +67,17 @@ router.post('/addWorkout', (req,res) => {
     const newSeance = userData.workout.seances;
 
     const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
-    for (let i = 0; i<req.body.repetition.length; i++) {
-        const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
+    console.log(req.body)
+
+    if (req.body.type == 'musculation') {
+        for (let i = 0; i<req.body.repetition.length; i++) {
+            const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
+            seance.add(job);
+        };    
+    };
+
+    if (req.body.type == 'course') {
+        const job = new Run(req.body.start, req.body.arrival, req.body.bounds, req.body.time);
         seance.add(job);
     };
     
