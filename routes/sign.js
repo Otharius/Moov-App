@@ -31,7 +31,7 @@ function oldOrNew (data) {
 
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
-    res.render('login', { 
+    res.render('principal/login', { 
         style: false,
         title: title.login, 
         error: false,
@@ -62,17 +62,17 @@ router.post('/register', (req,res) => {
     const password2 = req.body.password2;
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
-        res.render('register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
+        res.render('principal/register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (users.exist(pseudo)) {
-        res.render('register', { title: title.register, message: "Pseudo déjà utilisé", error: true, style: false,});
+        res.render('principal/register', { title: title.register, message: "Pseudo déjà utilisé", error: true, style: false,});
         return;
     };
 
     if (password != password2) {
-        res.render('register', { title: title.register, message: "Mots de passe différents", error: true, style:false});
+        res.render('principal/register', { title: title.register, message: "Mots de passe différents", error: true, style:false});
         return;
     };
 
@@ -118,18 +118,18 @@ router.post('/login', (req,res) => {
     const password = req.body.password;
 
     if (pseudo === '' || password === '') {
-        res.render('login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
+        res.render('principal/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (!users.exist(pseudo)) {
-        res.render('login', { title: title.login, message: "Utilisateur introuvable", error: true, style: false});
+        res.render('principal/login', { title: title.login, message: "Utilisateur introuvable", error: true, style: false});
         return;
     };
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('login', { title: title.login, message: "Mot de passe incorrect", error: true, style: false });
+        res.render('principal/login', { title: title.login, message: "Mot de passe incorrect", error: true, style: false });
         return;
     };
 

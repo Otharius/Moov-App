@@ -9,7 +9,7 @@
         </div>
 
         <div>
-            <button>Modifier</button>
+            <a href="/workout/changeWorkout" class="">Modifier</a>
         </div>
         
         <br>
@@ -40,60 +40,56 @@
         <div class="work_yes">
             <h1>Séance faite</h1>
 
+                <% if(old){ %>
 
+                    <form action="afterWorkout" method="POST">
+                    
+                        <select name="rpe" id="">
+                    
+                            <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                                <% if(userData.workout.seances[i].done === false){ %>
+                                    <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                                <% } %>  
+                            <% } %>
 
-            <form action="afterWorkout" method="POST">
+                        </select>
 
-                <select name="rpe" id="">
-                
-                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <% if(userData.workout.seances[i].done === false){ %>
-                            <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
-                        <% } %>  
-                    <% } %>
-                </select>
-<!-- 
-                    <div class="done_none">
-                        <input type="radio" class="yes work_done" name="done" id="yes" value="yes">
-                        <label for="yes">Fait</label>
-                        <input type="radio" class="little work_done" name="done" id="little" value="little">
-                        <label for="little">Fait en partie</label>
-                        <input type="radio" class="no work_done" name="done" id="no" value="no">
-                        <label for="no">Non-fait</label>
-                    </div>
+                        <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
 
-                    <br><br><br><br> -->
-
-                    <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
-
-                    <div class="table_intensity_content wrap" id="table_intensity_content">
-                        
-                        <%- include('../extern/intensityTable.ejs') %>
-
-                    </div>
-
-                    <br><br>
-
-                    <div class="difficulty">
-
-                        <% for(var i=0; i < 10; i++) { %>
-                            <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
-                        <label for="d<%=i%>"><%=i%></label>
-                        <% } %>
-                        
-                    </div>
+                        <div class="table_intensity_content wrap" id="table_intensity_content">
                             
-                    <br>
+                            <%- include('../extern/intensityTable.ejs') %>
 
-                    <div class="note_div" align=center>
-                        <textarea name="test" id="" cols="30" rows="10">
+                        </div>
+
+                        <br><br>
+
+                        <span class="difficulty">
+
+                            <% for(var i=0; i < 10; i++) { %>
+                                <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                            <label for="d<%=i%>"><%=i%></label>
+                            <% } %>
                             
-                        </textarea>
-                    </div>
+                        </span>
+                                
+                        <br><br>
 
-                    <br>
-                    <button class="value_button">Valider</button>
-            </form>          
+                        <div class="note_div" align=center>
+                            <textarea name="test" id="" cols="30" rows="10">
+                                
+                            </textarea>
+                        </div>
+
+                        <br>
+                        <button class="value_button">Valider</button>
+                    </form>          
+                <% } else{ %> 
+                    <p>Pas encore d'entrainements ?</p>
+                <% } %>
+
+
+                   
         </div>
        
         <div class="work_no">

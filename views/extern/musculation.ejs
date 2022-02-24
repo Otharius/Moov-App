@@ -1,4 +1,6 @@
 <h5 class="training_create_title">Les exercices de la séance</h5> 
+
+
 <div class="addExercice">
     <label for="plus">
         <p class="plus" id="plus">Ajouter un exercice</p>
@@ -10,72 +12,43 @@
 </div>  
 
 <br><br>
+
+
+
 <!--Exercice 1-->
 
-
-<div class="content_exercice">  
-    <p class="number_exercice">Exerice 1</p>
+<% for(var i=0; i < 2; i++) { %>
+    <p class="number_exercice">Exerice <%= i + 1%></p>
     <hr class="number_line"><br>
-<div class="select-box">
-
-    <select name="exercice" id="">
-        <% for(var i=0; i < exMuscu.length; i++) { %>
-            <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
-        <% } %>
-    </select>
-
-</div>
-
-<div class="content_precision">
-    <div class="exPart1">
-        Nombre de répétition:
-        <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-        Nombre de série:
-        <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-    </div>
-
-    <div class="exPart2">
-        Temps de repos:
-        <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-        <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-        <br><br>
-    </div>  
-</div>
-</div>
-
-<div>
-    <p class="number_exercice">Exerice 2</p>
-    <hr class="number_line"><br>
+    <div class="select-box">
 
         <select name="exercice" id="">
-            <% for(var i=0; i < exMuscu.length; i++) { %>
-                <option value="<%=exMuscu[i]%>" name="category" id="<%=exMuscu[i]%>"><%=exMuscu[i]%></option>
+            <% for(var j=0; j < exMuscu.length; j++) { %>
+                <option value="<%=exMuscu[j]%>" name="category" id="<%=exMuscu[j]%>"><%=exMuscu[j]%></option>
             <% } %>
         </select>
 
+    </div>
 
-        <div class="content_precision">
-            <div class="exPart1">
-                Nombre de répétition:
-                <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
+    <div class="content_precision">
+        <div class="exPart1">
+            Nombre de répétition:
+            <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
 
-                Nombre de série:
-                <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
-            </div>
-
-            <div class="exPart2">
-                Temps de repos:
-                <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
-
-                <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-                <br><br>
-            </div>  
+            Nombre de série:
+            <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
         </div>
 
-        
-    
+        <div class="exPart2">
+            Temps de repos:
+            <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
 
-</div><br><br>   
+            <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
+            <br><br>
+        </div>  
+    </div>
+<% } %>
+
+
+<br><br>   
 <button type="submit" class="send_workout">Valider</button> 
