@@ -84,13 +84,13 @@ class Workout {
         return this;
     };
 
-    deleteJob (place) {
-        this.seances[0].jobs.splice(place, 1);
+    deleteJob (place, number) {
+        this.seances[number].jobs.splice(place, 1);
         return this;
     };
 
-    addJob (job) {
-        this.seances[0].jobs.push(job);
+    addJob (job, number) {
+        this.seances[number].jobs.push(job);
         return this;
     }
 

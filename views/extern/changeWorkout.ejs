@@ -7,7 +7,7 @@
 
             <select name="supprimer" id="">
             
-                <% for(var i=0; i < userData.workout.seances[0].jobs.length; i++) { %>
+                <% for(var i=0; i < userData.workout.seances[userData.workout.seances.length - 1].jobs.length; i++) { %>
                     <option value="<%= i %>" name="supprimer">Exercice <%= i%></option>
                 <% } %>
             </select>
@@ -58,9 +58,8 @@
             <br><br>
         </div><br><br>
 
-        <% for(var j=0; j < userData.workout.seances[0].jobs.length; j++) { %>
-
-            <p><%= userData.workout.seances[0].jobs[j].exercice %></p>
+        <% for(var j=0; j < userData.workout.seances[userData.workout.seances.length - 1].jobs.length; j++) { %>
+            <p><%= userData.workout.seances[userData.workout.seances.length - 1].jobs[j].exercice %></p>
 
         <% } %>
 

@@ -39,7 +39,20 @@ function sessionSecure (req, res) {
     };
 };
 
+router.get('/newWorkout', (req,res) => {
 
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    res.render('extern/newWorkout', { 
+        style: true,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+})
 
 router.get('/changeWorkout', (req,res) => {
 
@@ -76,7 +89,7 @@ router.get('/training', (req,res) => {
 router.post('/deleteJob', (req, res) => {
     console.log(req.body)
     const userData = workoutClass.getData(req.session.pseudo);
-    userData.workout.deleteJob(req.body.supprimer)
+    userData.workout.deleteJob(req.body.supprimer, userData.workout.seances.length - 1)
 
     userData.save()
 
@@ -96,7 +109,7 @@ router.post('/addJob', (req, res) => {
     console.log(req.body)
     const userData = workoutClass.getData(req.session.pseudo);
     const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.reposMin)
-    userData.workout.addJob(job)
+    userData.workout.addJob(job, userData.workout.seances.length - 1)
 
     userData.save()
 
