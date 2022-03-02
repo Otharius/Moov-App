@@ -6,6 +6,10 @@ body {
     --orangeFoncé:#bb7a0a;
     --focus:#009579;
     --hoverRed:rgb(158, 4, 4);
+    --createGreen: #4bb544;
+    --createGreenDark: #337e2d;
+    --workoutButton: #da7e5e;
+    --workoutButtonDark: #90513b;
 
 
     padding: 0px;
@@ -170,19 +174,6 @@ body {
 
 /*Fin connexion et inscription*/
 /*Début de la page d'entrainement*/
-
-.container_button_workout {
-    width: 100%;
-}
-
-.button_change {
-    float: right;
-}
-
-.button_see {
-    margin-left: 5%;
-    margin-right: 2.5%;
-}
 
 .addExercice {
     padding: 10px 20px;
@@ -414,6 +405,7 @@ body {
     padding: 3% 10%;
     border-radius: 25px;
     margin: auto;
+    font-size: 1rem;
     display: block;
 }
 
@@ -623,7 +615,7 @@ body {
 
 .training_name {
     margin-left: 5%;
-   float: left;
+    float: left;
     display: block;
     width: 20%;
     padding: 0.5rem;
@@ -634,6 +626,7 @@ body {
     background: #eeeeee;
     transition: background 0.2s, 0.2s;
     user-select: none;
+    font-size: 1rem;
 }
 
 .training_name:active, .training_name:focus {
@@ -650,12 +643,18 @@ body {
 .send_workout {
     text-align: center;
     color: white;
-    background-color: steelblue;
+    background-color: var(--createGreen);
     border: none;
     padding: 1% 10%;
+    font-size: 1.1rem;
     border-radius: 20px;
     margin: auto;
     display: block;
+    cursor: pointer;
+}
+
+.send_workout:hover {
+    background-color: var(--createGreenDark);
 }
 
 .send_workout:active {
@@ -670,6 +669,7 @@ body {
 .type_exercice {
     width: 15%;
     padding: 0.5% 1%;
+    font-size: 1rem;
 }
 
 .option_type {
@@ -683,6 +683,7 @@ body {
     padding: 1% 7%;
     border-radius: 15px;
     font-size: 1.1rem;
+    margin-left: 37%;
 }
 
 .exercice_delete:active {
@@ -1084,3 +1085,151 @@ h3 {
 }
 
 
+/* La page de création d'entrainement*/
+
+.rightJob, .leftJob {
+    border: 1px solid black;
+    display: block;
+    max-width: 48%;
+    width: 48%;
+    border-radius: 20px;
+}
+
+.leftJob {
+    float: left;
+    margin-left: 1%;
+}
+
+.rightJob {
+    float: right;
+    margin-right: 1%;
+}
+
+.tableJob tr td{
+    border: 1px solid black;
+    padding: 0.9% 1%;
+
+}
+
+.tableJob {
+    border-collapse: collapse;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.exerciceJob {
+    width: 15%;
+}
+
+.exercice {
+    width: 55%;
+}
+
+
+.addJob {
+    text-align: center;
+    color: white;
+    background-color:var(--createGreen);
+    border: none;
+    padding: 2% 10%;
+    border-radius: 20px;
+    margin: auto;
+    display: block;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.addJob:hover {
+    background-color: var(--createGreenDark);
+}
+
+.addJob:active {
+    transform: scale(0.98);
+}
+
+.selectExerciceJob {
+    margin: auto;
+    display: block;
+    width: 35%;
+    padding: 1% 5%;
+    font-size: 1rem;
+}   
+
+.selectDeleteJob {
+    width: 35%;
+    padding: 1% 5%;
+    font-size: 1rem;
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+.buttonDeleteJob {
+    text-align: center;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 2% 10%;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.buttonDeleteJob:hover {
+    background-color: var(--hoverRed);
+}
+
+.buttonDeleteJob:active {
+    transform: scale(0.98);
+}
+
+.planWorkout {
+    padding: 10px 90px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: var(--workoutButton);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 400px;
+}
+
+.planWorkout:hover {
+    background-color: var(--workoutButtonDark);
+}
+
+.planWorkout:active {
+    transform: scale(0.98);
+}
+
+.changeWorkout {
+    padding: 10px 90px;
+    width: 400px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: var(--workoutButton);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.changeWorkout:hover {
+    background-color: var(--workoutButtonDark);
+}
+
+.changeWorkout:active {
+    transform: scale(0.98);
+}
+
+.selectPage {
+    font-size: 1rem;
+    width: 250px;
+    margin-right: 25px;
+    margin-left: 150px;
+    margin-top: 5px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}

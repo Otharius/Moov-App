@@ -39,6 +39,24 @@ function sessionSecure (req, res) {
     };
 };
 
+router.post('/planWorkout', (req,res) => {
+
+    const userData = workoutClass.getData(req.session.pseudo);
+    req.session.idSeance = parseInt(req.body.idPage)
+
+    res.render('extern/planWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+})
+
+
 router.get('/newWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
@@ -73,7 +91,6 @@ router.get('/changeWorkout', (req,res) => {
 router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
-    
 
     res.render('principal/training', {
         style: true,
@@ -86,14 +103,31 @@ router.get('/training', (req,res) => {
     });
 });
 
-router.post('/deleteJob', (req, res) => {
-    console.log(req.body)
+router.get('/deleteJob', (req, res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    userData.workout.deleteJob(req.body.supprimer, userData.workout.seances.length - 1)
+    userData.workout.deleteJob(req.query.job, req.session.idSeance)
 
     userData.save()
 
-    res.render('extern/changeWorkout', { 
+    res.render('extern/planWorkout', {
+        id: req.session.idSeance,
+        style: true,
+        title: title.training, 
+        userData: userData,
+        exerciceType: exerciceType,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+})
+
+router.get('/deleteJobe', (req, res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
+    console.log(req.query.job)
+
+    res.render('extern/planWorkout', {
+        id: req.session.idSeance,
         style: true,
         title: title.training, 
         userData: userData,
@@ -106,14 +140,15 @@ router.post('/deleteJob', (req, res) => {
 })
 
 router.post('/addJob', (req, res) => {
-    console.log(req.body)
+
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.reposMin)
-    userData.workout.addJob(job, userData.workout.seances.length - 1)
+    const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.repos)
+    userData.workout.addJob(job, req.session.idSeance)
 
     userData.save()
 
-    res.render('extern/changeWorkout', { 
+    res.render('extern/planWorkout', { 
+        id: req.session.idSeance,
         style: true,
         title: title.training, 
         userData: userData,
@@ -126,32 +161,6 @@ router.post('/addJob', (req, res) => {
 })
 
 
-
-
-router.post('/plus', (req, res) => {
-    console.log(req.body)
-    const userData = workoutClass.getData(req.session.pseudo);
-    const seance = new Seance(req.body.training_name,req.body.date, null, false, req.body.detail, userData.workout.seances[0].type)
-    for (let i = 0; i<req.body.repetition.length; i++) {
-        const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposMin[i]);
-        seance.add(job);
-    };    
-    
-    userData.workout.seances[0] = seance
-    
-    userData.save()
-
-    res.render('principal/training', { 
-        style: true,
-        title: title.training, 
-        userData: userData,
-        exerciceType: exerciceType,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-})
 
 // AJOUTE DES ENTRAINEMENTS
 router.post('/addWorkout', (req,res) => {
@@ -162,20 +171,6 @@ router.post('/addWorkout', (req,res) => {
     const newSeance = userData.workout.seances;
 
     const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
-
-    if (req.body.type == exerciceType[0]) {
-        for (let i = 0; i<req.body.repetition.length; i++) {
-            const job = new Job(req.body.exercice[i], req.body.repetition[i], req.body.serie[i], req.body.reposSec[i]);
-            seance.add(job);
-        };    
-    };
-
-    if (req.body.type == exerciceType[1]) {
-        const job = new Run(req.body.start, req.body.arrival, req.body.bounds, req.body.time);
-        seance.add(job);
-    };
-    
-
     
     userData.workout.add(seance);
     userData.save();
@@ -220,7 +215,7 @@ router.post('/afterWorkout', (req,res) => {
 router.post('/deleteWorkout', (req, res) => {
     const pseudo = req.session.pseudo;
     const userData =  workoutClass.getData(pseudo);
-    userData.workout.delete(req.body.supprimer);
+    userData.workout.delete(req.session.idSeance);
     userData.save();
    
     res.render('principal/training', { 

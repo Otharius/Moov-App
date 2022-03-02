@@ -1,54 +1,83 @@
-<h5 class="training_create_title">Les exercices de la séance</h5> 
+<div class="">
+    <div class="leftJob">
 
+        <% if (userData.workout.seances[id].jobs.length > 0) { %>
 
-<div class="addExercice">
-    <label for="plus">
-        <p class="plus" id="plus">Ajouter un exercice</p>
+        <div class="deleteJob">
 
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="plus icon" viewBox="0 0 16 16" id="plus">
-                <path d="M8 0a1 1 0 0 1 1 1v6h6a1 1 0 1 1 0 2H9v6a1 1 0 1 1-2 0V9H1a1 1 0 0 1 0-2h6V1a1 1 0 0 1 1-1z"/>
-        </svg>
-    </label>
-</div>  
-
-<br><br>
-
-
-
-<!--Exercice 1-->
-
-<% for(var i=0; i < 2; i++) { %>
-    <p class="number_exercice">Exerice <%= i + 1%></p>
-    <hr class="number_line"><br>
-    <div class="select-box">
-
-        <select name="exercice" id="">
-            <% for(var j=0; j < exMuscu.length; j++) { %>
-                <option value="<%=exMuscu[j]%>" name="category" id="<%=exMuscu[j]%>"><%=exMuscu[j]%></option>
-            <% } %>
-        </select>
-
-    </div>
-
-    <div class="content_precision">
-        <div class="exPart1">
-            Nombre de répétition:
-            <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br>
-
-            Nombre de série:
-            <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
+            
+      
         </div>
 
-        <div class="exPart2">
-            Temps de repos:
-            <input type="number" name="reposMin" id="" min="0" max="30" value="0" required> Minute
+            <hr>
 
-            <input type="number" name="reposSec" id="" min="0" max="59" value="30" required> Seconde
-            <br><br>
-        </div>  
+        <% } %>
+
+
+        <form action="/workout/addJob" method="post"><br>
+
+            <div class="select-box">
+
+                <select name="exercice" class="selectExerciceJob">
+                    <% for(var j=0; j < exMuscu.length; j++) { %>
+                        <option value="<%=exMuscu[j]%>" name="category" id="<%=exMuscu[j]%>"><%=exMuscu[j]%></option>
+                    <% } %>
+                </select>
+        
+            </div>
+        
+            <div class="content_precision">
+                <div class="exPart1">
+                    Nombre de répétition:
+                    <input type="number" name="repetition" id="" min="1" max="50" value="1" required><br><br>
+        
+                    Nombre de série:
+                    <input type="number" name="serie" id="" min="1" max="10" value="1" required><br>
+                </div>
+        
+                <div class="exPart2">
+                    Repos:
+        
+                    <input type="number" name="repos" id="" min="0" value="30" required> Seconde
+                    <br><br>
+                </div>  
+            </div>
+
+            <input type="submit" value="Ajouter" class="addJob">
+            
+        </form>
     </div>
-<% } %>
 
+    <div class="rightJob"><br>
+        <table class="tableJob">
 
-<br><br>   
-<button type="submit" class="send_workout">Valider</button> 
+            <tr>
+                <th>Exercice</th>
+                <th>Répétitions</th>
+                <th>Séries</th>
+                <th>Repos</th>
+            </tr>
+
+            <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+                <% var a = userData.workout.seances[id].jobs[j] %>
+
+                <tr>
+                    <td class="exerciceJob exercice"><select name="exercice" class="selectExerciceJob">
+                        <% for(var j=0; j < exMuscu.length; j++) { %>
+                            <option value="<%=exMuscu[j]%>" name="category" id="<%=exMuscu[j]%>"><%=exMuscu[j]%></option>
+                        <% } %>
+                    </select>
+            </td>
+                    <td class="exerciceJob"><input type="number" name="repetition" id="repetition" min="1" max="50" value="<%= a.repetitions %>" required></td>
+                    <td class="exerciceJob"><%= a.series %></td>
+                    <td class="exerciceJob"><%= a.pause %> sec</td>
+                    <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can"></i></a></td>
+                </tr>
+
+            <% } %>
+
+        </table>
+        <br>
+    </div>
+
+</div>

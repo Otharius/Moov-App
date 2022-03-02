@@ -41,7 +41,7 @@ class Users {
         return this;
     } 
 
-    save (pseudo) {
+    save () {
         const objs = [];
         for (let user of this.users.values()) {
             objs.push(user.toObject());

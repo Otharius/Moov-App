@@ -1,7 +1,7 @@
 <span class="training_close" id="btnDraggable" onclick="closeCreateDiv()">&times; Fermer</span>
 <header>
 <form action="/workout/addWorkout" method="POST">
-    <h1 class="title_workout">Nouvel entrainement</h1>
+    <h1 class="title_workout">Planifier son entrainement</h1>
 
         <div class="intro_workout">
             <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value="" class="training_name"><br>
@@ -44,23 +44,15 @@
                 </svg>
             </label> 
 
-            <select name="type" id="type_seance" required class="type_exercice">
-                <option value="musculation" class="option_type" onclick="choix()">Musculation</option>
-                <option value="course" class="option_type" onclick="choix()">Course</option>
+            <select name="type" required class="type_exercice">
+                <option value="musculation" class="option_type">Musculation</option>
+                <option value="course" class="option_type">Course</option>
             </select>
 
         </div>
         
         <h5 class="training_create_title">Les notes de la séance</h5>
         <input type="text" placeholder="Détail" name="detail">
-        
-        <div id="musculation" class="musculation">
-            <%- include('../extern/musculation.ejs') %>
-        </div>
-        
-        <div class="running" id="running">
-            <%- include('../extern/running.ejs') %>
-        </div>
-        
-        
+                
+        <button class="send_workout">Valider</button>
 </header>

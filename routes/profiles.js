@@ -7,7 +7,7 @@ const Job = workoutClass.Job;
 
 const Users = require('../public/javascripts/users');
 const User = require('../public/javascripts/user');
-const users = new Users().load();
+
 
 
 
@@ -50,6 +50,7 @@ function addCalorie (calories) {
 // PASSER ADMIN
 router.post('/passAdmin', (req,res) => {
     const pseudo = req.session.pseudo;
+    const users = new Users().load();
     const user = users.get(pseudo)
     user.boost = true;
     const p = new User(user.pseudo, user.name, user.firstname, user.boost);
@@ -69,7 +70,11 @@ router.post('/passAdmin', (req,res) => {
  // PAGE DE PROFILE
  router.get('/profiles', (req,res) => {
     sessionSecure(req,res);
+    const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
+    console.log('PROFILES')
+    console.log(users.get(req.session.pseudo))
+    console.log('-----------')
 
     res.render('principal/profiles', { 
         style: true,
@@ -85,6 +90,7 @@ router.post('/passAdmin', (req,res) => {
 // SYSTEME DE CHANGEMENT DE MOT DE PASSE
 router.post('/changePassword', (req,res) => {
 
+    const users = new Users().load();
     const oldPassword = req.body.old;
     const newPassword = req.body.new;
     const newPassword2 = req.body.new2;

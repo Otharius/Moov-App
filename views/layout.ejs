@@ -4,6 +4,12 @@
     <link href="/css/computer.css" media="(min-width: 768px)" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/mobil.css" media="(max-width: 480px)" type="text/css">
     
+    <script
+    src="https://www.gstatic.com/charts/loader.js">
+    </script>
+    <script src="https://kit.fontawesome.com/2af4903d5e.js" crossorigin="anonymous"></script>
+
+    
     <meta name="viewport" content="width=device-width"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
@@ -58,6 +64,7 @@
   <%- body %>
 </body>
 <script>
+
 const wrapper = document.querySelector(".move_div"),
 header = wrapper.querySelector("header");
 
@@ -122,7 +129,33 @@ function reload () {
   location.reload()
 }
 
+google.charts.load('current',{packages:['corechart']});
 
+google.charts.setOnLoadCallback(drawChart);
+
+function drawChart() {
+// Set Data
+var data = google.visualization.arrayToDataTable([
+  ['Taille', 'Poids'],
+  [180,80], [180, 70]
+  ]);
+// Set Options
+var options = {
+  title: 'Evolution taille-poids',
+  hAxis: {title: 'Taille en centimètre'},
+  vAxis: {title: 'Poids en kg'},
+  legend: 'none'
+};
+// Draw Chart
+var chart = new google.visualization.LineChart(document.getElementById('myChart'));
+chart.draw(data, options);
+}
   
+var repetition = document.getElementById("repetition");
+repetition.addEventListener('change',function(){
+    alert('changed');
+});
+
+
 </script>
 </html>

@@ -1,0 +1,24 @@
+<a href="/workout/training">RETOUR</a>
+<h1 class="title_workout">Modifier entrainement</h1>
+
+    <div class="intro_workout">
+        <input type="text" name="training_name" placeholder="Nouveau nom de la séance" value="<%=userData.workout.seances[id].name%>" class="training_name" required>
+        <input type="date" name="date" id="date" class="" value="<%=userData.workout.seances[id].date%>">
+        
+        <br><br>
+    </div><br><br>
+   
+    <form action="/workout/deleteWorkout" method="post">
+        <button class="exercice_delete">Supprimer la séance</button>
+    </form>
+
+
+<hr><br>
+
+<% if(userData.workout.seances[id].type === 'musculation') { %>
+        <%- include('../extern/musculation.ejs') %>
+<%}%>
+
+<% if(userData.workout.seances[id].type === 'course') { %>
+    <%- include('../extern/running.ejs') %>
+<%}%>
