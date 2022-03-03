@@ -5,58 +5,42 @@ body{
     --error:#cc3333;
     --orangeFoncé:#bb7a0a;
     --focus:#009579;
+    --hoverRed:rgb(158, 4, 4);
+    --createGreen: #4bb544;
+    --createGreenDark: #337e2d;
+    --workoutButton: #da7e5e;
+    --workoutButtonDark: #90513b;
 
     padding: 0px;
     margin: 0px;
 }
-
-.topnav {
-    background-color: var(--orange);
-    overflow: scroll;
-    position: fixed;
-    bottom: 0;
+  
+.navbar {
     width: 100%;
-    float: left;
+    overflow: scroll;
+    bottom: 0;
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 50px;
+    border: 1px solid black;
+    background-color: red;
 }
-  
-.topnav a {
-    float: left;
-    color: #f2f2f2;
+
+.navbar a {
     text-align: center;
-    padding: 3% 4.13%;
-    text-decoration: none;
-}
-
-.people, .moon {
-    height: 1.75rem;
-}
-
-.nav_second {
-    width: 14.7%;
-}
-
-.nav_people {
-    width: 10.6%;
-}
-
-.nav_text {
-    text-align: left;
-}
-  
-.topnav a:hover {
-    background-color: crimson;
     color: white;
-    height: 1.75rem;
+    width: 20%;
+    height: 50px;
 }
-  
-    .topnav a.active {
-    background-color: #bb7a0a;
-    color: white;
-  }
-  
-  .svg {
-    width: 2rem;
-    fill: white;
+
+.navbar a:hover {
+    background-color: green;
+}
+
+.navbar a i {
+    margin-top: 25px;
 }
 
 /*Fin du menu de sélection*/
@@ -890,6 +874,8 @@ h3 {
     text-align: center;
 }
 
+
+
 .changePWD {
     margin: 1rem;
 }
@@ -934,43 +920,6 @@ h3 {
     transform: scale(0.98);
 }
 
-
-.deco {
-    font-size: 1.1rem;
-    padding: 1rem 1rem;
-    color: #ffffff;
-    border: none;
-    border-radius: 50%;
-    outline: none;
-    cursor: pointer;
-    background: red;
-    display: block;
-    float: right;
-}
-
-.deco:hover{
-    background-color: rgb(158, 4, 4);
-}
-
-.deco:active {
-    transform: scale(0.98);
-}
-
-.svg_workout {
-    fill: white;
-}
-
-.svg_ball {
-    width: 2.75rem;
-    height: 1.75rem;
-}
-
-.input_deco {
-    border: none;
-    display: block;
-    float: right;
-    background-color: white;
-}
 
 
 

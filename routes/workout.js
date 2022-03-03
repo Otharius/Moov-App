@@ -103,6 +103,49 @@ router.get('/training', (req,res) => {
     });
 });
 
+router.get('/seance', (req,res) => {
+    sessionSecure(req, res);
+    const userData = workoutClass.getData(req.session.pseudo);
+    const id = req.query.id;
+
+    res.render('extern/seance', {
+        id: id - 1,
+        style: false,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+});
+
+
+
+
+router.get('/endWorkout', (req,res) => {
+    sessionSecure(req, res);
+    const userData = workoutClass.getData(req.session.pseudo);
+    const id = req.query.id;
+
+    userData.workout.seances[id - 1].done = true;
+    userData.save()
+
+    res.render('extern/seance', {
+        id: id - 1,
+        style: false,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+});
+
+
+
+
 router.get('/deleteJob', (req, res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     userData.workout.deleteJob(req.query.job, req.session.idSeance)
@@ -111,24 +154,7 @@ router.get('/deleteJob', (req, res) => {
 
     res.render('extern/planWorkout', {
         id: req.session.idSeance,
-        style: true,
-        title: title.training, 
-        userData: userData,
-        exerciceType: exerciceType,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-})
-
-router.get('/deleteJobe', (req, res) => {
-    const userData = workoutClass.getData(req.session.pseudo);
-    console.log(req.query.job)
-
-    res.render('extern/planWorkout', {
-        id: req.session.idSeance,
-        style: true,
+        style: false,
         title: title.training, 
         userData: userData,
         exerciceType: exerciceType,
@@ -149,7 +175,7 @@ router.post('/addJob', (req, res) => {
 
     res.render('extern/planWorkout', { 
         id: req.session.idSeance,
-        style: true,
+        style: false,
         title: title.training, 
         userData: userData,
         exerciceType: exerciceType,

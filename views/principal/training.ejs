@@ -29,59 +29,62 @@
     <br><br>
 
     <div class="work_div">
-        <div class="work_yes">
-            <h1>Séance faite</h1>
-
+        <div class="workout_rpe_box work_yes">
+            <div class="workout_day_title">
+                <p>État de forme</p>
+            </div>
+            
+            <div>
                 <% if(old){ %>
-
+        
                     <form action="afterWorkout" method="POST">
                     
                         <select name="rpe" class="selectPage">
                     
                             <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                                <% if(userData.workout.seances[i].done === false){ %>
+                                <% if(userData.workout.seances[i].done === true){ %>
                                     <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
                                 <% } %>  
                             <% } %>
-
+        
                         </select>
-
+        
                         <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
-
+        
                         <div class="table_intensity_content wrap" id="table_intensity_content">
                             
                             <%- include('../extern/intensityTable.ejs') %>
-
+        
                         </div>
-
+        
                         <br><br>
-
-                        <span class="difficulty">
+        
+                        <div class="home_difficulty">
                             
                             <% for(var i=0; i < 10; i++) { %>
                                 <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
                                 <label for="d<%=i%>"><%=i%></label>
                             <% } %>
                             
-                        </span>
+                            </div>
                                 
                         <br><br>
-
+        
                         <div class="note_div" align=center>
                             <textarea name="test" id="" cols="30" rows="10">
                                 
                             </textarea>
                         </div>
-
+        
                         <br>
                         <button class="value_button">Valider</button>
                     </form>          
                 <% } else{ %> 
                     <p>Pas encore d'entrainements ?</p>
                 <% } %>
-
-
-                   
+            </div>
+            <br>
+            
         </div>
        
         <div class="work_no">
@@ -93,9 +96,9 @@
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <% if(userData.workout.seances[i].done === false) { %>
                             <% j = j + 1 %>
-                            <tr>
-                                <td class="test">Séance <%= j %>:<%= userData.workout.seances[i].name %></td>
-                              </tr>
+                            <tr>  
+                                <td><a href="/workout/seance?id=<%=j%>&page=training">Séance <%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
+                            </tr>
                         <% } %>  
                      <% } %>
                 <% } else{ %> 
@@ -160,7 +163,7 @@
     <div class="documentary">
         <h1>Documentation</h1>
 
-        
+        <i class="fa-thin fa-arrow-left-long-to-line"></i>
         <div id="myChart" style="max-width:700px; height:400px"></div>
 
     </div>

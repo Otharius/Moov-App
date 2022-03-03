@@ -29,6 +29,17 @@ function oldOrNew (data) {
 
 
 
+//FONCTION SI ON A PAS D'ENTRAINEMENT
+function dataLenght (data) {
+    try {
+        if (data.length) {
+           return true;
+        };
+    } catch (error) {
+        return false;
+    };
+};
+
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
     res.render('principal/login', { 
@@ -143,6 +154,7 @@ router.post('/login', (req,res) => {
 
     res.render('principal/home', { 
         style: true,
+        userBody: dataLenght(userData.health.body),
         title: title.home,
         user: users.get(pseudo),
         old: oldOrNew(userData.workout.seances),

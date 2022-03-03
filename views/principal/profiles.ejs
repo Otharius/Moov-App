@@ -1,75 +1,60 @@
-</div> 
-
 <br>
 
-<form class="form" id="logout" action="/sign/logout" method="POST">
 
-    <div class="form__input-group"> 
-        <input type="hidden" id="logoutPseudo" name="logoutPseudo">
-    </div>
-
-    <button class="input_deco" type="submit" id="deconnection">
-        <svg xmlns="http://www.w3.org/2000/svg" class="deco" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none">
-            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-            <path d="M7 6a7.75 7.75 0 1 0 10 0"></path>
-            <line x1="12" y1="4" x2="12" y2="12"></line>
-        </svg>
-    </button>
-
-</form>
 
 <br><br><br>
 
-<div class="big_box">
+<div class="informations_box">
 
         <div class="profil_box" >
-            <h2 class="profil_title">-- Utilisateur --</h2>
+            <br>
+            <div class="hr_line">Utilisateur</div>
                 <p><strong> Pseudo: </strong><%= user.pseudo %></p>
                 <p><strong> Nom: </strong><%= user.name %></p>
                 <p><strong> Prénom: </strong><%= user.firstname %></p>
                 <p><strong> Adresse mail: </strong><%= user.email %></p>
 
-                <% let i = userData.health.body.length - 1%>
+                <% if(userBody){ %>
+                    <% let i = userData.health.body.length - 1%>
 
-                <p><strong>Poids: </strong><%= userData.health.body[i] %>kg</p>
-                <p><strong>Taille: </strong><%= userData.health.height[i]/100 %> m</p>
+                    <p><strong>Poids: </strong><%= userData.health.body[i] %>kg</p>
+                    <p><strong>Taille: </strong><%= userData.health.height[i]/100 %> m</p>
+                <% }  %>
+
         </div>
 
-    <form action="/profiles/changePassword" method="POST">
-        <div class="second_box">
-            <h2 class="profil_title">-- Changer le mot de passe --</h2>
-                <div class="changePWD">
-                    <div class="form_message-error">
-                        <% if(error){ %>
-                            <p><%= message %></p>
-                        <% } else{ %>  
-                        <% } %>
-                    </div>
-
-                    <input type="password" placeholder="Ancien mot de passe" name="old" id=""> <br>
-                    <input type="password" placeholder="Nouveau mot de passe" name="new" id=""><br>
-                    <input type="password" placeholder="Confirmer le nouveau mot de passe"  name="new2" id=""><br><br>
-                    <button class="input_submit">Confirmer</button>
-                </div>
-        </div>
-    </form>
-
-    <div class="">
-        <% if(user.boost){ %>
+        <div class="disconnect_box">
+            <form class="form" id="logout" action="/sign/logout" method="POST">
+        
+                <button class="disconnect">
+                    <i class="fa-solid fa-power-off fa-2xl"></i>
+                </button>
             
-                <p>Bravo tu es admin</p>
-            
-        <% } else{ %>  
-    
-            <form action="/profiles/passAdmin" method="POST">
-                <button class="ok_count_calorie">Passez admin</button>
             </form>
+        </div>
+
+
+        <div class="password_box">
+            <br>
+            <form action="/profiles/changePassword" method="POST">
+                <div class="hr_line">Changer le mot de passe</div>
+                        <div class="changePWD">
+                            <div class="form_message-error">
+                                <% if(error){ %>
+                                    <p><%= message %></p>
+                                <% } else{ %>  
+                                <% } %>
+                            </div>
+        
+                            <input type="password" placeholder="Ancien mot de passe" name="old" id=""> <br>
+                            <input type="password" placeholder="Nouveau mot de passe" name="new" id=""><br>
+                            <input type="password" placeholder="Confirmer le nouveau mot de passe"  name="new2" id=""><br><br>
+                            <button class="input_submit">Confirmer</button>
+                        </div>
+            </form>
+        </div>
+
+
+        
     
-        <% } %>
-    </div>
-    
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
-    <br><br><br><br><br><br>
 </div>

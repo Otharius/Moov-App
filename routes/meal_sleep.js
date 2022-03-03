@@ -14,7 +14,7 @@ const users = new Users().load();
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.render('/login', {
+        res.render('principal/login', {
             style: false, 
             title: title.login, 
             error: false,

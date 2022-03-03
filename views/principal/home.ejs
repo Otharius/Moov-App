@@ -1,118 +1,138 @@
 <br>
 
-<div>
-    <h3>Programme du jour</h3>
-        <table>
+<div class="workout_day_box">
 
-            <% if(old){ %>
+    <div class="workout_day_title">
+        <p>Programme du  jour</p>
+    </div>
+
+        <table>
+            <%if(old){ %>
+                <% var j = 0 %>
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                    <tr>
-                      <td class="test">Séance <%=i + 1%>:<%= userData.workout.seances[i].name %></td>
+                    <% j = j + 1 %>
+                    <tr>  
+                        <td><a href="/workout/seance?id=<%=j%>&page=home">Séance <%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
                     </tr>
                  <% } %>
             <% } else{ %> 
-                <p>Pas encore d'entrainement ? Viens d'entrainer !</p> 
+                <p class="not_workout">Pas encore d'entrainement ? Viens d'entrainer !</p> 
             <% } %>
                 
         </table>
 </div>
 
+
+<br><br>
+
+
+<div class="workout_rpe_box">
+    <div class="workout_day_title">
+        <p>État de forme</p>
+    </div>
+    
+    <div>
+        <% if(old){ %>
+            <br>
+            <form action="afterWorkout" method="POST">
+
+                <div class="select_home_box">
+                    <select name="rpe" class="select_home_page">
+                
+                        <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                            <% if(userData.workout.seances[i].done === true){ %>
+                                <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                            <% } %>  
+                        <% } %>
+
+                    </select>
+                </div>
+                
+
+                <div class="table_intensity_content wrap" id="table_intensity_content">
+                    
+                    <%- include('../extern/intensityTable.ejs') %>
+
+                </div>
+
+                <br><br>
+
+                <div class="home_difficulty">
+                    
+                    <% for(var i=0; i < 10; i++) { %>
+                        <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                        <label for="d<%=i%>"><%=i%></label>
+                    <% } %>
+                    
+                    </div>
+
+                <br><br>
+                <button class="value_home_button">Valider</button>
+            </form>          
+        <% } else{ %> 
+            <p class="not_workout">Pas encore d'entrainements ? Viens t'entrainer !</p>
+        <% } %>
+    </div>
+    <br>
+    
+</div>
+
 <br>
 
-    <div class="">
-    <% if(user.boost){ %>
-        
-            <p>Bravo tu es admin</p>
-        
-    <% } else{ %>  
 
-        <p>Nan pas admin</p>
+<br>
 
-    <% } %>
+<div class="workout_day_box">
+
+    <div class="workout_meal_title">
+        <p>Compter les calories</p>
     </div>
 
-<br>
-
-<div>
-    <h3>Evolution</h3>
-
-    <br>
-
+    <div class="workout_meal_calories">
+        <form action="/home/homeAddCal" method="POST">
+            <div class="count_calorie_box">
+                <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
+                <button class="home_ok_count_calorie">Ajouter</button>
+                <form action="/home/homeResetCal" method="POST">
+                    <button class="home_reset_count_calorie">Mettre à 0</button>
+                </form>    
+            </div>
+    
+            <p class="result_count_calorie"><%= userData.health.calories %> kcal</p>
+    
+        <br>
+    
+        </form>      
+    
+    </div>
+    
 </div>
 
-<br>
 
-<div class="Repas">
-    <h3>Repas</h3>
-    
-    <br>
+<br><br>
 
-    <table class="table_planning_meal" align="center">
-        <tr>
-            <th>..</th>
-            <th>..</th>
-            <th>..</th>
-            <th>..</th>      
-        </tr>
 
-        <tr>
-            <td>Petit dej</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+<div class="evolution_home_box">
 
-        <tr class="meal_color">
-            <td>Déjeuner</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
-    
-        <tr>
-            <td>Diner</td>
-            <td></td>
-            <td></td>
-            <td></td>
-        </tr>
+    <div class="workout_day_title">
+        <p>Évolution</p>
+    </div>
+
+    <table>        
+        <% let len = userData.health.height.length - 1 %>
+        <% if(userBody){ %>
+            <% for(var i=0; i < userData.health.height.length; i++) { %>
+            <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
+                <tr>
+                  <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
+                  <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
+                </tr>
+             <% } %>
+        <% } else{ %> 
+            <p>Entrez vos données !</p> 
+        <% } %>
     </table>
-    
-    <br>
 
 </div>
 
 <br>
-
-<div class="calorie">
-    
-    <br>
-
-    <h3>Compter les calories</h3>
-    
-    <br>
-
-    <form action="/home/homeAddCal" method="POST">
-        <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
-        <button class="ok_count_calorie">OK</button>
-        
-        <br><br>
-
-        <p class="result_count_calorie"><%= userData.health.calories %> kcal</p>
-
-    <br><br>
-
-    </form>      
-
-    <form action="/home/homeResetCal" method="POST">
-        <button class="reset_count_calorie">Reset</button>
-    </form>       
-</div>
-
-<br>
-
-<div id="Forme">
-    <h3>Etat de forme</h3>
-    
-    <br>
-    
-</div>

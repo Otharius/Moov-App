@@ -4,9 +4,9 @@
     <h1 class="title_workout">Planifier son entrainement</h1>
 
         <div class="intro_workout">
-            <input type="text" name="training_name" id="training_name" placeholder="Nom de la séance" value="" class="training_name"><br>
+            <input type="text" name="training_name" placeholder="Nom de la séance" required class="training_name"><br>
 
-            <input type="date" name="date" id="date" class="">
+            <input type="date" name="date" required>
             
             <br><br>
         </div><br><br>
@@ -38,11 +38,7 @@
         </div>
 
         <div>
-            <label for="type">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
-                    <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
-                </svg>
-            </label> 
+            <i class="fa-thin fa-bars"></i>
 
             <select name="type" required class="type_exercice">
                 <option value="musculation" class="option_type">Musculation</option>

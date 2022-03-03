@@ -1,0 +1,33 @@
+<br><br><a href="/workout/training"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+<h1>Seance <%= id + 1%></h1>
+<a href="/workout/endWorkout?id=<%=id + 1%>">Fin </a>
+
+<p>Nom: <%= userData.workout.seances[id].name %></p>
+<p>Date: <%= userData.workout.seances[id].date %></p>
+<p>Fait: <%= userData.workout.seances[id].done %></p>
+<p>Difficulté: <%= userData.workout.seances[id].difficulty %></p>
+<p>Type: <%= userData.workout.seances[id].type %></p>
+<p>Détail: <%= userData.workout.seances[id].detail %></p>
+
+<table class="tableJob">
+
+    <tr>
+        <th>Exercice</th>
+        <th>Répétitions</th>
+        <th>Séries</th>
+        <th>Repos</th>
+    </tr>
+
+    <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+        <% var a = userData.workout.seances[id].jobs[j] %>
+
+        <tr>
+            <td class="exerciceJob"><%= a.exercice %></td>
+            <td class="exerciceJob"><%= a.repetitions %></td>
+            <td class="exerciceJob"><%= a.series %></td>
+            <td class="exerciceJob"><%= a.pause %> sec</td>
+        </tr>
+
+    <% } %>
+
+</table>

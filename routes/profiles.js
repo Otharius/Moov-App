@@ -27,7 +27,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.render('/login', {
+        res.render('principal/login', {
             style: false, 
             title: title.login, 
             error: false,
@@ -56,8 +56,10 @@ router.post('/passAdmin', (req,res) => {
     const p = new User(user.pseudo, user.name, user.firstname, user.boost);
     users.add(p);
     users.save();
+    const userData = workoutClass.getData(req.session.pseudo);
 
     res.render('principal/profiles', { 
+        userBody: dataLenght(userData.health.body),
         style: true,
         title: title.profiles, 
         error: false,
@@ -72,11 +74,9 @@ router.post('/passAdmin', (req,res) => {
     sessionSecure(req,res);
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
-    console.log('PROFILES')
-    console.log(users.get(req.session.pseudo))
-    console.log('-----------')
 
     res.render('principal/profiles', { 
+        userBody: dataLenght(userData.health.body),
         style: true,
         title: title.profiles, 
         error: false,
@@ -99,33 +99,34 @@ router.post('/changePassword', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
 
     if (user === undefined) {
-        res.render('principal/Profiles', { title: "Profiles", userData : userData, error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user, style: true,});
+        res.render('principal/Profiles', { title: "Profiles", userBody: dataLenght(userData.health.body), userData : userData, error: true, message: 'Aucun utilisateur pour le pseudo [' + pseudo + ']', user: user, style: true,});
         return;
     };
 
     if (newPassword === '' || newPassword2 === '') {
-        res.render('principal/Profiles', { title: "Profiles", userData : userData, error: true, message: "Veillez renseigner tout les champs", user: user, style: true,});
+        res.render('principal/Profiles', { title: "Profiles", userBody: dataLenght(userData.health.body),userData : userData, error: true, message: "Veillez renseigner tout les champs", user: user, style: true,});
         return;
     };
 
     if (!user.checkPassword(oldPassword)) {
-        res.render('principal/Profiles', { title: "Profiles", userData : userData, error: true, message: "Mauvais mot de passe pour " + pseudo, user: user, style: true,});
+        res.render('principal/Profiles', { title: "Profiles", userBody: dataLenght(userData.health.body), userData : userData, error: true, message: "Mauvais mot de passe pour " + pseudo, user: user, style: true,});
         return;
     };
 
     if (oldPassword === newPassword) {
-        res.render('principal/Profiles', { title: "Profiles", userData : userData, error: true, message: "Le mot de passe doit être différent de l'ancien", user: user, style: true,});
+        res.render('principal/Profiles', { title: "Profiles", userBody: dataLenght(userData.health.body), userData : userData, error: true, message: "Le mot de passe doit être différent de l'ancien", user: user, style: true,});
         return;
     };
 
     if (newPassword != newPassword2) {
-        res.render('principal/Profiles', { title: "Profiles", userData : userData, error: true, message: "Confirmation de mot de passse incorrect", user: user, style: true,});
+        res.render('principal/Profiles', { title: "Profiles", userBody: dataLenght(userData.health.body), userData : userData, error: true, message: "Confirmation de mot de passse incorrect", user: user, style: true,});
         return;
     };
 
     user.withPassword(newPassword, true);
     users.save();
     res.render('principal/profiles', { 
+        userBody: dataLenght(userData.health.body),
         title: title.profiles,
         style: true,
         error: false,

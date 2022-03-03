@@ -27,7 +27,7 @@ function dataLenght (data) {
 // FONCTION POUR LA SECURISATION DES SESSIONS
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
-        res.redirect('/login', {
+        res.render('principal/login', {
             style: false, 
             title: title.login, 
             error: false,
@@ -55,6 +55,7 @@ router.get('/home', (req,res) => {
 
     res.render('principal/home', { 
         style: true,
+        userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
         userData: userData,
@@ -75,6 +76,7 @@ router.post('/homeAddCal', (req,res) => {
 
     res.render('principal/home', { 
         style: true,
+        userBody: dataLenght(userData.health.body),
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),
         old: dataLenght(userData.workout.seances),
@@ -94,6 +96,7 @@ router.post('/homeResetCal', (req,res) => {
 
     res.render('principal/home', { 
         style: true,
+        userBody: dataLenght(userData.health.body),
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),
         old: dataLenght(userData.workout.seances),
