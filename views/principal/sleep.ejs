@@ -1,195 +1,199 @@
 <br>
 
-<div class="sleep_quality">
-    
-    <br>
+<div class="workout_day_box">
 
-    <h3>Améliorer la qualité</h3>
-        <div class="sleep_align"> 
+    <div class="workout_sleep_title">
+        <p>Améliorer la qualité</p>
+    </div>
+
+    <div class="quality_sleep">
             <p>
                 Bien que l'on ne peut modifier la durée du sommeil, on peut en améliorer la qualité. Premièrement, avoir une routine de couchée aide à faire comprendre à son corps que c'est le moment de se reposer. 
                 Cela peut passer par de la lecture, ne pas utiliser d'écran, de la méditation ou bien des douches froides. Cette routine va permettre de favoriser la relaxation du corps et de l'esprit.
                 En parlant de relaxation il existe plusieurs méthodes qui calme le corps comme la technique du 4 7 8 (4 secondes d'inspiration, 7 la bloquant et 8 en expirant). 
                 Etre fatigué mentalement et physiquement aide à l'endormissement.
-            </p>
-        </div>
-
-        <br><br>
-
-</div>
-
-<br>
-
-<div class="sleep_time">
-    <h3>Durée du sommeil</h3>
-    
-    <br>
-
-    <div class="sleep_align">
-        <p>
-           La durée de sommeil est propre à chaque personne mais la NSF (National Sleep Foundation) a présenté une liste d'heure minimales et maximales en fonction de l'âge.<br>
-           Il ne faut pas négliger le sommeil c'est quelque chose d'important pour le corps et pour l'esprit. Avoir une bonne récupération passe par un bon sommeil et la progression passe par une bonne récupération.
-        </p>
-        
+            </p> 
     </div>
     
-    <br>
-
-    <table class="sleep_table_time">
-        <tr>
-            <td class="gras">Nouveau-nés (0-3 mois)</td>
-            <td>14-17 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Nourissons ( 4-11 mois)</td>
-            <td>12-15 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Enfants en bas âge (1-2 ans)</td>
-            <td>11-14 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Enfants d’âge préscolaire (3-5 ans)</td>
-            <td>10-13 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Âge scolaire (6-13 ans)</td>
-            <td>9-11 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Adolescents (14-17 ans)</td>
-            <td> entre 8 et 10 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Jeunes adultes (18-25 ans)</td>
-            <td> 7-9 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Âge moyen (26-64 ans)</td>
-            <td>entre 7 et 9 heures par jour</td>
-        </tr>
-
-        <tr>
-            <td class="gras">Personnes âgées (65 ans ou plus)</td>
-            <td>entre 7 et 8 heures par jour</td>
-        </tr>
-    </table>
-
-    <br>
-
-</div>   
-
-<br>
-
-<div>
-
-    <form action="/meal_sleep/addSleep" method="POST">
-        <input type="tel" name="sleep" class="count_calorie" maxlength="5" placeholder="Entrer le nombre">
-        <button class="ok_count_calorie">OK</button><br><br>
-        <p class="result_count_calorie"><%= userData.health.sleep %> h</p>
-
-        <br><br>
-
-    </form>        
-
-    <form action="/meal_sleep/resetSleep" method="POST">
-        <button class="reset_count_calorie">Reset</button>
-    </form>
-
-</div>
-
-<br>
-
-<div class="shower">
-    
-    <br>
-
-    <h3>Douches froides</h3>
-
-    <br>
-
-    <div class="sleep_div_img">
-        <img src="/images/coldShower.jpg" alt="" class="coldShower">
-    </div>
-
-    <br>
-
-    <div class="sleep_align sleep_div_text">
-        <p>
-            Les douches froides bien que dur à prendre ont bien des effets positifs sur le corps et notamment avant le couché. Le corps à besoin de se rafraichir pour s'endormir, et avec les douches froides,
-            le corps se rafraichit considérablement et donc aide au sommeil. Elles ont aussi des effets sur la circulation sanguine: les vaisseaux sanguins se rétractent, et donc
-            améliorent la circulation sanguine. On peut aussi jouer avec le 30sec froids 30sec chauds pour encore améliorer ces bénéfices. Il est important de
-            rester calme et bien respirer en prenant une douche froide pour se décontracter.
-        </p>
-    </div>
-
-    <br><br>
-
 </div>
 
 <br><br>
 
-<div class="stretch">
-    <h3>Étirements</h3>
+<div class="workout_day_box">
+
+    <div class="workout_sleep_title">
+        <p>Durée du sommeil</p>
+    </div>
+
+    <div class="quality_sleep" style="margin-bottom: 15px;">
+            <p>
+               La durée de sommeil est propre à chaque personne mais la NSF (National Sleep Foundation) a présenté une liste d'heure minimales et maximales en fonction de l'âge.<br>
+               Il ne faut pas négliger le sommeil c'est quelque chose d'important pour le corps et pour l'esprit. Avoir une bonne récupération passe par un bon sommeil et la progression passe par une bonne récupération.
+            </p>
+        
+        <br>
     
-    <br>
+        <table class="sleep_table_time">
+            <tr>
+                <td class="gras">Nouveau-nés (0-3 mois)</td>
+                <td>14-17 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Nourissons ( 4-11 mois)</td>
+                <td>12-15 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Enfants en bas âge (1-2 ans)</td>
+                <td>11-14 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Enfants d’âge préscolaire (3-5 ans)</td>
+                <td>10-13 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Âge scolaire (6-13 ans)</td>
+                <td>9-11 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Adolescents (14-17 ans)</td>
+                <td> entre 8 et 10 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Jeunes adultes (18-25 ans)</td>
+                <td> 7-9 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Âge moyen (26-64 ans)</td>
+                <td>entre 7 et 9 heures par jour</td>
+            </tr>
+    
+            <tr>
+                <td class="gras">Personnes âgées (65 ans ou plus)</td>
+                <td>entre 7 et 8 heures par jour</td>
+            </tr>
+        </table>    
 
-    <div class="sleep_align">
-        <p>Les étirements permettent la flexibilité du muscle et donc éviter certaines blessures. La souplesse ne s'acquiert pas en une semaine mais en plusieurs mois voir années, il ne faut donc pas se presser mais plutôt prendre son temps et persévérer. Plus les muscles sont flexibles, plus leur résistance aux choques sera importante.</p>
-    </div> 
-
-    <table class="table_stretch">
-        <tr>
-            <p align=center>3 à 6 séries de 30 à 60 secondes par exercice, avec 20 à 60 secondes de repos entre chaque.</p> 
-        </tr>
-
-        <tr class="stretch_title">
-            <th></th>
-            <th>Toucher ses pieds assis</th>
-            <th>Cobra</th>
-            <th>Grand écart facial</th>
-            <th>Papillon</th>
-        </tr>
-
-        <tr>
-            <td>Niveau 1</td>
-            <td>Assisté d'un linge</td>
-            <td>Sur les avants-bras</td>
-            <td>Assis en hauteur / mains derrière</td>
-            <td>Rapprocher les pieds</td>
-        </tr>
-
-        <tr class="stretch_color">
-            <td>Niveau 2</td>
-            <td>Attraper ses orteils / talons</td>
-            <td>Sur les mains / pont complet</td>
-            <td>Penché en avant de + en +</td>
-            <td>---</td>
-        </tr>
-
-        <tr>
-            <td colspan="6"><p class="conseil">Jamais de douleur, relaxation et calme, respirations profondes, possible tout les jours sans sport intense</p></td> 
-        </tr>
-    </table>
-
-    <br>
-
+    </div>
 </div>
 
-<br>
+<br><br>
 
-<div class="meditation">
+<div class="workout_day_box">
+
+    <div class="workout_sleep_title">
+        <p>Compter les heures de sommeil</p>
+    </div>
+
+    <div class="workout_meal_calories">
+        <form action="/meal_sleep/addSleep" method="POST">
+            <input type="tel" name="sleep" class="count_calorie" maxlength="5" placeholder="Heures de sommeil">
+            <button class="home_ok_count_calorie">Ajouter</button>
+            <form action="/meal_sleep/resetSleep" method="POST">
+                <button class="home_reset_count_calorie" formaction="resetSleep">Mettre à 0</button>
+            </form>   
+            <p class="result_count_calorie"><%= userData.health.sleep %> h</p>
     
-    <br>
+            <br><br>
+    
+        </form>        
 
-    <h3>Méditation</h3>
+    </div>
+    
+</div>
+
+<br><br>
+
+<div class="workout_day_box">
+
+    <div class="workout_sleep_title">
+        <p>Les douches froides</p>
+    </div>
+
+    <div class="sleep_shower">
+        <div class="sleep_div_img">
+            <img src="/images/coldShower.jpg" alt="" class="coldShower">
+        </div>
+    
+        <br>
+    
+        <div class="text_shower">
+            <p>
+                Les douches froides bien que dur à prendre ont bien des effets positifs sur le corps et notamment avant le couché. Le corps à besoin de se rafraichir pour s'endormir, et avec les douches froides,
+                le corps se rafraichit considérablement et donc aide au sommeil. Elles ont aussi des effets sur la circulation sanguine: les vaisseaux sanguins se rétractent, et donc
+                améliorent la circulation sanguine. On peut aussi jouer avec le 30sec froids 30sec chauds pour encore améliorer ces bénéfices. Il est important de
+                rester calme et bien respirer en prenant une douche froide pour se décontracter.
+            </p>
+        </div>   
+    </div>
+    
+</div>
+
+<br><br>
+
+<div class="workout_day_box">
+
+    <div class="workout_sleep_title">
+        <p>Les étirements</p>
+    </div>
+
+    <div class="workout_meal_calories">
+        <div class="sleep_align">
+            <p>Les étirements permettent la flexibilité du muscle et donc éviter certaines blessures. La souplesse ne s'acquiert pas en une semaine mais en plusieurs mois voir années, il ne faut donc pas se presser mais plutôt prendre son temps et persévérer. Plus les muscles sont flexibles, plus leur résistance aux choques sera importante.</p>
+        </div> 
+    
+        <table class="table_stretch">
+            <tr>
+                <p align=center>3 à 6 séries de 30 à 60 secondes par exercice, avec 20 à 60 secondes de repos entre chaque.</p> 
+            </tr>
+    
+            <tr class="stretch_title">
+                <th></th>
+                <th>Toucher ses pieds assis</th>
+                <th>Cobra</th>
+                <th>Grand écart facial</th>
+                <th>Papillon</th>
+            </tr>
+    
+            <tr>
+                <td>Niveau 1</td>
+                <td>Assisté d'un linge</td>
+                <td>Sur les avants-bras</td>
+                <td>Assis en hauteur / mains derrière</td>
+                <td>Rapprocher les pieds</td>
+            </tr>
+    
+            <tr class="stretch_color">
+                <td>Niveau 2</td>
+                <td>Attraper ses orteils / talons</td>
+                <td>Sur les mains / pont complet</td>
+                <td>Penché en avant de + en +</td>
+                <td>---</td>
+            </tr>
+    
+            <tr>
+                <td colspan="6"><p class="conseil">Jamais de douleur, relaxation et calme, respirations profondes, possible tout les jours sans sport intense</p></td> 
+            </tr>
+        </table><br><br>
+    </div>
+    
+</div>
+
+<br><br>
+
+<div class="workout_day_box">
+
+    <div class="workout_sleep_title">
+        <p>La méditation</p>
+    </div>
+
+    <div class="workout_meal_calories">
         <div class="sleep_div_img">
             <img src="/images/meditation.jpg" alt="" class="coldShower"> 
             
@@ -197,15 +201,16 @@
 
         </div>
 
-        <div class="sleep_align sleep_div_text">
+        <div class="text_shower">
             <p>
                 La méditation aide à la relaxation du corps et de l'esprit. Cela permet de se retrouver et de communiquer avec soi même. Pour une bonne méditation, il est important de se détendre et de se concentrer sur sa respiration ayant pour but de s'apaiser. Il est préférable de méditer dans un lieu naturel comme une forêt ou un lac par exemple. Ensuite il faut se concentrer sur sa respiration. Cette méthode n'est pas récente et n'a pas été inventée par les bouddhistes comme nombreux le pense. La méditation été notamment utilisée en pensant que l'on pouvait accéder à la connaissance à travers cette discipline psychosomatique.
                 Cette disciple se retrouve également dans la médecine chinoise, juives, arabes, grecques et égyptiennes.
             </p>
         </div>
-
-        <br><br><br>
+ 
+    </div>
+    
 </div>
 
-<br>
+<br><br>
 

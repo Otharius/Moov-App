@@ -198,7 +198,7 @@ class UserData {
 }
 
 const getData = (pseudo) => {
-    return map.get(pseudo);
+    return map.get(pseudo); 
 };
 
 const setData = (pseudo, data) => {

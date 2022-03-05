@@ -50,6 +50,7 @@ function addCalorie (calories) {
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
+    console.log(users.get(req.session.pseudo))
 
     const userData = workoutClass.getData(req.session.pseudo);
 
@@ -93,6 +94,7 @@ router.post('/homeResetCal', (req,res) => {
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setCalories(0);
     userData.save();
+
 
     res.render('principal/home', { 
         style: true,

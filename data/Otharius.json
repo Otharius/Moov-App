@@ -1,1 +1,1 @@
-{"pseudo":"Otharius","health":{"calories":12,"sleep":0,"body":[30],"height":[60]},"workout":{"seances":[{"name":"test","date":"2022-03-16","difficulty":null,"done":false,"detail":"","type":"musculation","jobs":[],"duration":null,"note":null}]}}
+{"pseudo":"Otharius","health":{"calories":0,"sleep":0,"body":[],"height":[]},"workout":{"seances":[{"name":"a","date":"2022-03-23","difficulty":null,"done":false,"detail":"","type":"musculation","jobs":[],"duration":null,"note":null}]}}

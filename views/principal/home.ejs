@@ -12,7 +12,7 @@
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <% j = j + 1 %>
                     <tr>  
-                        <td><a href="/workout/seance?id=<%=j%>&page=home">Séance <%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
+                        <td><a href="/workout/seance?id=<%=j%>&page=home"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
                     </tr>
                  <% } %>
             <% } else{ %> 
@@ -91,10 +91,10 @@
     <div class="workout_meal_calories">
         <form action="/home/homeAddCal" method="POST">
             <div class="count_calorie_box">
-                <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Entrer le nombre" pattern="[0-9]{1-5}">
+                <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Calories" pattern="[0-9]{1-5}">
                 <button class="home_ok_count_calorie">Ajouter</button>
                 <form action="/home/homeResetCal" method="POST">
-                    <button class="home_reset_count_calorie">Mettre à 0</button>
+                    <button class="home_reset_count_calorie" formaction="homeResetCal">Mettre à 0</button>
                 </form>    
             </div>
     
@@ -118,20 +118,23 @@
         <p>Évolution</p>
     </div>
 
-    <table>        
-        <% let len = userData.health.height.length - 1 %>
+    <div>
         <% if(userBody){ %>
-            <% for(var i=0; i < userData.health.height.length; i++) { %>
-            <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
-                <tr>
-                  <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                  <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
-                </tr>
-             <% } %>
+            <table>   
+                <% let len = userData.health.height.length - 1 %>
+                <% for(var i=0; i < userData.health.height.length; i++) { %>
+                    <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
+                        <tr>
+                            <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
+                            <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
+                        </tr>
+                <% } %>
+            </table>
         <% } else{ %> 
-            <p>Entrez vos données !</p> 
+            <p class="not_workout">Entrez vos données !</p> 
         <% } %>
-    </table>
+
+    </div>
 
 </div>
 

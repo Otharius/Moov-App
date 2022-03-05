@@ -1,6 +1,13 @@
-const data = require('../../data/users.json')
+let data = require('../../data/users.json');
 const User = require('./user');
-const fs = require('fs')
+const fs = require('fs');
+
+function loadChirp(){
+    $.getJSON(data)
+    
+    setTimeout("loadChirp()",5000)
+    }
+
 
 class Users {
     
@@ -28,6 +35,9 @@ class Users {
     }
 
     load () {
+        delete require.cache[require.resolve('../../data/users.json')];
+ 
+        data = require('../../data/users.json');
         for (let i=0; i<data.length; i++) {
             this.add(new User(
                 data[i].pseudo,
@@ -38,6 +48,9 @@ class Users {
             .withEmail(data[i].email)
             .withPassword(data[i].password));
         }
+
+        console.log('LOAD');
+        console.log(this);
         return this;
     } 
 
@@ -50,7 +63,10 @@ class Users {
         fs.writeFile('data/users.json', buffer, function (err) {
             if (err) throw err;
         })
+        console.log('SAVE');
+        console.log(buffer);
     } 
+
 }
 
 module.exports = Users

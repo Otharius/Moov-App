@@ -1,6 +1,6 @@
-<br><br><a href="/workout/training"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+<br><br><a href="/workout/<%=page%>"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 <h1>Seance <%= id + 1%></h1>
-<a href="/workout/endWorkout?id=<%=id + 1%>">Fin </a>
+<a href="/workout/endWorkout?id=<%=id + 1%>&page=<%=page%>">Fin </a>
 
 <p>Nom: <%= userData.workout.seances[id].name %></p>
 <p>Date: <%= userData.workout.seances[id].date %></p>

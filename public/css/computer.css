@@ -7,11 +7,12 @@ body {
     --focus:#009579;
     --hoverRed:rgb(158, 4, 4);
     --createGreen: #4bb544;
-    --createGreenDark: #337e2d;
+    --createGreenDark: #286424;
     --workoutButton: #da7e5e;
     --workoutButtonDark: #90513b;
     --valueButton: steelblue;
     --valueButtonDark: #2d357c;
+    --sleepViolet: blueviolet;
 
     padding: 0px;
     margin: 0px;
@@ -681,6 +682,32 @@ body {
     cursor: pointer;
 }
 
+.workout_div{
+    display: flex;
+}
+
+.workout_yes {
+    width: 47%;
+    border: 1Px solid black;
+    margin-left: 2%;
+    margin-right: 1%;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.workout_no {
+    width: 47%;
+    border: 1px solid black;
+    margin-left: 1%;
+    margin-right: 2%;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
 
@@ -691,6 +718,7 @@ body {
     margin-left: 2%;
     margin-right: 2%;
     flex-direction: column;
+    font-size: 1.2rem;
 }
 
 .workout_day_title {
@@ -699,6 +727,7 @@ body {
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
     color: white;
+    font-family: 'Quicksand', sans-serif;
     background-color: var(--workoutButton);
 }
 
@@ -708,6 +737,7 @@ body {
     border-top-left-radius: 9px;
     border-top-right-radius: 9px;
     color: white;
+    font-family: 'Quicksand', sans-serif;
     background-color: green;
 }
 
@@ -815,6 +845,16 @@ body {
 /*Fin de la page d'accueil*/
 /*Début de la page de sommeil*/
 
+.workout_sleep_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    background-color:var(--sleepViolet);
+    font-family: 'Quicksand', sans-serif;
+}
+
 .etirement {
     max-width: 15rem;
 }
@@ -875,6 +915,7 @@ h3 {
 .coldShower {
     width: 500px;
     border: 2px solid black;
+    margin-right: 15px;
 }
 
 .sleep_div_img {
@@ -914,6 +955,26 @@ h3 {
 
 .stretch_color {
     background-color: #eee;
+}
+
+.workout_sleep_shower {
+    margin-bottom: 25px;
+}
+
+.text_shower {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.sleep_shower {
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+
+.quality_sleep {
+    font-size: 1.1rem;
+    margin-left: 15px;
+    margin-right: 15px;
 }
 
 /*Fin de la page de sommeil*/
@@ -1016,6 +1077,7 @@ h3 {
 .profil_box {
     margin-left: 5%;
     width: 40%;
+    font-size: 1.2rem;
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
 }
 
@@ -1104,6 +1166,7 @@ h3 {
     font-weight: bold;
     margin-left: 5%;
     margin-right: 5%;
+    font-family: 'Quicksand', sans-serif;
   }
   
   .hr_line::before,
@@ -1302,14 +1365,14 @@ h3 {
     border-radius: 15px;
     border: none;
     color: white;
-    background-color: var(--workoutButton);
+    background-color: var(--createGreen);
     font-size: 1rem;
     cursor: pointer;
     width: 400px;
 }
 
 .planWorkout:hover {
-    background-color: var(--workoutButtonDark);
+    background-color: var(--createGreenDark);
 }
 
 .planWorkout:active {
@@ -1322,13 +1385,13 @@ h3 {
     border-radius: 15px;
     border: none;
     color: white;
-    background-color: var(--workoutButton);
+    background-color: var(--createGreen);
     font-size: 1rem;
     cursor: pointer;
 }
 
 .changeWorkout:hover {
-    background-color: var(--workoutButtonDark);
+    background-color: var(--createGreenDark);
 }
 
 .changeWorkout:active {

@@ -1,95 +1,97 @@
 <br> 
-       
-<div class="body_div">
-    <div class="calender_div">
-        <h1>Planification des entrainements</h1>
 
-        <div class="container_button_workout row">
-            <button onclick="closeCreateDiv()" id="btnDraggable" class="planWorkout">Planifier son entrainement</button>
+<div class="workout_day_box">
+
+    <div class="workout_day_title">
+        <p>Planification des entrainements</p>
+    </div>
+
+    <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
+        <button onclick="closeCreateDiv()" id="btnDraggable" class="planWorkout" style="margin-left: 15px;">Planifier son entrainement</button>
+        <% if(old){ %>
+            <form action="/workout/planWorkout" method="POST" id="planWorkout">
+
+                <select name="idPage" class="selectPage">
+            
+                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                        <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                    <% } %>
+
+                </select>
+
+            </form>
+
+            <button class="changeWorkout" form="planWorkout">Modifier entrainement</button>
+        <% }  %> 
+
+    </div>
+</div>
+
+<br><br>
+
+<div class="workout_div">
+    <div class="workout_yes">
+        <div class="workout_day_title">
+            <p>État de forme</p>
+        </div>
+
+        <div>
             <% if(old){ %>
-                <form action="/workout/planWorkout" method="POST" id="planWorkout">
-                    <select name="idPage" class="selectPage">
+        
+                <form action="afterWorkout" method="POST">
+                
+                    <select name="rpe" class="selectPage">
                 
                         <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                            <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                            <% if(userData.workout.seances[i].done === true){ %>
+                                <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                            <% } %>  
                         <% } %>
-                    </select>
-
-                </form>
-
-                <button class="changeWorkout" form="planWorkout">Modifier entrainement</button>
-            <% }  %> 
-  
-        </div>
-
-        <br>        
-               
-    </div>
     
-    <br><br>
-
-    <div class="work_div">
-        <div class="workout_rpe_box work_yes">
-            <div class="workout_day_title">
-                <p>État de forme</p>
-            </div>
-            
-            <div>
-                <% if(old){ %>
-        
-                    <form action="afterWorkout" method="POST">
-                    
-                        <select name="rpe" class="selectPage">
-                    
-                            <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                                <% if(userData.workout.seances[i].done === true){ %>
-                                    <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
-                                <% } %>  
-                            <% } %>
-        
-                        </select>
-        
-                        <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
-        
-                        <div class="table_intensity_content wrap" id="table_intensity_content">
-                            
-                            <%- include('../extern/intensityTable.ejs') %>
-        
+                    </select>
+    
+                    <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
+    
+                    <div class="table_intensity_content wrap" id="table_intensity_content">
+                        
+                        <%- include('../extern/intensityTable.ejs') %>
+    
+                    </div>
+    
+                    <br><br>
+    
+                    <div class="home_difficulty">
+                        
+                        <% for(var i=0; i < 10; i++) { %>
+                            <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                            <label for="d<%=i%>"><%=i%></label>
+                        <% } %>
+                        
                         </div>
-        
-                        <br><br>
-        
-                        <div class="home_difficulty">
                             
-                            <% for(var i=0; i < 10; i++) { %>
-                                <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
-                                <label for="d<%=i%>"><%=i%></label>
-                            <% } %>
+                    <br><br>
+    
+                    <div class="note_div" align=center>
+                        <textarea name="test" id="" cols="30" rows="10">
                             
-                            </div>
-                                
-                        <br><br>
-        
-                        <div class="note_div" align=center>
-                            <textarea name="test" id="" cols="30" rows="10">
-                                
-                            </textarea>
-                        </div>
-        
-                        <br>
-                        <button class="value_button">Valider</button>
-                    </form>          
-                <% } else{ %> 
-                    <p>Pas encore d'entrainements ?</p>
-                <% } %>
-            </div>
-            <br>
-            
+                        </textarea>
+                    </div>
+    
+                    <br>
+                    <button class="value_button">Valider</button>
+                </form>          
+            <% } else{ %> 
+                <p>Pas encore d'entrainements ?</p>
+            <% } %>
         </div>
-       
-        <div class="work_no">
-            <h1>Séances à venir</h1>
+    </div>
 
+    <div class="workout_no">
+        <div class="workout_day_title">
+            <p>Séance à venir</p>
+        </div>
+
+        <div>
             <table>
                 <% if(old){ %>
                     <% j = 0 %>
@@ -106,71 +108,78 @@
                 <% } %>
             </table>
         </div>
-
     </div>
 
-    <br>
-
-    <div class= "evolution">
-        <h1>Évolution</h1>
-
-    <table>        
-        <% let len = userData.health.height.length - 1 %>
-        <% if(userBody){ %>
-            <% for(var i=0; i < userData.health.height.length; i++) { %>
-            <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
-                <tr>
-                  <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                  <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
-                </tr>
-             <% } %>
-        <% } else{ %> 
-            <p>Entrez vos données !</p> 
-        <% } %>
-    </table>
-   
-        <form action="setIMC" method="POST">
-
-            <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
-            <label for="mass">kg</label><br>
-
-            <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
-            <label for="height">cm</label>
-
-            <button class="">Valider</button>
-
-        </form>
-
-        <% if(userBody) { %>
-            <form action="/workout/deleteIMC" method="post">
-
-                <select name="supprimerIMC" id="">
-                
-                    <% for(var i=0; i < userData.health.body.length; i++) { %>
-                        <option value="<%= i %>" name="supprimerIMC"> <%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %></option>
-                    <% } %>
-                </select>
+</div>
     
-                <button>Supprimer</button>
+<br><br>
+
+<div class="workout_day_box">
+
+    <div class="workout_day_title">
+        <p>Evolution</p>
+    </div>
+
+    <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
+        <table>        
+            <% let len = userData.health.height.length - 1 %>
+            <% if(userBody){ %>
+                <% for(var i=0; i < userData.health.height.length; i++) { %>
+                <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
+                    <tr>
+                      <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
+                      <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
+                    </tr>
+                 <% } %>
+            <% } else{ %> 
+                <p>Entrez vos données !</p> 
+            <% } %>
+        </table>
+       
+            <form action="setIMC" method="POST">
+    
+                <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
+                <label for="mass">kg</label><br>
+    
+                <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
+                <label for="height">cm</label>
+    
+                <button class="">Valider</button>
     
             </form>
-        <% } %>
-         
-    </div>
     
-    <br><br><br>
+            <% if(userBody) { %>
+                <form action="/workout/deleteIMC" method="post">
+    
+                    <select name="supprimerIMC" id="">
+                    
+                        <% for(var i=0; i < userData.health.body.length; i++) { %>
+                            <option value="<%= i %>" name="supprimerIMC"> <%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %></option>
+                        <% } %>
+                    </select>
+        
+                    <button>Supprimer</button>
+        
+                </form>
+            <% } %>
+    </div>
+</div>
+    
+<br><br>
 
-    <div class="documentary">
-        <h1>Documentation</h1>
+<div class="workout_day_box">
 
+    <div class="workout_day_title">
+        <p>Documentation</p>
+    </div>
+
+    <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
         <i class="fa-thin fa-arrow-left-long-to-line"></i>
         <div id="myChart" style="max-width:700px; height:400px"></div>
 
     </div>
-            
-    <br>
-    
 </div>
+
 
 
 <div id="mySecondModal" class="see_training_modal">

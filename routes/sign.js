@@ -90,7 +90,7 @@ router.post('/register', (req,res) => {
     const user = new User(pseudo, name, firstname).withEmail(email).withPassword(password, true);
 
     users.add(user);
-    users.save(user.pseudo);
+    users.save();
 
     let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
@@ -152,6 +152,8 @@ router.post('/login', (req,res) => {
         workoutClass.setData(pseudo, userData);
     };
 
+    console.log(users.get(req.session.pseudo) + "SIGN USERS")
+    
     res.render('principal/home', { 
         style: true,
         userBody: dataLenght(userData.health.body),

@@ -39,6 +39,23 @@ function sessionSecure (req, res) {
     };
 };
 
+
+
+router.get('/home', (req,res) => {
+    sessionSecure(req,res);
+
+    const userData = workoutClass.getData(req.session.pseudo);
+ 
+    res.render('principal/home', { 
+        style: true, 
+        userBody: dataLenght(userData.health.body),
+        title: title.home, 
+        user: users.get(req.session.pseudo),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+    });
+});
+
 router.post('/planWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
@@ -110,6 +127,7 @@ router.get('/seance', (req,res) => {
 
     res.render('extern/seance', {
         id: id - 1,
+        page: req.query.page,
         style: false,
         title: title.training,
         userData: userData,
@@ -133,6 +151,7 @@ router.get('/endWorkout', (req,res) => {
 
     res.render('extern/seance', {
         id: id - 1,
+        page: req.query.page,
         style: false,
         title: title.training,
         userData: userData,
