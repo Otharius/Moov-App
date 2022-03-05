@@ -6,7 +6,6 @@ const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 
 const Users = require('../public/javascripts/users');
-const User = require('../public/javascripts/user');
 const users = new Users().load();
 
 
@@ -39,9 +38,10 @@ function sessionSecure (req, res) {
 
 // FONCTION RAJOUTE DES CALORIES
 function addCalorie (calories) {
-    if (calories === "") {
+    if (calories === "" || isNaN(parseInt(calories))) {
         return 0;
-    }; 
+    }
+
     return parseInt(calories);
 };
 
@@ -50,7 +50,6 @@ function addCalorie (calories) {
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
-    console.log(users.get(req.session.pseudo))
 
     const userData = workoutClass.getData(req.session.pseudo);
 

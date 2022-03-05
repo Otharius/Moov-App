@@ -6,8 +6,6 @@ const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 
 const Users = require('../public/javascripts/users');
-const User = require('../public/javascripts/user');
-
 
 
 
@@ -34,38 +32,6 @@ function sessionSecure (req, res) {
         });
     };
 };
-
-
-
-// FONCTION RAJOUTE DES CALORIES
-function addCalorie (calories) {
-    if (calories === "") {
-        return 0;
-    }; 
-    return parseInt(calories);
-};
-
-
-
-// PASSER ADMIN
-router.post('/passAdmin', (req,res) => {
-    const pseudo = req.session.pseudo;
-    const users = new Users().load();
-    const user = users.get(pseudo)
-    user.boost = true;
-    const p = new User(user.pseudo, user.name, user.firstname, user.boost);
-    users.add(p);
-    users.save();
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('principal/profiles', { 
-        userBody: dataLenght(userData.health.body),
-        style: true,
-        title: title.profiles, 
-        error: false,
-        user: users.get(req.session.pseudo),
-    });
-})
 
 
 

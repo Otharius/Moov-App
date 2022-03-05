@@ -4,7 +4,6 @@ const router = express.Router();
 const workoutClass = require('../public/javascripts/userData');
 
 const Users = require('../public/javascripts/users');
-const User = require('../public/javascripts/user');
 const users = new Users().load();
 
 
@@ -25,14 +24,16 @@ function sessionSecure (req, res) {
 
 // FONCTION RAJOUTE DES CALORIES
 function addCalorie (calories) {
-    if (calories === "") {
+
+    if (calories === "" || isNaN(parseInt(calories))) {
         return 0;
-    }; 
+    }
+
     return parseInt(calories);
 };
 
 function addSleep (sleep) {
-    if (sleep === "") {
+    if (sleep === "" || isNaN(parseInt(sleep))) {
         return 0;
     };
     return parseInt(sleep)

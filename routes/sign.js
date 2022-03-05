@@ -151,8 +151,6 @@ router.post('/login', (req,res) => {
         userData = new workoutClass.UserData(pseudo).load();
         workoutClass.setData(pseudo, userData);
     };
-
-    console.log(users.get(req.session.pseudo) + "SIGN USERS")
     
     res.render('principal/home', { 
         style: true,

@@ -7,7 +7,6 @@ const Job = workoutClass.Job;
 const Run = workoutClass.Run;
 
 const Users = require('../public/javascripts/users');
-const User = require('../public/javascripts/user');
 const users = new Users().load();
 
 const exerciceType = require('../data/exercices.json').exerciceType;
@@ -40,7 +39,7 @@ function sessionSecure (req, res) {
 };
 
 
-
+// Affiche la page d'accueil
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
 
@@ -56,6 +55,8 @@ router.get('/home', (req,res) => {
     });
 });
 
+
+// Affiche la page de modification d'entrainement
 router.post('/planWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
@@ -88,6 +89,8 @@ router.get('/newWorkout', (req,res) => {
         userBody: dataLenght(userData.health.body),
     });
 })
+
+
 
 router.get('/changeWorkout', (req,res) => {
 
