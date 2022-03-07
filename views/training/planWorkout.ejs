@@ -9,6 +9,7 @@
         <br><br>
     </div><br><br>
    
+
     <form action="/workout/deleteWorkout" method="post">
         <button class="exercice_delete">Supprimer la séance</button>
     </form>
@@ -17,9 +18,9 @@
 <hr><br>
 
 <% if(userData.workout.seances[id].type === 'musculation') { %>
-        <%- include('../extern/musculation.ejs') %>
+        <%- include('../training/musculation.ejs') %>
 <%}%>
 
 <% if(userData.workout.seances[id].type === 'course') { %>
-    <%- include('../extern/running.ejs') %>
+    <%- include('../training/running.ejs') %>
 <%}%>

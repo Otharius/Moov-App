@@ -53,7 +53,7 @@ router.get('/home', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('principal/home', { 
+    res.render('home/main', { 
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
@@ -74,7 +74,7 @@ router.post('/homeAddCal', (req,res) => {
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
 
-    res.render('principal/home', { 
+    res.render('home/main', { 
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
@@ -95,7 +95,7 @@ router.post('/homeResetCal', (req,res) => {
     userData.save();
 
 
-    res.render('principal/home', { 
+    res.render('home/main', { 
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home, 

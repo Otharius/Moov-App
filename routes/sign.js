@@ -42,7 +42,7 @@ function dataLenght (data) {
 
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
-    res.render('principal/login', { 
+    res.render('sign/login', { 
         style: false,
         title: title.login, 
         error: false,
@@ -53,7 +53,7 @@ router.get('/login', (req,res) => {
 
 // LA PAGE DE CREATION DE COMPTE
 router.get('/register', (req,res) => {
-    res.render('principal/register', { 
+    res.render('sign/register', { 
         style:false,
         title: title.register,
         error: false,
@@ -111,17 +111,6 @@ router.post('/register', (req,res) => {
 
 
 
-// LA PAGE DE CONNEXION
-router.get('/login', (req,res) => { 
-    res.render('principal/login', {
-        style: false, 
-        title: title.login, 
-        error: false,
-    });
-});
-
-
-
 // SYSTEME DE CONNEXION 
 router.post('/login', (req,res) => {
 
@@ -129,18 +118,18 @@ router.post('/login', (req,res) => {
     const password = req.body.password;
 
     if (pseudo === '' || password === '') {
-        res.render('principal/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
+        res.render('sign/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (!users.exist(pseudo)) {
-        res.render('principal/login', { title: title.login, message: "Utilisateur introuvable", error: true, style: false});
+        res.render('sign/login', { title: title.login, message: "Utilisateur introuvable", error: true, style: false});
         return;
     };
 
     const user = users.get(pseudo);
     if (!user.checkPassword(password)) {
-        res.render('principal/login', { title: title.login, message: "Mot de passe incorrect", error: true, style: false });
+        res.render('sign/login', { title: title.login, message: "Mot de passe incorrect", error: true, style: false });
         return;
     };
 
@@ -152,7 +141,7 @@ router.post('/login', (req,res) => {
         workoutClass.setData(pseudo, userData);
     };
     
-    res.render('principal/home', { 
+    res.render('home/main', { 
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home,
@@ -182,7 +171,7 @@ router.post('/sendMail', (req,res) => {
 // SYSTEME DE DECONNEXION
 router.post('/logout', (req,res) => {
     req.session.destroy();
-    res.render('principal/login', { 
+    res.render('sign/login', { 
         style: false,
         title: title.login, 
         error: false,

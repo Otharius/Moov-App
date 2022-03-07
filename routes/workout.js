@@ -39,13 +39,13 @@ function sessionSecure (req, res) {
 };
 
 
-// Affiche la page d'accueil
+// Affiche la page d'accueil depuis la page de séance
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
 
     const userData = workoutClass.getData(req.session.pseudo);
  
-    res.render('principal/home', { 
+    res.render('home/main', { 
         style: true, 
         userBody: dataLenght(userData.health.body),
         title: title.home, 
@@ -62,7 +62,7 @@ router.post('/planWorkout', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     req.session.idSeance = parseInt(req.body.idPage)
 
-    res.render('extern/planWorkout', { 
+    res.render('training/planWorkout', { 
         id: req.session.idSeance,
         style: false,
         title: title.training,
@@ -79,7 +79,7 @@ router.get('/newWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('extern/newWorkout', { 
+    res.render('training/newWorkout', { 
         style: true,
         title: title.training,
         userData: userData,
@@ -96,7 +96,7 @@ router.get('/changeWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('extern/changeWorkout', { 
+    res.render('training/changeWorkout', { 
         style: true,
         title: title.training,
         userData: userData,
@@ -112,7 +112,7 @@ router.get('/training', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
 
-    res.render('principal/training', {
+    res.render('training/main', {
         style: true,
         title: title.training,
         userData: userData,
@@ -128,7 +128,7 @@ router.get('/seance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
 
-    res.render('extern/seance', {
+    res.render('training/seance', {
         id: id - 1,
         page: req.query.page,
         style: false,
@@ -152,7 +152,7 @@ router.get('/endWorkout', (req,res) => {
     userData.workout.seances[id - 1].done = true;
     userData.save()
 
-    res.render('extern/seance', {
+    res.render('training/main', {
         id: id - 1,
         page: req.query.page,
         style: false,
@@ -174,7 +174,7 @@ router.get('/deleteJob', (req, res) => {
 
     userData.save()
 
-    res.render('extern/planWorkout', {
+    res.render('training/planWorkout', {
         id: req.session.idSeance,
         style: false,
         title: title.training, 
@@ -195,7 +195,7 @@ router.post('/addJob', (req, res) => {
 
     userData.save()
 
-    res.render('extern/planWorkout', { 
+    res.render('training/planWorkout', { 
         id: req.session.idSeance,
         style: false,
         title: title.training, 
@@ -222,7 +222,7 @@ router.post('/addWorkout', (req,res) => {
     
     userData.workout.add(seance);
     userData.save();
-    res.render('principal/training', { 
+    res.render('training/main', { 
         style: true,
         title: title.training, 
         userData: userData,
@@ -246,7 +246,7 @@ router.post('/afterWorkout', (req,res) => {
     s.done = true;
     userData.save();
     
-    res.render('principal/training', { 
+    res.render('training/main', { 
         style: true,
         title: title.training, 
         userData: userData,
@@ -266,7 +266,7 @@ router.post('/deleteWorkout', (req, res) => {
     userData.workout.delete(req.session.idSeance);
     userData.save();
    
-    res.render('principal/training', { 
+    res.render('training/main', { 
         style: true,
         title: title.training, 
         userData: userData,
@@ -291,7 +291,7 @@ router.post('/setIMC', (req, res) => {
         userData.save()
     };
 
-    res.render('principal/training', { 
+    res.render('training/main', { 
         style: true,
         title: title.training, 
         userData: workoutClass.getData(pseudo),
@@ -311,7 +311,7 @@ router.post('/deleteIMC', (req, res) => {
     userData.health.delete(req.body.supprimer);
     userData.save();
    
-    res.render('principal/training', { 
+    res.render('training/main', { 
         style: true,
         title: title.training, 
         userData: userData,

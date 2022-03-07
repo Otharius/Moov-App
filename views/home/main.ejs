@@ -12,7 +12,7 @@
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <% j = j + 1 %>
                     <tr>  
-                        <td><a href="/workout/seance?id=<%=j%>&page=home"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
+                        <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
                     </tr>
                  <% } %>
             <% } else{ %> 
@@ -51,7 +51,7 @@
 
                 <div class="table_intensity_content wrap" id="table_intensity_content">
                     
-                    <%- include('../extern/intensityTable.ejs') %>
+                    <%- include('../training/intensityTable.ejs') %>
 
                 </div>
 

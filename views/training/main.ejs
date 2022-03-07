@@ -40,10 +40,10 @@
         
                 <form action="afterWorkout" method="POST">
                 
-                    <select name="rpe" class="selectPage">
+                    <select name="rpe" class="selectPageRPE">
                 
                         <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                            <% if(userData.workout.seances[i].done === true){ %>
+                            <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
                                 <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
                             <% } %>  
                         <% } %>
@@ -54,7 +54,7 @@
     
                     <div class="table_intensity_content wrap" id="table_intensity_content">
                         
-                        <%- include('../extern/intensityTable.ejs') %>
+                        <%- include('../training/intensityTable.ejs') %>
     
                     </div>
     
@@ -72,9 +72,7 @@
                     <br><br>
     
                     <div class="note_div" align=center>
-                        <textarea name="test" id="" cols="30" rows="10">
-                            
-                        </textarea>
+
                     </div>
     
                     <br>
@@ -99,7 +97,7 @@
                         <% if(userData.workout.seances[i].done === false) { %>
                             <% j = j + 1 %>
                             <tr>  
-                                <td><a href="/workout/seance?id=<%=j%>&page=training">Séance <%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
+                                <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
                             </tr>
                         <% } %>  
                      <% } %>
@@ -131,34 +129,35 @@
                       <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
                     </tr>
                  <% } %>
-            <% } else{ %> 
-                <p style="text-align: center;">Entrez vos données !</p> 
-            <% } %>
+            <% } %> 
+
         </table>
-       
-            <form action="setIMC" method="POST">
+
+            <div class="set_imc_box">
+                <form action="setIMC" method="POST">    
     
-                <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
-                <label for="mass">kg</label><br>
-    
-                <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
-                <label for="height">cm</label>
-    
-                <button class="">Valider</button>
-    
-            </form>
+                    <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
+                    <label for="mass">kg</label><br>
+        
+                    <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
+                    <label for="height">cm</label><br>
+        
+                    <button class="button_add_imc">Valider</button>
+        
+                </form>
+            </div>
     
             <% if(userBody) { %>
                 <form action="/workout/deleteIMC" method="post">
     
-                    <select name="supprimerIMC" id="">
+                    <select name="supprimerIMC" class="select_delete_imc">
                     
                         <% for(var i=0; i < userData.health.body.length; i++) { %>
                             <option value="<%= i %>" name="supprimerIMC"> <%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %></option>
                         <% } %>
                     </select>
         
-                    <button>Supprimer</button>
+                    <button class="button_delete_imc">Supprimer</button>
         
                 </form>
             <% } %>
@@ -188,11 +187,11 @@
 </div>
 
 <div id="myThirdModal" class="table_intensity_modal">
-    <%- include('../extern/intensityTable.ejs') %>
+    <%- include('../training/intensityTable.ejs') %>
 </div>
 
 <div id="wrapper" class="move_div wrapper">
-    <%- include('../extern/newWorkout.ejs') %>
+    <%- include('../training/newWorkout.ejs') %>
 </div>
 
 

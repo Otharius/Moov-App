@@ -44,7 +44,7 @@ app.use('/profiles', require('./routes/profiles'));
 
 // Page quand on lance le serveur
 router.get('/', function(req,res) {
-    res.render('principal/login', { title: "My App - Login", error: false, style: false})
+    res.render('sign/login', { title: "My App - Login", error: false, style: false})
 });
 
 
