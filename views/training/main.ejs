@@ -24,7 +24,7 @@
             </form>
 
             <button class="changeWorkout" form="planWorkout">Modifier entrainement</button>
-        <% }  %> 
+        <% } %> 
 
     </div>
 </div>
@@ -40,47 +40,52 @@
         <div>
             <% if(old){ %>
         
-                <form action="afterWorkout" method="POST">
+                <% if(seance){ %>
+                    <form action="afterWorkout" method="POST">
                 
-                    <select name="rpe" class="selectPageRPE">
-                
-                        <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                            <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
-                                <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
-                            <% } %>  
-                        <% } %>
-    
-                    </select>
-    
-                    <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
-    
-                    <div class="table_intensity_content wrap move_table" id="table_intensity_content">
-                        
-                        <%- include('../training/intensityTable.ejs') %>
-    
-                    </div>
-    
-                    <br><br>
-    
-                    <div class="home_difficulty">
-                        
-                        <% for(var i=0; i < 10; i++) { %>
-                            <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
-                            <label for="d<%=i%>"><%=i%></label>
-                        <% } %>
-                        
-                        </div>
+                        <select name="rpe" class="selectPageRPE">
+                    
+                            <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                                <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
+                                    <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                                <% } %>  
+                            <% } %>
+        
+                        </select>
+        
+                        <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
+        
+                        <div class="table_intensity_content wrap move_table" id="table_intensity_content">
                             
-                    <br><br>
+                            <%- include('../training/intensityTable.ejs') %>
+        
+                        </div>
+        
+                        <br><br>
+        
+                        <div class="home_difficulty">
+                            
+                            <% for(var i=0; i < 10; i++) { %>
+                                <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                                <label for="d<%=i%>"><%=i%></label>
+                            <% } %>
+                            
+                            </div>
+                                
+                        <br><br>
+        
+                        <div class="note_div" align=center>
     
-                    <div class="note_div" align=center>
+                        </div>
+        
+                        <br>
+                        <button class="value_button">Valider</button>
+                    </form>          
+                <% } else {%>
+                    <p style="text-align: center;">Terminez vos entrainements avant !</p>
+                <% } %>
 
-                    </div>
-    
-                    <br>
-                    <button class="value_button">Valider</button>
-                </form>          
-            <% } else{ %> 
+            <% } else { %> 
                 <p style="text-align: center;">Pas encore d'entrainements ?</p>
             <% } %>
         </div>
@@ -136,7 +141,7 @@
         </table>
 
             <div class="set_imc_box">
-                <form action="setIMC" method="POST">    
+                <form action="/workout/setIMC" method="POST">    
     
                     <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
                     <label for="mass">kg</label><br>
@@ -150,7 +155,7 @@
             </div>
     
             <% if(userBody) { %>
-                <form action="/workout/deleteIMC" method="post">
+                <form action="/workout/deleteIMC" method="POST">
     
                     <select name="supprimerIMC" class="select_delete_imc">
                     

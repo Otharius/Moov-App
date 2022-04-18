@@ -490,7 +490,7 @@ body {
 /*Fin de la page d'entrainement*/
 /*Début de la page d'accueil*/
 
-.workout_day_box, .evolution_home_box, .workout_rpe_box {
+.workout_day_box, .evolution_home_box, .workout_rpe_box, .documentation_home_box {
     display: flex;
     border: 1px solid black;
     border-radius: 10px;
@@ -832,13 +832,6 @@ h3 {
     padding: 1% 1%;
 }
 
-.calorie h3 {
-    margin-top: 3%;
-}
-
-.not_workout {
-    text-align: center;
-}
 
 /*Fin de la page d'alimentation*/
 /*Début de la page de profil*/
@@ -1306,4 +1299,23 @@ h3 {
 
 .seeances_table tr td {
     width: 350px;
+}
+
+
+
+/* La page d'accueil */
+
+.not_workout {
+    text-align: center;
+}
+
+
+.documentation_day_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color:#aaa;
 }

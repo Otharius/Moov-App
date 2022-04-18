@@ -1,23 +1,53 @@
+///////////////////
+/// Les modules ///
+///////////////////
+
+
+// Modules de base
 const express = require('express');
 const router = express.Router();
 
+
+// Modules de séances
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Run = workoutClass.Run;
 
+
+// Modules des utilisateurs
 const Users = require('../public/javascripts/users');
 const users = new Users().load();
 
+
+
+/////////////////
+/// Variables ///
+/////////////////
+
+// Variables pour les listes d'exercices
 const exerciceType = require('../data/exercices.json').exerciceType;
 const exMuscu =  require('../data/exercices.json').exerciceWorkout;
 
 
 
-//FONCTION SI ON A PAS D'ENTRAINEMENT
+/* A mettre dans les get training main
+* Le style (boolean)
+* Le titre (objet)
+* UserData (objet)
+* Liste des exos (tableau)
+*/
+
+/////////////////////
+/// Les fonctions ///
+/////////////////////
+
+
+
+//Fonction qui vérifie si il y a du contenu dans un tableau
 function dataLenght (data) {
     try {
-        if (data.length) {
+        if (data.length || data == null) {
            return true;
         };
     } catch (error) {
@@ -27,7 +57,7 @@ function dataLenght (data) {
 
 
 
-// FONCTION POUR LA SECURISATION DES SESSIONS
+// Fonction qui vérifie si la session est existante
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
         res.render('principal/login', {
@@ -36,6 +66,23 @@ function sessionSecure (req, res) {
             error: false,
         });
     };
+};
+
+
+
+// Fonction qui classe les séances finies et les séances en cours
+function endWorkout (data) {
+    let l = [];
+
+    for(let i=0; i < data.workout.seances.length; i++) {
+        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+            l.push(data.workout.seances);
+        };
+     };
+     if (l.length > 0) {
+         return l;
+     };
+     return null;
 };
 
 
@@ -58,11 +105,13 @@ router.get('/home', (req,res) => {
 
 
 
-
 //////////////////////////////////////////
 /// Pour la création des entrainements ///
 //////////////////////////////////////////
 
+
+
+// Pour créer un nouvel entrainement
 router.get('/newWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
@@ -100,71 +149,17 @@ router.post('/planWorkout', (req,res) => {
 
 
 
-
-
-router.get('/changeWorkout', (req,res) => {
-
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('training/changeWorkout', { 
-        style: true,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
-    });
-})
-
-// LA PAGE D'ENTRAINEMENT
-router.get('/training', (req,res) => {
-    sessionSecure(req, res);
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('training/main', {
-        style: true,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
-    });
-});
-
-router.get('/seance', (req,res) => {
-    sessionSecure(req, res);
-    const userData = workoutClass.getData(req.session.pseudo);
-    const id = req.query.id;
-
-    res.render('training/seance', {
-        id: id - 1,
-        page: req.query.page,
-        style: false,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
-    });
-});
-
-
-
-
+// La page qui fait finir l'entrainement
 router.get('/endWorkout', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
-    console.log(id)
-    console.log(userData.workout.seances[id])
     userData.workout.seances[id - 1].done = true;
     userData.save()
 
     res.render('training/main', {
         id: id - 1,
+        seance: dataLenght(endWorkout(userData)),
         page: req.query.page,
         style: false,
         title: title.training,
@@ -178,7 +173,58 @@ router.get('/endWorkout', (req,res) => {
 
 
 
+// L'after entrainement
+router.post('/afterWorkout', (req,res) => {
+    const seanceDifficulty = req.body.difficulty;
+    const pseudo = req.session.pseudo;
+    const userData = workoutClass.getData(pseudo);
+    const s = userData.workout.seances[req.body.rpe];
+    s.difficulty = seanceDifficulty;
+    s.done = true;
+    userData.save();
+    
+    res.render('training/main', { 
+        style: true,
+        title: title.training, 
+        userData: userData,
+        seance: dataLenght(endWorkout(userData)),
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+});
 
+
+
+// Supprime un entrainement
+router.post('/deleteWorkout', (req, res) => {
+    const pseudo = req.session.pseudo;
+    const userData =  workoutClass.getData(pseudo);
+    userData.workout.delete(req.session.idSeance);
+    userData.save();
+   
+    res.render('training/main', { 
+        style: true,
+        title: title.training, 
+        seance: dataLenght(endWorkout(userData)),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+});
+
+
+
+/////////////////////////////////////
+/// Pour la gestion des exercices ///
+/////////////////////////////////////
+
+
+
+// La page qui supprime un exercice 
 router.get('/deleteJob', (req, res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     userData.workout.deleteJob(req.query.job, req.session.idSeance)
@@ -198,6 +244,9 @@ router.get('/deleteJob', (req, res) => {
     });
 })
 
+
+
+// La page qui ajoute un exercice
 router.post('/addJob', (req, res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
@@ -221,7 +270,7 @@ router.post('/addJob', (req, res) => {
 
 
 
-// AJOUTE DES ENTRAINEMENTS
+// Ajoute le contenu de la séance
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
@@ -232,6 +281,7 @@ router.post('/addWorkout', (req,res) => {
     userData.save();
     res.render('training/main', { 
         style: true,
+        seance: dataLenght(endWorkout(userData)),
         title: title.training, 
         userData: userData,
         exerciceType: exerciceType,
@@ -244,46 +294,72 @@ router.post('/addWorkout', (req,res) => {
 
 
 
-// L'AFTER ENTRAINEMENT 
-router.post('/afterWorkout', (req,res) => {
-    const seanceDifficulty = req.body.difficulty;
-    const pseudo = req.session.pseudo;
-    const userData = workoutClass.getData(pseudo);
-    const s = userData.workout.seances[req.body.rpe];
-    s.difficulty = seanceDifficulty;
-    s.done = true;
-    userData.save();
-    
-    res.render('training/main', { 
+//////////////////////////////////
+/// Pour les différentes pages ///
+//////////////////////////////////
+
+
+
+// LA PAGE D'ENTRAINEMENT
+router.get('/training', (req,res) => {
+    sessionSecure(req, res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    res.render('training/main', {
         style: true,
-        title: title.training, 
+        title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
+        seance: dataLenght(endWorkout(userData)),
         exMuscu: exMuscu,
         exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
     });
 });
 
 
 
-// SUPPRIMER UNE SEANCE
-router.post('/deleteWorkout', (req, res) => {
+// La page de la séance choisie
+router.get('/seance', (req,res) => {
+    sessionSecure(req, res);
+    const userData = workoutClass.getData(req.session.pseudo);
+    const id = req.query.id;
+
+    res.render('training/seance', {
+        id: id - 1,
+        page: req.query.page,
+        style: false,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+});
+
+
+
+// La page avec toutes les séances
+router.get('/allSeances', (req, res) => {
     const pseudo = req.session.pseudo;
     const userData =  workoutClass.getData(pseudo);
-    userData.workout.delete(req.session.idSeance);
-    userData.save();
    
-    res.render('training/main', { 
-        style: true,
+    res.render('training/allSeances', { 
+        style: false,
         title: title.training, 
         userData: userData,
         old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
         exerciceType: exerciceType,
     });
 });
+
+
+
+////////////////////////////////
+/// L'évolution poids/taille ///
+////////////////////////////////
 
 
 
@@ -301,6 +377,7 @@ router.post('/setIMC', (req, res) => {
 
     res.render('training/main', { 
         style: true,
+        seance: dataLenght(endWorkout(userData)),
         title: title.training, 
         userData: workoutClass.getData(pseudo),
         old: dataLenght(userData.workout.seances),
@@ -312,7 +389,7 @@ router.post('/setIMC', (req, res) => {
 
 
 
-// SUPPRIMER Une IMC
+// Supprime une IMC
 router.post('/deleteIMC', (req, res) => {
     const pseudo = req.session.pseudo;
     const userData =  workoutClass.getData(pseudo);
@@ -323,29 +400,13 @@ router.post('/deleteIMC', (req, res) => {
         style: true,
         title: title.training, 
         userData: userData,
+        seance: dataLenght(endWorkout(userData)),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
         exerciceType: exerciceType,
     });
 });
-
-
-router.get('/allSeances', (req, res) => {
-    const pseudo = req.session.pseudo;
-    const userData =  workoutClass.getData(pseudo);
-   
-    res.render('training/allSeances', { 
-        style: false,
-        title: title.training, 
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-});
-
-
 
 
 
