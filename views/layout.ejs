@@ -13,7 +13,7 @@
     <meta name="viewport" content="width=device-width"/>
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
-
+ 
 <body>
   <% if(style){ %>
     <span class="navbar">
@@ -53,11 +53,11 @@ function onDrag({movementX, movementY}){
     wrapper.style.left = `${leftVal + movementX}px`;
     wrapper.style.top = `${topVal + movementY}px`;
 }
-  header.addEventListener("mousedown", ()=>{
+  header.addEventListener("mousedown", () => {
     header.classList.add("active");
     header.addEventListener("mousemove", onDrag);
 });
-  document.addEventListener("mouseup", ()=>{
+  document.addEventListener("mouseup", () => {
     header.classList.remove("active");
     header.removeEventListener("mousemove", onDrag);
 });
@@ -102,33 +102,6 @@ function choix () {
     b.style.display = 'block';
   };
 };
-
-function reload () {
-  location.reload()
-}
-
-google.charts.load('current',{packages:['corechart']});
-
-google.charts.setOnLoadCallback(drawChart);
-
-function drawChart() {
-  // Set Data
-  var data = google.visualization.arrayToDataTable([
-    ['Taille', 'Poids'],
-    [180,80], [180, 70]
-    ]);
-  // Set Options
-  var options = {
-    title: 'Evolution taille-poids',
-    hAxis: {title: 'Taille en centimètre'},
-    vAxis: {title: 'Poids en kg'},
-    legend: 'none'
-};
-// Draw Chart
-var chart = new google.visualization.LineChart(document.getElementById('myChart'));
-chart.draw(data, options);
-}
-
 
 
 </script>

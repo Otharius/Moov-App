@@ -14,7 +14,9 @@
                 <select name="idPage" class="selectPage">
             
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                        <% if (userData.workout.seances.difficulty != '') { %>
+                            <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                        <% } %>
                     <% } %>
 
                 </select>
@@ -52,7 +54,7 @@
     
                     <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
     
-                    <div class="table_intensity_content wrap" id="table_intensity_content">
+                    <div class="table_intensity_content wrap move_table" id="table_intensity_content">
                         
                         <%- include('../training/intensityTable.ejs') %>
     
@@ -92,7 +94,7 @@
         <div>
             <table>
                 <% if(old){ %>
-                    <% j = 0 %>
+                    <% var j = 0 %>
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <% if(userData.workout.seances[i].done === false) { %>
                             <% j = j + 1 %>
@@ -162,6 +164,12 @@
                 </form>
             <% } %>
     </div>
+
+    <% if(old){ %>
+        <a href="/workout/allSeances">Voir les séances passées</a>
+    <% } %> 
+        
+    
 </div>
     
 <br><br>

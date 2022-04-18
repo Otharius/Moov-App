@@ -25,7 +25,7 @@ body {
     justify-content: space-around;
     height: 50px;
     border: 1px solid black;
-    background-color: red;
+    background-color:  #787dd8  ;
 }
 
 .navbar a {
@@ -36,7 +36,7 @@ body {
 }
 
 .navbar a:hover {
-    background-color: green;
+    background-color: #2d34c5;
 }
 
 .navbar a i {
@@ -164,170 +164,6 @@ body {
 /*Fin connexion et inscription*/
 /*Début de la page d'entrainement*/
 
-.addExercice {
-    padding: 10px 20px;
-    border: 1px solid black;
-    cursor: pointer;
-}
-
-.addExercice:active {
-    transform: scale(0.99);
-}
-
-.calender_div {
-    margin-left: 4%;
-    margin-right: 5%;
-    border: 1px solid black;
-    width: 90%;
-    max-width: 90%;
-    padding: 1rem;
-    border-radius: 5px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);;
-}
-
-.plus {
-    display: inline-block;
-    cursor: pointer;
-}
-
-
-.delete {
-    margin: 5px;
-    width: 50px;
-    border-radius: 30%;
-}
-
-.delete:hover {
-    cursor: pointer;
-}
-
-.delete:active {
-    transform: scale(0.98);
-}
-
-.icon {
-    margin-bottom: -0.25%;
-}
-
-.body_div h1{
-    font-size: 1.5rem;
-    text-align: center;
-}
-
-.calender_div, .evolution, .documentary{
-    margin-left: 2%;
-    margin-right: 2%;
-    border: 1px solid black;
-    width: 95%;
-    max-width: 95%;
-    border-radius: 8px;
-    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
-}
-
-.calender_div {
-    width: 92.5%;
-}
-
-.work_yes {
-    width: 42%;
-    margin-right: 3%;
-    border: 1px solid black;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-left: 2%;
-    display: block;
-    float: left;
-}
-
-.work_no {
-    display: block;
-    float: right;
-    width: 42%;
-    margin-left: 2%;
-    border: 1px solid black;
-    padding: 1rem;
-    border-radius: 8px;
-    margin-right: 3%;
-}
-
-.evolution {
-    margin-top: 1rem;
-    display: inline-block;
-}
-
-.exerciceChoice, .ExerciceChoice {
-    text-decoration: none;
-    border: none;
-    text-align: center;
-    margin-left: 45%;
-    font-weight: bold;
-    font-size: 1.5rem;
-}
-
-.yes {
-    border-radius: 15px;
-    border: none;
-    color: white;
-    background-color: crimson;
-}
-
-.do_work li{
-    display: inline-block;
-    width: 6rem;
-    padding: 1rem 2rem;
-    margin: 0;
-    border: 1px solid black;
-}
-
-.do_work li:hover{
-    cursor: pointer;
-}
-
-.yes {
-    background-color: green;
-    color: white;
-    border-color:green;
-    text-align: center;
-}
-
-.yes:hover {
-    background-color: rgb(14, 88, 14);
-}
-
-.yes:active {
-    transform: scale(0.98);
-}
-
-.little {
-    background-color: orange;
-    color: white;
-    border-color: orange;
-    text-align: center;
-}
-
-.little:hover{
-    background-color: var(--orangeFoncé);
-}
-
-.little:active {
-    transform: scale(0.98);
-}
-
-.no {
-    background-color: red;
-    color: white;
-    border-color: red;
-    text-align: center;
-}
-
-.no:hover{
-    background-color: rgb(158, 4, 4);
-}
-
-.no:active {
-    transform: scale(0.98);
-}
-
 
 .dif:checked + label {
     background-color: rgb(2, 2, 185); 
@@ -337,10 +173,6 @@ body {
 
 .dif {
     display: none;
-}
-
-.difficulty label{
-    border: 1px solid black;
 }
 
 .dif + label{
@@ -373,20 +205,6 @@ body {
     height: 15rem;
 }
 
-.button_see, .button_change {
-    border-radius: 10px;
-    color: white;
-    background-color: tomato;
-    border: none;
-    width: 25%;
-    height: 5%;
-    cursor: pointer;
-}
-
-.button_see:active, .button_change:active, .value_button:active {
-    transform: scale(0.98);
-}
-
 .value_button {
     text-align: center;
     color: white;
@@ -397,55 +215,15 @@ body {
     margin: auto;
     font-size: 1rem;
     display: block;
-}
-
-.work_done + label{
-    padding: 0.5rem 1rem;
-    font-size: 1.25rem;
-    line-height: 1.5;
-    border-radius: 0.3rem;
-    color: #fff;
-    background-color: #6c757d;
-    border: 1px solid transparent;
-    transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 
-.work_done {
-    display: none;
+.value_button:hover {
+    background-color: var(--valueButtonDark);
 }
 
-.yes:checked + label{
-    color: white;
-    background-color: green;
-}
-
-.yes + label {
-    float: right;
-    text-align: center;
-    margin-right: 20%
-}
-
-.no + label {
-    float: right;
-    text-align: center;    
-    margin-right: 5%;
-}
-
-.little + label {
-    float: right;
-    text-align: center;  
-    margin-right: 5%;  
-}
-
-.little:checked + label{
-    color: white;
-    background-color: orange;
-}
-
-.no:checked + label{
-    color: white;
-    background-color: red;
+.value_button:active {
+    transform: scale(0.98);
 }
 
 .training_modal, .see_training_modal, .table_intensity_modal {
@@ -599,7 +377,7 @@ body {
 }
 
 .title_workout {
-    margin-left: 38%;
+    margin-left: 35%;
     text-decoration: underline;
 }
 
@@ -1200,7 +978,7 @@ h3 {
     margin-top: 200px;
 }
 
-.wrapper header.active{
+.wrapper header.active, .move_table.active{
     cursor: move;
     user-select: none;
 }
@@ -1519,4 +1297,13 @@ h3 {
 .select_delete_imc {
     width: 250px;
     font-size: 1rem;
+} 
+
+.seeances_table {
+    display: flex;
+    justify-content: center;
+}
+
+.seeances_table tr td {
+    width: 350px;
 }

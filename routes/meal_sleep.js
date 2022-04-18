@@ -33,10 +33,10 @@ function addCalorie (calories) {
 };
 
 function addSleep (sleep) {
-    if (sleep === "" || isNaN(parseInt(sleep))) {
+    if (sleep === "" || isNaN(parseFloat(sleep))) {
         return 0;
     };
-    return parseInt(sleep)
+    return parseFloat(sleep)
 }
 
 

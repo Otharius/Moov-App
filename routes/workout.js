@@ -39,6 +39,7 @@ function sessionSecure (req, res) {
 };
 
 
+
 // Affiche la page d'accueil depuis la page de séance
 router.get('/home', (req,res) => {
     sessionSecure(req,res);
@@ -54,6 +55,29 @@ router.get('/home', (req,res) => {
         old: dataLenght(userData.workout.seances),
     });
 });
+
+
+
+
+//////////////////////////////////////////
+/// Pour la création des entrainements ///
+//////////////////////////////////////////
+
+router.get('/newWorkout', (req,res) => {
+
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    res.render('training/newWorkout', { 
+        style: true,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+})
+
 
 
 // Affiche la page de modification d'entrainement
@@ -75,20 +99,6 @@ router.post('/planWorkout', (req,res) => {
 })
 
 
-router.get('/newWorkout', (req,res) => {
-
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('training/newWorkout', { 
-        style: true,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
-    });
-})
 
 
 
@@ -148,7 +158,8 @@ router.get('/endWorkout', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
-
+    console.log(id)
+    console.log(userData.workout.seances[id])
     userData.workout.seances[id - 1].done = true;
     userData.save()
 
@@ -214,9 +225,6 @@ router.post('/addJob', (req, res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-
-    const i = Number(req.body.copier);
-    const newSeance = userData.workout.seances;
 
     const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
     
@@ -285,7 +293,7 @@ router.post('/setIMC', (req, res) => {
     const userData =  workoutClass.getData(pseudo);
     const body = req.body.body;
     const height = req.body.height;
-
+ 
     if (body != '' && height != '') {
         userData.health.add(parseInt(body), parseInt(height));
         userData.save()
@@ -321,6 +329,23 @@ router.post('/deleteIMC', (req, res) => {
         exerciceType: exerciceType,
     });
 });
+
+
+router.get('/allSeances', (req, res) => {
+    const pseudo = req.session.pseudo;
+    const userData =  workoutClass.getData(pseudo);
+   
+    res.render('training/allSeances', { 
+        style: false,
+        title: title.training, 
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+});
+
+
 
 
 
