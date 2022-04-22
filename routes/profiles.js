@@ -1,15 +1,31 @@
+///////////////////
+/// Les modules ///
+///////////////////
+
+
+
+// Les modules de base
 const express = require('express');
 const router = express.Router();
 
+
+// Les modules d'entrainement
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 
+// Les modules d'utilisateurs
 const Users = require('../public/javascripts/users');
 
 
 
-//FONCTION SI ON A PAS D'ENTRAINEMENT
+/////////////////////
+/// Les fonctions ///
+/////////////////////
+
+
+
+// Fonction qui vérifie le contenue d'une liste
 function dataLenght (data) {
     try {
         if (data.length) {
@@ -22,7 +38,7 @@ function dataLenght (data) {
 
 
 
-// FONCTION POUR LA SECURISATION DES SESSIONS
+// Fonction qui voit si la session a été crée
 function sessionSecure (req, res) {
     if (req.session.pseudo === undefined) {
         res.render('principal/login', {
@@ -34,8 +50,13 @@ function sessionSecure (req, res) {
 };
 
 
+/////////////////////////
+/// Les fonctions GET ///
+/////////////////////////
 
- // PAGE DE PROFILE
+
+
+ // Vers la page de profile
  router.get('/profiles', (req,res) => {
     sessionSecure(req,res);
     const users = new Users().load();
@@ -53,7 +74,12 @@ function sessionSecure (req, res) {
 
 
 
-// SYSTEME DE CHANGEMENT DE MOT DE PASSE
+//////////////////////////
+/// Les fonctions POST ///
+//////////////////////////
+
+
+// Système de changement du mot de passe
 router.post('/changePassword', (req,res) => {
 
     const users = new Users().load();

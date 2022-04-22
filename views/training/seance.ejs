@@ -5,15 +5,23 @@
     <a href="/workout/endWorkout?id=<%=id + 1%>&page=<%=page%>" class="end_seance">Séance terminée</a>
 <% } %>
 
+<div class="seance_information">
 
-<p>Date: <%= userData.workout.seances[id].date %></p>
-<p>Fait: <%= userData.workout.seances[id].done %></p>
-<p>Difficulté: <%= userData.workout.seances[id].difficulty %></p>
-<p>Type: <%= userData.workout.seances[id].type %></p>
+    <p>Date: <%= userData.workout.seances[id].date %></p>
+    <p>Fait: <%if(userData.workout.seances[id].done == true) { %>
+        <b class="true">Oui</b>
+        <% } else { %>
+        <b class="false">Non</b>
+        <% } %>
+    </p>
+    <p>Difficulté: <%= userData.workout.seances[id].difficulty %></p>
+    <p>Type: <%= userData.workout.seances[id].type %></p>
 
-<% if (userData.workout.seances[id].detail != '') { %>
-    <p>Détail: <%= userData.workout.seances[id].detail %></p>
-<% } %>
+    <% if (userData.workout.seances[id].detail != '') { %>
+        <p>Détail: <%= userData.workout.seances[id].detail %></p>
+    <% } %>
+
+</div>
 
 
 <table class="tableJob">

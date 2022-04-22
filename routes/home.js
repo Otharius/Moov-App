@@ -46,6 +46,22 @@ function addCalorie (calories) {
 };
 
 
+// Fonction qui classe les séances finies et les séances en cours
+function endWorkout (data) {
+    let l = [];
+
+    for(let i=0; i < data.workout.seances.length; i++) {
+        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+            l.push(data.workout.seances);
+        };
+     };
+     if (l.length > 0) {
+         return l;
+     };
+     return null;
+};
+
+
 
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
@@ -58,6 +74,7 @@ router.get('/home', (req,res) => {
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
         userData: userData,
         old: dataLenght(userData.workout.seances),
     });
@@ -78,6 +95,7 @@ router.post('/homeAddCal', (req,res) => {
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
+        seance: dataLenght(endWorkout(userData)),
         userData: workoutClass.getData(req.session.pseudo),
         old: dataLenght(userData.workout.seances),
         user: users.get(req.session.pseudo)
@@ -101,7 +119,8 @@ router.post('/homeResetCal', (req,res) => {
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),
         old: dataLenght(userData.workout.seances),
-        user: users.get(req.session.pseudo)
+        user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
     });
 });
 

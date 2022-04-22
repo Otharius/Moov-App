@@ -98,6 +98,7 @@ router.get('/home', (req,res) => {
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
         userData: userData,
         old: dataLenght(userData.workout.seances),
     });
@@ -161,7 +162,7 @@ router.get('/endWorkout', (req,res) => {
         id: id - 1,
         seance: dataLenght(endWorkout(userData)),
         page: req.query.page,
-        style: false,
+        style: true,
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),

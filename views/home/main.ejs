@@ -33,54 +33,63 @@
     
     <div>
         <% if(old){ %>
-            <br>
-            <form action="afterWorkout" method="POST">
-
-                <div class="select_home_box">
-                    <select name="rpe" class="select_home_page">
+        
+            <% if(seance){ %>
+                <form action="afterWorkout" method="POST">
+            
+                    <select name="rpe" class="selectPageRPE">
                 
                         <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                            <% if(userData.workout.seances[i].done === true){ %>
+                            <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
                                 <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
                             <% } %>  
                         <% } %>
-
+    
                     </select>
-                </div>
-                
-
-                <div class="table_intensity_content wrap" id="table_intensity_content">
-                    
-                    <%- include('../training/intensityTable.ejs') %>
-
-                </div>
-
-                <br><br>
-
-                <div class="home_difficulty">
-                    
-                    <% for(var i=0; i < 10; i++) { %>
-                        <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
-                        <label for="d<%=i%>"><%=i%></label>
-                    <% } %>
-                    
+    
+                    <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
+    
+                    <div class="table_intensity_content wrap move_table" id="table_intensity_content">
+                        
+                        <%- include('../training/intensityTable.ejs') %>
+    
                     </div>
+    
+                    <br><br>
+    
+                    <div class="home_difficulty">
+                        
+                        <% for(var i=0; i < 10; i++) { %>
+                            <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                            <label for="d<%=i%>"><%=i%></label>
+                        <% } %>
+                        
+                        </div>
+                            
+                    <br><br>
+    
+                    <div class="note_div" align=center>
 
-                <br><br>
-                <button class="value_home_button">Valider</button>
-            </form>          
-        <% } else{ %> 
-            <p class="not_workout">Pas encore d'entrainements ? Viens t'entrainer !</p>
+                    </div>
+    
+                    <br>
+                    <button class="value_button">Valider</button>
+                </form>          
+            <% } else {%>
+                <p style="text-align: center;">Terminez vos entrainements avant !</p>
+            <% } %>
+
+        <% } else { %> 
+            <p style="text-align: center;">Pas encore d'entrainements ?</p>
         <% } %>
     </div>
     <br>
     
 </div>
 
-<br>
 
+<br><br>
 
-<br>
 
 <div class="workout_day_box">
 
@@ -138,7 +147,9 @@
 
 </div>
 
+
 <br><br>
+
 
 <div class="documentation_home_box">
 

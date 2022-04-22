@@ -1319,3 +1319,20 @@ h3 {
     font-family: 'Quicksand', sans-serif;
     background-color:#aaa;
 }
+
+
+/* La  page de la séance */
+
+.false {
+    font-size: 1rem;
+    color: red;
+}
+
+.true {
+    color: green;
+    font-size: 1rem;
+}
+
+.seance_information p {
+    font-size: 1.2rem;
+}

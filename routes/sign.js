@@ -27,6 +27,21 @@ function oldOrNew (data) {
     };
 };
 
+// Fonction qui classe les séances finies et les séances en cours
+function endWorkout (data) {
+    let l = [];
+
+    for(let i=0; i < data.workout.seances.length; i++) {
+        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+            l.push(data.workout.seances);
+        };
+     };
+     if (l.length > 0) {
+         return l;
+     };
+     return null;
+};
+
 
 
 //FONCTION SI ON A PAS D'ENTRAINEMENT
@@ -73,17 +88,17 @@ router.post('/register', (req,res) => {
     const password2 = req.body.password2;
 
     if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
-        res.render('principal/register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
+        res.render('sign/register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
 
     if (users.exist(pseudo)) {
-        res.render('principal/register', { title: title.register, message: "Pseudo déjà utilisé", error: true, style: false,});
+        res.render('sign/register', { title: title.register, message: "Pseudo déjà utilisé", error: true, style: false,});
         return;
     };
 
     if (password != password2) {
-        res.render('principal/register', { title: title.register, message: "Mots de passe différents", error: true, style:false});
+        res.render('sign/register', { title: title.register, message: "Mots de passe différents", error: true, style:false});
         return;
     };
 
@@ -102,7 +117,7 @@ router.post('/register', (req,res) => {
 
 
  
-    res.render('principal/login', { 
+    res.render('sign/login', { 
         style: false,
         title: title.login, 
         error: false,
@@ -145,6 +160,7 @@ router.post('/login', (req,res) => {
         style: true,
         userBody: dataLenght(userData.health.body),
         title: title.home,
+        seance: dataLenght(endWorkout(userData)),
         user: users.get(pseudo),
         old: oldOrNew(userData.workout.seances),
         userData: workoutClass.getData(req.session.pseudo),
