@@ -15,14 +15,22 @@ class Job {
     };
 };
 
-class Run {
+class AbstractJob {
+
+    constructor() {
+    }
+
+}
+
+class Run extends AbstractJob {
 
     start;
     arrival;
     bounds;
     time;
 
-    constructor(start, arrival, bounds, time){
+    constructor(start, arrival, bounds, time) {
+        super();
         this.start = start;
         this.arrival = arrival;
         this.bounds = bounds;
@@ -30,7 +38,7 @@ class Run {
     };
 };
 
-class Fractionne {
+class Fractionne extends AbstractJob {
 
     bloc;
     pause;
@@ -39,6 +47,7 @@ class Fractionne {
     description;
 
     constructor(bloc, pause, course, distance, description) {
+        super();
         this.bloc = bloc;
         this.pause = pause;
         this.course = course;
