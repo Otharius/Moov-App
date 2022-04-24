@@ -22,6 +22,35 @@ class AbstractJob {
 
 }
 
+class AbstractJobBuilder {
+
+    constructor(req, type) {
+        this.req = req;
+        this.type = type;
+    }
+
+    create() {
+        switch (this.type) {
+            case 'run':
+                return new Run(
+                    this.req.body.start,
+                    this.req.body.arrival,
+                    parseFloat(this.req.body.bounds),
+                    parseFloat(this.req.body.time));
+            case 'fractionne':
+                return new Fractionne(
+                    this.req.body.bloc,
+                    this.req.body.recup,
+                    parseFloat(this.req.body.course),
+                    parseFloat(this.req.body.distance,
+                    this.req.body.description));
+            default:
+                return null;
+        }
+    }
+
+}
+
 class Run extends AbstractJob {
 
     start;
@@ -240,6 +269,8 @@ module.exports = {
     Seance,
     Workout,
     Health,
+    AbstractJob,
+    AbstractJobBuilder,
     UserData,
     setData,
     getData,

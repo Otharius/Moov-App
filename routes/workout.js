@@ -250,8 +250,8 @@ router.post('/addWorkout', (req,res) => {
 
 router.post('/addRunning', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
+    const job = new workoutClass.AbstractJobBuilder(req, 'run').create();
 
-    const job = new Run(req.body.start, req.body.arrival, parseFloat(req.body.bounds), parseFloat(req.body.time));
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 
@@ -272,7 +272,7 @@ router.post('/addRunning', (req,res) => {
 router.post('/addFractionne', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
 
-    const job = new Fractionne(req.body.bloc, req.body.recup, parseFloat(req.body.course), parseFloat(req.body.distance, req.body.description));
+    const job = new workoutClass.AbstractJobBuilder(req, 'fractionne').create();
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 
