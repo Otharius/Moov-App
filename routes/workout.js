@@ -11,9 +11,7 @@ const router = express.Router();
 // Modules de séances
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
-const Job = workoutClass.Job;
-const Run = workoutClass.Run;
-const Fractionne = workoutClass.Fractionne;
+const AbstractJobBuilder = workoutClass.AbstractJobBuilder;
 
 
 // Modules des utilisateurs
@@ -30,14 +28,6 @@ const users = new Users().load();
 const exerciceType = require('../data/exercices.json').exerciceType;
 const exMuscu =  require('../data/exercices.json').exerciceWorkout;
 
-
-
-/* A mettre dans les get training main
-* Le style (boolean)
-* Le titre (objet)
-* UserData (objet)
-* Liste des exos (tableau)
-*/
 
 /////////////////////
 /// Les fonctions ///
@@ -231,7 +221,7 @@ router.post('/addWorkout', (req,res) => {
 
 router.post('/addSeance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = new workoutClass.AbstractJobBuilder(req, req.session.type).create();
+    const job = new AbstractJobBuilder(req, req.session.type).create();
 
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
@@ -245,7 +235,6 @@ router.post('/addSeance', (req,res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 

@@ -1,20 +1,5 @@
 const fs = require('fs');
 
-class Job {
-
-    exercice;
-    repetitions;
-    series;
-    pause;
-
-    constructor(exercice, repetitions, series, pause) {
-        this.exercice = exercice;
-        this.repetitions = repetitions;
-        this.series = series;
-        this.pause = pause;
-    };
-};
-
 class AbstractJob {
 
     constructor() {
@@ -38,8 +23,8 @@ class AbstractJobBuilder {
                     parseFloat(this.req.body.time));
             case 'fractionné':
                 return new Fractionne(
-                    this.req.body.bloc,
-                    this.req.body.recup,
+                    parseInt(this.req.body.bloc),
+                    this.req.body.pause,
                     parseFloat(this.req.body.course),
                     parseFloat(this.req.body.distance),
                     this.req.body.description);
@@ -49,6 +34,13 @@ class AbstractJobBuilder {
                     parseInt(this.req.body.repetition), 
                     parseInt(this.req.body.serie), 
                     this.req.body.repos);
+            case 'speed':
+                return new Speed(
+                    parseInt(this.req.body.bloc),
+                    this.req.body.distance,
+                    this.req.body.pause,
+                    this.req.body.description);
+            
             default:
                 return null;
         }
@@ -56,6 +48,26 @@ class AbstractJobBuilder {
 
 }
 
+
+// For the musculation
+class Job extends AbstractJob {
+
+    exercice;
+    repetitions;
+    series;
+    pause;
+
+    constructor(exercice, repetitions, series, pause) {
+        super();
+        this.exercice = exercice;
+        this.repetitions = repetitions;
+        this.series = series;
+        this.pause = pause;
+    };
+};
+
+
+// For the running
 class Run extends AbstractJob {
 
     start;
@@ -72,6 +84,8 @@ class Run extends AbstractJob {
     };
 };
 
+
+// For the intensity
 class Fractionne extends AbstractJob {
 
     bloc;
@@ -89,6 +103,31 @@ class Fractionne extends AbstractJob {
         this.description = description;
     };
 };
+
+// For the speed
+class Speed extends AbstractJob {
+
+    bloc;
+    distance;
+    pause;
+    description;
+
+    constructor(bloc, distance, pause, description) {
+        super();
+        this.bloc = bloc;
+        this.distance = distance;
+        this.pause = pause;
+        this.description = description;
+    }
+};
+
+// For the cross-fit
+class CrossFit extends AbstractJob {
+
+    constructor() {
+        super();
+    }
+}
 
 class Seance {
 
