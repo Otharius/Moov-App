@@ -1,4 +1,5 @@
 const fs = require('fs');
+const exercices = require('../../data/exercices.json').exerciceWorkout;
 
 class AbstractJob {
 
@@ -14,7 +15,10 @@ class AbstractJobBuilder {
     }
 
     create() {
-        switch (this.req.session.type) {
+        console.log(this.req.body.exercice)
+        this.req.body.exercice
+        const type = exercices.find(i => i.name === this.req.body.exercice)?.type;
+        switch (type) {
             case 'course':
                 return new Run(
                     this.req.body.start,
@@ -136,18 +140,16 @@ class Seance {
     difficulty = null;
     done = false;
     detail = '';
-    type = '';
     jobs;
     duration = null;
     note = null;
 
-    constructor(name, date, difficulty, done, detail, type) {
+    constructor(name, date, difficulty, done, detail) {
         this.name = name;
         this.date = date;
         this.difficulty = difficulty;
         this.done = done;
         this.detail = detail;
-        this.type = type;
         this.jobs = [];
     };
 

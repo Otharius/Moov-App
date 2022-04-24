@@ -26,7 +26,8 @@ const users = new Users().load();
 
 // Variables pour les listes d'exercices
 const exerciceType = require('../data/exercices.json').exerciceType;
-const exMuscu =  require('../data/exercices.json').exerciceWorkout;
+const exercices = require('../data/exercices.json').exerciceWorkout;
+const exMuscu =  exercices.map(i => i.name);
 
 
 /////////////////////
@@ -118,8 +119,7 @@ router.post('/planWorkout', (req,res) => {
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
+        exercices: exercices,
         userBody: dataLenght(userData.health.body),
     });
 })
@@ -231,10 +231,9 @@ router.post('/addSeance', (req,res) => {
         style: false,
         title: title.training, 
         userData: userData,
-        exerciceType: exerciceType,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
+        exercices: exercices,
     });
 });
 

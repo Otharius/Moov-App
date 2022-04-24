@@ -17,9 +17,8 @@
 
 <hr><br>
 
-<% if(userData.workout.seances[id].type === 'musculation') { %>
-        <%- include('../training/musculation.ejs') %>
-<%}%>
+<%- include('../training/musculation.ejs') %>
+
 
 <% if(userData.workout.seances[id].type === 'course') { %>
     <%- include('../training/running.ejs') %>

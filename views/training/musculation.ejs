@@ -6,8 +6,8 @@
             <div class="select-box">
 
                 <select name="exercice" class="selectExerciceJob">
-                    <% for(var j=0; j < exMuscu.length; j++) { %>
-                        <option value="<%=exMuscu[j]%>" name="category" id="<%=exMuscu[j]%>"><%=exMuscu[j]%></option>
+                    <% for(var j=0; j < exercices.length; j++) { %>
+                        <option value="<%=exercices[j].name%>" name="category" id="<%=exercices[j]%>"><%=exercices[j].name%></option>
                     <% } %>
                 </select>
         

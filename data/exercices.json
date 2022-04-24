@@ -1,21 +1,19 @@
 {
     "exerciceWorkout": [
-        "Pompe",
-        "Squat",
-        "Soulevé de terre",
-        "Développé couché",
-        "Traction pronation",
-        "Développé clavicule",
-        "Dips",
-        "Curls",
-        "Traction supination",
-        "Développé incliné",
-        "Développé décliné",
-        "Fentes",
-        "Oiseau",
-        "Trap T raise",
-        "Pendlay row",
-        "Développé militaire"
+        {
+            "name": "Pompe",
+            "type": "musculation"
+        },
+
+        {
+            "name": "Squat",
+            "type": "musculation"
+        },
+
+        {
+            "name": "Course",
+            "type": "course"
+        }
     ],
 
     "exerciceRun": [
