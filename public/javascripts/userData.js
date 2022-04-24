@@ -24,26 +24,31 @@ class AbstractJob {
 
 class AbstractJobBuilder {
 
-    constructor(req, type) {
+    constructor(req) {
         this.req = req;
-        this.type = type;
     }
 
     create() {
-        switch (this.type) {
-            case 'run':
+        switch (this.req.session.type) {
+            case 'course':
                 return new Run(
                     this.req.body.start,
                     this.req.body.arrival,
                     parseFloat(this.req.body.bounds),
                     parseFloat(this.req.body.time));
-            case 'fractionne':
+            case 'fractionné':
                 return new Fractionne(
                     this.req.body.bloc,
                     this.req.body.recup,
                     parseFloat(this.req.body.course),
-                    parseFloat(this.req.body.distance,
-                    this.req.body.description));
+                    parseFloat(this.req.body.distance),
+                    this.req.body.description);
+            case 'musculation':
+                return new Job(
+                    this.req.body.exercice, 
+                    parseInt(this.req.body.repetition), 
+                    parseInt(this.req.body.serie), 
+                    this.req.body.repos);
             default:
                 return null;
         }

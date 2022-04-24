@@ -113,29 +113,14 @@ router.get('/home', (req,res) => {
 
 
 
-// Pour créer un nouvel entrainement
-router.get('/newWorkout', (req,res) => {
-
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('training/newWorkout', { 
-        style: true,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
-    });
-})
-
 
 
 // Affiche la page de modification d'entrainement
 router.post('/planWorkout', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
-    req.session.idSeance = parseInt(req.body.idPage)
+    req.session.idSeance = parseInt(req.body.idPage);
+    req.session.type = userData.workout.seances[req.session.idSeance].type;
 
     res.render('training/planWorkout', { 
         id: req.session.idSeance,
@@ -244,13 +229,9 @@ router.post('/addWorkout', (req,res) => {
 
 
 
-/////////////////////////////////////
-/// Pour la création des runnings ///
-/////////////////////////////////////
-
-router.post('/addRunning', (req,res) => {
+router.post('/addSeance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = new workoutClass.AbstractJobBuilder(req, 'run').create();
+    const job = new workoutClass.AbstractJobBuilder(req, req.session.type).create();
 
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
@@ -268,26 +249,6 @@ router.post('/addRunning', (req,res) => {
     });
 });
 
-
-router.post('/addFractionne', (req,res) => {
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    const job = new workoutClass.AbstractJobBuilder(req, 'fractionne').create();
-    userData.workout.addJob(job, req.session.idSeance);
-    userData.save();
-
-    res.render('training/planWorkout', { 
-        id: req.session.idSeance,
-        style: false,
-        title: title.training, 
-        userData: userData,
-        exerciceType: exerciceType,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-})
 
 /////////////////////////////////////
 /// Pour la gestion des exercices ///
@@ -317,33 +278,25 @@ router.get('/deleteJob', (req, res) => {
 
 
 
-// La page qui ajoute un exercice
-router.post('/addJob', (req, res) => {
-
-    const userData = workoutClass.getData(req.session.pseudo);
-    const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.repos);
-    userData.workout.addJob(job, req.session.idSeance);
-
-    userData.save();
-
-    res.render('training/planWorkout', { 
-        id: req.session.idSeance,
-        style: false,
-        title: title.training, 
-        userData: userData,
-        exerciceType: exerciceType,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-})
-
-
-
 //////////////////////////////////
 /// Pour les différentes pages ///
 //////////////////////////////////
+
+// Pour créer un nouvel entrainement
+router.get('/newWorkout', (req,res) => {
+
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    res.render('training/newWorkout', { 
+        style: true,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+        userBody: dataLenght(userData.health.body),
+    });
+})
 
 
 
@@ -371,6 +324,7 @@ router.get('/seance', (req,res) => {
     sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
+    req.session.type = userData.workout.seances[id - 1].type;
 
     res.render('training/seance', {
         id: id - 1,
