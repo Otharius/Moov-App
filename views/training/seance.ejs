@@ -24,25 +24,40 @@
 </div>
 
 
-<table class="tableJob">
-
-    <tr>
-        <th>Exercice</th>
-        <th>Répétitions</th>
-        <th>Séries</th>
-        <th>Repos</th>
-    </tr>
-
-    <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
-        <% var a = userData.workout.seances[id].jobs[j] %>
+<% if (userData.workout.seances[id].type == 'musculation') { %>
+    <table class="tableJob">
 
         <tr>
-            <td class="exerciceJob"><%= a.exercice %></td>
-            <td class="exerciceJob"><%= a.repetitions %></td>
-            <td class="exerciceJob"><%= a.series %></td>
-            <td class="exerciceJob"><%= a.pause %> sec</td>
+            <th>Exercice</th>
+            <th>Répétitions</th>
+            <th>Séries</th>
+            <th>Repos</th>
         </tr>
+    
+        <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+            <% var a = userData.workout.seances[id].jobs[j] %>
+    
+            <tr>
+                <td class="exerciceJob"><%= a.exercice %></td>
+                <td class="exerciceJob"><%= a.repetitions %></td>
+                <td class="exerciceJob"><%= a.series %></td>
+                <td class="exerciceJob"><%= a.pause %> sec</td>
+            </tr>
+    
+        <% } %>
+    
+    </table>
+<% } %>
 
-    <% } %>
+<% if (userData.workout.seances[id].type == 'course') { %>
+    <div>
+        <p>Lieu d'arrivé: <%= userData.workout.seances[id].jobs[0].arrival %></p>
+        <p>Lieu de départ: <%= userData.workout.seances[id].jobs[0].start %></p>
+        <p>Distance: <%= userData.workout.seances[id].jobs[0].bounds %></p>
+        <p>Temps: <%= userData.workout.seances[id].jobs[0].time %></p>
+    </div>
+<% } %>
 
-</table>
+<% if (userData.workout.seances[id].type == 'fractionne') { %>
+
+<% } %>

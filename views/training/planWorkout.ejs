@@ -24,3 +24,19 @@
 <% if(userData.workout.seances[id].type === 'course') { %>
     <%- include('../training/running.ejs') %>
 <%}%>
+
+<% if(userData.workout.seances[id].type === 'fractionné') { %>
+    <%- include('../training/fractionne.ejs') %>
+<%}%>
+
+<% if(userData.workout.seances[id].type === 'speed') { %>
+    <%- include('../training/speed.ejs') %>
+<%}%>
+
+<% if(userData.workout.seances[id].type === 'crossfit') { %>
+    <%- include('../training/crossfit.ejs') %>
+<%}%>
+
+<% if(userData.workout.seances[id].type === 'other') { %>
+    <%- include('../training/other.ejs') %>
+<%}%>

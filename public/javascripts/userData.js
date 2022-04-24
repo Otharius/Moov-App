@@ -30,6 +30,23 @@ class Run {
     };
 };
 
+class Fractionne {
+
+    bloc;
+    pause;
+    course;
+    distance;
+    description;
+
+    constructor(bloc, pause, course, distance, description) {
+        this.bloc = bloc;
+        this.pause = pause;
+        this.course = course;
+        this.distance = distance;
+        this.description = description;
+    };
+};
+
 class Seance {
 
     name = '';
@@ -210,6 +227,7 @@ const map = new Map();
 module.exports = {
     Job,
     Run,
+    Fractionne,
     Seance,
     Workout,
     Health,

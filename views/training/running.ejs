@@ -1,14 +1,15 @@
    
-<!--Pause, séries et répétitions pour le fractionné-->
 <!--optgroup-->
 <br>
 <p>Le nombre de bornes, le temps, la vitesse, de ... a ..., exo en plus (burpees), vma + vitesse</p>
+<form action="/workout/addRunning" method="POST">
 
+    <input type="text" name="start" class="training_name" placeholder="Lieu de départ"><br>
+    <input type="text" name="arrival" class="training_name" value="" placeholder="Lieu d'arrivé"><br>
+    <input type="number" name="bounds" class="training_name"  value="" min="0" placeholder="Distance"><br>
+    <input type="number" name="time" class="training_name" value="" min="0" placeholder="Temps">
+    
+    <br><br>
 
-<input type="text" name="start" class="training_name" placeholder="Lieu de départ"><br>
-<input type="text" name="arrival" class="training_name" value="" placeholder="Lieu d'arrivé"><br>
-<input type="number" name="bounds" class="training_name"  value="" min="0" placeholder="Distance"><br>
-<input type="number" name="time" class="training_name" value="" min="0" placeholder="Temps">
-<br><br>
-<button type="submit" class="send_workout">Valider</button> 
+    <button type="submit" class="send_workout">Valider</button> 
 </form>

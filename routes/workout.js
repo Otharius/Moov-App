@@ -13,6 +13,7 @@ const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Job = workoutClass.Job;
 const Run = workoutClass.Run;
+const Fractionne = workoutClass.Fractionne;
 
 
 // Modules des utilisateurs
@@ -106,9 +107,9 @@ router.get('/home', (req,res) => {
 
 
 
-//////////////////////////////////////////
-/// Pour la création des entrainements ///
-//////////////////////////////////////////
+/////////////////////////////////////
+/// Pour la création des workouts ///
+/////////////////////////////////////
 
 
 
@@ -219,6 +220,75 @@ router.post('/deleteWorkout', (req, res) => {
 
 
 
+// Créer un entrainement
+router.post('/addWorkout', (req,res) => {
+    sessionSecure(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
+    
+    userData.workout.add(seance);
+    userData.save();
+    res.render('training/main', { 
+        style: true,
+        seance: dataLenght(endWorkout(userData)),
+        title: title.training, 
+        userData: userData,
+        exerciceType: exerciceType,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+});
+
+
+
+/////////////////////////////////////
+/// Pour la création des runnings ///
+/////////////////////////////////////
+
+router.post('/addRunning', (req,res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    const job = new Run(req.body.start, req.body.arrival, parseFloat(req.body.bounds), parseFloat(req.body.time));
+    userData.workout.addJob(job, req.session.idSeance);
+    userData.save();
+
+    res.render('training/planWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        title: title.training, 
+        userData: userData,
+        exerciceType: exerciceType,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+});
+
+
+router.post('/addFractionne', (req,res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    const job = new Fractionne(req.body.bloc, req.body.recup, parseFloat(req.body.course), parseFloat(req.body.distance, req.body.description));
+    userData.workout.addJob(job, req.session.idSeance);
+    userData.save();
+
+    res.render('training/planWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        title: title.training, 
+        userData: userData,
+        exerciceType: exerciceType,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+        exMuscu: exMuscu,
+        exerciceType: exerciceType,
+    });
+})
+
 /////////////////////////////////////
 /// Pour la gestion des exercices ///
 /////////////////////////////////////
@@ -251,10 +321,10 @@ router.get('/deleteJob', (req, res) => {
 router.post('/addJob', (req, res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.repos)
-    userData.workout.addJob(job, req.session.idSeance)
+    const job = new Job(req.body.exercice, req.body.repetition, req.body.serie, req.body.repos);
+    userData.workout.addJob(job, req.session.idSeance);
 
-    userData.save()
+    userData.save();
 
     res.render('training/planWorkout', { 
         id: req.session.idSeance,
@@ -268,30 +338,6 @@ router.post('/addJob', (req, res) => {
         exerciceType: exerciceType,
     });
 })
-
-
-
-// Ajoute le contenu de la séance
-router.post('/addWorkout', (req,res) => {
-    sessionSecure(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
-    
-    userData.workout.add(seance);
-    userData.save();
-    res.render('training/main', { 
-        style: true,
-        seance: dataLenght(endWorkout(userData)),
-        title: title.training, 
-        userData: userData,
-        exerciceType: exerciceType,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-    });
-});
 
 
 
