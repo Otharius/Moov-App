@@ -1,5 +1,26 @@
 {
     "exerciceWorkout": [
+
+        {
+            "name": "Footing",
+            "type": "course"
+        },
+
+        {
+            "name": "Fractionné",
+            "type": "fractionne"
+        },
+
+        {
+            "name": "Vitesse",
+            "type": "speed"
+        },
+
+        {
+            "name": "Autres",
+            "type": "other"
+        },
+
         {
             "name": "Pompe",
             "type": "musculation"
@@ -11,21 +32,10 @@
         },
 
         {
-            "name": "Course",
-            "type": "course"
+            "name": "Dips",
+            "type": "musculation"
         }
-    ],
 
-    "exerciceRun": [
-        "30'30",
-        "20'20",
-        "15'15",
-        "10'10"
-    ],
-
-    "exerciceType": [
-        "musculation",
-        "course",
-        "cross-fit"
     ]
+
 }

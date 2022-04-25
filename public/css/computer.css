@@ -1336,3 +1336,16 @@ h3 {
 .seance_information p {
     font-size: 1.2rem;
 }
+
+
+
+
+
+.running_content {
+    display: block;
+}
+
+.musculation_content, .fractionne_content, .speed_content, .other_content {
+    display: none;
+}
+

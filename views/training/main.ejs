@@ -104,7 +104,7 @@
                         <% j = j + 1 %>
                         <% if(userData.workout.seances[i].done === false) { %>
                             <tr>  
-                                <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
+                                <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
                             </tr>
                         <% } %>  
                      <% } %>

@@ -256,11 +256,9 @@ router.get('/deleteJob', (req, res) => {
         style: false,
         title: title.training, 
         userData: userData,
-        exerciceType: exerciceType,
+        exercices: exercices,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 })
 

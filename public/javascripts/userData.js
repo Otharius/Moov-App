@@ -15,7 +15,6 @@ class AbstractJobBuilder {
     }
 
     create() {
-        console.log(this.req.body.exercice)
         this.req.body.exercice
         const type = exercices.find(i => i.name === this.req.body.exercice)?.type;
         switch (type) {

@@ -16,26 +16,63 @@
 
 
 <hr><br>
+<form action="/workout/addSeance" method="POST">
+    <select name="exercice" class="selectExerciceJob" id="selectExerciceJob" onclick="exerciceType()">
+        <% for(var j=0; j < exercices.length; j++) { %>
+            <option value="<%=exercices[j].name%>" name="category" id="<%=exercices[j].type%>"><%=exercices[j].name%></option>
+        <% } %>
+    </select><br>
 
-<%- include('../training/musculation.ejs') %>
+    <div class="rightJob"><br>
+        <table class="tableJob">
+
+            <tr>
+                <th>Exercice</th>
+                <th>Répétitions</th>
+                <th>Séries</th> 
+                <th>Repos</th>
+            </tr>
+
+            <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+                <% var a = userData.workout.seances[id].jobs[j] %>
+
+                <tr>
+                    <td class="exerciceJob"><%= a.exercice %></td>
+                    <td class="exerciceJob"><%= a.repetitions %></td>
+                    <td class="exerciceJob"><%= a.series %></td>
+                    <td class="exerciceJob"><%= a.pause %> sec</td>
+                    <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+                </tr>
+
+            <% } %>
+
+        </table>
+        <br>
+    </div>
+
+    <div class="musculation_content">
+        <%- include('../training/musculation.ejs') %>
+    </div>
+    
+    <div class="running_content">
+        <%- include('../training/running.ejs') %>
+    </div>
+    
+    <div class="fractionne_content">
+        <%- include('../training/fractionne.ejs') %>
+    </div>
+    
+    <div class="speed_content">
+        <%- include('../training/speed.ejs') %>
+    </div>
+    
+    <div class="other_content">
+        <%- include('../training/other.ejs') %>
+    </div>
+    
+    
+    
+</form>
 
 
-<% if(userData.workout.seances[id].type === 'course') { %>
-    <%- include('../training/running.ejs') %>
-<%}%>
 
-<% if(userData.workout.seances[id].type === 'fractionné') { %>
-    <%- include('../training/fractionne.ejs') %>
-<%}%>
-
-<% if(userData.workout.seances[id].type === 'speed') { %>
-    <%- include('../training/speed.ejs') %>
-<%}%>
-
-<% if(userData.workout.seances[id].type === 'crossfit') { %>
-    <%- include('../training/crossfit.ejs') %>
-<%}%>
-
-<% if(userData.workout.seances[id].type === 'other') { %>
-    <%- include('../training/other.ejs') %>
-<%}%>
