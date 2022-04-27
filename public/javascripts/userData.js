@@ -18,19 +18,19 @@ class AbstractJobBuilder {
         this.req.body.exercice
         const type = exercices.find(i => i.name === this.req.body.exercice)?.type;
         switch (type) {
-            case 'course':
-                return new Run(
+            case 'footing':
+                return new Footing(
                     this.req.body.start,
                     this.req.body.arrival,
                     parseFloat(this.req.body.bounds),
                     parseFloat(this.req.body.time));
-            case 'fractionné':
+            case 'fractionne':
                 return new Fractionne(
-                    parseInt(this.req.body.bloc),
-                    this.req.body.pause,
-                    parseFloat(this.req.body.course),
-                    parseFloat(this.req.body.distance),
-                    this.req.body.description);
+                    parseInt(this.req.body.fractionneBloc),
+                    this.req.body.fractionnePause,
+                    parseFloat(this.req.body.fractionneCourse),
+                    parseFloat(this.req.body.fractrionneDistance),
+                    this.req.body.fractionneDescription);
             case 'musculation':
                 return new Job(
                     this.req.body.exercice, 
@@ -39,10 +39,10 @@ class AbstractJobBuilder {
                     this.req.body.repos);
             case 'speed':
                 return new Speed(
-                    parseInt(this.req.body.bloc),
-                    this.req.body.distance,
-                    this.req.body.pause,
-                    this.req.body.description);
+                    parseInt(this.req.body.speedBloc),
+                    this.req.body.speedDistance,
+                    this.req.body.speedPause,
+                    this.req.body.speedDescription);
             
             default:
                 return null;
@@ -55,6 +55,7 @@ class AbstractJobBuilder {
 // For the musculation
 class Job extends AbstractJob {
 
+    type;
     exercice;
     repetitions;
     series;
@@ -62,6 +63,7 @@ class Job extends AbstractJob {
 
     constructor(exercice, repetitions, series, pause) {
         super();
+        this.type = 'musculation';
         this.exercice = exercice;
         this.repetitions = repetitions;
         this.series = series;
@@ -71,8 +73,9 @@ class Job extends AbstractJob {
 
 
 // For the running
-class Run extends AbstractJob {
+class Footing extends AbstractJob {
 
+    type;
     start;
     arrival;
     bounds;
@@ -80,6 +83,7 @@ class Run extends AbstractJob {
 
     constructor(start, arrival, bounds, time) {
         super();
+        this.type = 'footing';
         this.start = start;
         this.arrival = arrival;
         this.bounds = bounds;
@@ -91,6 +95,7 @@ class Run extends AbstractJob {
 // For the intensity
 class Fractionne extends AbstractJob {
 
+    type;
     bloc;
     pause;
     course;
@@ -99,6 +104,7 @@ class Fractionne extends AbstractJob {
 
     constructor(bloc, pause, course, distance, description) {
         super();
+        this.type = 'fractionne'
         this.bloc = bloc;
         this.pause = pause;
         this.course = course;
@@ -110,6 +116,7 @@ class Fractionne extends AbstractJob {
 // For the speed
 class Speed extends AbstractJob {
 
+    type;
     bloc;
     distance;
     pause;
@@ -117,20 +124,13 @@ class Speed extends AbstractJob {
 
     constructor(bloc, distance, pause, description) {
         super();
+        this.type = 'speed';
         this.bloc = bloc;
         this.distance = distance;
         this.pause = pause;
         this.description = description;
     }
 };
-
-// For the cross-fit
-class CrossFit extends AbstractJob {
-
-    constructor() {
-        super();
-    }
-}
 
 class Seance {
 
@@ -309,7 +309,7 @@ const map = new Map();
 
 module.exports = {
     Job,
-    Run,
+    Footing,
     Fractionne,
     Seance,
     Workout,

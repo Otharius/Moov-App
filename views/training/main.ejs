@@ -7,7 +7,7 @@
     </div>
 
     <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
-        <button onclick="closeCreateDiv()" id="btnDraggable" class="planWorkout" style="margin-left: 15px;">Planifier son entrainement</button>
+        <button onclick="closeCreateDiv()" id="btnDraggable" class="planWorkout" style="margin-left: 15px;">Créer son entrainement</button>
         <% if(old){ %>
             <form action="/workout/planWorkout" method="POST" id="planWorkout">
 
@@ -23,7 +23,7 @@
 
             </form>
 
-            <button class="changeWorkout" form="planWorkout">Modifier entrainement</button>
+            <button class="changeWorkout" form="planWorkout">Ajouter des exercices</button>
         <% } %> 
 
     </div>
