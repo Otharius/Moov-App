@@ -24,23 +24,17 @@ class AbstractJobBuilder {
                     this.req.body.arrival,
                     parseFloat(this.req.body.bounds),
                     parseFloat(this.req.body.time));
-            case 'fractionne':
-                return new Fractionne(
-                    parseInt(this.req.body.fractionneBloc),
-                    this.req.body.fractionnePause,
-                    parseFloat(this.req.body.fractionneCourse),
-                    parseFloat(this.req.body.fractrionneDistance),
-                    this.req.body.fractionneDescription);
             case 'musculation':
                 return new Job(
                     this.req.body.exercice, 
                     parseInt(this.req.body.repetition), 
                     parseInt(this.req.body.serie), 
                     this.req.body.repos);
-            case 'speed':
-                return new Speed(
-                    parseInt(this.req.body.speedBloc),
+            case 'intensity':
+                return new Intensity(
+                    this.req.body.speedBloc,
                     this.req.body.speedDistance,
+                    this.req.body.speedRepetition,
                     this.req.body.speedPause,
                     this.req.body.speedDescription);
             
@@ -91,42 +85,22 @@ class Footing extends AbstractJob {
     };
 };
 
-
-// For the intensity
-class Fractionne extends AbstractJob {
-
-    type;
-    bloc;
-    pause;
-    course;
-    distance;
-    description;
-
-    constructor(bloc, pause, course, distance, description) {
-        super();
-        this.type = 'fractionne'
-        this.bloc = bloc;
-        this.pause = pause;
-        this.course = course;
-        this.distance = distance;
-        this.description = description;
-    };
-};
-
-// For the speed
-class Speed extends AbstractJob {
+// For the speed and the intensity
+class Intensity extends AbstractJob {
 
     type;
     bloc;
     distance;
+    repetition;
     pause;
     description;
 
-    constructor(bloc, distance, pause, description) {
+    constructor(bloc, distance, repetition, pause, description) {
         super();
-        this.type = 'speed';
+        this.type = 'intensity';
         this.bloc = bloc;
         this.distance = distance;
+        this.repetition = repetition;
         this.pause = pause;
         this.description = description;
     }
@@ -310,7 +284,6 @@ const map = new Map();
 module.exports = {
     Job,
     Footing,
-    Fractionne,
     Seance,
     Workout,
     Health,

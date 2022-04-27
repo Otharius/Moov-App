@@ -37,10 +37,28 @@
                 <% var a = userData.workout.seances[id].jobs[j] %>
 
                 <tr>
-                    <td class="exerciceJob"><%= a.exercice %></td>
-                    <td class="exerciceJob"><%= a.repetitions %></td>
-                    <td class="exerciceJob"><%= a.series %></td>
-                    <td class="exerciceJob"><%= a.pause %> sec</td>
+
+                    <% if (a.type === 'musculation') { %>
+                        <td class="exerciceJob"><%= a.exercice %></td>
+                        <td class="exerciceJob"><%= a.repetitions %></td>
+                        <td class="exerciceJob"><%= a.series %></td>
+                        <td class="exerciceJob"><%= a.pause %> sec</td>
+                    <% } %>
+
+                    <% if (a.type === 'footing') { %>
+                        <td class="exerciceJob"><%= a.start %></td>
+                        <td class="exerciceJob"><%= a.arrival %></td>
+                        <td class="exerciceJob"><%= a.bounds %></td>
+                        <td class="exerciceJob"><%= a.time %></td>
+                    <% } %>
+
+                    <% if (a.type === 'intensity') { %>
+                        <td class="exerciceJob"><%= a.bloc %></td>
+                        <td class="exerciceJob"><%= a.distance %></td>
+                        <td class="exerciceJob"><%= a.pause %></td>
+                        <td class="exerciceJob"><%= a.time %></td>
+                    <% } %>
+
                     <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
                 </tr>
 
@@ -58,12 +76,8 @@
         <%- include('../training/running.ejs') %>
     </div>
     
-    <div class="fractionne_content">
-        <%- include('../training/fractionne.ejs') %>
-    </div>
-    
-    <div class="speed_content">
-        <%- include('../training/speed.ejs') %>
+    <div class="intensity_content">
+        <%- include('../training/intensity.ejs') %>
     </div>
     
     <div class="other_content">

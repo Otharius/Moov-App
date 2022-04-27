@@ -1345,7 +1345,7 @@ h3 {
     display: block;
 }
 
-.musculation_content, .fractionne_content, .speed_content, .other_content {
+.musculation_content, .intensity_content, .other_content {
     display: none;
 }
 

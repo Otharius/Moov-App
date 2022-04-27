@@ -7,13 +7,8 @@
         },
 
         {
-            "name": "Fractionné",
-            "type": "fractionne"
-        },
-
-        {
-            "name": "Vitesse",
-            "type": "speed"
+            "name": "Intensité / Vitesse",
+            "type": "intensity"
         },
 
         {

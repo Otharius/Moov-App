@@ -50,40 +50,28 @@ function exerciceType () {
   if (a.options[a.selectedIndex].id == 'musculation') {
     document.querySelector('.musculation_content').style.display = 'block';
     document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.speed_content').style.display = 'none';
-    document.querySelector('.fractionne_content').style.display = 'none';
+    document.querySelector('.intensity_content').style.display = 'none';
     document.querySelector('.other_content').style.display = 'none';
   };
 
   if (a.options[a.selectedIndex].id == 'course') {
     document.querySelector('.musculation_content').style.display = 'none';
     document.querySelector('.running_content').style.display = 'block';
-    document.querySelector('.speed_content').style.display = 'none';
-    document.querySelector('.fractionne_content').style.display = 'none';
+    document.querySelector('.intensity_content').style.display = 'none';
     document.querySelector('.other_content').style.display = 'none';
   };
 
-  if (a.options[a.selectedIndex].id == 'speed') {
+  if (a.options[a.selectedIndex].id == 'intensity') {
     document.querySelector('.musculation_content').style.display = 'none';
     document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.speed_content').style.display = 'block';
-    document.querySelector('.fractionne_content').style.display = 'none';
+    document.querySelector('.intensity_content').style.display = 'block';
     document.querySelector('.other_content').style.display = 'none';
   };
-
-  if (a.options[a.selectedIndex].id == 'fractionne') {
-    document.querySelector('.musculation_content').style.display = 'none';
-    document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.speed_content').style.display = 'none';
-    document.querySelector('.fractionne_content').style.display = 'block';
-    document.querySelector('.other_content').style.display = 'none';
-  }
 
   if (a.options[a.selectedIndex].id == 'other') {
     document.querySelector('.musculation_content').style.display = 'none';
     document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.speed_content').style.display = 'none';
-    document.querySelector('.fractionne_content').style.display = 'none';
+    document.querySelector('.intensity_content').style.display = 'none';
     document.querySelector('.other_content').style.display = 'block';
   };
 }
