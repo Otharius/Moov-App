@@ -200,7 +200,7 @@ router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
 
-    const seance = new Seance(req.body.training_name, req.body.date, null, false, req.body.detail, req.body.type);
+    const seance = new Seance(req.body.training_name, req.body.date, req.body.detail);
     
     userData.workout.add(seance);
     userData.save();

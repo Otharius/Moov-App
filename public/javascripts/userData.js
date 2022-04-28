@@ -34,7 +34,7 @@ class AbstractJobBuilder {
                 return new Intensity(
                     this.req.body.speedBloc,
                     this.req.body.speedDistance,
-                    this.req.body.speedRepetition,
+                    this.req.body.speedTime,
                     this.req.body.speedPause,
                     this.req.body.speedDescription);
             
@@ -54,6 +54,7 @@ class Job extends AbstractJob {
     repetitions;
     series;
     pause;
+    weight;
 
     constructor(exercice, repetitions, series, pause) {
         super();
@@ -62,6 +63,7 @@ class Job extends AbstractJob {
         this.repetitions = repetitions;
         this.series = series;
         this.pause = pause;
+        this.weight = 0;
     };
 };
 
@@ -117,11 +119,11 @@ class Seance {
     duration = null;
     note = null;
 
-    constructor(name, date, difficulty, done, detail) {
+    constructor(name, date, detail) {
         this.name = name;
         this.date = date;
-        this.difficulty = difficulty;
-        this.done = done;
+        this.difficulty = null;
+        this.done = false;
         this.detail = detail;
         this.jobs = [];
     };
