@@ -9,6 +9,7 @@ class AbstractJob {
 }
 
 class AbstractJobBuilder {
+    
 
     constructor(req) {
         this.req = req;
@@ -133,7 +134,6 @@ class Seance {
         return this;
     };
 
-
 };
 
 class Workout {
@@ -248,7 +248,7 @@ class UserData {
         this.health = new Health();
         this.workout = new Workout();
         try {
-            const data = require('../../data/' + this.pseudo + '.json');
+            const data = require('../../data/usersFile/' + this.pseudo + '.json');
             this.health.load(data);
             this.workout.load(data);
         } catch (error) {
@@ -260,13 +260,13 @@ class UserData {
     };
 
     save() {
-        fs.writeFile('data/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
+        fs.writeFile('data/usersFile/' + this.pseudo + '.json', JSON.stringify(this), function (err) {
             if (err) throw err;
         });
     };
 
     create(pseudo) {
-        fs.writeFile('data/' + pseudo + '.json', '[]', function (err) {
+        fs.writeFile('data/usersFile/' + pseudo + '.json', '[]', function (err) {
             if (err) throw err;
         });
     };
