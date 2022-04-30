@@ -43,41 +43,6 @@
 </body>
 <script>
 
-
-function exerciceType () {
-  let a = document.querySelector('.selectExerciceJob');
-
-  if (a.options[a.selectedIndex].id == 'musculation') {
-    document.querySelector('.musculation_content').style.display = 'block';
-    document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.intensity_content').style.display = 'none';
-    document.querySelector('.other_content').style.display = 'none';
-  };
-
-  if (a.options[a.selectedIndex].id == 'footing') {
-    document.querySelector('.musculation_content').style.display = 'none';
-    document.querySelector('.running_content').style.display = 'block';
-    document.querySelector('.intensity_content').style.display = 'none';
-    document.querySelector('.other_content').style.display = 'none';
-  };
-
-  if (a.options[a.selectedIndex].id == 'intensity') {
-    document.querySelector('.musculation_content').style.display = 'none';
-    document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.intensity_content').style.display = 'block';
-    document.querySelector('.other_content').style.display = 'none';
-  };
-
-  if (a.options[a.selectedIndex].id == 'other') {
-    document.querySelector('.musculation_content').style.display = 'none';
-    document.querySelector('.running_content').style.display = 'none';
-    document.querySelector('.intensity_content').style.display = 'none';
-    document.querySelector('.other_content').style.display = 'block';
-  };
-}
-
-
-
 const wrapper = document.querySelector(".move_div"),
 header = wrapper.querySelector("header");
 

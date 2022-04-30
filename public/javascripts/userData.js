@@ -15,98 +15,85 @@ class AbstractJobBuilder {
         this.req = req;
     }
 
-    create() {
-        this.req.body.exercice
-        const type = exercices.find(i => i.name === this.req.body.exercice)?.type;
-        switch (type) {
-            case 'footing':
-                return new Footing(
-                    this.req.body.start,
-                    this.req.body.arrival,
-                    parseFloat(this.req.body.bounds),
-                    parseFloat(this.req.body.time));
-            case 'musculation':
-                return new Job(
-                    this.req.body.exercice, 
-                    parseInt(this.req.body.repetition), 
-                    parseInt(this.req.body.serie), 
-                    this.req.body.repos);
-            case 'intensity':
-                return new Intensity(
-                    this.req.body.speedBloc,
-                    this.req.body.speedDistance,
-                    this.req.body.speedTime,
-                    this.req.body.speedPause,
-                    this.req.body.speedDescription);
-            
-            default:
-                return null;
-        }
+    create () {
+        const a = req.body;
+        new Training(a.exercice, a.repetitions)
     }
-
 }
 
 
 // For the musculation
-class Job extends AbstractJob {
+class Training extends AbstractJob {
 
-    type;
-    exercice;
-    repetitions;
-    series;
-    pause;
-    weight;
-
-    constructor(exercice, repetitions, series, pause) {
+    constructor() {
         super();
-        this.type = 'musculation';
+        this.exercice = null;
+        this.repetitions = null;
+        this.series = null;
+        this.pause = null;
+        this.weight = null;
+        this.distance = null;
+        this.duration = null;
+        this.time = null;
+        this.start = null;
+        this.arrival = null;
+        this.description = null;
+    };
+
+    withExercice(exercice) {
         this.exercice = exercice;
+        return this;
+    };
+
+    withRepetitions(repetitions) {
         this.repetitions = repetitions;
+        return this;
+    };
+
+    withSeries(series) {
         this.series = series;
+        return this;
+    };
+
+    withPause(pause) {
         this.pause = pause;
-        this.weight = 0;
+        return this;
     };
-};
 
-
-// For the running
-class Footing extends AbstractJob {
-
-    type;
-    start;
-    arrival;
-    bounds;
-    time;
-
-    constructor(start, arrival, bounds, time) {
-        super();
-        this.type = 'footing';
-        this.start = start;
-        this.arrival = arrival;
-        this.bounds = bounds;
-        this.time = time;
+    withWeight(weight) {
+        this.weight = weight;
+        return this;
     };
-};
 
-// For the speed and the intensity
-class Intensity extends AbstractJob {
-
-    type;
-    bloc;
-    distance;
-    repetition;
-    pause;
-    description;
-
-    constructor(bloc, distance, repetition, pause, description) {
-        super();
-        this.type = 'intensity';
-        this.bloc = bloc;
+    withDistance(distance) {
         this.distance = distance;
-        this.repetition = repetition;
-        this.pause = pause;
+        return this;
+    };
+
+    withDuration(duration) {
+        this.duration = duration;
+        return this;
+    };
+
+    withTime(time) {
+        this.time = time;
+        return this;
+    };
+
+    withStart(start) {
+        this.start = start;
+        return this;
+    };
+
+    withArrival(arrival) {
+        this.arrival = arrival;
+        return this;
+    };
+
+    withDescription(description) {
         this.description = description;
-    }
+        return this;
+    };
 };
 
 class Seance {
@@ -284,8 +271,7 @@ const setData = (pseudo, data) => {
 const map = new Map();
 
 module.exports = {
-    Job,
-    Footing,
+    Training,
     Seance,
     Workout,
     Health,
