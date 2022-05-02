@@ -39,6 +39,8 @@ app.use('/sign', require('./routes/sign'));
 app.use('/meal_sleep', require('./routes/meal_sleep'));
 app.use('/home', require('./routes/home'));
 app.use('/profiles', require('./routes/profiles'));
+app.use('/template', require('./routes/template'));
+
 
 
 

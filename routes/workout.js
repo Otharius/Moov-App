@@ -103,7 +103,22 @@ router.get('/home', (req,res) => {
 /////////////////////////////////////
 
 
+// Affiche la page de modification d'entrainement
+router.get('/planWorkout', (req,res) => {
 
+    const userData = workoutClass.getData(req.session.pseudo);
+    req.session.idSeance = parseInt(req.query.id);
+
+    res.render('training/planWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        title: title.training,
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        exercices: exercices,
+        userBody: dataLenght(userData.health.body),
+    });
+})
 
 
 // Affiche la page de modification d'entrainement
