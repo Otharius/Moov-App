@@ -14,11 +14,6 @@ class AbstractJobBuilder {
     constructor(req) {
         this.req = req;
     }
-
-    create () {
-        const a = req.body;
-        new Training(a.exercice, a.repetitions)
-    }
 }
 
 
@@ -99,22 +94,21 @@ class Training extends AbstractJob {
 class Templates {
     
     constructor () {
-        this.templates = [];
+        this.templates = {};
     };
 
     exist(name) {
-        return this.templates.find(t => t.name === name) != null;
+        return this.templates.hasOwnProperty(name);
     };
 
     load(data) {
-        for (let t of data.templates.templates) {
-            this.templates.push(t);
-        }
+        this.templates = data.templates;
+        return this;
     };
 
     add(template) {
         if (!this.exist(template.name)) {
-            this.templates.push(template);
+            this.templates[template.name] = template;
         }
         return this;
     };

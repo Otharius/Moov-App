@@ -89,20 +89,7 @@ function intensity_div () {
   };
 };
 
-function choix () {
-  const select = document.getElementById('type_seance');
-  const choix = select.options[select.selectedIndex].value;
-  const a = document.getElementById('musculation');
-  const b = document.getElementById('running');
-  if (choix == 'musculation') {
-    a.style.display = 'block';
-    b.style.display = 'none';
-  } else {
-    a.style.display = 'none';
-    b.style.display = 'block';
-  };
-};
-
+let value = document.querySelector('.selectExerciceJob').value;
 
 
 </script>

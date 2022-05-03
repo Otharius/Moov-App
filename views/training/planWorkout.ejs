@@ -19,9 +19,10 @@
 
 <hr><br>
 <form action="/workout/addSeance" method="POST">
-    <select name="exercice" class="selectExerciceJob" id="selectExerciceJob" onclick="exerciceType()">
-        <% for(var j=0; j < exercices.length; j++) { %>
-            <option value="<%=exercices[j].name%>" name="category" id="<%=exercices[j].type%>"><%=exercices[j].name%></option>
+    <select name="template" class="selectExerciceJob" id="<%= position %>" >
+        <% var a = userData.templates.templates %>
+        <% for(var j=0; j < a.length; j++) { %>
+            <option value="<%=a[j].name%>" name="category"><%=a[j].name%></option>
         <% } %>
     </select><br>
 

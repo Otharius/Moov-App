@@ -1,14 +1,31 @@
 <!-- Charge prévu, série, répétitions, pause, tricet, difficulté, description, distance, interval, 
 temps, départ, arrivé-->
 
-<input type="number" name="weight" id=""> Poids prévue <br>
-<input type="number" name="serie" id=""> Série <br>
-<input type="number" name="repetition" id=""> Répétition <br>
-<input type="number" name="pause" id=""> Pause <br>
-<input type="number" name="duration" id=""> Durée <br>
-<input type="text" name="description" id=""> Description <br>
-<input type="number" name="distance" id=""> Distance <br>
-<input type="number" name="time" id=""> Temps <br>
-<input type="text" name="start" id=""> Départ <br>
-<input type="text" name="arrival" id=""> Arrivée <br>
+<% var t = userData.templates.templates %>
+
+<% for (var l=0; l < t.length; l++) { %>
+    <% for (var m=0; m < t[l].fields.length; m++) { %>
+
+        <% if (userData.templates.templates[l].fields[m] == 'exercice') { %>
+           <select name="" id="">
+
+
+           </select>
+        <% } %>
+
+        <% if (userData.templates.templates[l].fields[m] == 'repetition') { %>
+            <input type="number" name="repetition" placeholder="repetition">
+        <% } %>
+
+        <% if (userData.templates.templates[l].fields[m] == 'serie') { %>
+            <input type="number" name="serie" placeholder="serie">
+        <% } %>
+
+        <% if (userData.templates.templates[l].fields[m] == 'pause') { %>
+            <input type="number" name="pause" placeholder="pause">
+        <% } %>
+
+    <% } %>
+<% } %>
+
 <input type="submit" value="Valider" class="addJob">

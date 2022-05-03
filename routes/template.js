@@ -21,15 +21,9 @@ function dataLenght (data) {
 };
 
 
-
-
-
-
 router.get('/newTemplates', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     req.session.fields = [];
-    console.log(dataFields)
-    console.log(dataFields.length)
 
     res.render('training/templates/new', {
         style: false,
@@ -71,7 +65,6 @@ router.post('/newTemplate', (req,res) => {
 router.post('/newField', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     req.session.fields.push(req.body.field)
-    console.log(req.session)
 
     res.render('training/templates/new', {
         style: false,

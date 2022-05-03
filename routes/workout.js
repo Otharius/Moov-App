@@ -28,6 +28,7 @@ const users = new Users().load();
 const exerciceType = require('../data/exercices.json').exerciceType;
 const exercices = require('../data/exercices.json').exerciceWorkout;
 const exMuscu =  exercices.map(i => i.name);
+const dataFields = exercices.fields;
 
 
 /////////////////////
@@ -236,7 +237,7 @@ router.post('/addWorkout', (req,res) => {
 
 router.post('/addSeance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = new AbstractJobBuilder(req, req.session.type).create();
+   console.log(req.body)
 
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();

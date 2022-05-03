@@ -1,41 +1,17 @@
 {
     "exerciceWorkout": [
-
-        {
-            "name": "Footing",
-            "type": "footing"
-        },
-
-        {
-            "name": "Intensité / Vitesse",
-            "type": "intensity"
-        },
-
-        {
-            "name": "Autres",
-            "type": "other"
-        },
-
-        {
-            "name": "Pompe",
-            "type": "musculation"
-        },
-
-        {
-            "name": "Squat",
-            "type": "musculation"
-        },
-
-        {
-            "name": "Dips",
-            "type": "musculation"
-        }
-
+        "Pompe",
+        "Squat",
+        "Dips"
     ],
 
     "fields": [
+        "exercices",
         "repetition",
-        "serie"
+        "serie",
+        "charge",
+        "pause", 
+        "descrption",
+        "time"
     ]
-
 }
