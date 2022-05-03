@@ -1,1 +1,1 @@
-{"pseudo":"Otharius","health":{"calories":0,"sleep":0,"body":[],"height":[]},"workout":{"seances":[{"name":"ytest","date":"","difficulty":null,"done":false,"detail":"","jobs":[],"duration":null,"note":null}]},"templates":{"fields":[]}}
+{"pseudo":"Otharius","health":{"calories":0,"sleep":0,"body":[],"height":[]},"workout":{"seances":[{"name":"aa","date":"","difficulty":null,"done":false,"detail":"","jobs":[],"duration":null,"note":null}]},"templates":{"templates":[{"name":"test","fields":["rep","serie"]},{"name":"","fields":["","prout"]}]}}

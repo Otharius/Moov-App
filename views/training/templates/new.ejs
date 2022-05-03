@@ -6,5 +6,23 @@
 <form action="/template/newTemplate" method="POST">
 
     <input type="text" name="name" id=""> Nom: <br>
+    <input type="text" name="info">
+
+    <button>Valider</button>
 
 </form>
+
+<form action="/template/newField" method="POST">
+
+    <select name="field" id="">
+        
+        <% for(var i=0; i < dataFields.length; i++) { %>
+            <option value="<%=dataFields[i]%>"><%=dataFields[i] %></option>
+        <% } %>
+
+    </select>
+
+    <button>Valider</button>
+
+</form>
+
