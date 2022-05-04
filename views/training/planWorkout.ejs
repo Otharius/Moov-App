@@ -35,28 +35,7 @@
                     <% var a = userData.workout.seances[id].jobs[j] %>
     
                     <tr>
-    
-                        <% if (a.type === 'musculation') { %>
-                            <td class="exerciceJob">Ex: <%= a.exercice %></td>
-                            <td class="exerciceJob">Rep: <%= a.repetitions %></td>
-                            <td class="exerciceJob">Séries: <%= a.series %></td>
-                            <td class="exerciceJob">Récup: <%= a.pause %> sec</td>
-                        <% } %>
-    
-                        <% if (a.type === 'footing') { %>
-                            <td class="exerciceJob">Départ: <%= a.start %></td>
-                            <td class="exerciceJob">Arrivé: <%= a.arrival %></td>
-                            <td class="exerciceJob">Distance: <%= a.bounds %></td>
-                            <td class="exerciceJob">Temps: <%= a.time %></td>
-                        <% } %>
-    
-                        <% if (a.type === 'intensity') { %>
-                            <td class="exerciceJob">Distance: <%= a.distance %></td>
-                            <td class="exerciceJob">Rep: <%= a.repetition %></td>
-                            <td class="exerciceJob">Bloc: <%= a.bloc %></td>
-                            <td class="exerciceJob">Récup: <%= a.pause %>sec</td>
-                        <% } %>
-    
+                        <td><%= userData.workout.seances[id].jobs[j].exercice %></td>
                         <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
                     </tr>
     

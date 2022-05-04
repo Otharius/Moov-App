@@ -11,6 +11,7 @@ const router = express.Router();
 // Modules de séances
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
+const Training = workoutClass.Training;
 const AbstractJobBuilder = workoutClass.AbstractJobBuilder;
 
 
@@ -239,8 +240,8 @@ router.post('/addWorkout', (req,res) => {
 
 router.post('/addSeance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-   console.log(req.body)
-
+    console.log(req.body)
+    const job = Training.create(req, userData)
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 

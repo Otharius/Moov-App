@@ -46,8 +46,15 @@
 
 function test () {
   $('.template').attr("style", "display:none");
+  $('.field').attr("name", '');
   const id = '#' + $('#selectExerciceJob').val();
-  $(id).attr("style", "display:block")
+  $(id).attr("style", "display:block");
+  $(id + 'Serie').attr("name", "serie");
+  $(id + 'Repetition').attr("name", "repetition");
+  $(id + 'Exercice').attr("name", "exercice");
+  $(id + 'Description').attr("name", "description");
+  $(id + 'Charge').attr("name", "charge");
+  $(id + 'Time').attr("name", "time");
 }
 
 

@@ -6,25 +6,37 @@ temps, départ, arrivé-->
     <div id="<%=Object.keys(userData.templates)[l]%>" class="template" style="display: none;" >
 
         <% for (var m=0; m < userData.templates[t[l]].fields.length; m++) { %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'exercices') { %>
+                <select name="exercices" data-name="exercices" id="<%=Object.keys(userData.templates)[l]%>Exercice" class="field">
+                    <% for (var z=0; z < exercices.length; z++) { %>
+                        <option value="<%=exercices[z]%>"><%=exercices[z]%></option>
+                    <% } %>
+                </select>
+            <% } %>
     
             <% if (userData.templates[t[l]].fields[m] == 'repetition') { %>
-                <input type="number" name="repetition" placeholder="repetition">
+                <input type="number" name="repetition" placeholder="repetition" class="field" id="<%=Object.keys(userData.templates)[l]%>Repetition">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'serie') { %>
-                <input type="number" name="serie" placeholder="serie">
+                <input type="number" name="serie" placeholder="serie" class="field" id="<%=Object.keys(userData.templates)[l]%>Serie">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'pause') { %>
-                <input type="number" name="pause" placeholder="pause">
+                <input type="number" name="pause" placeholder="pause" class="field" id="<%=Object.keys(userData.templates)[l]%>Pause">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'charge') { %>
-                <input type="number" name="charge" placeholder="charge">
+                <input type="number" name="charge" placeholder="charge" class="field" id="<%=Object.keys(userData.templates)[l]%>Charge">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'time') { %>
-                <input type="number" name="time" placeholder="time">
+                <input type="number" name="time" placeholder="time" class="field" id="<%=Object.keys(userData.templates)[l]%>Time">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'description') { %>
+                <input type="text" name="description" placeholder="description" class="field" id="<%=Object.keys(userData.templates)[l]%>Description">
             <% } %>
 
         <% } %>

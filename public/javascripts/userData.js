@@ -14,6 +14,8 @@ class AbstractJobBuilder {
     constructor(req) {
         this.req = req;
     }
+
+    
 }
 
 
@@ -22,17 +24,6 @@ class Training extends AbstractJob {
 
     constructor() {
         super();
-        this.exercice = null;
-        this.repetitions = null;
-        this.series = null;
-        this.pause = null;
-        this.weight = null;
-        this.distance = null;
-        this.duration = null;
-        this.time = null;
-        this.start = null;
-        this.arrival = null;
-        this.description = null;
     };
 
     withExercice(exercice) {
@@ -89,6 +80,30 @@ class Training extends AbstractJob {
         this.description = description;
         return this;
     };
+
+    static create(req, userData) {
+        const training = new Training();
+        const templateName = req.body.template;
+        const fields = userData.templates[templateName].fields;
+
+        if (fields.includes('exercices')) {
+            training.withExercice(req.body.exercices);
+        };
+
+        if (fields.includes('serie')) {
+            training.withSeries(req.body.serie);
+        };
+
+        if (fields.includes('repetition')) {
+            training.withRepetitions(req.body.repetition);
+        };
+
+        if (fields.includes('pause')) {
+            training.withPause(req.body.pause);
+        };
+
+        return training;
+    }
 };
 
 class Template {
