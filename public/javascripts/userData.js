@@ -91,29 +91,6 @@ class Training extends AbstractJob {
     };
 };
 
-class Templates {
-    
-    constructor () {
-        this.templates = {};
-    };
-
-    exist(name) {
-        return this.templates.hasOwnProperty(name);
-    };
-
-    load(data) {
-        this.templates = data.templates;
-        return this;
-    };
-
-    add(template) {
-        if (!this.exist(template.name)) {
-            this.templates[template.name] = template;
-        }
-        return this;
-    };
-}
-
 class Template {
 
     constructor (name) {
@@ -257,27 +234,33 @@ class UserData {
         this.pseudo = pseudo;
         this.health = new Health();
         this.workout = new Workout();
-        this.templates = new Templates();
+        this.templates = {};
     };
 
     addSeance(data) {
         return this.workout.addSeance(data);
     };
 
+    addTemplate(data) {
+        if (!this.templates.hasOwnProperty(data.name)) {
+            this.templates[data.name] = data;
+        }
+        return this;
+    };
 
     load() {
         this.health = new Health();
         this.workout = new Workout();
-        this.templates = new Templates();
+        this.templates = {};
         try {
             const data = require('../../data/usersFile/' + this.pseudo + '.json');
             this.health.load(data);
             this.workout.load(data);
-            this.templates.load(data);
+            this.templates = data.templates;
         } catch (error) {
             this.health = new Health();
             this.workout = new Workout();
-            this.templates = new Templates();
+            this.templates = {};
             this.save();
         };
         return this;
@@ -311,7 +294,6 @@ module.exports = {
     Training,
     Seance,
     Workout,
-    Templates,
     Template,
     Health,
     AbstractJob,

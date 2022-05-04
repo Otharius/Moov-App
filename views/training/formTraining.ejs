@@ -1,31 +1,36 @@
 <!-- Charge prévu, série, répétitions, pause, tricet, difficulté, description, distance, interval, 
 temps, départ, arrivé-->
-
-<% var t = userData.templates.templates %>
+<% var t = Object.keys(userData.templates) %>
 
 <% for (var l=0; l < t.length; l++) { %>
-    <% for (var m=0; m < t[l].fields.length; m++) { %>
+    <div id="<%=Object.keys(userData.templates)[l]%>" class="template" style="display: none;" >
 
-        <% if (userData.templates.templates[l].fields[m] == 'exercice') { %>
-           <select name="" id="">
+        <% for (var m=0; m < userData.templates[t[l]].fields.length; m++) { %>
+    
+            <% if (userData.templates[t[l]].fields[m] == 'repetition') { %>
+                <input type="number" name="repetition" placeholder="repetition">
+            <% } %>
 
+            <% if (userData.templates[t[l]].fields[m] == 'serie') { %>
+                <input type="number" name="serie" placeholder="serie">
+            <% } %>
 
-           </select>
+            <% if (userData.templates[t[l]].fields[m] == 'pause') { %>
+                <input type="number" name="pause" placeholder="pause">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'charge') { %>
+                <input type="number" name="charge" placeholder="charge">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'time') { %>
+                <input type="number" name="time" placeholder="time">
+            <% } %>
+
         <% } %>
-
-        <% if (userData.templates.templates[l].fields[m] == 'repetition') { %>
-            <input type="number" name="repetition" placeholder="repetition">
-        <% } %>
-
-        <% if (userData.templates.templates[l].fields[m] == 'serie') { %>
-            <input type="number" name="serie" placeholder="serie">
-        <% } %>
-
-        <% if (userData.templates.templates[l].fields[m] == 'pause') { %>
-            <input type="number" name="pause" placeholder="pause">
-        <% } %>
-
-    <% } %>
+    </div>
 <% } %>
+
+   
 
 <input type="submit" value="Valider" class="addJob">

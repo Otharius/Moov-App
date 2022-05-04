@@ -1,6 +1,7 @@
 <html lang="fr">
 <title><%= title %></title>
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link href="/css/computer.css" media="(min-width: 480px)" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/mobil.css" media="(max-width: 480px)" type="text/css">
     
@@ -14,7 +15,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
  
-<body>
+<body onload="test()">
   <% if(style){ %>
     <span class="navbar">
       <a href="/workout/training" class="nav_second">
@@ -42,6 +43,14 @@
   <%- body %>
 </body>
 <script>
+
+function test () {
+  $('.template').attr("style", "display:none");
+  const id = '#' + $('#selectExerciceJob').val();
+  $(id).attr("style", "display:block")
+}
+
+
 
 const wrapper = document.querySelector(".move_div"),
 header = wrapper.querySelector("header");
@@ -89,7 +98,9 @@ function intensity_div () {
   };
 };
 
-let value = document.querySelector('.selectExerciceJob').value;
+
+
+
 
 
 </script>

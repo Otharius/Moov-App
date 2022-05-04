@@ -115,6 +115,7 @@ router.get('/planWorkout', (req,res) => {
         style: false,
         title: title.training,
         userData: userData,
+        template: dataLenght(Object.keys(userData.templates)),
         old: dataLenght(userData.workout.seances),
         exercices: exercices,
         userBody: dataLenght(userData.health.body),
@@ -132,6 +133,7 @@ router.post('/planWorkout', (req,res) => {
     res.render('training/planWorkout', { 
         id: req.session.idSeance,
         style: false,
+        template: dataLenght(Object.keys(userData.templates)),
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
@@ -247,6 +249,7 @@ router.post('/addSeance', (req,res) => {
         style: false,
         title: title.training, 
         userData: userData,
+        template: dataLenght(Object.keys(userData.templates)),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exercices: exercices,
@@ -273,6 +276,7 @@ router.get('/deleteJob', (req, res) => {
         title: title.training, 
         userData: userData,
         exercices: exercices,
+        template: dataLenght(Object.keys(userData.templates)),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
     });

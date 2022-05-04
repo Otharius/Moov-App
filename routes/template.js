@@ -46,7 +46,7 @@ router.post('/newTemplate', (req,res) => {
         template.add(req.session.fields[i]);
     };
 
-    userData.templates.add(template);
+    userData.addTemplate(template);
     userData.save();
     req.session.fields = []
 

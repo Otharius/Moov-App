@@ -7,6 +7,9 @@ const https = require('https');
 const fs = require('fs');
 const config = require('./config.json');
 const session = require('express-session');
+const { JSDOM } = require( "jsdom" );
+const { window } = new JSDOM( "" );
+const $ = require( "jquery" )( window );
 
 
 // App set
