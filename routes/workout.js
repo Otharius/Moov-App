@@ -218,8 +218,12 @@ router.post('/deleteWorkout', (req, res) => {
 router.post('/addWorkout', (req,res) => {
     sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
+    const seance = new Seance(req.body.training_name, req.body.date, req.body.detail, duration);
 
-    const seance = new Seance(req.body.training_name, req.body.date, req.body.detail);
+    if (req.body.time != '') {
+        seance.withTime(req.body.time)
+    };
     
     userData.workout.add(seance);
     userData.save();
@@ -232,7 +236,6 @@ router.post('/addWorkout', (req,res) => {
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
         exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 
@@ -240,7 +243,6 @@ router.post('/addWorkout', (req,res) => {
 
 router.post('/addSeance', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    console.log(req.body)
     const job = Training.create(req, userData)
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();

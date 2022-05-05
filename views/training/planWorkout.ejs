@@ -3,9 +3,7 @@
 <h1 class="title_workout">Modifier entrainement</h1>
 
     <div class="intro_workout">
-        <input type="text" name="training_name" placeholder="Nouveau nom de la séance" value="<%=userData.workout.seances[id].name%>" class="training_name" required>
-        <input type="date" name="date" id="date" class="" value="<%=userData.workout.seances[id].date%>">
-        
+        <p><%=userData.workout.seances[id].name%></p>        
         <br><br>
     </div><br><br>
    
@@ -14,14 +12,12 @@
         <button class="exercice_delete">Supprimer la séance</button>
     </form>
 
-    <a href="/template/newTemplates">Nouveau templates</a>
-
 
 <hr><br>
 
 <% if(template) { %>
     <form action="/workout/addSeance" method="POST">
-        <select name="template" class="selectExerciceJob" id="selectExerciceJob" onclick="test()" onload="test()">
+        <select name="template" class="selectExerciceJob" id="selectExerciceJob" onclick="test()">
             <% var a = Object.keys(userData.templates) %>
             <% for(var j=0; j < a.length; j++) { %>
                 <option value="<%=a[j]%>"><%=a[j]%></option>

@@ -120,25 +120,29 @@ class Template {
         return this;
     };
 
+
+
 }
 
 class Seance {
 
     name = '';
     date = '';
+    detail = '';
+    duration = null;
+    time = null;
+    jobs;
+    note = null;
     difficulty = null;
     done = false;
-    detail = '';
-    jobs;
-    duration = null;
-    note = null;
 
-    constructor(name, date, detail) {
+    constructor(name, date, detail, duration) {
         this.name = name;
         this.date = date;
         this.difficulty = null;
         this.done = false;
         this.detail = detail;
+        this.duration = duration;
         this.jobs = [];
     };
 
@@ -147,6 +151,10 @@ class Seance {
         return this;
     };
 
+    withTime(time) {
+        this.time = time;
+        return this;
+    };
 };
 
 class Workout {
@@ -259,7 +267,12 @@ class UserData {
     addTemplate(data) {
         if (!this.templates.hasOwnProperty(data.name)) {
             this.templates[data.name] = data;
-        }
+        };
+        return this;
+    };
+
+    deleteTemplate (template) {
+        Reflect.deleteProperty(this.templates, template)
         return this;
     };
 

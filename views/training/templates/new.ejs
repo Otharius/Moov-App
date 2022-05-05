@@ -1,4 +1,4 @@
-<br><br><a href="/workout/planWorkout?id=<%=id%>" style="margin-left: 5px;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+<br><br><a href="/workout/training" style="margin-left: 5px;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 
 <h1>Nouveau templates</h1>
 
@@ -37,3 +37,17 @@
 
 </form>
 
+
+<% if (template) { %>
+    <% var b = Object.keys(userData.templates) %>
+    <table>
+        <% for(var k=0; k < b.length; k++) { %>
+    
+            <tr>
+                <td><%= b[k] %></td>
+                <td class="exerciceDelete"><a href="/template/deleteTemplate?template=<%=b[k]%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+            </tr>
+    
+        <% } %>
+    </table>
+<% } %>

@@ -1,27 +1,29 @@
 <span class="training_close" id="btnDraggable" onclick="closeCreateDiv()">&times; Fermer</span>
+
 <header>
-<form action="/workout/addWorkout" method="POST">
+    <form action="/workout/addWorkout" method="POST">
     <h1 class="title_workout">Créer son entrainement</h1>
 
         <div class="intro_workout">
-            <input type="text" name="training_name" placeholder="Nom de la séance" class="training_name"><br>
 
+            <input type="text" name="training_name" placeholder="Nom de la séance" class="training_name"><br>
             <input type="date" name="date">
-            
-            <br><br>
-        </div><br><br>
+        
+        </div>
     
         <div class="into_workout">
             <input type="number" max="5" value="1" min="0" name="durationHeure" id="heure">h 
-            <input type="number" max="59" value="0" min="0" name="durationMin">min <br><br>
+            <input type="number" max="59" value="0" min="0" name="durationMin">min
         </div>
 
         <div>
-            <input type="time" id="time"><br><br>
+            <input type="time" name="time">
         </div>
         
         <h5 class="training_create_title">Les notes de la séance</h5>
         <input type="text" placeholder="Détail" name="detail">
                 
         <button class="send_workout">Valider</button>
+
+    </form>
 </header>

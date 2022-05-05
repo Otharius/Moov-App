@@ -30,6 +30,7 @@ router.get('/newTemplates', (req,res) => {
         dataFields: dataFields,
         fields: null,
         title: title.training,
+        template: dataLenght(Object.keys(userData.templates)),
         id: req.session.idSeance,
         userData: userData,
         exercices: exercices,
@@ -55,6 +56,7 @@ router.post('/newTemplate', (req,res) => {
         title: title.training,
         dataFields: dataFields,
         fields: null,
+        template: dataLenght(Object.keys(userData.templates)),
         id: req.session.idSeance,
         userData: userData,
         exercices: exercices,
@@ -71,6 +73,24 @@ router.post('/newField', (req,res) => {
         title: title.training,
         dataFields: dataFields,
         fields: req.session.fields,
+        id: req.session.idSeance,
+        template: dataLenght(Object.keys(userData.templates)),
+        userData: userData,
+        exercices: exercices,
+    });
+});
+
+router.get('/deleteTemplate', (req,res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
+    userData.deleteTemplate(req.query.template);
+    userData.save()
+
+    res.render('training/templates/new', {
+        style: false,
+        dataFields: dataFields,
+        fields: req.session.fields,
+        title: title.training,
+        template: dataLenght(Object.keys(userData.templates)),
         id: req.session.idSeance,
         userData: userData,
         exercices: exercices,
