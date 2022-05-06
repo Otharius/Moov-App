@@ -937,3 +937,907 @@ h3 {
 
 
 
+
+
+
+
+
+.workout_div{
+    display: flex;
+}
+
+.workout_yes {
+    width: 47%;
+    border: 1Px solid black;
+    margin-left: 2%;
+    margin-right: 1%;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.workout_no {
+    width: 47%;
+    border: 1px solid black;
+    margin-left: 1%;
+    margin-right: 2%;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+/*Fin de la page d'entrainement*/
+/*Début de la page d'accueil*/
+
+.workout_day_box, .evolution_home_box, .workout_rpe_box, .documentation_home_box {
+    display: flex;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    flex-direction: column;
+    font-size: 1.2rem;
+}
+
+.workout_day_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--workoutButton);
+}
+
+.workout_meal_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color: green;
+}
+
+.home_difficulty {
+    display: flex;
+    width: 39%;
+    flex-direction: row;
+    justify-content: space-around;
+    margin: auto;
+}
+
+.value_home_button {
+    text-align: center;
+    color: white;
+    background-color: var(--valueButton);
+    border: none;
+    display: flex;
+    padding: 1% 8%;
+    border-radius: 25px;
+    margin: auto;
+    font-size: 1rem;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.value_home_button:hover {
+    background-color: var(--valueButtonDark);
+}
+
+.value_home_button:active {
+    transform: scale(0.98);
+}
+
+.select_home_page {
+    width: 250px;
+    font-size: 1rem;
+}
+
+.select_home_box {
+    display: flex;
+    justify-content: center;
+}
+
+.workout_meal_calories {
+    margin-top: 25px;
+}
+
+
+.home_ok_count_calorie {
+    padding: 1rem 1rem;
+    margin-left: 8%;
+    border-radius: 25px;
+    background-color: var(--createGreen);
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.home_ok_count_calorie:hover {
+    background-color: var(--createGreenDark);
+}
+
+.home_ok_count_calorie:active {
+    transform: scale(0.98);
+}
+
+.count_calorie_box {
+    display: flex;
+}
+
+.home_result_count_calorie {
+    margin: auto;
+    margin-top: 3%;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 10%;
+    text-align: center;
+    padding: 1% 1%;
+    order: 2;
+    justify-content: center;
+}
+
+.home_reset_count_calorie {
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    background-color: red;
+    color: white;
+    border: none;
+    font-size: 1rem;
+    order: 1;
+    margin-left: 15%;
+    cursor: pointer;
+}
+
+.home_reset_count_calorie:hover {
+    background-color: var(--hoverRed);
+}
+
+.home_reset_count_calorie:active {
+    transform: scale(0.98);
+}
+
+
+/*Fin de la page d'accueil*/
+/*Début de la page de sommeil*/
+
+.workout_sleep_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    background-color:var(--sleepViolet);
+    font-family: 'Quicksand', sans-serif;
+}
+
+.etirement {
+    max-width: 15rem;
+}
+
+.conseil {
+    color: darkblue;
+}
+
+.sleep_table_time tr:nth-child(odd) {
+    background-color: #eee;
+}
+
+.gras {
+    font-weight: bold;
+}
+
+.Medit {
+    width: 1rem;
+    margin-right: 50px;
+    border: 2px solid black;
+}
+
+.img td {
+    border: none;
+}
+
+.Medite {
+    width: 1rem;
+    margin-left: 50px;
+    border: 2px solid black;
+}
+
+h3 {
+    text-align: center;
+} 
+
+.sleep_align {
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.sleep_quality, .shower, .meditation {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.sleep_table_time {
+    border-collapse: collapse;
+    margin: auto;
+    border: 1px solid black;
+}
+
+.sleep_table_time td{
+    width: 9rem;
+    border: 1px solid black;
+    padding: 10px 20px;
+}
+
+.coldShower {
+    width: 500px;
+    border: 2px solid black;
+    margin-right: 15px;
+}
+
+.sleep_div_img {
+    float: left;
+    margin-left: 5%;
+}
+
+.sleep_div_text {
+    width: 30%;
+    float: right;
+    margin-right: 10%;
+    font-size: 1.3rem;
+    margin-top: -1%;
+}
+
+.shower, .meditation {
+    height: 500px;
+}
+
+.table_stretch {
+    border-collapse: collapse;
+    width: 95%;
+    margin-left: 2.5%;
+    border: 1px solid black;
+    text-align: center;
+}
+
+.table_stretch td, th{
+    border: 1px solid black;
+    padding: 20px 30px;
+}
+
+.stretch_title {
+    background-color: blueviolet;
+    color: white;
+}
+
+.stretch_color {
+    background-color: #eee;
+}
+
+.workout_sleep_shower {
+    margin-bottom: 25px;
+}
+
+.text_shower {
+    font-size: 1.2rem;
+    margin-right: 15px;
+}
+
+.sleep_shower {
+    margin-bottom: 15px;
+    margin-top: 25px;
+}
+
+.quality_sleep {
+    font-size: 1.1rem;
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+/*Fin de la page de sommeil*/
+/*Début de la page d'alimentation*/
+
+.calorie, .needed {
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+}
+
+.count_calorie {
+    float: left;
+    border: 1px solid black;
+    border-radius: 8px;
+    background-color: #eeeeee;
+    padding: 1rem 2rem;
+    display: block;
+    width: 30%;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    outline: none;
+    transition: background 0.2s, border-color 0.2s;
+    margin-left: 20%;
+    font-size: 1rem;
+}
+
+.count_calorie:focus {
+    border-color: var(--focus);
+    background-color: #ffffff;
+}
+
+.ok_count_calorie {
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    background-color: green;
+    color: white;
+    border: 1px solid green;
+    float: right;
+    margin-right: 40%;
+    margin-top: -0.3%;
+}
+
+.reset_count_calorie {
+    padding: 1rem 1rem;
+    border-radius: 20px;
+    background-color: #ffffff;
+    color: red;
+    border: 1px solid red;
+    float: left;
+    margin-left: 5%;
+    margin-top: -8%;
+}
+
+.reset_count_calorie:active {
+    transform: scale(0.98);
+}
+
+.ok_count_calorie:hover {
+    cursor: pointer;
+    user-select: none;
+}
+
+.ok_count_calorie:active {
+    transform: scale(0.98);
+    border: 1px solid var(--focus);
+    background-color: var(--focus);
+    color: white;
+}
+
+.result_count_calorie {
+    margin: auto;
+    margin-top: 3%;
+    border: 1px solid black;
+    border-radius: 15px;
+    width: 10%;
+    text-align: center;
+    padding: 1% 1%;
+}
+
+
+/*Fin de la page d'alimentation*/
+/*Début de la page de profil*/
+
+
+.informations_box {
+    display: flex;
+    justify-content: space-between;
+}
+
+.informations_box p {
+    margin-left: 5px;
+}
+
+.profil_box {
+    margin-left: 5%;
+    width: 40%;
+    font-size: 1.2rem;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+.password_box {
+    margin-right: 5%;
+    width: 40%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+
+
+.changePWD {
+    margin: 1rem;
+}
+
+.profil_title {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.changePWD input {
+        display: block;
+        width: 100%;
+        padding: 0.75rem;
+        box-sizing: border-box;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+        outline: none;
+        background: #eeeeee;
+        transition: background 0.2s, border-color 0.2s;
+}
+    
+.changePWD input:focus {
+    border-color: var(--focus);
+    background: #ffffff;
+}
+
+.input_submit {
+    width: 50%;
+    padding: 1rem 2rem;
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    cursor: pointer;
+    background: var(--orange);
+    margin-left: 25%;
+    display: block;
+}
+
+.input_submit:hover {
+    background: var(--orangeFoncé);
+}
+
+.input_submit:active {
+    transform: scale(0.98);
+}
+
+.disconnect {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    background-color: red;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.disconnect:hover{
+    background-color: var(--hoverRed);
+}
+
+.disconnect:active {
+    transform: scale(0.98);
+}
+
+.hr_line {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-left: 5%;
+    margin-right: 5%;
+    font-family: 'Quicksand', sans-serif;
+  }
+  
+  .hr_line::before,
+  .hr_line::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #000;
+  }
+  
+  .hr_line:not(:empty)::before {
+    margin-right: .25em;
+  }
+  
+  .hr_line:not(:empty)::after {
+    margin-left: .25em;
+  }
+  
+.wrapper{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 90%;
+    background: #fff;
+    border-radius: 10px;
+    transform: translate(-50%, -50%);
+    box-shadow: 10px 10px 15px rgba(0,0,0,0.06);
+    border: 1px solid black;
+    display: none;
+    padding: 5px;
+    margin-top: 200px;
+}
+
+.wrapper header.active, .move_table.active{
+    cursor: move;
+    user-select: none;
+}
+.wrapper .content{
+    display: flex;
+    padding: 30px 30px 40px 30px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+.content .icon{
+    height: 95px;
+    width: 95px;
+    border-radius: 50%;
+    border: 5px solid #6F36FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.content .icon i{
+    color: #6F36FF;
+    font-size: 60px;
+}
+.content .title{
+    margin: 15px 0;
+    font-size: 29px;
+    font-weight: 500;
+}
+.content p{
+    font-size: 16px;
+    text-align: center;
+}
+
+.wrapper_close {
+    color: #aaa;
+    float: right;
+    font-size: 23px;
+    font-weight: bold;
+}
+
+.wrapper_close:hover,
+.wrapper_close:focus {
+    color: red;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.wrapper_table, .wrapper_table tr, .wrapper_table tr td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+
+
+.musculation {
+    display: block;
+}
+
+.running {
+    display: none;
+}
+
+.selectPageRPE {
+    width: 50%;
+    margin-left: 25%;
+    margin-top: 2%;
+    font-size: 1.2rem ;
+}
+
+/* La page de création d'entrainement*/
+
+.rightJob, .leftJob {
+    border: 1px solid black;
+    display: block;
+    max-width: 48%;
+    width: 48%;
+    border-radius: 20px;
+}
+
+.leftJob {
+    float: left;
+    margin-left: 1%;
+}
+
+.rightJob {
+    float: right;
+    margin-right: 1%;
+}
+
+.tableJob tr .exerciceJob{
+    border: 1px solid black;
+    padding: 0.9% 1%;
+
+}
+
+.tableJob {
+    border-collapse: collapse;
+    margin: auto;
+    width: 80%;
+    text-align: center;
+}
+
+.exerciceJob {
+    width: 15%;
+}
+
+.exercice {
+    width: 55%;
+}
+
+
+.addJob {
+    text-align: center;
+    color: white;
+    background-color:var(--createGreen);
+    border: none;
+    padding: 2% 10%;
+    border-radius: 20px;
+    margin: auto;
+    display: block;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.addJob:hover {
+    background-color: var(--createGreenDark);
+}
+
+.addJob:active {
+    transform: scale(0.98);
+}
+
+.selectExerciceJob {
+    margin: auto;
+    display: block;
+    width: 35%;
+    padding: 1% 5%;
+    font-size: 1rem;
+}   
+
+.selectDeleteJob {
+    width: 35%;
+    padding: 1% 5%;
+    font-size: 1rem;
+    margin-left: 15%;
+    margin-right: 10%;
+}
+
+.buttonDeleteJob {
+    text-align: center;
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 2% 10%;
+    border-radius: 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.buttonDeleteJob:hover {
+    background-color: var(--hoverRed);
+}
+
+.buttonDeleteJob:active {
+    transform: scale(0.98);
+}
+
+.planWorkout {
+    padding: 10px 90px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: var(--createGreen);
+    font-size: 1rem;
+    cursor: pointer;
+    width: 400px;
+}
+
+.planWorkout:hover {
+    background-color: var(--createGreenDark);
+}
+
+.planWorkout:active {
+    transform: scale(0.98);
+}
+
+.changeWorkout {
+    padding: 10px 90px;
+    width: 400px;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    background-color: var(--createGreen);
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.changeWorkout:hover {
+    background-color: var(--createGreenDark);
+}
+
+.changeWorkout:active {
+    transform: scale(0.98);
+}
+
+.selectPage {
+    font-size: 1rem;
+    width: 250px;
+    margin-right: 25px;
+    margin-left: 150px;
+    margin-top: 5px;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.exerciceDelete {
+    border: none;
+}
+
+.trash {
+    color: black;
+}
+
+
+/* La page de séance */
+.end_seance {
+    background-color: green;
+    margin-left: 2%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    display: flex;
+    padding: 0.5% 5%;
+    width: 10%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 20px;
+}
+
+.end_seance:hover {
+    background-color: #23581f;
+}
+
+.end_seance:active {
+    transform: scale(0.98);
+}
+
+.seance_name {
+    text-align: center;
+}
+
+.link_seance {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    margin-top: 2%;
+    margin-left: 2%;
+}
+
+.link_seance_box {
+    border: 1px solid black;
+    width: 500px;
+}
+
+.set_imc_box {
+    display: flex;
+    margin-left: 115px;
+    margin-right: 115px;
+}
+
+.button_add_imc {
+    color: white;
+    background-color: var(--valueButton);
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.button_add_imc:hover {
+    background-color: var(--valueButtonDark);
+}
+
+.button_add_imc:active {
+    transform: scale(0.98);
+}
+
+.button_delete_imc {
+    color: white;
+    background-color: red;
+    border: none;
+    cursor: pointer;
+    width: 120px;
+    height: 50px;
+    border-radius: 20px;
+    margin-top: 15px;
+    font-size: 1rem;
+}
+
+.button_delete_imc:hover {
+    background-color: var(--hoverRed);
+}
+
+.button_delete_imc:active {
+    transform: scale(0.98);
+}
+
+.select_delete_imc {
+    width: 250px;
+    font-size: 1rem;
+} 
+
+.seeances_table {
+    display: flex;
+    justify-content: center;
+}
+
+.seeances_table tr td {
+    width: 350px;
+}
+
+
+
+/* La page d'accueil */
+
+.not_workout {
+    text-align: center;
+}
+
+
+.documentation_day_title {
+    text-align: center;
+    font-size: 1.5rem;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color:#aaa;
+}
+
+
+/* La  page de la séance */
+
+.false {
+    font-size: 1rem;
+    color: red;
+}
+
+.true {
+    color: green;
+    font-size: 1rem;
+}
+
+.seance_information p {
+    font-size: 1.2rem;
+}
+
+/* Template */
+
+.linkTemplate {
+    padding: 15px 90px;
+    border-radius: 15px;
+    color: white;
+    background-color: var(--createGreen);
+    cursor: pointer;
+    width: 200px;
+    text-decoration: none;
+    margin-left: 15px;
+    display: flex;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.linkTemplate:active {
+    transform: scale(0.98);
+}
+
+.linkTemplate:hover {
+    background-color: var(--createGreenDark);
+}

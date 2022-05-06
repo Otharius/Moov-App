@@ -1,9 +1,134 @@
-.toto {
+/* Barre de navigation et variable */
+body {
+  --orange: #FF8C00;
+  --sucess: #4bb544;
+  --error: #cc3333;
+  --orangeFonce: #bb7a0a;
+  --focus: #009579;
+  --hoverRed: #9e0404;
+  --createGreen: #4bb544;
+  --createGreenDark: #286424;
+  --workoutButton: #da7e5e;
+  --workoutButtonDark: #90513b;
+  --valueButton: steelblue;
+  --valueButtonDark: #2d357c;
+  --sleepViolet: blueviolet;
+  padding: 0px;
+  margin: 0px;
+}
+.navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 50px;
+  border: 1px solid black;
+  background-color: #787dd8;
+}
+.navbar a {
+  text-align: center;
+  color: white;
+  width: 20%;
+  height: 50px;
+}
+.navbar a i {
+  margin-top: 25px;
+}
+.navbar a:hover {
+  background-color: #2d34c5;
+}
+/* La page de connexion et d'inscription */
+.container {
+  width: 400px;
+  max-width: 400px;
+  margin: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  background: #ffffff;
+}
+.container,
+.form_input,
+.form_button {
+  font: 500 1rem 'Quicksand', sans-serif;
+}
+.form-hidden {
+  display: none;
+}
+.form > *:first-child {
+  margin-top: 0;
+}
+.form > *:last-child {
+  margin-bottom: 0;
+}
+.form_title {
+  margin-bottom: 2rem;
   text-align: center;
 }
-.toto .titi {
-  caret-color: auto;
+.form_message {
+  text-align: center;
+  margin-bottom: 1rem;
 }
-.toto .tutu {
-  column-count: 1;
+.form_message-success {
+  color: var(--sucess);
+}
+.form_message-error {
+  color: var(--error);
+  text-align: center;
+}
+.form_input-group {
+  margin-bottom: 1rem;
+}
+.form_input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: background 0.2s, 0.2s;
+  user-select: none;
+}
+.form_input :focus {
+  border-color: #009579;
+  background: #ffffff;
+}
+.form_input-error {
+  color: var(--error);
+  border-color: var(--error);
+}
+.form_input-error-message {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--error);
+}
+.form_button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  cursor: pointer;
+  background: var(--orange);
+}
+.form_button :hover {
+  background: var(--orangeFonce);
+}
+.form_button :active {
+  transform: scale(0.98);
+}
+.form_text {
+  text-align: center;
+}
+.form_link {
+  color: #252c6a;
+  text-decoration: none;
+  cursor: pointer;
+}
+.form_link :hover {
+  text-decoration: underline;
 }
