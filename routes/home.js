@@ -21,21 +21,6 @@ function dataLenght (data) {
     };
 };
 
-
-
-// FONCTION POUR LA SECURISATION DES SESSIONS
-function sessionSecure (req, res) {
-    if (req.session.pseudo === undefined) {
-        res.render('principal/login', {
-            style: false, 
-            title: title.login, 
-            error: false,
-        });
-    };
-};
-
-
-
 // FONCTION RAJOUTE DES CALORIES
 function addCalorie (calories) {
     if (calories === "" || isNaN(parseInt(calories))) {
@@ -65,8 +50,6 @@ function endWorkout (data) {
 
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
-    sessionSecure(req,res);
-
     const userData = workoutClass.getData(req.session.pseudo);
 
     res.render('home/main', { 
@@ -84,8 +67,6 @@ router.get('/home', (req,res) => {
 
 // AJOUT DES CALORIES SUR LA PAGE D'ACCUEIL
 router.post('/homeAddCal', (req,res) => {
-    sessionSecure(req,res);
-
     const userData =  workoutClass.getData(req.session.pseudo);
 
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
@@ -106,8 +87,6 @@ router.post('/homeAddCal', (req,res) => {
 
 // REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ACCUEIL
 router.post('/homeResetCal', (req,res) => {
-    sessionSecure(req,res);
-
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setCalories(0);
     userData.save();

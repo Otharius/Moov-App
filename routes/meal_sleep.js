@@ -6,22 +6,6 @@ const workoutClass = require('../public/javascripts/userData');
 const Users = require('../public/javascripts/users');
 const users = new Users().load();
 
-
-
-
-
-// FONCTION POUR LA SECURISATION DES SESSIONS
-function sessionSecure (req, res) {
-    if (req.session.pseudo === undefined) {
-        res.render('principal/login', {
-            style: false, 
-            title: title.login, 
-            error: false,
-        });
-    };
-};
-
-
 // FONCTION RAJOUTE DES CALORIES
 function addCalorie (calories) {
 
@@ -48,8 +32,6 @@ function addSleep (sleep) {
 
 // REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/resetCal', (req,res) => {
-    sessionSecure(req,res);
-
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setCalories(0);
     userData.save();
@@ -65,7 +47,6 @@ router.post('/resetCal', (req,res) => {
 
 // L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/addCal', (req,res) => {
-    sessionSecure(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     
 
@@ -84,7 +65,6 @@ router.post('/addCal', (req,res) => {
 
 // LA PAGE D'ALIMENTATION 
 router.get('/meal', (req,res) => {
-    sessionSecure(req, res);
 
     res.render('meal/main', { 
         style: true,
@@ -103,7 +83,6 @@ router.get('/meal', (req,res) => {
 
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
-    sessionSecure(req,res);
     res.render('sleep/main', { 
         style: true,
         title: title.sleep,
@@ -115,10 +94,8 @@ router.get('/sleep', (req,res) => {
 
 // L'AJOUT D'HEURE DE SOMMEIL
 router.post('/addSleep', (req,res) => {
-    sessionSecure(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     
-
     userData.health.setSleep(userData.health.sleep + addSleep(req.body.sleep));
     userData.save();
 
@@ -134,8 +111,6 @@ router.post('/addSleep', (req,res) => {
 
 // Met à 0 le nombre d'heure de sommeil
 router.post('/resetSleep', (req,res) => {
-    sessionSecure(req,res);
-
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setSleep(0);
     userData.save();

@@ -399,7 +399,7 @@ body {
 
 .training_name:active, .training_name:focus {
     background-color: white;
-    border-color: red;
+    border-color: var(--valueButton);
 }
 
 .training_date {
@@ -1335,4 +1335,28 @@ h3 {
 
 .seance_information p {
     font-size: 1.2rem;
+}
+
+/* Template */
+
+.linkTemplate {
+    padding: 15px 90px;
+    border-radius: 15px;
+    color: white;
+    background-color: var(--createGreen);
+    cursor: pointer;
+    width: 200px;
+    text-decoration: none;
+    margin-left: 15px;
+    display: flex;
+    text-align: center;
+    font-size: 1.3rem;
+}
+
+.linkTemplate:active {
+    transform: scale(0.98);
+}
+
+.linkTemplate:hover {
+    background-color: var(--createGreenDark);
 }

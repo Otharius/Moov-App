@@ -7,13 +7,10 @@
 const express = require('express');
 const router = express.Router();
 
-
 // Modules de séances
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Training = workoutClass.Training;
-const AbstractJobBuilder = workoutClass.AbstractJobBuilder;
-
 
 // Modules des utilisateurs
 const Users = require('../public/javascripts/users');
@@ -26,10 +23,7 @@ const users = new Users().load();
 /////////////////
 
 // Variables pour les listes d'exercices
-const exerciceType = require('../data/exercices.json').exerciceType;
 const exercices = require('../data/exercices.json').exerciceWorkout;
-const exMuscu =  exercices.map(i => i.name);
-const dataFields = exercices.fields;
 
 
 /////////////////////
@@ -46,19 +40,6 @@ function dataLenght (data) {
         };
     } catch (error) {
         return false;
-    };
-};
-
-
-
-// Fonction qui vérifie si la session est existante
-function sessionSecure (req, res) {
-    if (req.session.pseudo === undefined) {
-        res.render('principal/login', {
-            style: false, 
-            title: title.login, 
-            error: false,
-        });
     };
 };
 
@@ -83,8 +64,6 @@ function endWorkout (data) {
 
 // Affiche la page d'accueil depuis la page de séance
 router.get('/home', (req,res) => {
-    sessionSecure(req,res);
-
     const userData = workoutClass.getData(req.session.pseudo);
  
     res.render('home/main', { 
@@ -117,9 +96,7 @@ router.get('/planWorkout', (req,res) => {
         title: title.training,
         userData: userData,
         template: dataLenght(Object.keys(userData.templates)),
-        old: dataLenght(userData.workout.seances),
         exercices: exercices,
-        userBody: dataLenght(userData.health.body),
     });
 })
 
@@ -137,9 +114,7 @@ router.post('/planWorkout', (req,res) => {
         template: dataLenght(Object.keys(userData.templates)),
         title: title.training,
         userData: userData,
-        old: dataLenght(userData.workout.seances),
         exercices: exercices,
-        userBody: dataLenght(userData.health.body),
     });
 })
 
@@ -147,7 +122,7 @@ router.post('/planWorkout', (req,res) => {
 
 // La page qui fait finir l'entrainement
 router.get('/endWorkout', (req,res) => {
-    sessionSecure(req, res);
+
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
     userData.workout.seances[id - 1].done = true;
@@ -161,8 +136,6 @@ router.get('/endWorkout', (req,res) => {
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
         userBody: dataLenght(userData.health.body),
     });
 });
@@ -172,8 +145,8 @@ router.get('/endWorkout', (req,res) => {
 // L'after entrainement
 router.post('/afterWorkout', (req,res) => {
     const seanceDifficulty = req.body.difficulty;
-    const pseudo = req.session.pseudo;
-    const userData = workoutClass.getData(pseudo);
+
+    const userData = workoutClass.getData(res.session.pseudo);
     const s = userData.workout.seances[req.body.rpe];
     s.difficulty = seanceDifficulty;
     s.done = true;
@@ -186,8 +159,6 @@ router.post('/afterWorkout', (req,res) => {
         seance: dataLenght(endWorkout(userData)),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 
@@ -195,8 +166,7 @@ router.post('/afterWorkout', (req,res) => {
 
 // Supprime un entrainement
 router.post('/deleteWorkout', (req, res) => {
-    const pseudo = req.session.pseudo;
-    const userData =  workoutClass.getData(pseudo);
+    const userData =  workoutClass.getData(req.session.pseudo);
     userData.workout.delete(req.session.idSeance);
     userData.save();
    
@@ -207,8 +177,6 @@ router.post('/deleteWorkout', (req, res) => {
         userData: userData,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 
@@ -216,7 +184,6 @@ router.post('/deleteWorkout', (req, res) => {
 
 // Créer un entrainement
 router.post('/addWorkout', (req,res) => {
-    sessionSecure(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
     const seance = new Seance(req.body.training_name, req.body.date, req.body.detail, duration);
@@ -232,10 +199,8 @@ router.post('/addWorkout', (req,res) => {
         seance: dataLenght(endWorkout(userData)),
         title: title.training, 
         userData: userData,
-        exerciceType: exerciceType,
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
     });
 });
 
@@ -253,8 +218,6 @@ router.post('/addSeance', (req,res) => {
         title: title.training, 
         userData: userData,
         template: dataLenght(Object.keys(userData.templates)),
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
         exercices: exercices,
     });
 });
@@ -280,8 +243,6 @@ router.get('/deleteJob', (req, res) => {
         userData: userData,
         exercices: exercices,
         template: dataLenght(Object.keys(userData.templates)),
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
     });
 })
 
@@ -301,8 +262,6 @@ router.get('/newWorkout', (req,res) => {
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
         userBody: dataLenght(userData.health.body),
     });
 })
@@ -311,7 +270,6 @@ router.get('/newWorkout', (req,res) => {
 
 // LA PAGE D'ENTRAINEMENT
 router.get('/training', (req,res) => {
-    sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
 
     res.render('training/main', {
@@ -320,8 +278,6 @@ router.get('/training', (req,res) => {
         userData: userData,
         old: dataLenght(userData.workout.seances),
         seance: dataLenght(endWorkout(userData)),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
         userBody: dataLenght(userData.health.body),
     });
 });
@@ -330,7 +286,6 @@ router.get('/training', (req,res) => {
 
 // La page de la séance choisie
 router.get('/seance', (req,res) => {
-    sessionSecure(req, res);
     const userData = workoutClass.getData(req.session.pseudo);
     const id = req.query.id;
     req.session.type = userData.workout.seances[id - 1].type;
@@ -341,10 +296,6 @@ router.get('/seance', (req,res) => {
         style: false,
         title: title.training,
         userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
-        userBody: dataLenght(userData.health.body),
     });
 });
 
@@ -359,9 +310,6 @@ router.get('/allSeances', (req, res) => {
         style: false,
         title: title.training, 
         userData: userData,
-        old: dataLenght(userData.workout.seances),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 
@@ -392,8 +340,6 @@ router.post('/setIMC', (req, res) => {
         userData: workoutClass.getData(pseudo),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 
@@ -401,8 +347,7 @@ router.post('/setIMC', (req, res) => {
 
 // Supprime une IMC
 router.post('/deleteIMC', (req, res) => {
-    const pseudo = req.session.pseudo;
-    const userData =  workoutClass.getData(pseudo);
+    const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.delete(req.body.supprimer);
     userData.save();
    
@@ -413,8 +358,6 @@ router.post('/deleteIMC', (req, res) => {
         seance: dataLenght(endWorkout(userData)),
         old: dataLenght(userData.workout.seances),
         userBody: dataLenght(userData.health.body),
-        exMuscu: exMuscu,
-        exerciceType: exerciceType,
     });
 });
 

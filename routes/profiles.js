@@ -36,20 +36,6 @@ function dataLenght (data) {
     };
 };
 
-
-
-// Fonction qui voit si la session a été crée
-function sessionSecure (req, res) {
-    if (req.session.pseudo === undefined) {
-        res.render('principal/login', {
-            style: false, 
-            title: title.login, 
-            error: false,
-        });
-    };
-};
-
-
 /////////////////////////
 /// Les fonctions GET ///
 /////////////////////////
@@ -58,7 +44,6 @@ function sessionSecure (req, res) {
 
  // Vers la page de profile
  router.get('/profiles', (req,res) => {
-    sessionSecure(req,res);
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
 

@@ -1,0 +1,9 @@
+.toto {
+  text-align: center;
+}
+.toto .titi {
+  caret-color: auto;
+}
+.toto .tutu {
+  column-count: 1;
+}
