@@ -825,22 +825,25 @@ h3 {
 .exerciceJob {
   width: 15%;
 }
-.addJob {
+.addJob_box {
+  margin-top: 50px;
+}
+.addJob_box .addJob {
   text-align: center;
   color: white;
   background-color: var(--createGreen);
   border: none;
-  padding: 2% 10%;
+  padding: 1% 10%;
   border-radius: 20px;
   margin: auto;
   display: block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   cursor: pointer;
 }
-.addJob:hover {
+.addJob_box .addJob:hover {
   background-color: var(--createGreenDark);
 }
-.addJob:active {
+.addJob_box .addJob:active {
   transform: scale(0.98);
 }
 .selectExerciceJob {
@@ -945,12 +948,25 @@ h3 {
   text-align: center;
 }
 .link_seance_box {
-  border: 1px solid black;
-  width: 500px;
+  width: 600px;
 }
-.link_seance_box a {
+.link_seance_box td {
+  width: 650px;
+}
+.link_seance_box td a {
+  display: flex;
+  width: 200px;
   text-decoration: none;
   font-size: 1.2rem;
+  margin-left: 20px;
+  padding-left: 6px;
+  font-size: 1.4rem;
+  color: black;
+  margin-top: 5px;
+}
+.link_seance_box td a:hover {
+  color: red;
+  text-decoration: underline;
 }
 .set_imc_box {
   display: flex;
@@ -1043,4 +1059,16 @@ h3 {
 }
 .linkTemplate:hover {
   background-color: var(--createGreenDark);
+}
+.exerciceSelect {
+  width: 200px;
+  font-size: 1.2rem;
+  text-indent: 15px;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.numberSelect {
+  font-size: 1.1rem;
+  width: 200px;
+  margin-left: 20px;
 }

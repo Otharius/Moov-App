@@ -161,21 +161,6 @@ router.post('/afterWorkout', (req,res) => {
 
 
 
-// Supprime un entrainement
-router.post('/deleteWorkout', (req, res) => {
-    const userData =  workoutClass.getData(req.session.pseudo);
-    userData.workout.delete(req.session.idSeance);
-    userData.save();
-   
-    res.render('training/main', { 
-        style: true,
-        title: title.training, 
-        seance: dataLenght(endWorkout(userData)),
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-    });
-});
 
 
 
@@ -296,6 +281,22 @@ router.get('/seance', (req,res) => {
     });
 });
 
+
+// Supprime un entrainement
+router.get('/deleteWorkout', (req, res) => {
+    const userData =  workoutClass.getData(req.session.pseudo);
+    userData.workout.delete(req.query.id);
+    userData.save();
+   
+    res.render('training/main', { 
+        style: true,
+        title: title.training, 
+        seance: dataLenght(endWorkout(userData)),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
+        userBody: dataLenght(userData.health.body),
+    });
+});
 
 
 // La page avec toutes les séances

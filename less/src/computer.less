@@ -968,26 +968,32 @@ h3 {
     width: 15%;
 }
 
-.addJob {
-    text-align: center;
-    color: white;
-    background-color:var(--createGreen);
-    border: none;
-    padding: 2% 10%;
-    border-radius: 20px;
-    margin: auto;
-    display: block;
-    font-size: 1rem;
-    cursor: pointer;
+.addJob_box {
+    margin-top: 50px;
 
-    &:hover {
-        background-color: var(--createGreenDark);
+    .addJob {
+        text-align: center;
+        color: white;
+        background-color:var(--createGreen);
+        border: none;
+        padding: 1% 10%;
+        border-radius: 20px;
+        margin: auto;
+        display: block;
+        font-size: 1.2rem;
+        cursor: pointer;
+    
+        &:hover {
+            background-color: var(--createGreenDark);
+        }
+    
+        &:active {
+            transform: scale(0.98);
+        }
     }
-
-    &:active {
-        transform: scale(0.98);
-    }
+    
 }
+
 
 .selectExerciceJob {
     margin: auto;
@@ -1109,14 +1115,32 @@ h3 {
 }
 
 .link_seance_box {
-    border: 1px solid black;
-    width: 500px;
 
+    width: 600px;
 
-    a {
-        text-decoration: none;
-        font-size: 1.2rem;
+    td {
+        width: 650px;
+
+        a {
+            display: flex;
+            width: 200px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            margin-left: 20px;
+            padding-left: 6px;
+            font-size: 1.4rem;
+            color: black;
+            margin-top: 5px;
+
+            &:hover {
+                color: red;
+                text-decoration: underline;
+            }
+        }
     }
+
+
+
 }
 
 .set_imc_box {
@@ -1227,4 +1251,18 @@ h3 {
     &:hover {
         background-color: var(--createGreenDark);
     }
+}
+
+.exerciceSelect {
+    width: 200px;
+    font-size: 1.2rem;
+    text-indent: 15px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.numberSelect {
+    font-size: 1.1rem;
+    width: 200px;
+    margin-left: 20px;
 }
