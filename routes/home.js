@@ -91,7 +91,6 @@ router.post('/homeResetCal', (req,res) => {
     userData.health.setCalories(0);
     userData.save();
 
-
     res.render('home/main', { 
         style: true,
         userBody: dataLenght(userData.health.body),
@@ -104,5 +103,22 @@ router.post('/homeResetCal', (req,res) => {
 });
 
 
+
+router.post('/afterWorkout', (req,res) => {
+
+    const userData = workoutClass.getData(req.session.pseudo);
+    userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
+    userData.save();
+    
+    res.render('home/main', { 
+        style: true,
+        userBody: dataLenght(userData.health.body),
+        title: title.home, 
+        userData: workoutClass.getData(req.session.pseudo),
+        old: dataLenght(userData.workout.seances),
+        user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
+    });
+});
 
 module.exports = router;

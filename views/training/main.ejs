@@ -7,17 +7,17 @@
         <p>Planification des entrainements</p>
     </div>
 
-    <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
-        <button onclick="closeCreateDiv()" id="btnDraggable" class="planWorkout" style="margin-left: 15px;">Créer son entrainement</button>
-        
+    <div class="button_container_workout" style="height:70px;">
+        <button onclick="closeCreateDiv()" id="btnDraggable" class="buttonWorkout">Créer son entrainement</button>
+
         <% if(old){ %>
-            <form action="/workout/planWorkout" method="POST" id="planWorkout">
+            <form action="/workout/planWorkout" method="POST" id="planWorkout" style="height: 100%;" >
 
                 <select name="idPage" class="selectPage">
             
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <% if (userData.workout.seances.difficulty != '') { %>
-                            <option value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
+                            <option class="o" value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
                         <% } %>
                     <% } %>
 
@@ -25,7 +25,8 @@
 
             </form>
 
-            <button class="changeWorkout" form="planWorkout">Ajouter des exercices</button>
+            <button class="planButton" form="planWorkout">Ajouter des exercices</button>
+
         <% } %> 
 
     </div>
@@ -128,7 +129,7 @@
         <p>Gestion des templates</p>
     </div>
 
-    <div class="row" style="margin-top: 15px; margin-bottom: 15px;">
+    <div class="" style="margin-top: 15px; margin-bottom: 15px;">
         <a href="/template/newTemplates" class="linkTemplate">Ajouter des templates</a>
     </div>
 </div>

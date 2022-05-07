@@ -12,7 +12,7 @@
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <% j = j + 1 %>
                     <tr>  
-                        <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= userData.workout.seances[i].date %>: <%= userData.workout.seances[i].name %></a></td>
+                        <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= j %>: <%= userData.workout.seances[i].name %></a></td>
                     </tr>
                  <% } %>
             <% } else{ %> 
@@ -35,7 +35,7 @@
         <% if(old){ %>
         
             <% if(seance){ %>
-                <form action="afterWorkout" method="POST">
+                <form action="/home/afterWorkout" method="POST">
             
                     <select name="rpe" class="selectPageRPE">
                 
@@ -73,7 +73,7 @@
                     </div>
     
                     <br>
-                    <button class="value_button">Valider</button>
+                    <button class="home_value_button">Valider</button>
                 </form>          
             <% } else {%>
                 <p style="text-align: center;">Terminez vos entrainements avant !</p>

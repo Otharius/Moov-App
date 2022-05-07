@@ -144,12 +144,9 @@ router.get('/endWorkout', (req,res) => {
 
 // L'after entrainement
 router.post('/afterWorkout', (req,res) => {
-    const seanceDifficulty = req.body.difficulty;
 
-    const userData = workoutClass.getData(res.session.pseudo);
-    const s = userData.workout.seances[req.body.rpe];
-    s.difficulty = seanceDifficulty;
-    s.done = true;
+    const userData = workoutClass.getData(req.session.pseudo);
+    userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
     userData.save();
     
     res.render('training/main', { 

@@ -36,6 +36,9 @@ body {
 .navbar a:hover {
   background-color: #2d34c5;
 }
+h3 {
+  text-align: center;
+}
 /* La page de connexion et d'inscription */
 .container {
   width: 400px;
@@ -184,6 +187,24 @@ body {
 .value_button:active {
   transform: scale(0.98);
 }
+.home_value_button {
+  text-align: center;
+  color: white;
+  background-color: steelblue;
+  border: none;
+  padding: 2% 10%;
+  border-radius: 25px;
+  margin: auto;
+  font-size: 1rem;
+  display: block;
+  cursor: pointer;
+}
+.home_value_button:hover {
+  background-color: var(--valueButtonDark);
+}
+.home_value_button:active {
+  transform: scale(0.98);
+}
 .training_modal,
 .see_training_modal,
 .table_intensity_modal {
@@ -219,11 +240,27 @@ body {
   font-size: 28px;
   font-weight: bold;
 }
-.training_close :hover,
-.training_close :focus {
+.training_close:hover,
+.training_close:focus {
   color: red;
   text-decoration: none;
   cursor: pointer;
+}
+.training_note_title {
+  text-align: center;
+  font-size: 1.2rem;
+}
+.training_note {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+.training_note textarea {
+  resize: none;
+  width: 600px;
+  height: 200px;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
 }
 .table_intensity {
   border-collapse: collapse;
@@ -289,8 +326,18 @@ body {
   color: black;
 }
 .title_workout {
-  margin-left: 35%;
+  text-align: center;
   text-decoration: underline;
+}
+.training_date {
+  float: left;
+  display: block;
+  width: 20%;
+  padding: 0.5rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  font-size: 1rem;
 }
 .training_name {
   margin-left: 5%;
@@ -307,8 +354,8 @@ body {
   user-select: none;
   font-size: 1rem;
 }
-.training_name :active,
-.training_name :focus {
+.training_name:active,
+.training_name:focus {
   background-color: white;
   border-color: var(--valueButton);
 }
@@ -324,15 +371,18 @@ body {
   display: block;
   cursor: pointer;
 }
-.send_workout :hover {
+.send_workout:hover {
   background-color: var(--createGreenDark);
 }
-.send_workout :active {
+.send_workout:active {
   transform: scale(0.98);
 }
 .intro_workout {
   display: flex;
   justify-content: space-around;
+}
+.training_time {
+  width: 150px;
 }
 .exercice_delete {
   color: white;
@@ -343,10 +393,654 @@ body {
   font-size: 1.1rem;
   margin-left: 37%;
 }
-.exercice_delete :active {
+.exercice_delete:active {
   transform: scale(0.98);
 }
-.exercice_delete :hover {
+.exercice_delete:hover {
   background-color: var(--hoverRed);
   cursor: pointer;
+}
+.workout_div {
+  display: flex;
+}
+.workout_div .workout_yes {
+  width: 47%;
+  border: 1Px solid black;
+  margin-left: 2%;
+  margin-right: 1%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+.workout_div .workout_no {
+  width: 47%;
+  border: 1px solid black;
+  margin-left: 1%;
+  margin-right: 2%;
+  display: flex;
+  border-radius: 10px;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+/* La page d'accueil */
+.workout_day_box,
+.evolution_home_box,
+.workout_rpe_box,
+.documentation_home_box {
+  display: flex;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-left: 2%;
+  margin-right: 2%;
+  flex-direction: column;
+  font-size: 1.2rem;
+}
+.workout_day_title {
+  text-align: center;
+  font-size: 1.5rem;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  background-color: var(--workoutButton);
+}
+.workout_meal_title {
+  text-align: center;
+  font-size: 1.5rem;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  background-color: green;
+}
+.home_difficulty {
+  display: flex;
+  width: 39%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+}
+.value_home_button {
+  text-align: center;
+  color: white;
+  background-color: var(--valueButton);
+  border: none;
+  display: flex;
+  padding: 1% 8%;
+  border-radius: 25px;
+  margin: auto;
+  font-size: 1rem;
+  justify-content: center;
+  cursor: pointer;
+}
+.value_home_button:hover {
+  background-color: var(--valueButtonDark);
+}
+.value_home_button:active {
+  transform: scale(0.98);
+}
+.workout_meal_calories {
+  margin-top: 25px;
+}
+.home_ok_count_calorie {
+  padding: 1rem 1rem;
+  margin-left: 8%;
+  border-radius: 25px;
+  background-color: var(--createGreen);
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.home_ok_count_calorie:hover {
+  background-color: var(--createGreenDark);
+}
+.home_ok_count_calorie:active {
+  transform: scale(0.98);
+}
+.count_calorie_box {
+  display: flex;
+}
+.home_reset_count_calorie {
+  padding: 1rem 1rem;
+  border-radius: 20px;
+  background-color: red;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  order: 1;
+  margin-left: 15%;
+  cursor: pointer;
+}
+.home_reset_count_calorie:hover {
+  background-color: var(--hoverRed);
+}
+.home_reset_count_calorie:active {
+  transform: scale(0.98);
+}
+/* La page de sommeil */
+.workout_sleep_title {
+  text-align: center;
+  font-size: 1.5rem;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  color: white;
+  background-color: var(--sleepViolet);
+  font-family: 'Quicksand', sans-serif;
+}
+.conseil {
+  color: darkblue;
+}
+.sleep_table_time {
+  border-collapse: collapse;
+  margin: auto;
+  border: 1px solid black;
+}
+.sleep_table_time td {
+  width: 9rem;
+  border: 1px solid black;
+  padding: 10px 20px;
+}
+.sleep_table_time tr:nth-child(odd) {
+  background-color: #eee;
+}
+.gras {
+  font-weight: bold;
+}
+.sleep_align {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.coldShower {
+  width: 500px;
+  border: 2px solid black;
+  margin-right: 15px;
+}
+.sleep_div_img {
+  float: left;
+  margin-left: 5%;
+}
+.table_stretch {
+  border-collapse: collapse;
+  width: 95%;
+  margin-left: 2.5%;
+  border: 1px solid black;
+  text-align: center;
+}
+.table_stretch td,
+.table_stretch th {
+  border: 1px solid black;
+  padding: 20px 30px;
+}
+.stretch_title {
+  background-color: blueviolet;
+  color: white;
+}
+.stretch_color {
+  background-color: #eee;
+}
+.text_shower {
+  font-size: 1.2rem;
+  margin-right: 15px;
+}
+.sleep_shower {
+  margin-bottom: 15px;
+  margin-top: 25px;
+}
+.quality_sleep {
+  font-size: 1.1rem;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+/* La page d'alimentation */
+.count_calorie {
+  float: left;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: #eeeeee;
+  padding: 1rem 2rem;
+  display: block;
+  width: 30%;
+  box-sizing: border-box;
+  outline: none;
+  transition: background 0.2s, border-color 0.2s;
+  margin-left: 20%;
+  font-size: 1rem;
+}
+.count_calorie:focus {
+  border-color: var(--focus);
+  background-color: #ffffff;
+}
+.result_count_calorie {
+  margin: auto;
+  margin-top: 3%;
+  border: 1px solid black;
+  border-radius: 15px;
+  width: 10%;
+  text-align: center;
+  padding: 1% 1%;
+}
+/* La page de profile */
+.informations_box {
+  display: flex;
+  justify-content: space-between;
+}
+.informations_box p {
+  margin-left: 5px;
+}
+.informations_box .profil_box {
+  margin-left: 5%;
+  width: 40%;
+  font-size: 1.2rem;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+.informations_box .profil_box .hr_line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: 'Quicksand', sans-serif;
+}
+.informations_box .profil_box .hr_line::before,
+.informations_box .profil_box .hr_line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #000;
+}
+.informations_box .profil_box .hr_line:not(:empty)::before {
+  margin-right: 0.25em;
+}
+.informations_box .profil_box .hr_line:not(:empty)::after {
+  margin-left: 0.25em;
+}
+.informations_box .password_box {
+  margin-right: 5%;
+  width: 40%;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+}
+.informations_box .password_box .hr_line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-left: 5%;
+  margin-right: 5%;
+  font-family: 'Quicksand', sans-serif;
+}
+.informations_box .password_box .hr_line::before,
+.informations_box .password_box .hr_line::after {
+  content: '';
+  flex: 1;
+  border-bottom: 1px solid #000;
+}
+.informations_box .password_box .hr_line:not(:empty)::before {
+  margin-right: 0.25em;
+}
+.informations_box .password_box .hr_line:not(:empty)::after {
+  margin-left: 0.25em;
+}
+.informations_box .password_box .input_submit {
+  width: 50%;
+  padding: 1rem 2rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+  background: var(--orange);
+  margin-left: 25%;
+  display: block;
+}
+.informations_box .password_box .input_submit:hover {
+  background: var(--orangeFonce);
+}
+.informations_box .password_box .input_submit:active {
+  transform: scale(0.98);
+}
+.informations_box .password_box .changePWD {
+  margin: 1rem;
+}
+.informations_box .password_box .changePWD input {
+  display: block;
+  width: 100%;
+  padding: 0.75rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: background 0.2s, border-color 0.2s;
+}
+.informations_box .password_box .changePWD input:focus {
+  border-color: var(--focus);
+  background: #ffffff;
+}
+.disconnect {
+  width: 80px;
+  height: 80px;
+  border: none;
+  border-radius: 40px;
+  color: white;
+  background-color: red;
+  font-size: 0.7rem;
+  cursor: pointer;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.disconnect:hover {
+  background-color: var(--hoverRed);
+}
+.disconnect:active {
+  transform: scale(0.98);
+}
+.wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 90%;
+  background: #fff;
+  border-radius: 10px;
+  transform: translate(-50%, -50%);
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.06);
+  border: 1px solid black;
+  display: none;
+  padding: 5px;
+  margin-top: 200px;
+}
+.wrapper header.active,
+.wrapper .move_table.active {
+  cursor: move;
+  user-select: none;
+}
+.wrapper .content {
+  display: flex;
+  padding: 30px 30px 40px 30px;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.wrapper .content p {
+  font-size: 16px;
+  text-align: center;
+}
+.wrapper .content .title {
+  margin: 15px 0;
+  font-size: 29px;
+  font-weight: 500;
+}
+.wrapper .content .icon {
+  height: 95px;
+  width: 95px;
+  border-radius: 50%;
+  border: 5px solid #6F36FF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .content .icon i {
+  color: #6F36FF;
+  font-size: 60px;
+}
+.wrapper_close {
+  color: #aaa;
+  float: right;
+  font-size: 23px;
+  font-weight: bold;
+}
+.wrapper_close:focus,
+.wrapper_closehover {
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+.wrapper_table,
+.wrapper_table tr,
+.wrapper_table tr td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+.selectPageRPE {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 2%;
+  font-size: 1.2rem;
+}
+.tableJob {
+  border-collapse: collapse;
+  margin: auto;
+  width: 80%;
+  text-align: center;
+}
+.tableJob tr .exerciceJob {
+  border: 1px solid black;
+  padding: 0.9% 1%;
+}
+.exerciceJob {
+  width: 15%;
+}
+.addJob {
+  text-align: center;
+  color: white;
+  background-color: var(--createGreen);
+  border: none;
+  padding: 2% 10%;
+  border-radius: 20px;
+  margin: auto;
+  display: block;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.addJob:hover {
+  background-color: var(--createGreenDark);
+}
+.addJob:active {
+  transform: scale(0.98);
+}
+.selectExerciceJob {
+  margin: auto;
+  display: block;
+  width: 35%;
+  padding: 1% 5%;
+  font-size: 1rem;
+}
+.button_container_workout {
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  max-height: 50px;
+}
+.buttonWorkout {
+  border: 1px solid black;
+  margin-left: 15px;
+  width: 400px;
+  text-align: center;
+  border-radius: 15px;
+  background: var(--createGreen);
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.buttonWorkout:hover {
+  background-color: var(--createGreenDark);
+}
+.buttonWorkout:active {
+  transform: scale(0.98);
+}
+.planButton {
+  border: 1px solid black;
+  margin-right: 15px;
+  width: 400px;
+  text-align: center;
+  border-radius: 15px;
+  background: var(--createGreen);
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.planButton:hover {
+  background-color: var(--createGreenDark);
+}
+.planButton:active {
+  transform: scale(0.98);
+}
+.selectPage {
+  border: 1px solid black;
+  width: 300px;
+  height: 100%;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  text-indent: 10px;
+  border-radius: 3px;
+}
+.selectPage:hover {
+  background-color: #dddddd;
+}
+.selectPage * {
+  background-color: white;
+}
+.selectPage *:hover {
+  box-shadow: 0 0 10px 100px #1882A8 inset;
+}
+.exerciceDelete {
+  border: none;
+}
+.trash {
+  color: black;
+}
+.end_seance {
+  background-color: green;
+  margin-left: 2%;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5% 5%;
+  width: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.end_seance:hover {
+  background-color: #23581f;
+}
+.end_seance:active {
+  transform: scale(0.98);
+}
+.seance_name {
+  text-align: center;
+}
+.link_seance_box {
+  border: 1px solid black;
+  width: 500px;
+}
+.link_seance_box a {
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+.set_imc_box {
+  display: flex;
+  margin-left: 115px;
+  margin-right: 115px;
+}
+.button_add_imc {
+  color: white;
+  background-color: var(--valueButton);
+  border: none;
+  cursor: pointer;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+.button_add_imc:hover {
+  background-color: var(--valueButtonDark);
+}
+.button_add_imc:active {
+  transform: scale(0.98);
+}
+.button_delete_imc {
+  color: white;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  width: 120px;
+  height: 50px;
+  border-radius: 20px;
+  margin-top: 15px;
+  font-size: 1rem;
+}
+.button_delete_imc:hover {
+  background-color: var(--hoverRed);
+}
+.button_delete_imc:active {
+  transform: scale(0.98);
+}
+.select_delete_imc {
+  width: 250px;
+  font-size: 1rem;
+}
+.seances_table {
+  display: flex;
+  justify-content: center;
+}
+.seances_table tr td {
+  width: 350px;
+}
+.not_workout {
+  text-align: center;
+}
+.documentation_day_title {
+  text-align: center;
+  font-size: 1.5rem;
+  border-top-left-radius: 9px;
+  border-top-right-radius: 9px;
+  color: white;
+  font-family: 'Quicksand', sans-serif;
+  background-color: #aaa;
+}
+.false {
+  font-size: 1rem;
+  color: red;
+}
+.true {
+  color: green;
+  font-size: 1rem;
+}
+.seance_information p {
+  font-size: 1.2rem;
+}
+.linkTemplate {
+  padding: 15px 90px;
+  border-radius: 15px;
+  color: white;
+  background-color: var(--createGreen);
+  cursor: pointer;
+  width: 200px;
+  text-decoration: none;
+  margin-left: 15px;
+  display: flex;
+  text-align: center;
+  font-size: 1.3rem;
+}
+.linkTemplate:active {
+  transform: scale(0.98);
+}
+.linkTemplate:hover {
+  background-color: var(--createGreenDark);
 }
