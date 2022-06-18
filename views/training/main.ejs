@@ -143,34 +143,38 @@
     </div>
 
     <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
-        <table>        
-            <% let len = userData.health.height.length - 1 %>
-            <% if(userBody){ %>
-                <% for(var i=0; i < userData.health.height.length; i++) { %>
-                <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
-                    <tr>
-                      <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                      <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
-                    </tr>
-                 <% } %>
-            <% } %> 
 
-        </table>
+        <div>
+            <table>        
+                <% let len = userData.health.height.length - 1 %>
+                <% if(userBody){ %>
+                    <% for(var i=0; i < userData.health.height.length; i++) { %>
+                    <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
+                        <tr>
+                          <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
+                          <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
+                        </tr>
+                     <% } %>
+                <% } %> 
+    
+            </table>
+    
+                <div class="set_imc_box">
+                    <form action="/workout/setIMC" method="POST">    
+        
+                        <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
+                        <label for="mass">kg</label><br>
+            
+                        <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
+                        <label for="height">cm</label><br>
+            
+                        <button class="button_add_imc">Valider</button>
+            
+                    </form>
+                </div>
+        </div>
 
-            <div class="set_imc_box">
-                <form action="/workout/setIMC" method="POST">    
-    
-                    <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
-                    <label for="mass">kg</label><br>
-        
-                    <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
-                    <label for="height">cm</label><br>
-        
-                    <button class="button_add_imc">Valider</button>
-        
-                </form>
-            </div>
-    
+        <div>
             <% if(userBody) { %>
                 <form action="/workout/deleteIMC" method="POST">
     
@@ -185,6 +189,7 @@
         
                 </form>
             <% } %>
+        </div>
     </div>
 
     <% if(old){ %>

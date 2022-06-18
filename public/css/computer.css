@@ -922,9 +922,12 @@ h3 {
 .trash {
   color: black;
 }
+.trash:hover {
+  color: red;
+}
 .end_seance {
   background-color: green;
-  margin-left: 2%;
+  margin-left: 10%;
   color: white;
   text-decoration: none;
   font-size: 1.5rem;
@@ -946,6 +949,7 @@ h3 {
 }
 .seance_name {
   text-align: center;
+  text-decoration: underline;
 }
 .link_seance_box {
   width: 600px;
@@ -1030,14 +1034,6 @@ h3 {
   font-family: 'Quicksand', sans-serif;
   background-color: #aaa;
 }
-.false {
-  font-size: 1rem;
-  color: red;
-}
-.true {
-  color: green;
-  font-size: 1rem;
-}
 .seance_information p {
   font-size: 1.2rem;
 }
@@ -1071,4 +1067,146 @@ h3 {
   font-size: 1.1rem;
   width: 200px;
   margin-left: 20px;
+}
+.delete_seance {
+  background-color: red;
+  margin-right: 10%;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5% 5%;
+  margin-left: 10%;
+  width: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.delete_seance:hover {
+  background-color: var(--hoverRed);
+}
+.delete_seance:active {
+  transform: scale(0.98);
+}
+.button_seance {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+/* Template */
+.template_title {
+  text-align: center;
+  text-decoration: underline;
+}
+.template_name {
+  margin-left: 5%;
+  float: left;
+  display: block;
+  width: 25%;
+  padding: 0.4rem;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #dddddd;
+  outline: none;
+  background: #eeeeee;
+  transition: background 0.2s, 0.2s;
+  user-select: none;
+  font-size: 1rem;
+}
+.template_name:active,
+.template_name:focus {
+  background-color: white;
+  border-color: var(--valueButton);
+}
+.template_button {
+  text-align: center;
+  color: white;
+  background-color: var(--createGreen);
+  border: none;
+  padding: 1% 10%;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  margin: auto;
+  display: block;
+  cursor: pointer;
+}
+.template_button:hover {
+  background-color: var(--createGreenDark);
+}
+.template_button:active {
+  transform: scale(0.98);
+}
+.content_template {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.content_fields {
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  margin-top: 50px;
+}
+.content_fields .form_fields {
+  width: 100%;
+}
+.content_fields .form_fields .form_newField {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.content_fields .form_fields div {
+  margin-top: 15px;
+  width: 50%;
+  height: 50px;
+  display: flex;
+  justify-content: space-around;
+}
+.content_fields .form_fields .dataField {
+  width: 90%;
+  padding: 1% 5%;
+  font-size: 1.1rem;
+}
+.content_fields .form_fields .button_dataField {
+  text-align: center;
+  color: white;
+  background-color: var(--valueButton);
+  border: none;
+  padding: 4% 10%;
+  font-size: 1.1rem;
+  border-radius: 20px;
+  margin: auto;
+  width: 80%;
+  display: block;
+  cursor: pointer;
+}
+.content_fields .form_fields .button_dataField:hover {
+  background-color: var(--valueButtonDark);
+}
+.content_fields .form_fields .button_dataField:active {
+  transform: scale(0.98);
+}
+.content_fields .list_template {
+  border: 1px solid black;
+  width: 100%;
+  font-size: 1.2rem;
+  margin-left: 15px;
+}
+.content_fields .list_template p {
+  margin-left: 10px;
+}
+.content_delete_template {
+  width: 99%;
+}
+.content_delete_template table {
+  margin-left: 25px;
+  margin-top: 10px;
+}
+.content_delete_template tr td {
+  font-size: 1.2rem;
 }

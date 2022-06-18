@@ -15,28 +15,30 @@
             <% } %>
         </select><br>
     
-            <table class="tableJob">
-    
-                <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
-                    <% var a = userData.workout.seances[id].jobs[j] %>
-    
-                    <tr>
-                        <td><%= userData.workout.seances[id].jobs[j].exercice %></td>
-                        <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
-                    </tr>
-    
-                <% } %>
-    
-            </table>
+           
             <br>
         
         <div class="training_content">
             <%- include('../training/formTraining.ejs') %>
         </div>
-        
-    </form>
+    </form> 
+
+    <table class="tableJob">
+    
+        <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+            <% var a = userData.workout.seances[id].jobs[j] %>
+
+            <tr>
+                <td><%= a.exercice %></td>
+                <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+            </tr>
+
+        <% } %>
+
+    </table>
+
 <% } else { %>
-    <p>Vous n'avez aucun template, créez vous en.</p>
+    <p style="text-align: center; font-size: 1.2rem;">Vous n'avez aucun template, créez vous en.</p>
 <% } %>
 
 

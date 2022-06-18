@@ -20,6 +20,14 @@ function dataLenght (data) {
     };
 };
 
+function deleteTemplate (data) {
+    if (dataLenght(data)) {
+        return data;
+    } else {
+        return null;
+    }
+}
+
 
 router.get('/newTemplates', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
@@ -88,7 +96,7 @@ router.get('/deleteTemplate', (req,res) => {
     res.render('training/templates/new', {
         style: false,
         dataFields: dataFields,
-        fields: req.session.fields,
+        fields: deleteTemplate(req.session.fields),
         title: title.training,
         template: dataLenght(Object.keys(userData.templates)),
         id: req.session.idSeance,

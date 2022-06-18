@@ -11,8 +11,8 @@
                 <% var j = 0 %>
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <% j = j + 1 %>
-                    <tr>  
-                        <td class="link_seance_box"><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= j %>: <%= userData.workout.seances[i].name %></a></td>
+                    <tr class="link_seance_box">  
+                        <td><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= j %>: <%= userData.workout.seances[i].name %></a></td>
                     </tr>
                  <% } %>
             <% } else{ %> 

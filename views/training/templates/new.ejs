@@ -1,53 +1,64 @@
 <br><br><a href="/workout/training" style="margin-left: 5px;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 
-<h1>Nouveau templates</h1>
+<h1 class="template_title">Nouveau template</h1>
 
-<%= fields %>
-<form action="/template/newTemplate" method="POST">
+<form action="/template/newTemplate" method="POST" class="content_template">
 
-    <input type="text" name="name" required> Nom: <br>
+    <input type="text" name="name" required class="template_name" placeholder="Nom du template"><br>
     
-
-    <% if (fields != null) { %>
-        <% for(var j=0; i < fields.length; j++) { %>
-            <p><%=fields[j]%></p>
-        <% } %>
-    <% } %>
-    
-
-    <button>Valider</button>
+    <button class="template_button">Valider</button>
 
 </form>
 
 <hr style="width: 80%;">
 
-<form action="/template/newField" method="POST">
+<div class="content_fields">
+    <div class="form_fields">
+        <form action="/template/newField" method="POST" class="form_newField">
+            <div>
+                <select name="field" class="dataField">
+                
+                    <% for(var i=0; i < dataFields.length; i++) { %>
+            
+                        <option value="<%=dataFields[i]%>"><%=dataFields[i] %></option>
+            
+                    <% } %>
+            
+                </select>
+            </div>
 
-    <select name="field">
+           <div>
+            <button class="button_dataField">Ajouter</button>
+           </div>
+        </form>
+    </div>
+
+    <div class="list_template">
+        <% if (fields != null) { %>
+            <p>Votre template contient: </p>
+            <ul>
+                <% for(var j=0; j < fields.length; j++) { %>
+                    <li><%=fields[j]%></li>
+                <% } %>
+            </ul>
+           
+        <% } %>
+    </div>
+</div>
+
+<div class="content_delete_template">
+    <% if (template) { %>
+        <% var b = Object.keys(userData.templates) %>
+        <table>
+            <% for(var k=0; k < b.length; k++) { %>
         
-        <% for(var i=0; i < dataFields.length; i++) { %>
-
-            <option value="<%=dataFields[i]%>"><%=dataFields[i] %></option>
-
-        <% } %>
-
-    </select>
-
-    <button>Valider</button>
-
-</form>
-
-
-<% if (template) { %>
-    <% var b = Object.keys(userData.templates) %>
-    <table>
-        <% for(var k=0; k < b.length; k++) { %>
+                <tr>
+                    <td><%= b[k] %></td>
+                    <td class="exerciceDelete"><a href="/template/deleteTemplate?template=<%=b[k]%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+                </tr>
+        
+            <% } %>
+        </table>
+    <% } %>
     
-            <tr>
-                <td><%= b[k] %></td>
-                <td class="exerciceDelete"><a href="/template/deleteTemplate?template=<%=b[k]%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
-            </tr>
-    
-        <% } %>
-    </table>
-<% } %>
+</div>

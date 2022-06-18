@@ -87,7 +87,7 @@ class Training extends AbstractJob {
         const fields = userData.templates[templateName].fields;
 
         if (fields.includes('exercices')) {
-            training.withExercice(req.body.exercices);
+            training.withExercice(req.body.exercice);
         };
 
         if (fields.includes('serie')) {
