@@ -195,7 +195,7 @@ h3 {
   padding: 2% 10%;
   border-radius: 25px;
   margin: auto;
-  font-size: 1rem;
+  font-size: 1.2rem;
   display: block;
   cursor: pointer;
 }
@@ -227,11 +227,13 @@ h3 {
 }
 .table_intensity_content {
   width: 30%;
-  height: 500px;
+  height: 450px;
   border: 1px solid #888;
   background-color: white;
   margin: 15% auto;
   padding: 20px;
+  text-decoration: underline;
+  border-radius: 15px;
   display: none;
 }
 .training_close {
@@ -309,7 +311,11 @@ h3 {
 }
 .intensity_title {
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+}
+.intensity_title:hover {
+  text-decoration: underline;
+  color: red;
 }
 .content_precision {
   display: inline-block;
@@ -479,6 +485,25 @@ h3 {
 }
 .value_home_button:active {
   transform: scale(0.98);
+}
+.list_home {
+  list-style-type: none;
+  color: black;
+}
+.list_home a {
+  display: flex;
+  width: 200px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  margin-left: 20px;
+  padding-left: 6px;
+  font-size: 1.4rem;
+  color: black;
+  margin-top: 5px;
+}
+.list_home a:hover {
+  color: red;
+  text-decoration: underline;
 }
 .workout_meal_calories {
   margin-top: 25px;
@@ -957,21 +982,6 @@ h3 {
 .link_seance_box td {
   width: 650px;
 }
-.link_seance_box td a {
-  display: flex;
-  width: 200px;
-  text-decoration: none;
-  font-size: 1.2rem;
-  margin-left: 20px;
-  padding-left: 6px;
-  font-size: 1.4rem;
-  color: black;
-  margin-top: 5px;
-}
-.link_seance_box td a:hover {
-  color: red;
-  text-decoration: underline;
-}
 .set_imc_box {
   display: flex;
   margin-left: 115px;
@@ -987,6 +997,7 @@ h3 {
   border-radius: 20px;
   margin-top: 15px;
   font-size: 1rem;
+  margin-left: 15px;
 }
 .button_add_imc:hover {
   background-color: var(--valueButtonDark);
@@ -1192,7 +1203,6 @@ h3 {
   transform: scale(0.98);
 }
 .content_fields .list_template {
-  border: 1px solid black;
   width: 100%;
   font-size: 1.2rem;
   margin-left: 15px;
@@ -1209,4 +1219,35 @@ h3 {
 }
 .content_delete_template tr td {
   font-size: 1.2rem;
+}
+.evolution_content {
+  display: flex;
+  justify-content: space-around;
+}
+.link_all_seance {
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+}
+.link_all_seance:hover {
+  color: red;
+  text-decoration: underline;
+}
+.title_allSeances {
+  text-align: center;
+  font-size: 1.4rem;
+  text-decoration: underline;
+}
+.link_seance {
+  cursor: pointer;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+.link_seance:hover {
+  color: red;
+  text-decoration: underline;
+}
+#table_intensity_content:active {
+  cursor: crosshair;
 }

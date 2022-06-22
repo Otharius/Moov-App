@@ -1,15 +1,14 @@
 <!--Faire la liste des séances et qd on clique dessus on a le récapitulatif de la séance comme seance.ejs-->
 <br><br><a href="/workout/training" style="margin-left: 5px"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
-<p style="text-align: center;">Les séances</p>
+<p class="title_allSeances">Les séances</p>
 
 <table class="seances_table" style="border-collapse: collapse; border: 1px solid black;">
 
     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
 
         <tr>
-            <td style="border-collapse: collapse; border: 1px solid black;"><a href="/workout/seance?id=<%=i + 1%>&page=allSeances"><%= userData.workout.seances[i].name %></a></td>
-            <td style="border-collapse: collapse; border: 1px solid black;"><%= userData.workout.seances[i].date %></td>
-            <td style="border-collapse: collapse; border: 1px solid black;"><%= userData.workout.seances[i].difficulty %></td>
+            <td style="border-collapse: collapse;"><a href="/workout/seance?id=<%=i + 1%>&page=allSeances" class="link_seance"><%= userData.workout.seances[i].name %></a></td>
+            <td style="border-collapse: collapse; margin-left: 50px;">Difficulté: <%= userData.workout.seances[i].difficulty %></td>
         </tr>
     
     <% } %>

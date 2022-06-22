@@ -6,20 +6,18 @@
         <p>Programme du  jour</p>
     </div>
 
-        <table>
+        <ul class="list_home">
             <%if(old){ %>
                 <% var j = 0 %>
                 <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                     <% j = j + 1 %>
-                    <tr class="link_seance_box">  
-                        <td><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= j %>: <%= userData.workout.seances[i].name %></a></td>
-                    </tr>
+                        <li><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= j %>: <%= userData.workout.seances[i].name %></a></li>
                  <% } %>
             <% } else{ %> 
                 <p class="not_workout">Pas encore d'entrainement ? Viens d'entrainer !</p> 
             <% } %>
                 
-        </table>
+        </ul>
 </div>
 
 
@@ -128,17 +126,10 @@
     </div>
 
     <div>
+        <% let last = userData.health.height.length - 1%>
         <% if(userBody){ %>
-            <table>   
-                <% let len = userData.health.height.length - 1 %>
-                <% for(var i=0; i < userData.health.height.length; i++) { %>
-                    <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
-                        <tr>
-                            <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                            <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
-                        </tr>
-                <% } %>
-            </table>
+            <% let imc = userData.health.body[last]/((userData.health.height[last]/100)*(userData.health.height[last]/100))%>
+            <p class="test">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
         <% } else{ %> 
             <p class="not_workout">Entrez vos données !</p> 
         <% } %>

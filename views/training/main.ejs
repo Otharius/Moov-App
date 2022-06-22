@@ -58,7 +58,7 @@
         
                         <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
         
-                        <div class="table_intensity_content wrap move_table" id="table_intensity_content">
+                        <div class="table_intensity_content move_table" id="table_intensity_content">
                             
                             <%- include('../training/intensityTable.ejs') %>
         
@@ -103,11 +103,13 @@
             <table>
                 <% if(old){ %>
                     <% var j = 0 %>
+                    <% var compteur = 1 %>
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <% j = j + 1 %>
                         <% if(userData.workout.seances[i].done === false) { %>
                             <tr class="link_seance_box">  
-                                <td><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= i + 1 %>: <%= userData.workout.seances[i].name %></a></td>
+                                <td><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></td>
+                                <% compteur = compteur + 1 %>
                             </tr>
                         <% } %>  
                      <% } %>
@@ -142,30 +144,22 @@
         <p>Évolution</p>
     </div>
 
-    <div class="container_button_workout row" style="margin-top: 15px; margin-bottom: 15px;">
+    <div class="container_button_workout row evolution_content" style="margin-top: 15px; margin-bottom: 15px;">
 
-        <div>
-            <table>        
-                <% let len = userData.health.height.length - 1 %>
+        <div class="setIMC_content"> 
+            <% let last = userData.health.height.length - 1%>
                 <% if(userBody){ %>
-                    <% for(var i=0; i < userData.health.height.length; i++) { %>
-                    <% let imc = userData.health.body[i]/((userData.health.height[i]/100)*(userData.health.height[i]/100))%>
-                        <tr>
-                          <td class="test">Poids <%=userData.health.body[i]%> et taille <%= (userData.health.height[i])/100 %></td>
-                          <td>Votre IMC: <%= (Math.round(imc*10))/10 %></td>
-                        </tr>
-                     <% } %>
+                    <% let imc = userData.health.body[last]/((userData.health.height[last]/100)*(userData.health.height[last]/100))%>
+                    <p class="test">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
                 <% } %> 
-    
-            </table>
     
                 <div class="set_imc_box">
                     <form action="/workout/setIMC" method="POST">    
         
-                        <input type="number" max="500" value="<%=userData.health.body[len]%>" min="30" name="body" id="mass">
+                        <input type="number" max="500" value="<%=userData.health.body[last]%>" min="30" name="body" id="mass">
                         <label for="mass">kg</label><br>
             
-                        <input type="number" max="250" value="<%=userData.health.height[len]%>" min="60" name="height" id="height">
+                        <input type="number" max="250" value="<%=userData.health.height[last]%>" min="60" name="height" id="height">
                         <label for="height">cm</label><br>
             
                         <button class="button_add_imc">Valider</button>
@@ -175,27 +169,24 @@
         </div>
 
         <div>
+            <% if(old){ %>
+                <a href="/workout/allSeances" class="link_all_seance">Voir les séances passées</a>
+            <% } %> 
+                
+
             <% if(userBody) { %>
-                <form action="/workout/deleteIMC" method="POST">
-    
-                    <select name="supprimerIMC" class="select_delete_imc">
-                    
-                        <% for(var i=0; i < userData.health.body.length; i++) { %>
-                            <option value="<%= i %>" name="supprimerIMC"> <%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %></option>
-                        <% } %>
-                    </select>
-        
-                    <button class="button_delete_imc">Supprimer</button>
-        
-                </form>
+
+                <table>
+                    <% for(var i=0; i < userData.health.body.length; i++) { %>
+                        <tr>
+                            <td class="exerciceDelete"><%= userData.health.body[i] %>kg pour <%= userData.health.height[i] %><a href="/workout/deleteIMC?id=<%=i%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+                        </tr>
+                    <% } %>
+                </table>
+
             <% } %>
         </div>
     </div>
-
-    <% if(old){ %>
-        <a href="/workout/allSeances">Voir les séances passées</a>
-    <% } %> 
-        
     
 </div>
     

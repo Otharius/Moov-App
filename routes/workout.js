@@ -344,12 +344,12 @@ router.post('/setIMC', (req, res) => {
 
 
 // Supprime une IMC
-router.post('/deleteIMC', (req, res) => {
+router.get('/deleteIMC', (req, res) => {
     const userData =  workoutClass.getData(req.session.pseudo);
-    userData.health.delete(req.body.supprimer);
+    userData.health.delete(req.query.id);
     userData.save();
    
-    res.render('training/main', { 
+    res.render('training/main', {
         style: true,
         title: title.training, 
         userData: userData,
