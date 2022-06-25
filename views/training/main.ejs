@@ -1,6 +1,6 @@
 <br> 
 
-<div class="workout_day_box">
+<div class="workout_day_box workout_top">
 
 
     <div class="workout_day_title">
@@ -89,7 +89,7 @@
                         </div>
         
                         <br>
-                        <button class="value_button">Valider</button>
+                        <button class="home_value_button">Valider</button>
                     </form>          
                 <% } else {%>
                     <p style="text-align: center;">Terminez vos entrainements avant !</p>
@@ -107,23 +107,25 @@
         </div>
 
         <div>
-            <table>
-                <% if(old){ %>
+
+            <ul class="list_home">
+                <%if(old){ %>
                     <% var j = 0 %>
                     <% var compteur = 1 %>
                     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                         <% j = j + 1 %>
                         <% if(userData.workout.seances[i].done === false) { %>
-                            <tr class="link_seance_box">  
-                                <td><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></td>
-                                <% compteur = compteur + 1 %>
-                            </tr>
+                            <li><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
+                            <% compteur = compteur + 1 %>
                         <% } %>  
+                            
                      <% } %>
                 <% } else{ %> 
-                    <p style="text-align: center;">Pas encore d'entrainements ?</p> 
+                    <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
                 <% } %>
-            </table>
+                    
+            </ul>
+
         </div>
     </div>
 
@@ -157,7 +159,7 @@
             <% let last = userData.health.height.length - 1%>
                 <% if(userBody){ %>
                     <% let imc = userData.health.body[last]/((userData.health.height[last]/100)*(userData.health.height[last]/100))%>
-                    <p class="test">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
+                    <p class="imc">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
                 <% } %> 
     
                 <div class="set_imc_box">
@@ -175,7 +177,7 @@
                 </div>
         </div>
 
-        <div>
+        <div class="all_seance_box">
             <% if(old){ %>
                 <a href="/workout/allSeances" class="link_all_seance">Voir les séances passées</a>
             <% } %> 

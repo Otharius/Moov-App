@@ -140,9 +140,14 @@ body {
 .workout_day_box,
 .workout_rpe_box,
 .evolution_home_box,
-.documentation_home_box {
+.documentation_home_box,
+.workout_yes,
+.workout_div {
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
   padding-bottom: 10px;
+}
+.workout_yes {
+  margin-bottom: 40px;
 }
 .count_calorie_box {
   margin-top: 25px;
@@ -166,6 +171,27 @@ body {
 .home_ok_count_calorie:active {
   transform: scale(0.98);
   user-select: none;
+}
+.linkTemplate {
+  margin: auto;
+  display: block;
+  padding: 0.8rem;
+  text-align: center;
+  border-radius: 15px;
+  background: var(--createGreen);
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  margin-top: 15px;
+  text-decoration: none;
+  width: 60%;
+  cursor: pointer;
+}
+.linkTemplate:hover {
+  background-color: var(--createGreenDark);
+}
+.linkTemplate:active {
+  transform: scale(0.98);
 }
 .count_calorie {
   width: 50%;
@@ -317,7 +343,6 @@ body {
   border-radius: 10px;
 }
 .buttonWorkout {
-  border: 1px solid black;
   margin: auto;
   display: block;
   padding: 0.8rem;
@@ -327,6 +352,7 @@ body {
   color: white;
   border: none;
   font-size: 1.1rem;
+  margin-top: 15px;
   cursor: pointer;
 }
 .buttonWorkout:hover {
@@ -404,6 +430,90 @@ body {
 }
 .informations_box {
   margin-bottom: 100px;
+}
+.planButton {
+  display: block;
+  float: right;
+  margin-top: -60px;
+  margin-right: 8%;
+  padding: 0.8rem;
+  text-align: center;
+  border-radius: 15px;
+  background: var(--createGreen);
+  color: white;
+  border: none;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+.planButton:hover {
+  background-color: var(--createGreenDark);
+}
+.planButton:active {
+  transform: scale(0.98);
+}
+.selectPage {
+  margin-top: 24px;
+  margin-left: 10%;
+  width: 30%;
+  font-size: 1.1rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+}
+.workout_top {
+  padding-bottom: 75px;
+}
+.imc {
+  text-align: center;
+}
+.set_imc_box {
+  margin-bottom: 15px;
+}
+.set_imc_box form {
+  display: block;
+  margin: auto;
+  width: 45%;
+  margin-left: 30%;
+}
+.set_imc_box form input {
+  width: 150px;
+  font-size: 1.1rem;
+  text-indent: 10px;
+}
+.set_imc_box form button {
+  margin: auto;
+  display: block;
+  color: white;
+  background-color: var(--valueButton);
+  border: none;
+  border-radius: 15px;
+  padding: 0.8rem 1rem;
+  margin-top: 10px;
+  font-size: 1.1rem;
+}
+.set_imc_box form button:hover {
+  background-color: var(--valueButtonDark);
+}
+.set_imc_box form button:active {
+  transform: scale(0.98);
+}
+.test {
+  text-align: center;
+}
+.all_seance_box {
+  width: 100%;
+}
+.all_seance_box a {
+  width: 60%;
+  text-align: center;
+  margin: auto;
+  display: block;
+  text-decoration: none;
+  color: black;
+  font-size: 1.1rem;
+}
+.all_seance_box a:active {
+  color: red;
+  text-decoration: underline;
 }
 .see_training_modal,
 .table_intensity_modal {
