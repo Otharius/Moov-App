@@ -46,10 +46,19 @@ function endWorkout (data) {
      return null;
 };
 
-
+function session (req,res) {
+    if (req.session.pseudo == undefined) {
+        res.render('sign/login', {
+            style: false,
+            title: title.login, 
+            error: false,
+        });
+    };
+};
 
 // LA PAGE D'ACCUEIL
 router.get('/home', (req,res) => {
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
 
     res.render('home/main', { 
@@ -67,6 +76,7 @@ router.get('/home', (req,res) => {
 
 // AJOUT DES CALORIES SUR LA PAGE D'ACCUEIL
 router.post('/homeAddCal', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
 
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
@@ -87,6 +97,7 @@ router.post('/homeAddCal', (req,res) => {
 
 // REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ACCUEIL
 router.post('/homeResetCal', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setCalories(0);
     userData.save();
@@ -105,7 +116,7 @@ router.post('/homeResetCal', (req,res) => {
 
 
 router.post('/afterWorkout', (req,res) => {
-
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
     userData.save();

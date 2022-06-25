@@ -10,6 +10,10 @@
     <div class="button_container_workout" style="height:70px;">
         <button onclick="closeCreateDiv()" id="btnDraggable" class="buttonWorkout">Créer son entrainement</button>
 
+        <div id="wrapper" class="move_div wrapper newWorkout">
+            <%- include('../training/newWorkout.ejs') %>
+        </div>
+
         <% if(old){ %>
             <form action="/workout/planWorkout" method="POST" id="planWorkout" style="height: 100%;" >
 
@@ -31,6 +35,9 @@
 
     </div>
 </div>
+
+
+
 
 <br><br>
 
@@ -216,9 +223,6 @@
     <%- include('../training/intensityTable.ejs') %>
 </div>
 
-<div id="wrapper" class="move_div wrapper">
-    <%- include('../training/newWorkout.ejs') %>
-</div>
 
 
 

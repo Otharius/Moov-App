@@ -23,7 +23,15 @@ const Users = require('../public/javascripts/users');
 /// Les fonctions ///
 /////////////////////
 
-
+function session (req,res) {
+    if (req.session.pseudo == undefined) {
+        res.render('sign/login', {
+            style: false,
+            title: title.login, 
+            error: false,
+        });
+    };
+};
 
 // Fonction qui vérifie le contenue d'une liste
 function dataLenght (data) {
@@ -44,6 +52,7 @@ function dataLenght (data) {
 
  // Vers la page de profile
  router.get('/profiles', (req,res) => {
+    session(req,res);
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
 
@@ -66,7 +75,7 @@ function dataLenght (data) {
 
 // Système de changement du mot de passe
 router.post('/changePassword', (req,res) => {
-
+    session(req,res);
     const users = new Users().load();
     const oldPassword = req.body.old;
     const newPassword = req.body.new;

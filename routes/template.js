@@ -29,7 +29,18 @@ function deleteTemplate (data) {
 }
 
 
+function session (req,res) {
+    if (req.session.pseudo == undefined) {
+        res.render('sign/login', {
+            style: false,
+            title: title.login, 
+            error: false,
+        });
+    };
+};
+
 router.get('/newTemplates', (req,res) => {
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     req.session.fields = [];
 
@@ -48,6 +59,7 @@ router.get('/newTemplates', (req,res) => {
 
 
 router.post('/newTemplate', (req,res) => {
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     const template = new Template(req.body.name);
 
@@ -75,6 +87,7 @@ router.post('/newTemplate', (req,res) => {
 
 
 router.post('/newField', (req,res) => {
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
 
     let fields = req.session.fields;
@@ -101,6 +114,7 @@ router.post('/newField', (req,res) => {
 });
 
 router.get('/deleteTemplate', (req,res) => {
+    session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     userData.deleteTemplate(req.query.template);
     userData.save()

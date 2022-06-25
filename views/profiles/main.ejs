@@ -1,14 +1,8 @@
-<br>
-
-
-
-<br><br><br>
-
 <div class="informations_box">
 
         <div class="profil_box" >
             <br>
-            <div class="hr_line">Utilisateur</div>
+            <div class="hr_line title_user">Utilisateur</div>
                 <p><strong> Pseudo: </strong><%= user.pseudo %></p>
                 <p><strong> Nom: </strong><%= user.name %></p>
                 <p><strong> Prénom: </strong><%= user.firstname %></p>
@@ -37,7 +31,7 @@
         <div class="password_box">
             <br>
             <form action="/profiles/changePassword" method="POST">
-                <div class="hr_line">Changer le mot de passe</div>
+                <div class="hr_line title_user">Changer le mot de passe</div>
                         <div class="changePWD">
                             <div class="form_message-error">
                                 <% if(error){ %>

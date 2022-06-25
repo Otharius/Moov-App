@@ -299,6 +299,18 @@ body{
     font-size: 1.3rem;
 }
 
+.workout_sleep_title {
+    text-align: center;
+    font-size: 1.5rem;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--sleepViolet);
+    text-align: center;
+    font-size: 1.3rem;
+}
+
 .documentation_home_box {
     margin-bottom: 50px;
 }
@@ -355,6 +367,135 @@ body{
     margin-left: 20%;
 }
 
+.selectPageRPE {
+    margin: auto;
+    margin-top: 15px;
+    display: block;
+    width: 50%;
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    margin-bottom: 15px;
+    border-radius: 10px;
+}
+
+.buttonWorkout {
+    border: 1px solid black;
+    margin: auto;
+    display: block;
+    padding: 0.8rem;
+    text-align: center;
+    border-radius: 15px;
+    background: var(--createGreen);
+    color: white;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    &:hover {
+        background-color: var(--createGreenDark);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.newWorkout {
+    display: none;
+    margin-top: 15px;
+    background-color: white;
+    width: 100%;
+    border: 1px solid black;
+}
+
+.title_workout {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.send_workout {
+    display: block;
+    margin : auto;
+    padding: 1.2rem 2.3rem;
+    color: white;
+    background-color: steelblue;
+    cursor: pointer;
+    user-select: none;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 25px;
+    margin-top: 15px;
+
+    &:hover {
+        background-color: var(--valueButtonDark)
+    }
+}
+
+.training_note_title {
+    text-align: center;
+}
+
+.training_note {
+    width: 100%;
+
+    textarea {
+        margin: auto;
+        display: block;
+        width: 80%;
+    }
+}
+
+
+.title_user {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    text-align: center;
+    font-size: 1.5rem;
+    color: white;
+    font-family: 'Quicksand', sans-serif;
+    background-color: #aaa;
+}
+
+.disconnect {
+    display: block;
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 40px;
+    color: white;
+    background-color: red;
+    font-size: 0.7rem;
+    cursor: pointer;
+    margin-left: 255px;
+    margin-right: 5px;
+    margin: auto;
+
+    &:hover{
+        background-color: var(--hoverRed);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.informations_box {
+    margin-bottom: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -398,6 +539,8 @@ body{
 
 .intensity_title {
     cursor: pointer;
+    width: 55%;
+    margin: auto;
 
     &:active {
         text-decoration: underline;
@@ -967,8 +1110,10 @@ h3 {
     box-shadow: 0 0 40px rgba(0, 0, 0, 0.2);
 }
 
-.profil_box h2{
-    text-align: center;
+.profil_box {
+    p {
+        margin-left: 15px;
+    }
 }
 
 .second_box h2{

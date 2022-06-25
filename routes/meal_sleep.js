@@ -24,6 +24,16 @@ function addSleep (sleep) {
 }
 
 
+function session (req,res) {
+    if (req.session.pseudo == undefined) {
+        res.render('sign/login', {
+            style: false,
+            title: title.login, 
+            error: false,
+        });
+    };
+};
+
 ////////////////////////////
 /////// ALIMENTATION ///////
 ////////////////////////////
@@ -32,6 +42,7 @@ function addSleep (sleep) {
 
 // REMET A 0 LE NOMBRE DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/resetCal', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setCalories(0);
     userData.save();
@@ -47,9 +58,9 @@ router.post('/resetCal', (req,res) => {
 
 // L'AJOUT DE CALORIE SUR LA PAGE D'ALIMENTATION
 router.post('/addCal', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     
-
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
 
@@ -65,7 +76,7 @@ router.post('/addCal', (req,res) => {
 
 // LA PAGE D'ALIMENTATION 
 router.get('/meal', (req,res) => {
-
+    session(req,res);
     res.render('meal/main', { 
         style: true,
         title: title.meal, 
@@ -83,6 +94,7 @@ router.get('/meal', (req,res) => {
 
 // PAGE DE SOMMEIL
 router.get('/sleep', (req,res) => {
+    session(req,res);
     res.render('sleep/main', { 
         style: true,
         title: title.sleep,
@@ -94,6 +106,7 @@ router.get('/sleep', (req,res) => {
 
 // L'AJOUT D'HEURE DE SOMMEIL
 router.post('/addSleep', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     
     userData.health.setSleep(userData.health.sleep + addSleep(req.body.sleep));
@@ -111,6 +124,7 @@ router.post('/addSleep', (req,res) => {
 
 // Met à 0 le nombre d'heure de sommeil
 router.post('/resetSleep', (req,res) => {
+    session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.health.setSleep(0);
     userData.save();
