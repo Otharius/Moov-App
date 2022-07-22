@@ -1,29 +1,9 @@
 const fs = require('fs');
 const exercices = require('../../data/exercices.json').exerciceWorkout;
 
-class AbstractJob {
-
-    constructor() {
-    }
-
-}
-
-class AbstractJobBuilder {
-    
-
-    constructor(req) {
-        this.req = req;
-    }
-
-}
-
 
 // For the musculation
-class Training extends AbstractJob {
-
-    constructor() {
-        super();
-    };
+class Training {
 
     withExercice(exercice) {
         this.exercice = exercice;
@@ -118,9 +98,6 @@ class Template {
         }
         return this;
     };
-
-
-
 }
 
 class Seance {
@@ -323,8 +300,6 @@ module.exports = {
     Workout,
     Template,
     Health,
-    AbstractJob,
-    AbstractJobBuilder,
     UserData,
     setData,
     getData,
