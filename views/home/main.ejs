@@ -129,7 +129,7 @@
         <% let last = userData.health.height.length - 1%>
         <% if(userBody){ %>
             <% let imc = userData.health.body[last]/((userData.health.height[last]/100)*(userData.health.height[last]/100))%>
-            <p class="test">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
+            <p class="test" style="text-align: center;">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
         <% } else{ %> 
             <p class="not_workout">Entrez vos données !</p> 
         <% } %>
