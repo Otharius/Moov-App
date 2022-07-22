@@ -944,6 +944,20 @@ h3 {
 .exerciceDelete {
   border: none;
 }
+.tableSeanceJob {
+  border-collapse: collapse;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 2%;
+}
+.tableSeanceJob tr {
+  border: 1px solid black;
+}
+.tableSeanceJob tr td {
+  border-collapse: collapse;
+  font-size: 1.2rem;
+  padding: 1rem 2rem;
+}
 .trash {
   color: black;
 }

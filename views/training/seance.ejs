@@ -28,4 +28,20 @@
         <p>Détail: <%= userData.workout.seances[id].detail %></p>
     <% } %>
 
+    <table class="tableSeanceJob">
+    
+        <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
+            <% var a = userData.workout.seances[id].jobs[j] %>
+
+            <tr>
+                <td><%= a.exercice %></td>
+                <td>Répétitions: <%= a.repetitions %></td>
+                <td>Séries: <%= a.series %></td>
+                <td>Pause: <%= a.pause %>sec</td>
+            </tr>
+
+        <% } %>
+
+    </table>
+
 </div>

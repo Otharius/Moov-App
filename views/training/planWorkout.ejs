@@ -23,14 +23,16 @@
         </div>
     </form> 
 
-    <table class="tableJob">
+    <table class="tableSeanceJob">
     
         <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
             <% var a = userData.workout.seances[id].jobs[j] %>
 
             <tr>
                 <td><%= a.exercice %></td>
-                <td class="exerciceDelete"><a href="/workout/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+                <td>Répétitions: <%= a.repetitions %></td>
+                <td>Séries: <%= a.series %></td>
+                <td>Pause: <%= a.pause %>sec</td>
             </tr>
 
         <% } %>
