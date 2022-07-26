@@ -1,8 +1,26 @@
 {
-    "exerciceWorkout": [
+    "Up": [
         "Pompe",
+        "Dips",
+        "Développé couché"
+    ],
+
+    "Down": [
         "Squat",
-        "Dips"
+        "Fente"
+    ],
+
+    "Abs": [
+        "Crunch",
+        "Banane"
+    ],
+
+    "Cardio": [
+        "Course"
+    ],
+
+    "Stretch": [
+        "Isquios"
     ],
 
     "fields": [
@@ -11,7 +29,10 @@
         "serie",
         "charge",
         "pause", 
-        "description",
-        "time"
+        "time",
+        "distance",
+        "duration",
+        "start",
+        "arrival"
     ]
 }

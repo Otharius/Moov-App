@@ -9,37 +9,78 @@ temps, départ, arrivé-->
 
             <% if (userData.templates[t[l]].fields[m] == 'exercices') { %>
                 <select name="exercices" id="<%=Object.keys(userData.templates)[l]%>Exercice" class="field exerciceSelect">
-                    <% for (var z=0; z < exercices.length; z++) { %>
-                        <option value="<%=exercices[z]%>"><%=exercices[z]%></option>
-                    <% } %>
+                    <optgroup label="Haut du corps">
+                        <% for (var z=0; z < exercices.Up.length; z++) { %>
+                            <option value="<%=exercices.Up[z]%>"><%=exercices.Up[z]%></option>
+                        <% } %>
+                    </optgroup>
+
+                    <optgroup label="Bas du corps">
+                        <% for (var z=0; z < exercices.Down.length; z++) { %>
+                            <option value="<%=exercices.Down[z]%>"><%=exercices.Down[z]%></option>
+                        <% } %>
+                    </optgroup>
+
+                    <optgroup label="Abdos">
+                        <% for (var z=0; z < exercices.Abs.length; z++) { %>
+                            <option value="<%=exercices.Abs[z]%>"><%=exercices.Abs[z]%></option>
+                        <% } %>
+                    </optgroup>
+
+                    <optgroup label="Cardio">
+                        <% for (var z=0; z < exercices.Abs.length; z++) { %>
+                            <option value="<%=exercices.Abs[z]%>"><%=exercices.Abs[z]%></option>
+                        <% } %>
+                    </optgroup>
+
+                    <optgroup label="Etirement">
+                        <% for (var z=0; z < exercices.Stretch.length; z++) { %>
+                            <option value="<%=exercices.Stretch[z]%>"><%=exercices.Stretch[z]%></option>
+                        <% } %>
+                    </optgroup>
+
                 </select>
             <% } %>
     
             <% if (userData.templates[t[l]].fields[m] == 'repetition') { %>
-                <input type="number" name="repetition" placeholder="repetition" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Repetition" min="1">
+                <input type="number" name="repetition" placeholder="Répétition" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Repetition" min="1">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'serie') { %>
-                <input type="number" name="serie" placeholder="serie" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Serie" min="1">
+                <input type="number" name="serie" placeholder="Série" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Serie" min="1">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'pause') { %>
-                <input type="number" name="pause" placeholder="pause" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Pause" min="0">
+                <input type="number" name="pause" placeholder="Pause (sec)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Pause" min="0">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'charge') { %>
-                <input type="number" name="charge" placeholder="charge" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Charge" min="0">
+                <input type="number" name="charge" placeholder="Charge (kg)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Charge" min="0">
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'time') { %>
-                <input type="number" name="time" placeholder="time" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Time" min="0">
+                <input type="number" name="time" placeholder="Time" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Time" min="0">
             <% } %>
 
-            <% if (userData.templates[t[l]].fields[m] == 'description') { %>
-                <input type="text" name="description" placeholder="description" class="field" id="<%=Object.keys(userData.templates)[l]%>Description">
+            <% if (userData.templates[t[l]].fields[m] == 'distance') { %>
+                <input type="number" name="distance" placeholder="Distance (m)" class="field" id="<%=Object.keys(userData.templates)[l]%>Distance">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'duration') { %>
+                <input type="number" name="duration" placeholder="Durée" class="field" id="<%=Object.keys(userData.templates)[l]%>Duration">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'start') { %>
+                <input type="text" name="start" placeholder="Départ" class="field" id="<%=Object.keys(userData.templates)[l]%>Start">
+            <% } %>
+
+            <% if (userData.templates[t[l]].fields[m] == 'arrival') { %>
+                <input type="text" name="arrival" placeholder="Arrivée" class="field" id="<%=Object.keys(userData.templates)[l]%>Arrival">
             <% } %>
 
         <% } %>
+
+        <textarea name="description" cols="30" rows="10" class="description" id="<%=Object.keys(userData.templates)[l]%>Description"></textarea>
     </div>
 <% } %>
 

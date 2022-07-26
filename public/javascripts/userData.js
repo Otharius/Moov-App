@@ -80,6 +80,32 @@ class Training {
         if (fields.includes('pause')) {
             training.withPause(req.body.pause);
         };
+        
+        if (fields.includes('charge')) {
+            training.withWeight(req.body.charge);
+        };
+
+        if (fields.includes('distance')) {
+            training.withDistance(req.body.distance);
+        };
+
+        if (fields.includes('duration')) {
+            training.withDuration(req.body.duration);
+        };
+
+        if (fields.includes('time')) {
+            training.withTime(req.body.time);
+        };
+
+        if (fields.includes('start')) {
+            training.withStart(req.body.start);
+        };
+
+        if (fields.includes('arrival')) {
+            training.withArrival(req.body.arrival);
+        };
+
+        training.withDescription(req.body.description[0]);
 
         return training;
     }

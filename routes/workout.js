@@ -23,8 +23,7 @@ const users = new Users().load();
 /////////////////
 
 // Variables pour les listes d'exercices
-const exercices = require('../data/exercices.json').exerciceWorkout;
-
+const exercices = require('../data/exercices.json');
 
 /////////////////////
 /// Les fonctions ///
@@ -42,6 +41,23 @@ function dataLenght (data) {
         return false;
     };
 };
+
+function dataExercice (data) {
+    let list = 0;
+    if(data.workout.seances.length > 0) {
+        for (let i = 0; i < data.workout.seances.length; i++) {
+            if(data.workout.seances[i].done === false){
+                list = list + 1;
+            };
+        };
+    };
+
+    if(list === 0) {
+        return false;
+    } else {
+        return true;
+    };
+}
 
 function session (req,res) {
     if (req.session.pseudo == undefined) {
@@ -139,6 +155,7 @@ router.get('/endWorkout', (req,res) => {
 
     res.render('training/main', {
         id: id - 1,
+        dataExercice: dataExercice(userData),
         seance: dataLenght(endWorkout(userData)),
         page: req.query.page,
         style: true,
@@ -160,6 +177,7 @@ router.post('/afterWorkout', (req,res) => {
     
     res.render('training/main', { 
         style: true,
+        dataExercice: dataExercice(userData),
         title: title.training, 
         userData: userData,
         seance: dataLenght(endWorkout(userData)),
@@ -188,6 +206,7 @@ router.post('/addWorkout', (req,res) => {
     userData.save();
     res.render('training/main', { 
         style: true,
+        dataExercice: dataExercice(userData),
         seance: dataLenght(endWorkout(userData)),
         title: title.training, 
         userData: userData,
@@ -269,6 +288,7 @@ router.get('/training', (req,res) => {
 
     res.render('training/main', {
         style: true,
+        dataExercice: dataExercice(userData),
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
@@ -305,6 +325,7 @@ router.get('/deleteWorkout', (req, res) => {
    
     res.render('training/main', { 
         style: true,
+        dataExercice: dataExercice(userData),
         title: title.training, 
         seance: dataLenght(endWorkout(userData)),
         userData: userData,
@@ -350,6 +371,7 @@ router.post('/setIMC', (req, res) => {
 
     res.render('training/main', { 
         style: true,
+        dataExercice: dataExercice(userData),
         seance: dataLenght(endWorkout(userData)),
         title: title.training, 
         userData: workoutClass.getData(pseudo),
@@ -369,6 +391,7 @@ router.get('/deleteIMC', (req, res) => {
    
     res.render('training/main', {
         style: true,
+        dataExercice: dataExercice(userData),
         title: title.training, 
         userData: userData,
         seance: dataLenght(endWorkout(userData)),
