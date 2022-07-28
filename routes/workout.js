@@ -319,9 +319,11 @@ router.get('/deleteWorkout', (req, res) => {
     userData.workout.delete(req.query.id);
     userData.save();
     let style = null;
+    let page = null;
     req.query.page === "allSeances" ? style = false : style = true;
-   
-    res.render('training/' + req.query.page, { 
+    req.query.page === "training" ? page = "training/main" : page = "home/main";
+
+    res.render(page, { 
         style: style,
         dataExercice: dataExercice(userData),
         title: title.training, 

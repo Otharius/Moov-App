@@ -6,24 +6,28 @@
         <p>Séance à venir</p>
     </div>
 
-        <ul class="list_home">
+    <div>
 
-            <%if(old){ %>
-                <% var j = 0 %>
-                <% var compteur = 1 %>
-                <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                    <% j = j + 1 %>
-                    <% if(userData.workout.seances[i].done === false) { %>
-                        <li><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
-                        <% compteur = compteur + 1 %>
-                    <% } %>  
-                        
-                 <% } %>
-            <% } else{ %> 
-                <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
-            <% } %>
-                
-        </ul>
+
+        <%if(old){ %>
+            <ul class="list_home">
+            <% var j = 0 %>
+            <% var compteur = 1 %>
+            <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                <% j = j + 1 %>
+                <% if(userData.workout.seances[i].done === false) { %>
+                    <li><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
+                    <% compteur = compteur + 1 %>
+                <% } %>  
+                    
+             <% } %>
+            </ul>
+        <% } else{ %> 
+            <p class="not_workout">Pas encore d'entrainement ?</p> 
+        <% } %>
+            
+
+    </div>
 </div>
 
 
@@ -80,11 +84,11 @@
                     <button class="home_value_button">Valider</button>
                 </form>          
             <% } else {%>
-                <p style="text-align: center;">Terminez vos entrainements avant !</p>
+                <p class="not_workout">Terminez vos entrainements avant !</p>
             <% } %>
 
         <% } else { %> 
-            <p style="text-align: center;">Pas encore d'entrainements ?</p>
+            <p class="not_workout">Pas encore d'entrainements ?</p>
         <% } %>
     </div>
     <br>

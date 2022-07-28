@@ -110,25 +110,24 @@
         </div>
 
         <div>
+            <%if(old){ %>
+                <ul class="list_home">
+                <% var j = 0 %>
+                <% var compteur = 1 %>
 
-            <ul class="list_home">
-                <%if(old){ %>
-                    <% var j = 0 %>
-                    <% var compteur = 1 %>
-                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <% j = j + 1 %>
-                        <% if(userData.workout.seances[i].done === false) { %>
-                            <li><a href="/workout/seance?id=<%=j%>&page=main" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
-                            <% compteur = compteur + 1 %>
-                        <% } %>  
-                            
-                     <% } %>
-                <% } else{ %> 
-                    <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
+                <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+                    <% j = j + 1 %>
+
+                    <% if(userData.workout.seances[i].done === false) { %>
+                        <li><a href="/workout/seance?id=<%=j%>&page=training" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
+                        <% compteur = compteur + 1 %>
+                    <% } %>  
+                        
                 <% } %>
-                    
-            </ul>
-
+                </ul>
+            <% } else{ %> 
+                <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
+            <% } %>
         </div>
     </div>
 
