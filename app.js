@@ -49,7 +49,7 @@ app.use('/template', require('./routes/template'));
 
 // Page quand on lance le serveur
 router.get('/', function(req,res) {
-    res.render('sign/login', { title: "My App - Login", error: false, style: false})
+    res.render('sign/login', { title: "Moov - Login", error: false, style: false})
 });
 
 

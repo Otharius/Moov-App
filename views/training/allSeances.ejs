@@ -8,7 +8,18 @@
 
         <tr>
             <td style="border-collapse: collapse;"><a href="/workout/seance?id=<%=i + 1%>&page=allSeances" class="link_seance"><%= userData.workout.seances[i].name %></a></td>
-            <td style="border-collapse: collapse; margin-left: 50px;">Difficulté: <%= userData.workout.seances[i].difficulty %></td>
+
+            <% if (userData.workout.seances[i].done === false) { %>
+                <td>Séance non terminée</td>
+            <% } %>
+
+            <% if (userData.workout.seances[i].done == true && userData.workout.seances[i].difficulty === null) { %>
+                <td>Etat de forme non complété</td>
+            <% } %>
+
+            <% if (userData.workout.seances[i].done == true && userData.workout.seances[i].difficulty != null) { %>
+                <td style="border-collapse: collapse; margin-left: 50px;">Difficulté: <%= userData.workout.seances[i].difficulty %></td>
+            <% } %>
         </tr>
     
     <% } %>

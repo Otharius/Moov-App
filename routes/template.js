@@ -21,6 +21,7 @@ function dataLenght (data) {
 };
 
 function deleteTemplate (data) {
+
     if (dataLenght(data)) {
         return data;
     } else {
@@ -50,9 +51,7 @@ router.get('/newTemplates', (req,res) => {
         fields: null,
         title: title.training,
         template: dataLenght(Object.keys(userData.templates)),
-        id: req.session.idSeance,
         userData: userData,
-        exercices: exercices,
     });
 });
 
@@ -79,9 +78,7 @@ router.post('/newTemplate', (req,res) => {
         dataFields: dataFields,
         fields: null,
         template: dataLenght(Object.keys(userData.templates)),
-        id: req.session.idSeance,
         userData: userData,
-        exercices: exercices,
     });
 });
 
@@ -106,10 +103,8 @@ router.post('/newField', (req,res) => {
         title: title.training,
         dataFields: dataFields,
         fields: req.session.fields,
-        id: req.session.idSeance,
         template: dataLenght(Object.keys(userData.templates)),
         userData: userData,
-        exercices: exercices,
     });
 });
 
@@ -125,9 +120,7 @@ router.get('/deleteTemplate', (req,res) => {
         fields: deleteTemplate(req.session.fields),
         title: title.training,
         template: dataLenght(Object.keys(userData.templates)),
-        id: req.session.idSeance,
         userData: userData,
-        exercices: exercices,
     });
 });
 

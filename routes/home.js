@@ -119,6 +119,7 @@ router.post('/afterWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
+    userData.workout.seances[req.body.rpe].note = req.body.note;
     userData.save();
     
     res.render('home/main', { 

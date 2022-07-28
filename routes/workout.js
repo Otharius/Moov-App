@@ -131,7 +131,6 @@ router.post('/planWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     req.session.idSeance = parseInt(req.body.idPage);
-    req.session.type = userData.workout.seances[req.session.idSeance].type;
 
     res.render('training/planWorkout', { 
         id: req.session.idSeance,
@@ -173,6 +172,7 @@ router.post('/afterWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
+    userData.workout.seances[req.body.rpe].note = req.body.note;
     userData.save();
     
     res.render('training/main', { 
@@ -185,10 +185,6 @@ router.post('/afterWorkout', (req,res) => {
         userBody: dataLenght(userData.health.body),
     });
 });
-
-
-
-
 
 
 // Créer un entrainement
@@ -322,9 +318,11 @@ router.get('/deleteWorkout', (req, res) => {
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.workout.delete(req.query.id);
     userData.save();
+    let style = null;
+    req.query.page === "allSeances" ? style = false : style = true;
    
-    res.render('training/main', { 
-        style: true,
+    res.render('training/' + req.query.page, { 
+        style: style,
         dataExercice: dataExercice(userData),
         title: title.training, 
         seance: dataLenght(endWorkout(userData)),

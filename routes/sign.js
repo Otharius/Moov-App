@@ -6,13 +6,13 @@ const router = express.Router();
 const users = new Users().load();
 
 title = {
-    "home": "My App - Home",
-    "login": "My App - Login",
-    "training": "My App - Training",
-    "meal": "My App - Meal",
-    "profiles": "My App - Profiles",
-    "sleep": "My App - Sleep",
-    "register": "My App - Register",
+    "home": "Moov - Home",
+    "login": "Moov - Login",
+    "training": "Moov - Training",
+    "meal": "Moov - Meal",
+    "profiles": "Moov - Profiles",
+    "sleep": "Moov - Sleep",
+    "register": "Moov - Register",
 };
 
 

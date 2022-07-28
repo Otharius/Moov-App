@@ -6,7 +6,7 @@
         <a href="/workout/endWorkout?id=<%=id + 1%>&page=<%=page%>" class="end_seance">Séance terminée</a>
     <% } %>
     
-    <a href="/workout/deleteWorkout?id=<%=id %>" class="delete_seance">Séance supprimée</a>
+    <a href="/workout/deleteWorkout?id=<%=id %>&page=<%=page%>" class="delete_seance">Séance supprimée</a>
 </div>
 
 
@@ -19,10 +19,9 @@
     <% } %>
     
 
-    <% if (userData.workout.seances[id].done == true) { %>
+    <% if (userData.workout.seances[id].done == true && userData.workout.seances[id].difficulty != null) { %>
         <p>Difficulté: <%= userData.workout.seances[id].difficulty %></p>
     <% } %>
-
 
     <% if (userData.workout.seances[id].detail != '') { %>
         <p>Détail: <%= userData.workout.seances[id].detail %></p>
@@ -33,7 +32,7 @@
         <% for(var j=0; j < userData.workout.seances[id].jobs.length; j++) { %>
             <% var a = userData.workout.seances[id].jobs[j] %>
 
-            <tr>
+            <tr style="border-top: 2px solid black;">
                 <% if (a.exercice != '' && a.exercice != undefined) { %>
                     <td><%= a.exercice %></td>
                 <% } %>
@@ -78,12 +77,16 @@
 
 
             <% if (a.description != '' && a.description != undefined) { %>
-            <tr>
+            <tr style="border-bottom: 2px solid black;">
                 <td><%= a.description %></td>
             </tr>
             <% } %>
 
 
+        <% } %>
+        
+        <% if (userData.workout.seances[id].note != null && userData.workout.seances[id].note != '') { %>
+            <p>Note après séance: <%= userData.workout.seances[id].note %></p>
         <% } %>
 
     </table>

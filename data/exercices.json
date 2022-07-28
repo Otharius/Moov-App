@@ -1,13 +1,33 @@
 {
     "Up": [
-        "Pompe",
+        "Curl and press",
+        "Curl élastique",
+        "Curl haltères alternance",
+        "Curl haltères",
+        "Curl marteau",
+        "Curl poulie",
+        "Développé Arnold",
+        "Développé couché barre",
+        "Développé couché haltères",
+        "Développé décliné barre",
+        "Développé décliné haltères",
+        "Développé incliné barre",
+        "Développé incliné haltères",
+        "Développé haltères debout 1 bras",
+        "Développé haltères debout",
+        "Développé haltères en fente",
         "Dips",
-        "Développé couché"
+        "Développé militaire"
     ],
 
     "Down": [
-        "Squat",
-        "Fente"
+        "Fente à la barre",
+        "Fente aux haltères",
+        "Fente PDC",
+        "Squat clavicule",
+        "Squat nuque",
+        "Squat PDC",
+        "Squat sumo"
     ],
 
     "Abs": [
