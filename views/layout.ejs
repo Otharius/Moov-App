@@ -1,20 +1,21 @@
 <html lang="fr">
 <title><%= title %></title>
 <head>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
-    <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
-    <link href="/css/computer.css" media="(min-width: 480px)" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/css/mobil.css" media="(max-width: 480px)" type="text/css">
-    
-    <script
-    src="https://www.gstatic.com/charts/loader.js">
-    </script>
-    <script src="https://kit.fontawesome.com/2af4903d5e.js" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>  
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>  
+  <link href="/css/computer.css" media="(min-width: 480px)" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/mobil.css" media="(max-width: 480px)" type="text/css">
+  <script src="https://kit.fontawesome.com/2af4903d5e.js" crossorigin="anonymous"></script>
 
-    
-    <meta name="viewport" content="width=device-width"/>
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+ 
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+
+
+  <meta name="viewport" content="width=device-width"/>
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
 </head>
  
 <body onload="test()">
@@ -45,6 +46,11 @@
   <%- body %>
 </body>
 <script>
+
+$(document).ready(function () {
+//change selectboxes to selectize mode to be searchable
+   $(".exerciceSelect").select2();
+});
 
 function test () {
   $('.template').attr("style", "display:none");

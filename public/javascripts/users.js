@@ -39,7 +39,6 @@ class Users {
                 data[i].pseudo,
                 data[i].name,
                 data[i].firstname,
-                data[i].boost,
             )
             .withEmail(data[i].email)
             .withPassword(data[i].password));

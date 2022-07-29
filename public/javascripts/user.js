@@ -5,7 +5,6 @@ class User {
     pseudo = '';
     name = '';
     firstname = '';
-    boost = false;
     email = '';
     password = '';
 
@@ -39,12 +38,10 @@ class User {
             "pseudo": this.pseudo,
             "name": this.name,
             "firstname": this.firstname,
-            "boost": this.boost,
             "email": this.email,
             "password": this.password,
         }
     }
-
 }
 
 module.exports = User

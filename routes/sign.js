@@ -116,7 +116,6 @@ router.post('/register', (req,res) => {
     }
 
 
- 
     res.render('sign/login', { 
         style: false,
         title: title.login, 
@@ -176,12 +175,6 @@ router.get('/forgot', (req,res) => {
         title: "My App - Forgot",
     });
 });
-
-
-
-// SYSTEME D'ENVOI D'UN MAIL SI OUBLIE DU MOT DE PASSE
-router.post('/sendMail', (req,res) => {
-    });
 
 
 // SYSTEME DE DECONNEXION

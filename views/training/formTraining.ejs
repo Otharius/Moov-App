@@ -8,7 +8,7 @@ temps, départ, arrivé-->
         <% for (var m=0; m < userData.templates[t[l]].fields.length; m++) { %>
 
             <% if (userData.templates[t[l]].fields[m] == 'exercices') { %>
-                <select name="exercices" id="<%=Object.keys(userData.templates)[l]%>Exercice" class="field exerciceSelect">
+                <select name="exercices" style="background-color: black;" id="<%=Object.keys(userData.templates)[l]%>Exercice" class="field exerciceSelect" >
                     <optgroup label="Haut du corps">
                         <% for (var z=0; z < exercices.Up.length; z++) { %>
                             <option value="<%=exercices.Up[z]%>"><%=exercices.Up[z]%></option>
