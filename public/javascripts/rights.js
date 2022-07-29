@@ -14,6 +14,7 @@ class Groups {
 
     add (group) {
         this.groups.set(group.name, group);
+        console.log(this.groups)
         return this;
     }
 
@@ -28,12 +29,14 @@ class Groups {
     load () {
         delete require.cache[require.resolve('../../data/groups.json')];
         data = require('../../data/groups.json');
-        
         for (let i=0; i<data.length; i++) {
-            this.add(new Group(
-                data[i].name,
-                data[i].rights,
-            ));
+            const group = new Group(data[i].name);
+
+            for (let j=0; j<data[i].rights.length; j++) {
+                group.addRight(new Right(data[i].rights[j].pseudo, data[i].rights[j].group));
+            }
+
+            this.add(group);
         }
         return this;
     } 
@@ -64,9 +67,6 @@ class Group {
     }
 
     toObject() {
-        console.log('AVANT');
-        console.log(this.rights.toObject());
-        console.log('APRES');
         return {
             "name": this.name,
             "rights": this.rights.toObject(),
@@ -102,11 +102,6 @@ class Rights {
         const objs = [];
 
         for (let right of this.rights.values()) {
-            /*
-            console.log('--------------RIGHTS-----------')
-            console.log(right)
-            console.log('--------------RIGHTS-----------')
-            */
             objs.push(right.toObject());
         }
         return objs;
@@ -116,9 +111,6 @@ class Rights {
 
 
 class Right {
-// user = pseudo
-// group = name of group
-// others are the rights
 
     constructor(pseudo, group) {
         this.pseudo = pseudo;
@@ -160,7 +152,7 @@ class Right {
 
     toObject() {
         return {
-            "user": this.pseudo,
+            "pseudo": this.pseudo,
             "group": this.group,
             "admin": this.admin,
             "coatch": this.coatch,
