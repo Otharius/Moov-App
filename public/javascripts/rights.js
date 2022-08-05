@@ -6,15 +6,13 @@ let data = require('../../data/groups.json');
 
 class Groups {
     
-    groups = new Map();
-
     constructor() {
+        this.groups = new Map();
     }
 
 
     add (group) {
         this.groups.set(group.name, group);
-        console.log(this.groups)
         return this;
     }
 
@@ -76,6 +74,10 @@ class Group {
     addRight(right) {
         this.rights.add(right);
         return this;
+    }
+
+    toArray() {
+        return [this.name]
     }
 }
 

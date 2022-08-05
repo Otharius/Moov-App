@@ -2,7 +2,11 @@
 
 <form action="/group/new" method="POST">
 
-    <input type="text" placeholder="name" name="name">
+    <input type="text" placeholder="name" name="name">  
 
 
 </form>
+
+<% for (let i=0; i< groups.length; i++) { %>
+    <p><%=groups[i].name%></p>
+<% } %>
