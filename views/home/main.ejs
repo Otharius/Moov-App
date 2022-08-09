@@ -1,6 +1,54 @@
 <br>
+<form action="/group/new" method="POST">
 
-<a href="/group/group">Aller sur la page group</a>
+    <input type="text" placeholder="Nom du groupe" name="name">  
+    <button>Valider</button>
+
+</form>
+
+
+
+<% if(length) { %>
+
+    <% groups.forEach(function(group) { %>
+
+        <% group.rights.rights.forEach(function(right) { %>
+            
+            <% if(right.pseudo === user.pseudo) { %>
+
+                <a href="/group/group?group=<%=group.name%>">Aller sur la page <%=group.name%></a>
+            <% } %>
+        <% }); %>
+    <% }); %>
+
+    
+
+
+    <form action="/group/add" method="POST">
+
+        <select name="name">
+            <% groups.forEach(function(group) { %>
+                <option value="<%=group.name%>"><%=group.name%></option>
+            <% }); %>
+        </select>
+    
+        <button>Rejoindre</button>
+    
+    </form>
+<%}%>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="workout_day_box">

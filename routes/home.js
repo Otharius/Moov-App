@@ -8,6 +8,8 @@ const Job = workoutClass.Job;
 const Users = require('../public/javascripts/users');
 const users = new Users().load();
 
+const Groups = require('../public/javascripts/rights').Groups;
+const groups = new Groups().load();
 
 
 //FONCTION SI ON A PAS D'ENTRAINEMENT
@@ -20,6 +22,19 @@ function dataLenght (data) {
         return false;
     };
 };
+
+
+
+//FONCTION SI ON A PAS D'ENTRAINEMENT
+function groupsLenght () {
+    if (groups.groups.size === 0) {
+        return false;
+    } else {
+        return true;
+    }
+};
+
+
 
 // FONCTION RAJOUTE DES CALORIES
 function addCalorie (calories) {
@@ -63,6 +78,8 @@ router.get('/home', (req,res) => {
 
     res.render('home/main', { 
         style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
@@ -84,6 +101,8 @@ router.post('/homeAddCal', (req,res) => {
 
     res.render('home/main', { 
         style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         seance: dataLenght(endWorkout(userData)),
@@ -104,6 +123,8 @@ router.post('/homeResetCal', (req,res) => {
 
     res.render('home/main', { 
         style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),
@@ -124,6 +145,8 @@ router.post('/afterWorkout', (req,res) => {
     
     res.render('home/main', { 
         style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         userData: workoutClass.getData(req.session.pseudo),

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const groupClass = require('../public/javascripts/rights');
+const workoutClass = require('../public/javascripts/userData');
 const Right = groupClass.Right;
 const Group = groupClass.Group;
 const Groups = groupClass.Groups;
@@ -19,13 +20,38 @@ function groupsLenght () {
     }
 };
 
+//FONCTION SI ON A PAS D'ENTRAINEMENT
+function dataLenght (data) {
+    try {
+        if (data.length) {
+           return true;
+        };
+    } catch (error) {
+        return false;
+    };
+};
 
+
+function endWorkout (data) {
+    let l = [];
+
+    for(let i=0; i < data.workout.seances.length; i++) {
+        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+            l.push(data.workout.seances);
+        };
+     };
+     if (l.length > 0) {
+         return l;
+     };
+     return null;
+};
 
 router.get('/group', (req,res) => {
+    req.session.group = req.query.group;
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -34,6 +60,7 @@ router.get('/group', (req,res) => {
 
 
 router.post('/new', (req,res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
 
     if (req.body.name != '') {
         const right = new Right(req.session.pseudo, req.body.name);
@@ -43,12 +70,16 @@ router.post('/new', (req,res) => {
         groups.save();
     }
 
-    res.render('group/group', { 
+    res.render('home/main', { 
         style: true,
-        title: title.training,
-        groups: groups.groups,
         length: groupsLenght(),
+        groups: groups.groups,
+        userBody: dataLenght(userData.health.body),
+        title: title.home, 
         user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
     });
 });
 
@@ -73,7 +104,7 @@ router.post('/add', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -82,15 +113,20 @@ router.post('/add', (req,res) => {
 
 
 router.get('/delete', (req,res) => {
+    const userData = workoutClass.getData(req.session.pseudo);
     groups.delete(req.query.name);
     groups.save()
 
-    res.render('group/group', { 
+    res.render('home/main', { 
         style: true,
-        title: title.training,
-        groups: groups.groups,
         length: groupsLenght(),
+        groups: groups.groups,
+        userBody: dataLenght(userData.health.body),
+        title: title.home, 
         user: users.get(req.session.pseudo),
+        seance: dataLenght(endWorkout(userData)),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
     });
 })
 
@@ -103,7 +139,7 @@ router.get('/grantCoatch', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -118,7 +154,7 @@ router.get('/denyCoatch', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -133,7 +169,7 @@ router.get('/grantTrainee', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -148,7 +184,7 @@ router.get('/denyTrainee', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });
@@ -166,7 +202,7 @@ router.get('/grantAdmin', (req,res) => {
     res.render('group/group', { 
         style: true,
         title: title.training,
-        groups: groups.groups,
+        group: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
     });

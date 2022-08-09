@@ -1,16 +1,6 @@
-<form action="/group/new" method="POST">
-
-    <input type="text" placeholder="Nom du groupe" name="name">  
-    <button>Valider</button>
-
-</form>
-
-
-
+<br><br><a href="/home/home" style="margin-left: 5px"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 
 <% if(length) { %>
-
-    <% groups.forEach(function(group) { %>
 
         <% group.rights.rights.forEach(function(right) { %>
             
@@ -60,26 +50,9 @@
                     </div>
                     
                 <%}%>
-        <% } %>
+            <% } %>
+        <% }); %>
 
-
-    <% }); %>
-<% }); %>
-
-    
-
-
-    <form action="/group/add" method="POST">
-
-        <select name="name">
-            <% groups.forEach(function(group) { %>
-                <option value="<%=group.name%>"><%=group.name%></option>
-            <% }); %>
-        </select>
-    
-        <button>Rejoindre</button>
-    
-    </form>
 <%}%>
 
 

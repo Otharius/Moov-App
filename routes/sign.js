@@ -4,6 +4,9 @@ const User = require('../public/javascripts/user');
 const workoutClass = require('../public/javascripts/userData');
 const router = express.Router();
 const users = new Users().load();
+const Groups = require('../public/javascripts/rights').Groups;
+const groups = new Groups().load();
+
 
 title = {
     "home": "Moov - Home",
@@ -15,7 +18,13 @@ title = {
     "register": "Moov - Register",
 };
 
-
+function groupsLenght () {
+    if (groups.groups.size === 0) {
+        return false;
+    } else {
+        return true;
+    }
+};
 
 function oldOrNew (data) {
     try {
@@ -157,6 +166,8 @@ router.post('/login', (req,res) => {
     
     res.render('home/main', { 
         style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home,
         seance: dataLenght(endWorkout(userData)),
