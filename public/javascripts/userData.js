@@ -1,5 +1,4 @@
 const fs = require('fs');
-const exercices = require('../../data/exercices.json').exerciceWorkout;
 
 
 // For the musculation

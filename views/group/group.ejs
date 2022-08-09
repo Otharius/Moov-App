@@ -1,12 +1,86 @@
-<p>uyue</p>
-
 <form action="/group/new" method="POST">
 
-    <input type="text" placeholder="name" name="name">  
-
+    <input type="text" placeholder="Nom du groupe" name="name">  
+    <button>Valider</button>
 
 </form>
 
-<% for (let i=0; i< groups.length; i++) { %>
-    <p><%=groups[i].name%></p>
-<% } %>
+
+
+
+<% if(length) { %>
+
+    <% groups.forEach(function(group) { %>
+
+        <% group.rights.rights.forEach(function(right) { %>
+            
+            <% if(right.pseudo === user.pseudo) { %>
+                <p>Vous appartenez au groupe <%= group.name%></p>
+
+                <% if (right.admin === true) { %>
+                    <p>Vous etes admin</p>
+                    <a href="/group/delete?name=<%=group.name%>">Supprimer le groupe <%= group.name %></a>
+
+                    <div style="border: 1px solid black;">
+                        <P>Voici toutes les personnes dans le groupes</P>
+                        <table>
+                            <% group.rights.rights.forEach(function(right) { %>
+                                <tr>
+                                    <td>
+                                        <p><%=right.pseudo%></p>
+                                    </td>
+                                    <td>
+                                        <% if (right.coatch === false) { %>
+                                            <a href="/group/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir entraineur</a>
+                                        <% } %>
+                                        <% if (right.coatch === true) { %>
+                                            <a href="/group/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Enlever entraineur</a>
+                                        <% } %>
+                                    </td>
+
+                                    <td>
+                                        <% if (right.trainee === false) { %>
+                                            <a href="/group/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir sportif</a>
+                                        <% } %>
+                                        <% if (right.trainee === true) { %>
+                                            <a href="/group/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Enlever sportif</a>
+                                        <% } %>
+                                    </td>
+
+                                    <td>
+                                        <% if (right.admin === false) { %>
+                                            <a href="/group/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir admin</a>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                                
+                            <% }); %>
+                        </table>
+                       
+                    </div>
+                    
+                <%}%>
+        <% } %>
+
+
+    <% }); %>
+<% }); %>
+
+    
+
+
+    <form action="/group/add" method="POST">
+
+        <select name="name">
+            <% groups.forEach(function(group) { %>
+                <option value="<%=group.name%>"><%=group.name%></option>
+            <% }); %>
+        </select>
+    
+        <button>Rejoindre</button>
+    
+    </form>
+<%}%>
+
+
+
