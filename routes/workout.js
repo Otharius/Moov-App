@@ -17,6 +17,10 @@ const Users = require('../public/javascripts/users');
 const users = new Users().load();
 
 
+const groupClass = require('../public/javascripts/rights');
+const Groups = groupClass.Groups;
+const groups = new Groups().load();
+
 
 /////////////////
 /// Variables ///
@@ -29,6 +33,14 @@ const exercices = require('../data/exercices.json');
 /// Les fonctions ///
 /////////////////////
 
+
+function groupsLenght () {
+    if (groups.groups.size === 0) {
+        return false;
+    } else {
+        return true;
+    }
+};
 
 
 //Fonction qui vérifie si il y a du contenu dans un tableau
@@ -92,7 +104,9 @@ router.get('/home', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
  
     res.render('home/main', { 
-        style: true, 
+        style: true,
+        length: groupsLenght(),
+        groups: groups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
@@ -158,6 +172,7 @@ router.get('/endWorkout', (req,res) => {
         seance: dataLenght(endWorkout(userData)),
         page: req.query.page,
         style: true,
+        groups: groups.groups,
         title: title.training,
         userData: userData,
         old: dataLenght(userData.workout.seances),
@@ -325,6 +340,9 @@ router.get('/deleteWorkout', (req, res) => {
 
     res.render(page, { 
         style: style,
+        user: users.get(req.session.pseudo),
+        groups: groups.groups,
+        length: groupsLenght(),
         dataExercice: dataExercice(userData),
         title: title.training, 
         seance: dataLenght(endWorkout(userData)),

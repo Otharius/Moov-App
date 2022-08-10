@@ -1,22 +1,20 @@
 <br><br><a href="/home/home" style="margin-left: 5px"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 
 
+<h1 class="seance_name"><%= groups.name%></h1>
+<div class="button_seance">
 
 
-<a href="/home/leave?name=<%=groups.name%>">Quitter le groupe <%= groups.name %></a>
-
-
-
-
-
+    <a href="/home/leave?name=<%=groups.name%>" class="delete_seance">Quitter le groupe</a>
 
 <% groups.rights.rights.forEach(function(right) { %>
     
     <% if(right.pseudo === user.pseudo) { %>
-        <p>Vous appartenez au groupe <%= groups.name%></p>
+
 
         <% if (right.admin === true) { %>
-            <a href="/home/delete?name=<%=groups.name%>">Supprimer le groupe <%= groups.name %></a>
+            <a href="/home/delete?name=<%=groups.name%>" class="delete_seance">Détruire le groupe</a>
+</div>
 
             <div style="border: 1px solid black;">
                 <P>Voici toutes les personnes dans le groupes</P>
@@ -63,6 +61,18 @@
             </div>
             
         <%}%>
+
+        <% if (right.admin === false) { %>
+</div>
+            <% groups.rights.rights.forEach(function(right) { %>
+                <p><%=right.pseudo%>
+                    <% if (right.admin === true) { %>
+                        administrateur
+                    <% } %>
+                </p>
+
+            <% }); %>
+        <% } %>
     <% } %>
 <% }); %>
 

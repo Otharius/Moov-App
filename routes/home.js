@@ -172,7 +172,7 @@ router.post('/afterWorkout', (req,res) => {
 router.get('/group', (req,res) => {
     req.session.group = req.query.group;
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.query.group),
         length: groupsLenght(),
@@ -211,20 +211,23 @@ router.post('/new', (req,res) => {
 
 router.post('/add', (req,res) => {
     // Savoir si la personne est ds le groupe
+    if (groups.exist(req.body.name)) {
+        const group = groups.get(req.body.name);
+        const right = new Right(req.session.pseudo, req.body.name);
+    
+        try {
+            if (group.rights.rights.get(req.session.pseudo).admin === true) {
+                right.grantAdmin();
+            }
+        } catch (error) {
+        };
+    
+        groups.get(req.body.name).addRight(right);
+        groups.save();
+    
+    }
+
     const userData = workoutClass.getData(req.session.pseudo);
-    const group = groups.get(req.body.name);
-    const right = new Right(req.session.pseudo, req.body.name);
-
-    try {
-        if (group.rights.rights.get(req.session.pseudo).admin === true) {
-            right.grantAdmin();
-        }
-    } catch (error) {
-    };
-
-    groups.get(req.body.name).addRight(right);
-    groups.save();
-
 
     res.render('home/main', { 
         style: true,
@@ -266,7 +269,7 @@ router.get('/grantCoatch', (req,res) => {
     groups.save()
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -281,7 +284,7 @@ router.get('/denyCoatch', (req,res) => {
     groups.save()
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -296,7 +299,7 @@ router.get('/grantTrainee', (req,res) => {
     groups.save()
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -311,7 +314,7 @@ router.get('/denyTrainee', (req,res) => {
     groups.save()
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -329,7 +332,7 @@ router.get('/grantAdmin', (req,res) => {
     groups.save()
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -357,7 +360,7 @@ router.get('/leave', (req,res) => {
 
 
     res.render(page, { 
-        style: true,
+        style: page === "group/group" ? false : true,
         length: groupsLenght(),
         groups: group,
         userBody: dataLenght(userData.health.body),
@@ -376,7 +379,7 @@ router.get('/exclude', (req,res) => {
 
 
     res.render('group/group', { 
-        style: true,
+        style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),

@@ -1,55 +1,46 @@
 <br>
-<form action="/home/new" method="POST">
-
-    <input type="text" placeholder="Nom du groupe" name="name">  
-    <button>Valider</button>
-
-</form>
 
 
+<div class="workout_day_box">
 
-<% if(length) { %>
+    <div class="group_day_title">
+        <p>Gestion des groupes</p>
+    </div>
 
-    <% groups.forEach(function(group) { %>
 
-        <% group.rights.rights.forEach(function(right) { %>
+    <div class="group_content">
+
+
+        <form action="/home/new" method="POST">
+
+            <input type="text" placeholder="Nom du nouveau groupe" name="name" class="group_name">  
+            <button class="group_new_button">Valider</button>
+        
+        </form>
+        
+
+        
+        <% if(length) { %>        
+        
+            <form action="/home/add" method="POST">
+    
+                <input list="brow" name="name" placeholder="Nom du groupe recherché" autocomplete="off" class="group_name" style="margin-top: 5px;">
+                <datalist id="brow">
+                    <% groups.forEach(function(group) { %>
+                        <option value="<%=group.name%>"><%=group.name%></option>
+                    <% }); %>
+                </datalist>  
             
-            <% if(right.pseudo === user.pseudo) { %>
+                <button class="group_new_button">Rejoindre</button>
+            
+            </form>
 
-                <a href="/home/group?group=<%=group.name%>">Aller sur la page <%=group.name%></a>
-            <% } %>
-        <% }); %>
-    <% }); %>
+        <%}%>
+        
+    </div>
+</div>
 
-    
-
-
-    <form action="/home/add" method="POST">
-
-        <select name="name">
-            <% groups.forEach(function(group) { %>
-                <option value="<%=group.name%>"><%=group.name%></option>
-            <% }); %>
-        </select>
-    
-        <button>Rejoindre</button>
-    
-    </form>
-<%}%>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br><br>
 
 <div class="workout_day_box">
 
@@ -59,7 +50,6 @@
 
 
     <div>
-
 
         <%if(old){ %>
             <ul class="list_home">
@@ -81,7 +71,34 @@
 
     </div>
 </div>
+<br><br>
 
+<div class="workout_day_box">
+
+    <div class="group_day_title">
+        <p>Liste de mes groupes</p>
+    </div>
+
+
+    <div>
+        
+        <% if(length) { %>
+        
+            <% groups.forEach(function(group) { %>
+        
+                <% group.rights.rights.forEach(function(right) { %>
+                    
+                    <% if(right.pseudo === user.pseudo) { %>
+        
+                        <a href="/home/group?group=<%=group.name%>" class="group_link">Aller sur la page <%=group.name%></a>
+                    <% } %>
+                <% }); %>
+            <% }); %>
+        
+        <%}%>
+
+    </div>
+</div>
 
 <br><br>
 

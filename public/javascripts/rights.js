@@ -14,8 +14,8 @@ class Groups {
         return this;
     }
 
-    exist (group) {
-        return this.groups.has(group.name);
+    exist (name) {
+        return this.groups.has(name);
     }
 
     get (name) {
