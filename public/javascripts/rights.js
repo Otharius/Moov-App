@@ -23,7 +23,8 @@ class Groups {
     }
 
     delete (name) {
-        return this.groups.delete(name);
+        this.groups.delete(name);
+        return this;
     }
 
     load () {
@@ -87,6 +88,11 @@ class Group {
         return this;
     }
 
+    deleteRight(pseudo) {
+        this.rights.delete(pseudo);
+        return this;
+    }
+
 }
 
 
@@ -103,8 +109,8 @@ class Rights {
         return this;
     }
 
-    delete(right) {
-        this.rights.delete(right.group);
+    delete(pseudo) {
+        this.rights.delete(pseudo);
         return this;
     }
 

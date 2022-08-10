@@ -1,5 +1,5 @@
 <br>
-<form action="/group/new" method="POST">
+<form action="/home/new" method="POST">
 
     <input type="text" placeholder="Nom du groupe" name="name">  
     <button>Valider</button>
@@ -16,7 +16,7 @@
             
             <% if(right.pseudo === user.pseudo) { %>
 
-                <a href="/group/group?group=<%=group.name%>">Aller sur la page <%=group.name%></a>
+                <a href="/home/group?group=<%=group.name%>">Aller sur la page <%=group.name%></a>
             <% } %>
         <% }); %>
     <% }); %>
@@ -24,7 +24,7 @@
     
 
 
-    <form action="/group/add" method="POST">
+    <form action="/home/add" method="POST">
 
         <select name="name">
             <% groups.forEach(function(group) { %>

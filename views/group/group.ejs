@@ -1,59 +1,71 @@
 <br><br><a href="/home/home" style="margin-left: 5px"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
 
-<% if(length) { %>
 
-        <% group.rights.rights.forEach(function(right) { %>
+
+
+<a href="/home/leave?name=<%=groups.name%>">Quitter le groupe <%= groups.name %></a>
+
+
+
+
+
+
+<% groups.rights.rights.forEach(function(right) { %>
+    
+    <% if(right.pseudo === user.pseudo) { %>
+        <p>Vous appartenez au groupe <%= groups.name%></p>
+
+        <% if (right.admin === true) { %>
+            <a href="/home/delete?name=<%=groups.name%>">Supprimer le groupe <%= groups.name %></a>
+
+            <div style="border: 1px solid black;">
+                <P>Voici toutes les personnes dans le groupes</P>
+                <table>
+                    <% groups.rights.rights.forEach(function(right) { %>
+                        <tr>
+                            <td>
+                                <p><%=right.pseudo%></p>
+                            </td>
+                            <td>
+                                <% if (right.coatch === false) { %>
+                                    <a href="/home/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir entraineur</a>
+                                <% } %>
+                                <% if (right.coatch === true) { %>
+                                    <a href="/home/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever entraineur</a>
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <% if (right.trainee === false) { %>
+                                    <a href="/home/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir sportif</a>
+                                <% } %>
+                                <% if (right.trainee === true) { %>
+                                    <a href="/home/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever sportif</a>
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <% if (right.admin === false) { %>
+                                    <a href="/home/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir admin</a>
+                                <% } %>
+                            </td>
+
+                            <td>
+                                <% if (right.admin === false) { %>
+                                    <a href="/home/exclude?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Exclure</a>
+                                <% } %>
+                            </td>
+                        </tr>
+                        
+                    <% }); %>
+                </table>
+                
+            </div>
             
-            <% if(right.pseudo === user.pseudo) { %>
-                <p>Vous appartenez au groupe <%= group.name%></p>
+        <%}%>
+    <% } %>
+<% }); %>
 
-                <% if (right.admin === true) { %>
-                    <p>Vous etes admin</p>
-                    <a href="/group/delete?name=<%=group.name%>">Supprimer le groupe <%= group.name %></a>
-
-                    <div style="border: 1px solid black;">
-                        <P>Voici toutes les personnes dans le groupes</P>
-                        <table>
-                            <% group.rights.rights.forEach(function(right) { %>
-                                <tr>
-                                    <td>
-                                        <p><%=right.pseudo%></p>
-                                    </td>
-                                    <td>
-                                        <% if (right.coatch === false) { %>
-                                            <a href="/group/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir entraineur</a>
-                                        <% } %>
-                                        <% if (right.coatch === true) { %>
-                                            <a href="/group/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Enlever entraineur</a>
-                                        <% } %>
-                                    </td>
-
-                                    <td>
-                                        <% if (right.trainee === false) { %>
-                                            <a href="/group/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir sportif</a>
-                                        <% } %>
-                                        <% if (right.trainee === true) { %>
-                                            <a href="/group/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Enlever sportif</a>
-                                        <% } %>
-                                    </td>
-
-                                    <td>
-                                        <% if (right.admin === false) { %>
-                                            <a href="/group/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=group.name%>">Promouvoir admin</a>
-                                        <% } %>
-                                    </td>
-                                </tr>
-                                
-                            <% }); %>
-                        </table>
-                       
-                    </div>
-                    
-                <%}%>
-            <% } %>
-        <% }); %>
-
-<%}%>
 
 
 
