@@ -1135,8 +1135,53 @@ h3 {
 .delete_seance:active {
   transform: scale(0.98);
 }
+.delete_group {
+  background-color: red;
+  color: white;
+  margin-left: 8%;
+  margin-right: 8%;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5% 5%;
+  width: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.delete_group:hover {
+  background-color: var(--hoverRed);
+}
+.delete_group:active {
+  transform: scale(0.98);
+}
+.change_status {
+  background-color: var(--valueButton);
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  display: flex;
+  padding: 0.5% 5%;
+  width: 10%;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.change_status:hover {
+  background-color: var(--valueButtonDark);
+}
+.change_status:active {
+  transform: scale(0.98);
+}
 .button_seance {
   width: 100%;
+  margin-bottom: 25px;
   display: flex;
   justify-content: space-between;
 }
@@ -1354,6 +1399,12 @@ h3 {
   margin-top: none;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+.users_group {
+  border-collapse: collapse;
+}
+.users_group tr td {
+  border: 1px solid black;
 }
 .select2-container {
   box-sizing: border-box;

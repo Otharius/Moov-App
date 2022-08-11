@@ -336,13 +336,9 @@ router.get('/deleteWorkout', (req, res) => {
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.workout.delete(req.query.id);
     userData.save();
-    let style = null;
-    let page = null;
-    req.query.page === "allSeances" ? style = false : style = true;
-    req.query.page === "training" ? page = "training/main" : page = "home/main";
 
-    res.render(page, { 
-        style: style,
+    res.render("training/main", { 
+        style: true,
         user: users.get(req.session.pseudo),
         groups: Newgroups.groups,
         length: groupsLenght(),

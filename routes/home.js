@@ -7,7 +7,7 @@ const Group = groupClass.Group;
 const Groups = groupClass.Groups;
 const Users = require('../public/javascripts/users.js');
 const groups = new Groups().load();
-const users = new Users().load();
+
 
 
 
@@ -77,6 +77,7 @@ function session (req,res) {
 router.get('/home', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
 
     res.render('home/main', { 
         style: true,
@@ -97,6 +98,7 @@ router.get('/home', (req,res) => {
 router.post('/homeAddCal', (req,res) => {
     session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
 
     userData.health.setCalories(userData.health.calories + addCalorie(req.body.calories));
     userData.save();
@@ -120,6 +122,7 @@ router.post('/homeAddCal', (req,res) => {
 router.post('/homeResetCal', (req,res) => {
     session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
     userData.health.setCalories(0);
     userData.save();
 
@@ -141,6 +144,7 @@ router.post('/homeResetCal', (req,res) => {
 router.post('/afterWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
     userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
     userData.workout.seances[req.body.rpe].note = req.body.note;
     userData.save();
@@ -171,6 +175,7 @@ router.post('/afterWorkout', (req,res) => {
 
 router.get('/group', (req,res) => {
     req.session.group = req.query.group;
+    const users = new Users().load();
     res.render('group/group', { 
         style: false,
         title: title.training,
@@ -184,10 +189,11 @@ router.get('/group', (req,res) => {
 
 router.post('/new', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
 
-    if (req.body.name != '') {
+    if (req.body.name != '' && groups.exist(req.body.name) === false) {
         const right = new Right(req.session.pseudo, req.body.name);
-        const group =  new Group(req.body.name).addRight(right);
+        const group =  new Group(req.body.name, true).addRight(right);
         right.grantAdmin();
         groups.add(group);
         groups.save();
@@ -211,8 +217,9 @@ router.post('/new', (req,res) => {
 
 router.post('/add', (req,res) => {
     // Savoir si la personne est ds le groupe
-    if (groups.exist(req.body.name)) {
-        const group = groups.get(req.body.name);
+    const group = groups.get(req.body.name);
+    if (groups.exist(req.body.name) && group.open === true) {
+
         const right = new Right(req.session.pseudo, req.body.name);
     
         try {
@@ -228,6 +235,9 @@ router.post('/add', (req,res) => {
     }
 
     const userData = workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
+    console.log(users.get(req.session.pseudo))
+    console.log(groups.groups)
 
     res.render('home/main', { 
         style: true,
@@ -246,6 +256,7 @@ router.post('/add', (req,res) => {
 
 router.get('/delete', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
+    const users = new Users().load();
     groups.delete(req.query.name);
     groups.save();
 
@@ -265,8 +276,10 @@ router.get('/delete', (req,res) => {
 
 // For grant a people to coatch
 router.get('/grantCoatch', (req,res) => {
+    const users = new Users().load();
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantCoatch()
     groups.save()
+
 
     res.render('group/group', { 
         style: false,
@@ -280,6 +293,7 @@ router.get('/grantCoatch', (req,res) => {
 
 // For deny a coatch
 router.get('/denyCoatch', (req,res) => {
+    const users = new Users().load();
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyCoatch()
     groups.save()
 
@@ -295,6 +309,7 @@ router.get('/denyCoatch', (req,res) => {
 
 // For grant a trainee
 router.get('/grantTrainee', (req,res) => {
+    const users = new Users().load();
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantTrainee()
     groups.save()
 
@@ -310,6 +325,7 @@ router.get('/grantTrainee', (req,res) => {
 
 // For deny a trainee
 router.get('/denyTrainee', (req,res) => {
+    const users = new Users().load();
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyTrainee()
     groups.save()
 
@@ -325,6 +341,7 @@ router.get('/denyTrainee', (req,res) => {
 
 // For grant admin a other people and deny the old admin
 router.get('/grantAdmin', (req,res) => {
+    const users = new Users().load();
     const group = groups.get(req.query.group).rights.rights;
     group.get(req.query.pseudo).grantAdmin();
     group.get(req.session.pseudo).denyAdmin();
@@ -357,7 +374,7 @@ router.get('/leave', (req,res) => {
         page = 'group/group';
         group = groups.get(req.session.group);
     }
-
+    const users = new Users().load();
 
     res.render(page, { 
         style: page === "group/group" ? false : true,
@@ -374,7 +391,23 @@ router.get('/leave', (req,res) => {
 
 
 router.get('/exclude', (req,res) => {
+    const users = new Users().load();
     groups.get(req.query.group).deleteRight(req.query.pseudo);
+    groups.save() ;
+
+
+    res.render('group/group', { 
+        style: false,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+router.get('/changeStatus', (req,res) => {
+    const users = new Users().load();
+    groups.get(req.query.name).changeStatus();
     groups.save() ;
 
 

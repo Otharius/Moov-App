@@ -32,7 +32,7 @@ class Groups {
         data = require('../../data/groups.json');
 
         for (let i=0; i<data.length; i++) {
-            const group = new Group(data[i].name);
+            const group = new Group(data[i].name, data[i].open);
             for (let j=0; j<data[i].rights.length; j++) {
                 const right = new Right(data[i].rights[j].pseudo, data[i].rights[j].group);
                 if (data[i].rights[j].admin === true) {
@@ -71,14 +71,16 @@ class Groups {
 
 class Group {
 
-    constructor(name) {
+    constructor(name, open) {
         this.name = name;
+        this.open = open;
         this.rights = new Rights();
     }
 
     toObject() {
         return {
             "name": this.name,
+            "open": this.open,
             "rights": this.rights.toObject(),
         }
     }
@@ -90,6 +92,15 @@ class Group {
 
     deleteRight(pseudo) {
         this.rights.delete(pseudo);
+        return this;
+    }
+
+    changeStatus() {
+        if (this.open === true) {
+            this.open = false;
+        } else {
+            this.open = true;
+        }
         return this;
     }
 

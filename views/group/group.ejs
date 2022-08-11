@@ -9,7 +9,7 @@
 <div class="button_seance">
 
 
-    <a href="/home/leave?name=<%=groups.name%>" class="delete_seance">Quitter le groupe</a>
+    <a href="/home/leave?name=<%=groups.name%>" class="delete_group">Quitter le groupe</a>
 
 <% groups.rights.rights.forEach(function(right) { %>
     
@@ -17,12 +17,21 @@
 
 
         <% if (right.admin === true) { %>
-            <a href="/home/delete?name=<%=groups.name%>" class="delete_seance">Détruire le groupe</a>
+
+            <a href="/home/changeStatus?name=<%=groups.name%>" class="change_status">
+                <% if(groups.open === true) { %>
+                    Type = Public
+                <% } else { %>
+                    Type = Privé
+                <% } %>
+            </a>
+
+            <a href="/home/delete?name=<%=groups.name%>" class="delete_group">Détruire le groupe</a>
 </div>
 
             <div style="border: 1px solid black;">
                 <P>Voici toutes les personnes dans le groupes</P>
-                <table>
+                <table class="users_group">
                     <% groups.rights.rights.forEach(function(right) { %>
                         <tr>
                             <td>

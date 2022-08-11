@@ -27,7 +27,9 @@
                 <input list="brow" name="name" placeholder="Nom du groupe recherché" autocomplete="off" class="group_name" style="margin-top: 5px;">
                 <datalist id="brow">
                     <% groups.forEach(function(group) { %>
-                        <option value="<%=group.name%>"><%=group.name%></option>
+                        <% if (group.open === true) { %>
+                            <option value="<%=group.name%>"><%=group.name%></option>
+                        <% } %>
                     <% }); %>
                 </datalist>  
             

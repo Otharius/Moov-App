@@ -1,1 +1,1 @@
-[{"name":"Pole","rights":[{"pseudo":"Otharius","group":"Pole","admin":true,"coatch":true,"trainee":true}]}]
+[{"name":"pole 2022 2023","open":true,"rights":[{"pseudo":"Otharius","group":"pole 2022 2023","admin":true,"coatch":false,"trainee":true},{"pseudo":"Lolo","group":"pole 2022 2023","admin":false,"coatch":false,"trainee":true}]},{"name":"club","open":true,"rights":[{"pseudo":"Lolo","group":"club","admin":true,"coatch":false,"trainee":true},{"pseudo":"Otharius","group":"club","admin":false,"coatch":false,"trainee":true}]}]

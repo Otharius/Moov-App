@@ -1337,8 +1337,59 @@ h3 {
     }
 }
 
+.delete_group {
+    background-color: red;
+    color: white;
+    margin-left: 8%;
+    margin-right: 8%;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    display: flex;
+    padding: 0.5% 5%;
+    width: 10%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: var(--hoverRed);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
+.change_status {
+    background-color: var(--valueButton);
+    color: white;
+    text-decoration: none;
+    font-size: 1.5rem;
+    border: 1px solid black;
+    display: flex;
+    padding: 0.5% 5%;
+    width: 10%;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 20px;
+
+    &:hover {
+        background-color: var(--valueButtonDark);
+    }
+
+    &:active {
+        transform: scale(0.98);
+    }
+}
+
 .button_seance {
     width: 100%;
+    margin-bottom: 25px;
     display: flex;
     justify-content: space-between;
 }
@@ -1596,6 +1647,23 @@ h3 {
     padding-top: 10px;
     padding-bottom: 10px;
 }
+
+
+.users_group {
+    border-collapse: collapse;
+    margin-left: 15px;
+    tr td{
+        border: 1px solid black;
+    }
+}
+
+
+
+
+
+
+
+
 
 
 
