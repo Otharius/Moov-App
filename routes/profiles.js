@@ -76,12 +76,14 @@ function dataLenght (data) {
 // Système de changement du mot de passe
 router.post('/changePassword', (req,res) => {
     session(req,res);
+    const pseudo = req.session.pseudo;
     const users = new Users().load();
+    const user = users.get(pseudo);
     const oldPassword = req.body.old;
     const newPassword = req.body.new;
     const newPassword2 = req.body.new2;
-    const pseudo = req.session.pseudo;
-    const user = users.get(pseudo);
+
+
     const userData = workoutClass.getData(req.session.pseudo);
 
     if (user === undefined) {
@@ -108,7 +110,7 @@ router.post('/changePassword', (req,res) => {
         res.render('profiles/main', { title: "Profiles", userBody: dataLenght(userData.health.body), userData : userData, error: true, message: "Confirmation de mot de passse incorrect", user: user, style: true,});
         return;
     };
-
+    
     user.withPassword(newPassword, true);
     users.save();
     res.render('profiles/main', { 

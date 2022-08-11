@@ -8,11 +8,10 @@ class User {
     email = '';
     password = '';
 
-    constructor(pseudo, name, firstname, boost) {
+    constructor(pseudo, name, firstname) {
         this.pseudo = pseudo;
         this.name = name;
         this.firstname = firstname;
-        this.boost = boost;
     }
 
     withPassword(password, encrypt=false) {

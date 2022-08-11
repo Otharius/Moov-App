@@ -190,10 +190,11 @@ router.get('/group', (req,res) => {
 router.post('/new', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
+    const name = req.body.name.trim();
 
-    if (req.body.name != '' && groups.exist(req.body.name) === false) {
+    if (name != '' && groups.exist(name) === false) {
         const right = new Right(req.session.pseudo, req.body.name);
-        const group =  new Group(req.body.name, true).addRight(right);
+        const group =  new Group(name, true).addRight(right);
         right.grantAdmin();
         groups.add(group);
         groups.save();
@@ -236,8 +237,6 @@ router.post('/add', (req,res) => {
 
     const userData = workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
-    console.log(users.get(req.session.pseudo))
-    console.log(groups.groups)
 
     res.render('home/main', { 
         style: true,
@@ -281,12 +280,13 @@ router.get('/grantCoatch', (req,res) => {
     groups.save()
 
 
-    res.render('group/group', { 
+    res.render('group/user', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
 
@@ -297,12 +297,13 @@ router.get('/denyCoatch', (req,res) => {
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyCoatch()
     groups.save()
 
-    res.render('group/group', { 
+    res.render('group/user', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
 
@@ -313,12 +314,13 @@ router.get('/grantTrainee', (req,res) => {
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantTrainee()
     groups.save()
 
-    res.render('group/group', { 
+    res.render('group/user', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
 
@@ -329,12 +331,13 @@ router.get('/denyTrainee', (req,res) => {
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyTrainee()
     groups.save()
 
-    res.render('group/group', { 
+    res.render('group/user', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
 
@@ -348,12 +351,13 @@ router.get('/grantAdmin', (req,res) => {
 
     groups.save()
 
-    res.render('group/group', { 
+    res.render('group/user', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
 
@@ -410,14 +414,28 @@ router.get('/changeStatus', (req,res) => {
     groups.get(req.query.name).changeStatus();
     groups.save() ;
 
-
     res.render('group/group', { 
         style: false,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
     });
 })
+
+router.get('/groupUser', (req,res) => {
+    const users = new Users().load();
+
+    res.render('group/user', { 
+        style: false,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
+    });
+})
+
 
 module.exports = router;

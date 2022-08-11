@@ -1652,9 +1652,32 @@ h3 {
 .users_group {
     border-collapse: collapse;
     margin-left: 15px;
-    tr td{
-        border: 1px solid black;
+
+    .group_coatch {
+        padding-top: 0.8rem;
+        padding-bottom: 0.8rem;
+
+        a {
+            border-radius: 15px;
+            padding: 0.75rem 0.8rem;
+            border: none;
+            margin-left: 15px;
+            background-color: #e229e5  ;
+            font-size: 1.2rem;
+           cursor: pointer;
+           color: white;
+           text-decoration: none;
+    
+            &:active {
+                transform: scale(0.98);
+            }
+    
+            &:hover {
+                background-color: #99189b  ;
+            }
+        }
     }
+
 }
 
 

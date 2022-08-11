@@ -20,9 +20,9 @@
 
             <a href="/home/changeStatus?name=<%=groups.name%>" class="change_status">
                 <% if(groups.open === true) { %>
-                    Type = Public
+                    Public
                 <% } else { %>
-                    Type = Privé
+                    Privé
                 <% } %>
             </a>
 
@@ -31,46 +31,11 @@
 
             <div style="border: 1px solid black;">
                 <P>Voici toutes les personnes dans le groupes</P>
-                <table class="users_group">
+                <ul>
                     <% groups.rights.rights.forEach(function(right) { %>
-                        <tr>
-                            <td>
-                                <p><%=right.pseudo%></p>
-                            </td>
-                            <td>
-                                <% if (right.coatch === false) { %>
-                                    <a href="/home/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir entraineur</a>
-                                <% } %>
-                                <% if (right.coatch === true) { %>
-                                    <a href="/home/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever entraineur</a>
-                                <% } %>
-                            </td>
-
-                            <td>
-                                <% if (right.trainee === false) { %>
-                                    <a href="/home/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir sportif</a>
-                                <% } %>
-                                <% if (right.trainee === true) { %>
-                                    <a href="/home/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever sportif</a>
-                                <% } %>
-                            </td>
-
-                            <td>
-                                <% if (right.admin === false) { %>
-                                    <a href="/home/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir admin</a>
-                                <% } %>
-                            </td>
-
-                            <td>
-                                <% if (right.admin === false) { %>
-                                    <a href="/home/exclude?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Exclure</a>
-                                <% } %>
-                            </td>
-                        </tr>
-                        
+                        <li> <a href="/home/groupUser?pseudo=<%=right.pseudo%>&group=<%=groups.name%>"><%=right.pseudo%></a></li>
                     <% }); %>
-                </table>
-                
+                </ul>                
             </div>
             
         <%}%>

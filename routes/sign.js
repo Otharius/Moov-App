@@ -3,9 +3,7 @@ const Users = require('../public/javascripts/users.js');
 const User = require('../public/javascripts/user');
 const workoutClass = require('../public/javascripts/userData');
 const router = express.Router();
-const users = new Users().load();
 const Groups = require('../public/javascripts/rights').Groups;
-const groups = new Groups().load();
 
 
 title = {
@@ -89,7 +87,7 @@ router.get('/register', (req,res) => {
 
 // AJOUTE UN NOUVEL UTILISATEUR
 router.post('/register', (req,res) => {
-
+    const users = new Users().load();
     const pseudo = req.body.pseudo;
     const firstname = req.body.firstname;
     const name = req.body.name;
@@ -137,7 +135,7 @@ router.post('/register', (req,res) => {
 
 // SYSTEME DE CONNEXION 
 router.post('/login', (req,res) => {
-
+    const users = new Users().load();
     const pseudo = req.body.pseudo;
     const password = req.body.password;
     const Newgroups = new Groups().load();
