@@ -44,6 +44,42 @@
 
 <div class="workout_day_box">
 
+    <div class="group_day_title">
+        <p>Liste de mes groupes</p>
+    </div>
+
+
+    <div>
+        
+        <% if(length) { %>
+            <% let add = 0 %>
+            <% groups.forEach(function(group) { %>
+        
+                <% group.rights.rights.forEach(function(right) { %>
+                    
+                    <% if(right.pseudo === user.pseudo) { %>
+
+                        <% add = add + 1 %>
+                        <a href="/home/group?group=<%=group.name%>" class="group_link">Aller sur la page <%=group.name%></a>
+
+                    <% } %>
+                        
+                <% }); %>
+            <% }); %>
+            <% if (add === 0) { %>
+                <p class="not_workout">Vous n'êtes dans aucun groupe</p>
+            <% } %>
+        
+        <%} else {%>
+            <p class="not_workout">Il n'y a aucun groupe de créé dans cette application</p>
+        <%}%>
+    </div>
+</div>
+
+<br><br>
+
+<div class="workout_day_box">
+
     <div class="workout_day_title">
         <p>Séance à venir</p>
     </div>
@@ -73,34 +109,7 @@
 </div>
 <br><br>
 
-<div class="workout_day_box">
 
-    <div class="group_day_title">
-        <p>Liste de mes groupes</p>
-    </div>
-
-
-    <div>
-        
-        <% if(length) { %>
-        
-            <% groups.forEach(function(group) { %>
-        
-                <% group.rights.rights.forEach(function(right) { %>
-                    
-                    <% if(right.pseudo === user.pseudo) { %>
-        
-                        <a href="/home/group?group=<%=group.name%>" class="group_link">Aller sur la page <%=group.name%></a>
-                    <% } %>
-                <% }); %>
-            <% }); %>
-        
-        <%}%>
-
-    </div>
-</div>
-
-<br><br>
 
 
 <div class="workout_rpe_box">

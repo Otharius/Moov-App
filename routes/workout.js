@@ -35,7 +35,8 @@ const exercices = require('../data/exercices.json');
 
 
 function groupsLenght () {
-    if (groups.groups.size === 0) {
+    const Newgroups = new Groups().load();
+    if (Newgroups.groups.size === 0) {
         return false;
     } else {
         return true;
@@ -101,12 +102,13 @@ function endWorkout (data) {
 // Affiche la page d'accueil depuis la page de séance
 router.get('/home', (req,res) => {
     session(req,res);
+    const Newgroups = new Groups().load();
     const userData = workoutClass.getData(req.session.pseudo);
  
     res.render('home/main', { 
         style: true,
         length: groupsLenght(),
-        groups: groups.groups,
+        groups: Newgroups.groups,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
@@ -330,6 +332,7 @@ router.get('/seance', (req,res) => {
 // Supprime un entrainement
 router.get('/deleteWorkout', (req, res) => {
     session(req,res);
+    const Newgroups = new Groups().load();
     const userData =  workoutClass.getData(req.session.pseudo);
     userData.workout.delete(req.query.id);
     userData.save();
@@ -341,7 +344,7 @@ router.get('/deleteWorkout', (req, res) => {
     res.render(page, { 
         style: style,
         user: users.get(req.session.pseudo),
-        groups: groups.groups,
+        groups: Newgroups.groups,
         length: groupsLenght(),
         dataExercice: dataExercice(userData),
         title: title.training, 

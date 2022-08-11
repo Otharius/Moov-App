@@ -19,7 +19,8 @@ title = {
 };
 
 function groupsLenght () {
-    if (groups.groups.size === 0) {
+    const Newgroups = new Groups().load();
+    if (Newgroups.groups.size === 0) {
         return false;
     } else {
         return true;
@@ -139,6 +140,7 @@ router.post('/login', (req,res) => {
 
     const pseudo = req.body.pseudo;
     const password = req.body.password;
+    const Newgroups = new Groups().load();
 
     if (pseudo === '' || password === '') {
         res.render('sign/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
@@ -167,13 +169,13 @@ router.post('/login', (req,res) => {
     res.render('home/main', { 
         style: true,
         length: groupsLenght(),
-        groups: groups.groups,
+        groups: Newgroups.groups,
         userBody: dataLenght(userData.health.body),
-        title: title.home,
+        title: title.home, 
+        user: users.get(req.session.pseudo),
         seance: dataLenght(endWorkout(userData)),
-        user: users.get(pseudo),
-        old: oldOrNew(userData.workout.seances),
-        userData: workoutClass.getData(req.session.pseudo),
+        userData: userData,
+        old: dataLenght(userData.workout.seances),
     });
 
 });

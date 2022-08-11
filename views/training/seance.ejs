@@ -1,5 +1,11 @@
-<br><br><a href="/workout/<%=page%>" style="margin-left: 5px"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
-<h1 class="seance_name"><%= userData.workout.seances[id].name %></h1>
+
+<div class="top_content"><br><br>
+    <a href="/workout/<%=page%>" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;" ><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+    <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= userData.workout.seances[id].name %></h1><br>
+</div>
+
+<br><br>
+
 
 <div class="button_seance">
     <% if (userData.workout.seances[id].done === false) { %>
