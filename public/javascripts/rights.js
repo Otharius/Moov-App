@@ -53,6 +53,7 @@ class Groups {
                    seance.addUser(data[i].seances[k].users[x]);
                 }
                 group.addSeance(seance);
+
             }
 
             this.add(group);

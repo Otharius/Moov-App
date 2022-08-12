@@ -550,4 +550,25 @@ router.post('/goJobGroup', (req,res) => {
 
 
 
+router.get('/seanceGroup', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    req.session.seanceGroupId = parseInt(req.query.id);
+
+
+    res.render('group/seanceGroup', { 
+        style: false,
+        id: req.session.seanceGroupId,
+        userData: userData,
+        exercices: exercices,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+
+
+
 module.exports = router;
