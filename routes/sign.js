@@ -95,7 +95,7 @@ router.post('/register', (req,res) => {
     const password = req.body.password;
     const password2 = req.body.password2;
 
-    if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
+    if  (pseudo.trim() === '' || firstname.trim() === '' || name.trim() === '' || email.trim() === '' || password.trim() === '' || password2.trim() === '') {
         res.render('sign/register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
@@ -140,7 +140,7 @@ router.post('/login', (req,res) => {
     const password = req.body.password;
     const Newgroups = new Groups().load();
 
-    if (pseudo === '' || password === '') {
+    if (pseudo.trim() === '' || password.trim() === '') {
         res.render('sign/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };

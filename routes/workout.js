@@ -211,7 +211,7 @@ router.post('/addWorkout', (req,res) => {
     const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
     const seance = new Seance(req.body.training_name, req.body.date, req.body.detail, duration);
 
-    if (req.body.time != '') {
+    if (req.body.time.trim() != '') {
         seance.withTime(req.body.time)
     };
     
@@ -381,7 +381,7 @@ router.post('/setIMC', (req, res) => {
     const body = req.body.body;
     const height = req.body.height;
  
-    if (body != '' && height != '') {
+    if (body.trim() != '' && height.trim() != '') {
         userData.health.add(parseInt(body), parseInt(height));
         userData.save()
     };

@@ -1402,18 +1402,20 @@ h3 {
 }
 .users_group {
   border-collapse: collapse;
-  margin-left: 15px;
-  width: 50%;
 }
 .users_group .group_coatch {
+  width: 25%;
   padding-top: 0.8rem;
   padding-bottom: 0.8rem;
 }
 .users_group .group_coatch a {
+  display: flex;
+  justify-content: center;
   border-radius: 15px;
   padding: 0.75rem 0.8rem;
   border: none;
-  margin-left: 15px;
+  margin-left: 35px;
+  margin-right: 35px;
   background-color: #e229e5;
   font-size: 1.2rem;
   cursor: pointer;
@@ -1425,6 +1427,51 @@ h3 {
 }
 .users_group .group_coatch a:hover {
   background-color: #99189b;
+}
+.group_sack {
+  width: 25%;
+}
+.group_sack .sack_user {
+  display: flex;
+  justify-content: center;
+  border-radius: 15px;
+  padding: 0.75rem 0.8rem;
+  border: none;
+  margin-left: 35px;
+  margin-right: 35px;
+  background-color: red  ;
+  font-size: 1.2rem;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+.group_sack .sack_user:active {
+  transform: scale(0.98);
+}
+.group_sack .sack_user:hover {
+  background-color: var(--hoverRed);
+}
+.group_user_info {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+.list_users {
+  margin-left: 25px;
+}
+.list_users a {
+  color: black;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+.list_users a:hover {
+  color: red;
+  text-decoration: underline;
+}
+.user_group_content p {
+  margin-top: 20px;
+  margin-left: 20px;
+  font-size: 1.3rem;
 }
 .select2-container {
   box-sizing: border-box;

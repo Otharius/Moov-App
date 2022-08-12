@@ -1651,22 +1651,25 @@ h3 {
 
 .users_group {
     border-collapse: collapse;
-    margin-left: 15px;
 
     .group_coatch {
+        width: 25%;
         padding-top: 0.8rem;
         padding-bottom: 0.8rem;
 
         a {
+            display: flex;
+            justify-content: center;
             border-radius: 15px;
             padding: 0.75rem 0.8rem;
             border: none;
-            margin-left: 15px;
+            margin-left: 35px;
+            margin-right: 35px;
             background-color: #e229e5  ;
             font-size: 1.2rem;
-           cursor: pointer;
-           color: white;
-           text-decoration: none;
+            cursor: pointer;
+            color: white;
+            text-decoration: none;
     
             &:active {
                 transform: scale(0.98);
@@ -1680,6 +1683,61 @@ h3 {
 
 }
 
+.group_sack {
+    width: 25%;
+
+    .sack_user {
+        display: flex;
+        justify-content: center;
+        border-radius: 15px;
+        padding: 0.75rem 0.8rem;
+        border: none;
+        margin-left: 35px;
+        margin-right: 35px;
+        background-color: red  ;
+        font-size: 1.2rem;
+        cursor: pointer;
+        color: white;
+        text-decoration: none;
+    
+        &:active {
+            transform: scale(0.98);
+        }
+    
+        &:hover {
+            background-color: var(--hoverRed);
+        }
+    }
+}
+
+.group_user_info {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.list_users {
+    margin-left: 25px;
+
+    a {
+        color: black;
+        font-size: 1.3rem;
+        text-decoration: none;
+        
+    
+        &:hover {
+            color: red;
+            text-decoration: underline;
+        }
+    }
+
+}
+    
+.user_group_content p{
+    margin-top: 20px;
+    margin-left: 20px;
+    font-size: 1.3rem;
+}
 
 
 

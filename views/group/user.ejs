@@ -4,7 +4,7 @@
     <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= viewUser.pseudo%></h1><br>
 </div>
 
-
+<br>
 
 
 
@@ -24,48 +24,57 @@
 
         <% if (right.admin === true) { %>
 
-            <table class="users_group">
+            <table class="users_group" style="width: 100%; border: 1pw solid black;">
                 <% groups.rights.rights.forEach(function(right) { %>
 
                     <% if (right.pseudo === viewUser.pseudo) { %>
-                        <tr>
-                            <td class="group_coatch">
-                                <% if (right.coatch === false) { %>
-                                    <a href="/home/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir entraineur</a>
-                                <% } %>
-                                <% if (right.coatch === true) { %>
-                                    <a href="/home/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever entraineur</a>
-                                <% } %>
-                            </td>
-    
-                            <td class="group_coatch">
-                                <% if (right.trainee === false) { %>
-                                    <a href="/home/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir sportif</a>
-                                <% } %>
-                                <% if (right.trainee === true) { %>
-                                    <a href="/home/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever sportif</a>
-                                <% } %>
-                            </td>
-    
-                            <td class="group_coatch">
-                                <% if (right.admin === false) { %>
-                                    <a href="/home/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir admin</a>
-                                <% } %>
-                            </td>
-    
-                            <td>
-                                <% if (right.admin === false) { %>
-                                    <a href="/home/exclude?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Exclure</a>
-                                <% } %>
-                            </td>
-                        </tr>
+
+                        <div class="group_user_info">   
+                            <tr>
+                                <td class="group_coatch">
+                                    <% if (right.coatch === false) { %>
+                                        <a href="/home/grantCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir entraineur</a>
+                                    <% } %>
+                                    <% if (right.coatch === true) { %>
+                                        <a href="/home/denyCoatch?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever entraineur</a>
+                                    <% } %>
+                                </td>
+        
+                                <td class="group_coatch">
+                                    <% if (right.trainee === false) { %>
+                                        <a href="/home/grantTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir sportif</a>
+                                    <% } %>
+                                    <% if (right.trainee === true) { %>
+                                        <a href="/home/denyTrainee?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Enlever sportif</a>
+                                    <% } %>
+                                </td>
+        
+                                <td class="group_coatch">
+                                    <% if (right.admin === false) { %>
+                                        <a href="/home/grantAdmin?pseudo=<%=right.pseudo%>&group=<%=groups.name%>">Promouvoir admin</a>
+                                    <% } %>
+                                </td>
+        
+                                <td class="group_sack">
+                                    <% if (right.admin === false) { %>
+                                        <a href="/home/exclude?pseudo=<%=right.pseudo%>&group=<%=groups.name%>" class="sack_user">Exclure</a>
+                                    <% } %>
+                                </td>
+                            </tr>
+                        </div>
+                        
                     <% } %>
                     
                 <% }); %>
             </table>
 
         <%}%>
-   
+
+        <div class="user_group_content">
+            <p>Nom: <%= viewUser.name %></p>
+            <p>Prénom: <%= viewUser.firstname %></p>
+        </div>
+
     <% } %>
 
 <% }); %>

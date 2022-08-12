@@ -276,8 +276,8 @@ router.get('/delete', (req,res) => {
 // For grant a people to coatch
 router.get('/grantCoatch', (req,res) => {
     const users = new Users().load();
-    groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantCoatch()
-    groups.save()
+    groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantCoatch();
+    groups.save();
 
 
     res.render('group/user', { 
