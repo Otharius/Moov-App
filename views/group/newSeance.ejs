@@ -1,0 +1,42 @@
+
+<div class="top_group"><br><br>
+    <a href="/home/group?group=<%=groups.name%>" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+    <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= groups.name%></h1><br>
+</div>
+
+<form action="/home/addGroupSeance" method="POST">
+
+    <% groups.rights.rights.forEach(function(right) { %>
+        <input type="checkbox" name="pseudo" value="<%=right.pseudo%>"><%=right.pseudo%> <br>
+    <% }); %>     
+
+    <h1 class="title_workout">Créer un entrainement</h1>
+
+        <div class="intro_workout">
+
+            <input type="text" name="training_name" placeholder="Nom de la séance" class="training_name"><br>
+            <input type="date" name="date" class="training_date">
+        
+        </div>
+    
+        <br><br>
+
+        <div class="intro_workout">
+            <div>
+                <input type="number" max="5" value="1" min="0" name="durationHeure" id="heure">h 
+                <input type="number" max="59" value="0" min="0" name="durationMin">min
+            </div>
+
+            <input type="time" name="time" class="training_time">
+        </div>
+        
+        <h5 class="training_note_title">Les notes de la séance</h5>
+
+        <div class="training_note">
+            <textarea name="detail" cols="30" rows="10"></textarea>
+        </div>
+
+                
+        <button class="send_workout">Valider</button>
+
+</form>

@@ -1,0 +1,23 @@
+
+<div class="top_group"><br><br>
+    <a href="/home/group?group=<%=groups.name%>" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+    <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= groups.name%></h1><br>
+</div>
+
+
+<form action="/home/newJobGroup" method="POST" >
+    <select name="template" class="selectExerciceJob" id="selectExerciceJob" onchange="test()">
+        <% var a = Object.keys(userData.templates) %>
+        <% for(var j=0; j < a.length; j++) { %>
+            <option value="<%=a[j]%>"><%=a[j]%></option>
+        <% } %>
+    </select><br>
+
+       
+        <br>
+        
+    
+    <div class="training_content">
+        <%- include('../training/formTraining.ejs') %>
+    </div>
+</form> 

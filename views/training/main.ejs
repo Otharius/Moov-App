@@ -65,7 +65,7 @@
                         <select name="rpe" class="selectPageRPE">
                     
                             <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                                <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
+                                <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === nu ll){ %>
                                     <option value="<%= i %>"> <%= userData.workout.seances[i].name %> </option>
                                 <% } %>  
                             <% } %>

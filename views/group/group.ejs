@@ -36,14 +36,40 @@
         <div style="border: 1px solid black;">
             
                 <% groups.rights.rights.forEach(function(right) { %>
-                    <p class="list_users"> <a href="/home/groupUser?pseudo=<%=right.pseudo%>&group=<%=groups.name%>"><%=right.pseudo%>
+                    <p class="list_users"><a href="/home/groupUser?pseudo=<%=right.pseudo%>&group=<%=groups.name%>"><%=right.pseudo%>
                         <% if (right.admin === true) { %>
                             (admin)
                         <% } %>
                     </a></p>
-                <% }); %>
-                         
+                <% }); %>        
+
         </div>
+
+
+
+        <% if (right.coatch === true) { %>
+
+            <a href="/home/newSeanceGroup">Créer une séance</a>
+
+            <form action="/home/goJobGroup" method="POST" id="planWorkout">
+
+                <select name="idSeance" class="">
+            
+                    <% for(var i=0; i < groups.seances.length; i++) { %>
+                        <% if (groups.seances[i].done === false) { %>
+                            <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option>
+                        <% } %>
+                    <% } %>
+
+                </select>
+
+            </form>
+
+            <button class="" form="planWorkout">Compléter sa séance</button>
+
+       
+        <%}%>
+
 
     <% } %>
 <% }); %>

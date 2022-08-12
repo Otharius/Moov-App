@@ -4,12 +4,13 @@ const groupClass = require('../public/javascripts/rights');
 const workoutClass = require('../public/javascripts/userData');
 const Right = groupClass.Right;
 const Group = groupClass.Group;
+const GroupSeance = groupClass.GroupSeance;
 const Groups = groupClass.Groups;
 const Users = require('../public/javascripts/users.js');
 const groups = new Groups().load();
-
-
-
+const exercices = require('../data/exercices.json');
+const Training = workoutClass.Training;
+const Seance = workoutClass.Seance;
 
 
 
@@ -175,9 +176,13 @@ router.post('/afterWorkout', (req,res) => {
 
 router.get('/group', (req,res) => {
     req.session.group = req.query.group;
+    const userData =  workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
+    console.log(groups.get(req.query.group))
     res.render('group/group', { 
         style: false,
+        exercices: exercices,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.query.group),
         length: groupsLenght(),
@@ -276,12 +281,14 @@ router.get('/delete', (req,res) => {
 // For grant a people to coatch
 router.get('/grantCoatch', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantCoatch();
     groups.save();
 
 
     res.render('group/user', { 
         style: false,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -294,11 +301,13 @@ router.get('/grantCoatch', (req,res) => {
 // For deny a coatch
 router.get('/denyCoatch', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyCoatch()
     groups.save()
 
     res.render('group/user', { 
         style: false,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -311,11 +320,13 @@ router.get('/denyCoatch', (req,res) => {
 // For grant a trainee
 router.get('/grantTrainee', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantTrainee()
     groups.save()
 
     res.render('group/user', { 
         style: false,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -328,12 +339,14 @@ router.get('/grantTrainee', (req,res) => {
 // For deny a trainee
 router.get('/denyTrainee', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.group).rights.rights.get(req.query.pseudo).denyTrainee()
     groups.save()
 
     res.render('group/user', { 
         style: false,
         title: title.training,
+        userData: userData,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
         user: users.get(req.session.pseudo),
@@ -345,6 +358,7 @@ router.get('/denyTrainee', (req,res) => {
 // For grant admin a other people and deny the old admin
 router.get('/grantAdmin', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     const group = groups.get(req.query.group).rights.rights;
     group.get(req.query.pseudo).grantAdmin();
     group.get(req.session.pseudo).denyAdmin();
@@ -353,6 +367,7 @@ router.get('/grantAdmin', (req,res) => {
 
     res.render('group/user', { 
         style: false,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -384,6 +399,7 @@ router.get('/leave', (req,res) => {
         style: page === "group/group" ? false : true,
         length: groupsLenght(),
         groups: group,
+        exercices: exercices,
         userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
@@ -396,12 +412,15 @@ router.get('/leave', (req,res) => {
 
 router.get('/exclude', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.group).deleteRight(req.query.pseudo);
     groups.save() ;
 
 
     res.render('group/group', { 
         style: false,
+        userData: userData,
+        exercices: exercices,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -411,11 +430,14 @@ router.get('/exclude', (req,res) => {
 
 router.get('/changeStatus', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
     groups.get(req.query.name).changeStatus();
     groups.save() ;
 
     res.render('group/group', { 
         style: false,
+        exercices: exercices,
+        userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -426,9 +448,12 @@ router.get('/changeStatus', (req,res) => {
 
 router.get('/groupUser', (req,res) => {
     const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
 
     res.render('group/user', { 
         style: false,
+        userData: userData,
+        exercices: exercices,
         title: title.training,
         groups: groups.get(req.session.group),
         length: groupsLenght(),
@@ -436,6 +461,93 @@ router.get('/groupUser', (req,res) => {
         viewUser: users.get(req.query.pseudo),
     });
 })
+
+router.get('/newSeanceGroup', (req,res) => {
+    
+    const users = new Users().load();
+    const userData =  workoutClass.getData(req.session.pseudo);
+
+    res.render('group/newSeance', { 
+        style: false,
+        exercices: exercices,
+        userData: userData,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+        viewUser: users.get(req.query.pseudo),
+    });
+})
+
+router.post('/addGroupSeance', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
+    const seance = new GroupSeance(req.body.training_name, req.body.date, req.body.detail, duration);
+    const type = Array.isArray(req.body.pseudo);
+
+    if (req.body.time.trim() != '') {
+        seance.withTime(req.body.time)
+    };
+    
+    if (type) {
+        for (let i=0; i<req.body.pseudo.length; i++) {
+           seance.addUser(req.body.pseudo[i]);
+        }
+    } else {
+        seance.addUser(req.body.pseudo);
+    }
+    
+    groups.get(req.session.group).addSeance(seance);
+    groups.save();
+
+    res.render('group/newSeance', { 
+        style: false,
+        exercices: exercices,
+        userData: userData,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+
+router.post('/newJobGroup', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    const job = Training.create(req, userData);
+    groups.get(req.session.group).seances[req.session.seanceGroup].add(job, req.session.idSeance);
+    groups.save();
+
+    res.render('group/newJob', { 
+        style: false,
+        exercices: exercices,
+        userData: userData,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+router.post('/goJobGroup', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    req.session.seanceGroup = req.body.idSeance;
+
+    res.render('group/newJob', { 
+        style: false,
+        userData: userData,
+        exercices: exercices,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
 
 
 module.exports = router;

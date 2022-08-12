@@ -107,7 +107,7 @@ class Training {
         training.withDescription(req.body.description[0]);
 
         return training;
-    }
+    };
 };
 
 class Template {
@@ -137,8 +137,9 @@ class Seance {
     difficulty = null;
     done = false;
 
-    constructor(name, date, detail, duration) {
+    constructor(name, group, date, detail, duration) {
         this.name = name;
+        this.group = group;
         this.date = date;
         this.difficulty = null;
         this.done = false;

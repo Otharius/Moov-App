@@ -209,7 +209,7 @@ router.post('/addWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
-    const seance = new Seance(req.body.training_name, req.body.date, req.body.detail, duration);
+    const seance = new Seance(req.body.training_name, false, req.body.date, req.body.detail, duration);
 
     if (req.body.time.trim() != '') {
         seance.withTime(req.body.time)
@@ -233,7 +233,7 @@ router.post('/addWorkout', (req,res) => {
 router.post('/addSeance', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-    const job = Training.create(req, userData)
+    const job = Training.create(req, userData);
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 

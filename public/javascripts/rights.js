@@ -45,6 +45,14 @@ class Groups {
                     right.grantTrainee();
                 };
                 group.addRight(right);
+            };
+
+            for (let k=0; k<data[i].seances.length; k++) {
+                const seance = new GroupSeance(data[i].seances[k].name, data[i].seances[k].date, data[i].seances[k].detail, data[i].seances[k].duration);
+                for (let x=0; x<data[i].seances[k].users.length; x++) {
+                   seance.addUser(data[i].seances[k].users[x]);
+                }
+                group.addSeance(seance);
             }
 
             this.add(group);
@@ -74,6 +82,7 @@ class Group {
     constructor(name, open) {
         this.name = name;
         this.open = open;
+        this.seances = [];
         this.rights = new Rights();
     }
 
@@ -81,8 +90,14 @@ class Group {
         return {
             "name": this.name,
             "open": this.open,
+            "seances": this.seances,
             "rights": this.rights.toObject(),
         }
+    }
+
+    addSeance(seance) {
+        this.seances.push(seance);
+        return this;
     }
 
     addRight(right) {
@@ -107,6 +122,44 @@ class Group {
 }
 
 
+class GroupSeance {
+
+    name = '';
+    date = '';
+    detail = '';
+    duration = null;
+    time = null;
+    jobs;
+    note = null;
+    difficulty = null;
+    done = false;
+
+    constructor(name, date, detail, duration) {
+        this.name = name;
+        this.date = date;
+        this.difficulty = null;
+        this.done = false;
+        this.detail = detail;
+        this.duration = duration;
+        this.users = [];
+        this.jobs = [];
+    };
+
+    add(job) {
+        this.jobs.push(job);
+        return this;
+    };
+
+    withTime(time) {
+        this.time = time;
+        return this;
+    };
+
+    addUser(user) {
+        this.users.push(user);
+        return this;
+    }
+};
 
 
 class Rights {
@@ -196,4 +249,5 @@ module.exports = {
     Rights,
     Groups,
     Group,
+    GroupSeance,
 }
