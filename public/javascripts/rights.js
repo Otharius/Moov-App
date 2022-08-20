@@ -54,6 +54,9 @@ class Groups {
                 }
                 group.addSeance(seance);
 
+                for (let z=0; z<data[i].seances[k].jobs.length; z++) {
+                    seance.add(data[i].seances[k].jobs[z]);
+                }
             }
 
             this.add(group);
