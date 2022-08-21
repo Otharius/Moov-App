@@ -57,6 +57,14 @@ class Groups {
                 for (let z=0; z<data[i].seances[k].jobs.length; z++) {
                     seance.add(data[i].seances[k].jobs[z]);
                 }
+
+                for (let y=0; y<data[i].seances[k].done.length; y++) {
+                    seance.loadDone(data[i].seances[k].done[y]);
+                }
+
+                for (let w=0; w<data[i].seances[k].difficulty.length; w++) {
+                    seance.loadDifficulty(data[i].seances[k].difficulty[w]);
+                }
             }
 
             this.add(group);
@@ -140,14 +148,14 @@ class GroupSeance {
     time = null;
     jobs;
     note = null;
-    difficulty = null;
-    done = false;
+    difficulty;
+    done;
 
     constructor(name, date, detail, duration) {
         this.name = name;
         this.date = date;
-        this.difficulty = null;
-        this.done = false;
+        this.difficulty = [];
+        this.done = [];
         this.detail = detail;
         this.duration = duration;
         this.users = [];
@@ -172,6 +180,39 @@ class GroupSeance {
     addUser(user) {
         this.users.push(user);
         return this;
+    }
+
+    loadDone(obj) {
+        this.done.push(obj)
+    }
+
+    addDone(pseudo) {
+        this.done.push(this.doneObject(pseudo));
+        return this;
+    }
+
+    loadDifficulty(obj) {
+        this.difficulty.push(obj);
+        return this;
+    }
+
+    addDifficulty(pseudo) {
+        this.difficulty.push(this.difficultyObject(pseudo));
+        return this;
+    }
+
+    doneObject(pseudo) {
+        return {
+            "pseudo": pseudo,
+            "done": false,
+        }
+    }
+
+    difficultyObject(pseudo) {
+        return {
+            "pseudo": pseudo,
+            "difficulty": null,
+        }
     }
 };
 

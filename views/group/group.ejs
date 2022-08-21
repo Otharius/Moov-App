@@ -65,9 +65,7 @@
     
                         
                         <% for(var i=0; i < groups.seances.length; i++) { %>
-                            <% if (groups.seances[i].done === false) { %>
-                                <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option>
-                            <% } %>
+                                <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option> 
                         <% } %>
     
                     </select>
