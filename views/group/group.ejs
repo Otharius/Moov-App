@@ -37,8 +37,12 @@
             
                 <% groups.rights.rights.forEach(function(right) { %>
                     <p class="list_users"><a href="/home/groupUser?pseudo=<%=right.pseudo%>&group=<%=groups.name%>"><%=right.pseudo%>
-                        <% if (right.admin === true) { %>
+                        <% if (right.admin) { %>
                             (admin)
+                        <% } %>
+
+                        <% if (right.pseudo === user.pseudo) { %>
+                            (moi)
                         <% } %>
                     </a></p>
                 <% }); %>        
@@ -47,34 +51,44 @@
 
 
 
-        <% if (right.coatch === true) { %>
+        <% if (right.coatch) { %>
 
-            
-            <% for(var i=0; i < groups.seances.length; i++) { %>
-                <a href="/home/seanceGroup?id=<%=i%>"><%=groups.seances[i].name%></a><br>
-            <% } %>
+
 
             <br>
             <a href="/home/newSeanceGroup">Créer une séance</a>
 
-            <form action="/home/goJobGroup" method="POST" id="planWorkout">
+            <% if (groups.seances.length > 0) { %>
+                <form action="/home/goJobGroup" method="POST" id="planWorkout">
 
-                <select name="idSeance" class="">
-            
-                    <% for(var i=0; i < groups.seances.length; i++) { %>
-                        <% if (groups.seances[i].done === false) { %>
-                            <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option>
+                    <select name="idSeance" class="">
+    
+                        
+                        <% for(var i=0; i < groups.seances.length; i++) { %>
+                            <% if (groups.seances[i].done === false) { %>
+                                <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option>
+                            <% } %>
                         <% } %>
-                    <% } %>
-
-                </select>
-
-            </form>
-
-            <button class="" form="planWorkout">Compléter sa séance</button>
-
-       
+    
+                    </select>
+    
+                </form>
+    
+                <button class="" form="planWorkout">Modifier sa séance</button>
+            <% } %>
+            <br>
         <%}%>
+
+        <% if (right.trainee) { %>
+                        
+            <% for(var i=0; i < groups.seances.length; i++) { %>
+                <% if (groups.seances[i].users.includes(user.pseudo)) { %>
+                    <a href="/home/seanceGroup?id=<%=i%>"><%=groups.seances[i].name%></a><br>
+                <%}%>
+
+            <% } %>
+
+        <% } %>
 
 
     <% } %>

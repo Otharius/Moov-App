@@ -178,7 +178,6 @@ router.get('/group', (req,res) => {
     req.session.group = req.query.group;
     const userData =  workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
-    console.log(groups.get(req.query.group))
     res.render('group/group', { 
         style: false,
         exercices: exercices,
@@ -524,6 +523,7 @@ router.post('/newJobGroup', (req,res) => {
     res.render('group/newJob', { 
         style: false,
         exercices: exercices,
+        id: req.session.seanceGroup,
         userData: userData,
         title: title.training,
         groups: groups.get(req.session.group),
@@ -531,6 +531,35 @@ router.post('/newJobGroup', (req,res) => {
         user: users.get(req.session.pseudo),
     });
 })
+
+
+
+router.get('/deleteJob', (req, res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    groups.get(req.session.group).seances[req.session.seanceGroup].delete(req.query.job);
+    groups.save()
+
+    res.render('group/newJob', {
+        style: false,
+        exercices: exercices,
+        id: req.session.seanceGroup,
+        userData: userData,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+
+
+
+
+
+
+
+
 
 router.post('/goJobGroup', (req,res) => {
     const users = new Users().load();
@@ -540,6 +569,7 @@ router.post('/goJobGroup', (req,res) => {
     res.render('group/newJob', { 
         style: false,
         userData: userData,
+        id: req.session.seanceGroup,
         exercices: exercices,
         title: title.training,
         groups: groups.get(req.session.group),
@@ -567,6 +597,28 @@ router.get('/seanceGroup', (req,res) => {
         user: users.get(req.session.pseudo),
     });
 })
+
+
+router.get('/deleteSeance', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    const group = groups.get(req.session.group);
+    group.deleteSeance(req.session.seanceGroupId);
+    groups.save();
+    delete req.session.seanceGroupId;
+
+    res.render('group/group', { 
+        style: false,
+        exercices: exercices,
+        userData: userData,
+        title: title.training,
+        groups: group,
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+})
+
+
 
 
 

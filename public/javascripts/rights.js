@@ -104,6 +104,11 @@ class Group {
         return this;
     }
 
+    deleteSeance(index) {
+        this.seances.splice(index, 1);
+        return this;
+    }
+
     addRight(right) {
         this.rights.add(right);
         return this;
@@ -153,6 +158,11 @@ class GroupSeance {
         this.jobs.push(job);
         return this;
     };
+
+    delete(index) {
+        this.jobs.splice(index, 1);
+        return this;
+    }
 
     withTime(time) {
         this.time = time;

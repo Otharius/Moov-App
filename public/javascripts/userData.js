@@ -197,7 +197,7 @@ class Workout {
         for (let i = 0; this.seances.length; i++) {
             if (this.seances[i].difficulty === null) {
                 a.push(this.seances[i]);
-            } 
+            };
         };
         return a;
     };
@@ -224,7 +224,7 @@ class Health {
     };
 
     add(body, height) {
-        this.body.push(body)
+        this.body.push(body);
         this.height.push(height);
         return this;
     };
@@ -274,7 +274,7 @@ class UserData {
     };
 
     deleteTemplate (template) {
-        Reflect.deleteProperty(this.templates, template)
+        Reflect.deleteProperty(this.templates, template);
         return this;
     };
 
@@ -308,7 +308,7 @@ class UserData {
         });
     };
 
-}
+};
 
 const getData = (pseudo) => {
     return map.get(pseudo); 
@@ -329,4 +329,4 @@ module.exports = {
     UserData,
     setData,
     getData,
-}
+};

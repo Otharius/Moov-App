@@ -3,3 +3,84 @@
     <a href="/home/group?group=<%=groups.name%>" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
     <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= groups.seances[id].name%></h1><br>
 </div>
+
+<div class="seance_information">
+
+    <% if (groups.seances[id].date != '') { %>
+        <p>Date: <%= groups.seances[id].date %></p>
+    <% } %>
+    
+
+    <% if (groups.seances[id].done == true && groups.seances[id].difficulty != null) { %>
+        <p>Difficulté: <%= groups.seances[id].difficulty %></p>
+    <% } %>
+
+    <% if (groups.seances[id].detail != '') { %>
+        <p>Détail: <%= groups.seances[id].detail %></p>
+    <% } %>
+
+    <table class="tableSeanceJob">
+    
+        <% for(var j=0; j < groups.seances[id].jobs.length; j++) { %>
+            <% var a = groups.seances[id].jobs[j] %>
+
+            <tr style="border-top: 2px solid black;">
+                <% if (a.exercice != '' && a.exercice != undefined) { %>
+                    <td><%= a.exercice %></td>
+                <% } %>
+
+                <% if (a.repetitions != '' && a.repetitions != undefined) { %>
+                    <td>Répétitions: <%= a.repetitions %></td>
+                <% } %>
+
+                <% if (a.series != '' && a.series != undefined) { %>
+                    <td>Séries: <%= a.series %></td>
+                <% } %>
+
+                <% if (a.pause != '' && a.pause != undefined) { %>
+                    <td>Pause: <%= a.pause %>sec</td>
+                <% } %>
+
+                <% if (a.weight != '' && a.weight != undefined) { %>
+                    <td>Charge: <%= a.weight %>kg</td>
+                <% } %>
+
+                <% if (a.distance != '' && a.distance != undefined) { %>
+                    <td>Distance: <%= a.distance %>km</td>
+                <% } %>
+
+                <% if (a.duration != '' && a.duration != undefined) { %>
+                    <td>Durée: <%= a.duration %></td>
+                <% } %>
+
+                <% if (a.time != '' && a.time != undefined) { %>
+                    <td>Temps: <%= a.time %></td>
+                <% } %>
+
+                <% if (a.start != '' && a.start != undefined) { %>
+                    <td>Départ: <%= a.start %></td>
+                <% } %>
+
+                <% if (a.arrival != '' && a.arrival != undefined) { %>
+                    <td>Arrivée: <%= a.arrival %></td>
+                <% } %>
+               
+            </tr>
+
+
+            <% if (a.description != '' && a.description != undefined) { %>
+            <tr style="border-bottom: 2px solid black;">
+                <td><%= a.description %></td>
+            </tr>
+            <% } %>
+
+
+        <% } %>
+        
+        <% if (groups.seances[id].note != null && groups.seances[id].note != '') { %>
+            <p>Note après séance: <%= groups.seances[id].note %></p>
+        <% } %>
+
+    </table>
+
+</div>

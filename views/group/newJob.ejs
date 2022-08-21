@@ -4,6 +4,8 @@
     <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= groups.name%></h1><br>
 </div>
 
+<a href="/home/deleteSeance?group=<%=groups.name%>">Détruire la séance</a>
+
 
 <form action="/home/newJobGroup" method="POST" >
     <select name="template" class="selectExerciceJob" id="selectExerciceJob" onchange="test()">
@@ -20,4 +22,70 @@
     <div class="training_content">
         <%- include('../training/formTraining.ejs') %>
     </div>
+
+    <table class="tableSeanceJob">
+    
+        <% for(var j=0; j < groups.seances[id].jobs.length; j++) { %>
+            <% var a = groups.seances[id].jobs[j] %>
+
+            <tr style="border-top: 2px solid black;">
+                <% if (a.exercice != '' && a.exercice != undefined) { %>
+                    <td><%= a.exercice %></td>
+                <% } %>
+
+                <% if (a.repetitions != '' && a.repetitions != undefined) { %>
+                    <td>Répétitions: <%= a.repetitions %></td>
+                <% } %>
+
+                <% if (a.series != '' && a.series != undefined) { %>
+                    <td>Séries: <%= a.series %></td>
+                <% } %>
+
+                <% if (a.pause != '' && a.pause != undefined) { %>
+                    <td>Pause: <%= a.pause %>sec</td>
+                <% } %>
+
+                <% if (a.weight != '' && a.weight != undefined) { %>
+                    <td>Charge: <%= a.weight %>kg</td>
+                <% } %>
+
+                <% if (a.distance != '' && a.distance != undefined) { %>
+                    <td>Distance: <%= a.distance %>km</td>
+                <% } %>
+
+                <% if (a.duration != '' && a.duration != undefined) { %>
+                    <td>Durée: <%= a.duration %></td>
+                <% } %>
+
+                <% if (a.time != '' && a.time != undefined) { %>
+                    <td>Temps: <%= a.time %></td>
+                <% } %>
+
+                <% if (a.start != '' && a.start != undefined) { %>
+                    <td>Départ: <%= a.start %></td>
+                <% } %>
+
+                <% if (a.arrival != '' && a.arrival != undefined) { %>
+                    <td>Arrivée: <%= a.arrival %></td>
+                <% } %>
+
+                <td class="exerciceDelete"><a href="/home/deleteJob?job=<%=j%>"><i name="test" class="fa-solid fa-trash-can trash"></i></a></td>
+               
+            </tr>
+
+
+            <% if (a.description != '' && a.description != undefined) { %>
+            <tr style="border-bottom: 2px solid black;">
+                <td><%= a.description %></td>
+            </tr>
+            <% } %>
+
+
+        <% } %>
+        
+        <% if (groups.seances[id].note != null && groups.seances[id].note != '') { %>
+            <p>Note après séance: <%= groups.seances[id].note %></p>
+        <% } %>
+
+    </table>
 </form> 
