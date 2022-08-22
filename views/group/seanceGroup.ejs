@@ -5,7 +5,46 @@
 </div>
 
 
-<a href="/home/endSeance?group=<%=groups.name%>">Séance terminée</a>
+
+
+
+<% if (groups.seances[id].after.find(item => item.pseudo === user.pseudo).done === false) { %>
+    <a href="/home/endSeance?group=<%=groups.name%>">Séance terminée</a>
+<% } else { %>
+    <% if(groups.seances[id].after.find(item => item.pseudo === user.pseudo).difficulty === null) { %>
+        <p>kkde</p>
+        <form action="afterSeanceGroup" method="POST">
+        
+            <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>
+        
+            <br><br>
+        
+            <div class="home_difficulty">
+                
+                <% for(var i=0; i < 10; i++) { %>
+                    <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>
+                    <label for="d<%=i%>"><%=i%></label>
+                <% } %>
+                
+                </div>
+                    
+            <br><br>
+        
+            <div class="training_note" align=center>
+                <textarea name="note" cols="30" rows="10"></textarea>
+            </div>
+        
+            <br>
+            <button class="home_value_button">Valider</button>
+        </form>          
+        
+        
+    <%} %>
+
+
+<% } %>
+
+
 
 
 

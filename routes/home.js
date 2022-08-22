@@ -492,10 +492,10 @@ router.post('/addGroupSeance', (req,res) => {
     
     if (type) {
         for (let i=0; i<req.body.pseudo.length; i++) {
-           seance.addUser(req.body.pseudo[i]).addDone(req.body.pseudo[i]).addDifficulty(req.body.pseudo[i]);
+           seance.addUser(req.body.pseudo[i]).addAfter(req.body.pseudo[i]);
         }
     } else {
-        seance.addUser(req.body.pseudo).addDone(req.body.pseudo).addDifficulty(req.body.pseudo);
+        seance.addUser(req.body.pseudo).addAfter(req.body.pseudo);
     }
     
     groups.get(req.session.group).addSeance(seance);
@@ -557,7 +557,7 @@ router.get('/deleteJob', (req, res) => {
 router.get('/endSeance', (req, res) => {
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
-    const obj = groups.get(req.session.group).seances[req.session.seanceGroupId].done.find(item => item.pseudo === req.session.pseudo);
+    const obj = groups.get(req.session.group).seances[req.session.seanceGroupId].after.find(item => item.pseudo === req.session.pseudo);
     obj.done = true;
     groups.save();
 
@@ -574,7 +574,25 @@ router.get('/endSeance', (req, res) => {
 })
 
 
-
+// L'after entrainement
+router.post('/afterSeanceGroup', (req,res) => {
+    const users = new Users().load();
+    const userData = workoutClass.getData(req.session.pseudo);
+    const obj = groups.get(req.session.group).seances[req.session.seanceGroupId].after.find(item => item.pseudo === req.session.pseudo);
+    obj.difficulty = req.body.difficulty;
+    groups.save();
+    
+    res.render('group/seanceGroup', { 
+        style: false,
+        id: req.session.seanceGroupId,
+        userData: userData,
+        exercices: exercices,
+        title: title.training,
+        groups: groups.get(req.session.group),
+        length: groupsLenght(),
+        user: users.get(req.session.pseudo),
+    });
+});
 
 
 
