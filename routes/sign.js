@@ -16,38 +16,22 @@ title = {
     "register": "Moov - Register",
 };
 
-function groupsLenght () {
-    const Newgroups = new Groups().load();
-    if (Newgroups.groups.size === 0) {
-        return false;
-    } else {
-        return true;
-    }
-};
-
-function oldOrNew (data) {
-    try {
-        if (data.length) {
-           return true;
-        };
-    } catch  (error) {
-        return false;
-    };
-};
 
 // Fonction qui classe les séances finies et les séances en cours
 function endWorkout (data) {
     let l = [];
 
     for(let i=0; i < data.workout.seances.length; i++) {
-        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+        if (data.workout.seances[i].difficulty === null  && data.workout.seances[i].done === true) {
             l.push(data.workout.seances);
         };
-     };
-     if (l.length > 0) {
-         return l;
-     };
-     return null;
+    };
+
+    if (l.length > 0) {
+        return l;
+    };
+     
+    return null;
 };
 
 
@@ -62,6 +46,8 @@ function dataLenght (data) {
         return false;
     };
 };
+
+
 
 // PAGE DE CONNEXION
 router.get('/login', (req,res) => { 
@@ -85,7 +71,7 @@ router.get('/register', (req,res) => {
 
 
 
-// AJOUTE UN NOUVEL UTILISATEUR
+// Add a new user
 router.post('/register', (req,res) => {
     const users = new Users().load();
     const pseudo = req.body.pseudo;
@@ -117,12 +103,10 @@ router.post('/register', (req,res) => {
 
     let userData = workoutClass.getData(pseudo);
     if (userData === undefined) {
-        console.log('Creation des données de ' + user.pseudo);
         const data = new workoutClass.UserData(pseudo);
         data.save();
         workoutClass.setData(pseudo, data);
-    }
-
+    };
 
     res.render('sign/login', { 
         style: false,
@@ -136,9 +120,10 @@ router.post('/register', (req,res) => {
 // SYSTEME DE CONNEXION 
 router.post('/login', (req,res) => {
     const users = new Users().load();
+    const Newgroups = new Groups().load();
+
     const pseudo = req.body.pseudo;
     const password = req.body.password;
-    const Newgroups = new Groups().load();
 
     if (pseudo.trim() === '' || password.trim() === '') {
         res.render('sign/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
@@ -166,14 +151,11 @@ router.post('/login', (req,res) => {
     
     res.render('home/main', { 
         style: true,
-        length: groupsLenght(),
         groups: Newgroups.groups,
-        userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
         seance: dataLenght(endWorkout(userData)),
         userData: userData,
-        old: dataLenght(userData.workout.seances),
     });
 
 });

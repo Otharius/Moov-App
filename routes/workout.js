@@ -316,11 +316,9 @@ router.get('/training', (req,res) => {
 router.get('/seance', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-    const id = req.query.id;
-    req.session.type = userData.workout.seances[id - 1].type;
 
     res.render('training/seance', {
-        id: id - 1,
+        id: req.query.id,
         page: req.query.page,
         style: false,
         title: title.training,

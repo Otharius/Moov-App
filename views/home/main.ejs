@@ -1,6 +1,5 @@
 <br>
 
-
 <div class="workout_day_box">
 
     <div class="group_day_title">
@@ -20,11 +19,11 @@
         
 
         
-        <% if(length) { %>        
+        <% if(groups.size > 0) { %>        
         
             <form action="/home/add" method="POST">
     
-                <input list="brow" name="name" placeholder="Nom du groupe recherché" autocomplete="off" class="group_name" style="margin-top: 5px;">
+                <input list="brow" name="name" placeholder="Nom du groupe recherché" autocomplete="off" class="group_name" style="margin-top:5px;">
                 <datalist id="brow">
                     <% groups.forEach(function(group) { %>
                         <% if (group.open === true) { %>
@@ -42,7 +41,9 @@
     </div>
 </div>
 
+
 <br><br>
+
 
 <div class="workout_day_box">
 
@@ -53,7 +54,7 @@
 
     <div>
         
-        <% if(length) { %>
+        <% if(groups.size > 0) { %>
             <% let add = 0 %>
             <% groups.forEach(function(group) { %>
         
@@ -72,13 +73,16 @@
                 <p class="not_workout">Vous n'êtes dans aucun groupe</p>
             <% } %>
         
-        <%} else {%>
+        <% } else { %>
             <p class="not_workout">Il n'y a aucun groupe de créé dans cette application</p>
-        <%}%>
+        <% } %>
+
     </div>
 </div>
 
+
 <br><br>
+
 
 <div class="workout_day_box">
 
@@ -89,38 +93,38 @@
 
     <div>
 
-        <%if(old){ %>
+        <% if(userData.workout.seances.length > 0) { %>
             <ul class="list_home">
-            <% var j = 0 %>
-            <% var compteur = 1 %>
-            <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                <% j = j + 1 %>
-                <% if(userData.workout.seances[i].done === false) { %>
-                    <li><a href="/workout/seance?id=<%=j%>&page=home" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
-                    <% compteur = compteur + 1 %>
-                <% } %>  
-                    
-             <% } %>
+                <% var compteur = 1 %>
+                <% for(var i=0; i < userData.workout.seances.length; i++) { %>
+
+                    <% if(userData.workout.seances[i].done === false) { %>
+                        <li><a href="/workout/seance?id=<%=i%>&page=home" class="link_seance"><%= compteur %>: <%= userData.workout.seances[i].name %></a></li>
+                        <% compteur = compteur + 1 %>
+                    <% } %>  
+                        
+                <% } %>
             </ul>
         <% } else{ %> 
             <p class="not_workout">Pas encore d'entrainement ?</p> 
         <% } %>
             
-
     </div>
 </div>
+
+
 <br><br>
 
 
-
-
 <div class="workout_rpe_box">
+
     <div class="workout_day_title">
         <p>État de forme</p>
     </div>
+
     
     <div>
-        <% if(old){ %>
+        <% if(userData.workout.seances.length > 0){ %>
         
             <% if(seance){ %>
                 <form action="/home/afterWorkout" method="POST">
@@ -129,7 +133,7 @@
                 
                         <% for(var i=0; i < userData.workout.seances.length; i++) { %>
                             <% if(userData.workout.seances[i].done === true && userData.workout.seances[i].difficulty === null){ %>
-                                <option value="<%= i %>" name=""> <%= userData.workout.seances[i].name %> </option>
+                                <option value="<%= i %>"><%= userData.workout.seances[i].name %></option>
                             <% } %>  
                         <% } %>
     
@@ -152,7 +156,7 @@
                             <label for="d<%=i%>"><%=i%></label>
                         <% } %>
                         
-                        </div>
+                    </div>
                             
                     <br><br>
     
@@ -161,7 +165,9 @@
                     </div>
     
                     <br>
+
                     <button class="home_value_button">Valider</button>
+
                 </form>          
             <% } else {%>
                 <p class="not_workout">Terminez vos entrainements avant !</p>
@@ -171,8 +177,9 @@
             <p class="not_workout">Pas encore d'entrainements ?</p>
         <% } %>
     </div>
+
     <br>
-    
+
 </div>
 
 
@@ -190,6 +197,7 @@
             <div class="count_calorie_box">
                 <input type="tel" name="calories" class="count_calorie" maxlength="5" placeholder="Calories" pattern="[0-9]{1-5}">
                 <button class="home_ok_count_calorie">Ajouter</button>
+
                 <form action="/home/homeResetCal" method="POST">
                     <button class="home_reset_count_calorie" formaction="homeResetCal">Mettre à 0</button>
                 </form>    
@@ -197,7 +205,7 @@
     
             <p class="result_count_calorie"><%= userData.health.calories %> kcal</p>
     
-        <br>
+            <br>
     
         </form>      
     
@@ -217,7 +225,7 @@
 
     <div>
         <% let last = userData.health.height.length - 1%>
-        <% if(userBody){ %>
+        <% if(userData.health.body.length > 0){ %>
             <% let imc = userData.health.body[last]/((userData.health.height[last]/100)*(userData.health.height[last]/100))%>
             <p class="test" style="text-align: center;">Poids <%=userData.health.body[last]%>kg et taille <%= (userData.health.height[last])/100 %>m. Votre IMC: <%= (Math.round(imc*10))/10 %></p>
         <% } else{ %> 
@@ -239,9 +247,7 @@
     </div>
 
     <div>
-     
         <p  style="text-align: center;"><a href="https://conseilsport.decathlon.fr/conseils-sport" target="_blank">Vers décathlon sport</a></p>
-
     </div>
 
 </div>
