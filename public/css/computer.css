@@ -501,7 +501,6 @@ h3 {
 }
 .list_home a {
   display: flex;
-  width: 200px;
   text-decoration: none;
   font-size: 1.2rem;
   padding-left: 6px;
@@ -1319,6 +1318,7 @@ h3 {
 }
 .link_seance {
   cursor: pointer;
+  width: 400px;
   font-size: 1.3rem;
   text-decoration: none;
 }
@@ -1472,6 +1472,42 @@ h3 {
   margin-top: 20px;
   margin-left: 20px;
   font-size: 1.3rem;
+}
+.coatch_content {
+  width: 100%;
+  margin-top: 25px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 15px;
+  max-height: 50px;
+  border-bottom: 1px solid black;
+  padding-bottom: 15px;
+  padding-top: 15px;
+  border-top: 1px solid black;
+}
+.coatch_content .buttonGroup {
+  text-decoration: none;
+  padding: 0.8rem 5rem;
+  text-align: center;
+  border-radius: 20px;
+  background: var(--createGreen);
+  color: white;
+  border: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+.coatch_content .buttonGroup:hover {
+  background-color: var(--createGreenDark);
+}
+.coatch_content .buttonGroup:active {
+  transform: scale(0.98);
+}
+.title_coatch {
+  text-align: center;
+  margin-top: 65px;
+  color: white;
+  background-color: #26a1ec;
+  padding: 25px;
 }
 .select2-container {
   box-sizing: border-box;

@@ -49,42 +49,47 @@
 
         </div>
 
-
-
         <% if (right.coatch) { %>
+            <h1 class="title_coatch">Espace de l'entraineur</h1>
+            <div class="coatch_content">
+                <br>
+                <a href="/home/newSeanceGroup" class="buttonGroup">Créer une séance</a>
 
+                <% if (groups.seances.length > 0) { %>
+                    <form action="/home/goJobGroup" method="POST" id="planWorkout">
 
-
-            <br>
-            <a href="/home/newSeanceGroup">Créer une séance</a>
-
-            <% if (groups.seances.length > 0) { %>
-                <form action="/home/goJobGroup" method="POST" id="planWorkout">
-
-                    <select name="idSeance" class="">
-    
-                        
-                        <% for(var i=0; i < groups.seances.length; i++) { %>
-                                <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option> 
-                        <% } %>
-    
-                    </select>
-    
-                </form>
-    
-                <button class="" form="planWorkout">Modifier sa séance</button>
-            <% } %>
-            <br>
+                        <select name="idSeance" class="selectPage" style="height: 50px;">
+        
+                            
+                            <% for(var i=0; i < groups.seances.length; i++) { %>
+                                    <option class="o" value="<%= i %>" name="supprimer"> <%= groups.seances[i].name %> </option> 
+                            <% } %>
+        
+                        </select>
+        
+                    </form>
+        
+                    <button class="buttonGroup" form="planWorkout" style="font-size:1.1rem ;">Modifier sa séance</button>
+                <% } %>
+                <br>
+            </div>
         <%}%>
 
         <% if (right.trainee) { %>
-                        
-            <% for(var i=0; i < groups.seances.length; i++) { %>
-                <% if (groups.seances[i].users.includes(user.pseudo)) { %>
-                    <a href="/home/seanceGroup?id=<%=i%>"><%=groups.seances[i].name%></a><br>
-                <%}%>
+            <h1 class="title_coatch">Espace du sportif</h1>
+            <ul class="list_home" style="border-top: 1px solid black; border-bottom: 1px solid black;">
+                <% var compteur = 1 %>
 
-            <% } %>
+                <% for(var i=0; i < groups.seances.length; i++) { %>
+
+                    <% if(groups.seances[i].users.includes(user.pseudo)) { %>
+                        <li><a href="/home/seanceGroup?id=<%=i%>" class="link_seance" style="margin-left: -15px;"><%= compteur %>: <%=groups.seances[i].name%></a></li>
+                        <% compteur = compteur + 1 %>
+                    <% } %>  
+                        
+                <% } %>
+
+            </ul>
 
         <% } %>
 

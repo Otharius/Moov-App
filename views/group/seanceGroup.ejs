@@ -12,7 +12,13 @@
     <a href="/home/endSeance?group=<%=groups.name%>">Séance terminée</a>
 <% } else { %>
     <% if(groups.seances[id].after.find(item => item.pseudo === user.pseudo).difficulty === null) { %>
-        <p>kkde</p>
+
+        <div class="table_intensity_content move_table" id="table_intensity_content">
+                            
+            <%- include('../training/intensityTable.ejs') %>
+
+        </div> 
+
         <form action="afterSeanceGroup" method="POST">
         
             <h3 id="See_intensity" class="intensity_title little_title" onclick="intensity_div()">Difficulté de la séance</h3>

@@ -15,8 +15,26 @@
         <% } %>
     </select><br>
 
-       
+
         <br>
+
+    <div>
+        <% for(var z=0; z < groups.seances[id].after.length; z++) { %>
+            <% var after = groups.seances[id].after[z] %>
+            <p><%= after.pseudo %>:
+            <% if (after.done === false) { %>
+                Fait non
+            <%} else { %>
+                Fait oui,
+                <% if (after.difficulty != null) { %>
+                    difficulté: <%= after.difficulty %>
+                <% } else { %>
+                    difficulté: pas encore remplie
+                <%}%>
+            <%}%>
+            </p>
+        <% } %>
+    </div>
         
     
     <div class="training_content">
