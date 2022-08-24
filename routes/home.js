@@ -247,8 +247,9 @@ router.get('/delete', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
 
-    groups.delete(req.query.name.trim());
+    groups.delete(req.session.group.trim());
     groups.save();
+    delete req.session.group;
 
     res.render('home/main', { 
         style: true,
@@ -266,7 +267,7 @@ router.get('/grantCoatch', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
 
-    groups.get(req.query.group).rights.rights.get(req.query.pseudo).grantCoatch();
+    groups.get(req.session.group).rights.rights.get(req.query.pseudo).grantCoatch();
     groups.save();
 
     res.render('group/user', { 
@@ -285,7 +286,7 @@ router.get('/grantCoatch', (req,res) => {
 router.get('/denyCoatch', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
-    groups.get(req.query.group.trim()).rights.rights.get(req.query.pseudo.trim()).denyCoatch()
+    groups.get(req.session.group.trim()).rights.rights.get(req.query.pseudo.trim()).denyCoatch()
     groups.save();
 
     res.render('group/user', { 
@@ -303,7 +304,7 @@ router.get('/denyCoatch', (req,res) => {
 router.get('/grantTrainee', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
-    groups.get(req.query.group).rights.rights.get(req.query.pseudo.trim()).grantTrainee()
+    groups.get(req.session.group).rights.rights.get(req.query.pseudo.trim()).grantTrainee()
     groups.save();
 
     res.render('group/user', { 
@@ -323,7 +324,7 @@ router.get('/denyTrainee', (req,res) => {
     const users = new Users().load();
     const pseudo = req.query.pseudo.trim();
     const userData =  workoutClass.getData(req.session.pseudo);
-    groups.get(req.query.group.trim()).rights.rights.get(pseudo).denyTrainee()
+    groups.get(req.session.group.trim()).rights.rights.get(pseudo).denyTrainee()
     groups.save();
 
     res.render('group/user', { 
@@ -341,7 +342,7 @@ router.get('/denyTrainee', (req,res) => {
 router.get('/grantAdmin', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
-    const group = groups.get(req.query.group.trim()).rights.rights;
+    const group = groups.get(req.session.group.trim()).rights.rights;
     group.get(req.query.pseudo.trim()).grantAdmin();
     group.get(req.session.pseudo).denyAdmin();
 
@@ -361,12 +362,13 @@ router.get('/grantAdmin', (req,res) => {
 
 router.get('/leave', (req,res) => {
     const userData = workoutClass.getData(req.session.pseudo);
-    const user = groups.groups.get(req.query.name.trim()).rights.rights.get(req.session.pseudo).admin;
+    const user = groups.groups.get(req.session.group.trim()).rights.rights.get(req.session.pseudo).admin;
     let page = null;
     let group = null;
     if (user === false) {
-        groups.get(req.query.name.trim()).deleteRight(req.session.pseudo);
+        groups.get(req.session.group.trim()).deleteRight(req.session.pseudo);
         groups.save();
+        delete req.session.group;
         page = 'home/main';
         group = groups.groups;
 
@@ -395,7 +397,7 @@ router.get('/leave', (req,res) => {
 router.get('/exclude', (req,res) => {
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
-    groups.get(req.query.group.trim()).deleteRight(req.query.pseudo.trim());
+    groups.get(req.session.group.trim()).deleteRight(req.query.pseudo.trim());
     groups.save();
 
 
@@ -414,7 +416,7 @@ router.get('/exclude', (req,res) => {
 router.get('/changeStatus', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
-    groups.get(req.query.name.trim()).changeStatus();
+    groups.get(req.session.group.trim()).changeStatus();
     groups.save();
 
 
@@ -425,7 +427,6 @@ router.get('/changeStatus', (req,res) => {
         title: title.training,
         groups: groups.get(req.session.group),
         user: users.get(req.session.pseudo),
-        viewUser: users.get(req.query.pseudo.trim()),
     });
 });
 
@@ -453,7 +454,6 @@ router.get('/newSeanceGroup', (req,res) => {
     const users = new Users().load();
     const userData =  workoutClass.getData(req.session.pseudo);
 
-
     res.render('group/newSeance', { 
         style: false,
         exercices: exercices,
@@ -461,7 +461,6 @@ router.get('/newSeanceGroup', (req,res) => {
         title: title.training,
         groups: groups.get(req.session.group),
         user: users.get(req.session.pseudo),
-        viewUser: users.get(req.query.pseudo.trim()),
     });
 });
 
@@ -471,24 +470,27 @@ router.post('/addGroupSeance', (req,res) => {
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
 
-    const duration = parseInt(req.body.durationHeure.trim()) * 60 + parseInt(req.body.durationMin.trim());
-    const seance = new GroupSeance(req.body.training_name.trim(), req.body.date.trim(), req.body.detail.trim(), duration);
-    const type = Array.isArray(req.body.pseudo.trim());
-
-    if (req.body.time.trim() != '') {
-        seance.withTime(req.body.time.trim());
-    };
+    if (req.body.pseudo != undefined) {
+        const duration = parseInt(req.body.durationHeure.trim()) * 60 + parseInt(req.body.durationMin.trim());
+        const seance = new GroupSeance(req.body.training_name.trim(), req.body.date.trim(), req.body.detail.trim(), duration);
+        const type = Array.isArray(req.body.pseudo.trim());
     
-    if (type) {
-        for (let i=0; i<req.body.pseudo.trim().length; i++) {
-           seance.addUser(req.body.pseudo[i].trim()).addAfter(req.body.pseudo[i].trim());
+        if (req.body.time.trim() != '') {
+            seance.withTime(req.body.time.trim());
         };
-    } else {
-        seance.addUser(req.body.pseudo.trim()).addAfter(req.body.pseudo.trim());
-    };
+        
+        if (type) {
+            for (let i=0; i<req.body.pseudo.trim().length; i++) {
+               seance.addUser(req.body.pseudo[i].trim()).addAfter(req.body.pseudo[i].trim());
+            };
+        } else {
+            seance.addUser(req.body.pseudo.trim()).addAfter(req.body.pseudo.trim());
+        };
+        
+        groups.get(req.session.group).addSeance(seance);
+        groups.save();
     
-    groups.get(req.session.group).addSeance(seance);
-    groups.save();
+    };
 
 
     res.render('group/newSeance', { 
@@ -509,6 +511,7 @@ router.post('/newJobGroup', (req,res) => {
     groups.get(req.session.group).seances[req.session.seanceGroup].add(job, req.session.idSeance);
     groups.save();
 
+
     res.render('group/newJob', { 
         style: false,
         exercices: exercices,
@@ -526,7 +529,7 @@ router.get('/deleteJob', (req, res) => {
     const users = new Users().load();
     const userData = workoutClass.getData(req.session.pseudo);
     groups.get(req.session.group).seances[req.session.seanceGroup].delete(req.query.job.trim());
-    groups.save()
+    groups.save();
 
     res.render('group/newJob', {
         style: false,

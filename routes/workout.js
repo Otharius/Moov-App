@@ -1,53 +1,44 @@
 ///////////////////
-/// Les modules ///
+/// The modules ///
 ///////////////////
 
 
-// Modules de base
+// Basics modules
 const express = require('express');
 const router = express.Router();
 
-// Modules de séances
+// Trainings modules
 const workoutClass = require('../public/javascripts/userData');
 const Seance = workoutClass.Seance;
 const Training = workoutClass.Training;
 
-// Modules des utilisateurs
+// Users modules
 const Users = require('../public/javascripts/users');
 const users = new Users().load();
 
-
+// Groups modules
 const groupClass = require('../public/javascripts/rights');
 const Groups = groupClass.Groups;
-const groups = new Groups().load();
 
 
 /////////////////
 /// Variables ///
 /////////////////
 
-// Variables pour les listes d'exercices
+
+// List of exercices
 const exercices = require('../data/exercices.json');
 
+
 /////////////////////
-/// Les fonctions ///
+/// The functions ///
 /////////////////////
 
 
-function groupsLenght () {
-    const Newgroups = new Groups().load();
-    if (Newgroups.groups.size === 0) {
-        return false;
-    } else {
-        return true;
-    }
-};
-
-
-//Fonction qui vérifie si il y a du contenu dans un tableau
+// This function test the length of a list
 function dataLenght (data) {
     try {
-        if (data.length || data == null) {
+        if (data.length || data === null) {
            return true;
         };
     } catch (error) {
@@ -55,6 +46,7 @@ function dataLenght (data) {
     };
 };
 
+// This function puts the trainings that have not been done 
 function dataExercice (data) {
     let list = 0;
     if(data.workout.seances.length > 0) {
@@ -72,6 +64,7 @@ function dataExercice (data) {
     };
 }
 
+// This function test the actual session 
 function session (req,res) {
     if (req.session.pseudo == undefined) {
         res.render('sign/login', {
@@ -82,24 +75,28 @@ function session (req,res) {
     };
 };
 
-// Fonction qui classe les séances finies et les séances en cours
+// This function puts the trainings that have been done but not had a difficulty
 function endWorkout (data) {
     let l = [];
 
     for(let i=0; i < data.workout.seances.length; i++) {
-        if (data.workout.seances[i].difficulty == null  && data.workout.seances[i].done == true) {
+        if (data.workout.seances[i].difficulty === null  && data.workout.seances[i].done === true) {
             l.push(data.workout.seances);
         };
-     };
-     if (l.length > 0) {
-         return l;
-     };
-     return null;
+    };
+    if (l.length > 0) {
+        return l;
+    };
+    return null;
 };
 
 
+                        ///////////////////////////
+                        /// The blocs of server ///
+                        ///////////////////////////
 
-// Affiche la page d'accueil depuis la page de séance
+
+// Send the home page
 router.get('/home', (req,res) => {
     session(req,res);
     const Newgroups = new Groups().load();
@@ -107,133 +104,38 @@ router.get('/home', (req,res) => {
  
     res.render('home/main', { 
         style: true,
-        length: groupsLenght(),
         groups: Newgroups.groups,
-        userBody: dataLenght(userData.health.body),
         title: title.home, 
         user: users.get(req.session.pseudo),
         seance: dataLenght(endWorkout(userData)),
         userData: userData,
-        old: dataLenght(userData.workout.seances),
     });
 });
 
 
+//////////////////////////////////////////
+/// For create workout and create jobs ///
+//////////////////////////////////////////
 
-/////////////////////////////////////
-/// Pour la création des workouts ///
-/////////////////////////////////////
 
-
-// Affiche la page de modification d'entrainement
-router.get('/planWorkout', (req,res) => {
+// This bloc create a new workout
+router.get('/newWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-    req.session.idSeance = parseInt(req.query.id);
 
-    res.render('training/planWorkout', { 
-        id: req.session.idSeance,
-        style: false,
+    res.render('training/newWorkout', { 
+        style: true,
         title: title.training,
         userData: userData,
-        template: dataLenght(Object.keys(userData.templates)),
-        exercices: exercices,
-    });
-})
-
-
-// Affiche la page de modification d'entrainement
-router.post('/planWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-    req.session.idSeance = parseInt(req.body.idPage);
-
-    res.render('training/planWorkout', { 
-        id: req.session.idSeance,
-        style: false,
-        template: dataLenght(Object.keys(userData.templates)),
-        title: title.training,
-        userData: userData,
-        exercices: exercices,
-    });
-})
-
-
-
-// La page qui fait finir l'entrainement
-router.get('/endWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-    const id = req.query.id;
-    userData.workout.seances[id - 1].done = true;
-    userData.save()
-
-    res.render('training/main', {
-        id: id - 1,
-        dataExercice: dataExercice(userData),
-        seance: dataLenght(endWorkout(userData)),
-        page: req.query.page,
-        style: true,
-        groups: groups.groups,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
     });
 });
 
-
-
-// L'after entrainement
-router.post('/afterWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-    userData.workout.seances[req.body.rpe].difficulty = req.body.difficulty;
-    userData.workout.seances[req.body.rpe].note = req.body.note;
-    userData.save();
-    
-    res.render('training/main', { 
-        style: true,
-        dataExercice: dataExercice(userData),
-        title: title.training, 
-        userData: userData,
-        seance: dataLenght(endWorkout(userData)),
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-    });
-});
-
-
-// Créer un entrainement
-router.post('/addWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-    const duration = parseInt(req.body.durationHeure) * 60 + parseInt(req.body.durationMin);
-    const seance = new Seance(req.body.training_name, false, req.body.date, req.body.detail, duration);
-
-    if (req.body.time.trim() != '') {
-        seance.withTime(req.body.time)
-    };
-    
-    userData.workout.add(seance);
-    userData.save();
-    res.render('training/main', { 
-        style: true,
-        dataExercice: dataExercice(userData),
-        seance: dataLenght(endWorkout(userData)),
-        title: title.training, 
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-    });
-});
-
-
-
-router.post('/addSeance', (req,res) => {
+// This bloc add a job in a workout
+router.post('/addJob', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     const job = Training.create(req, userData);
+
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 
@@ -247,20 +149,112 @@ router.post('/addSeance', (req,res) => {
     });
 });
 
+// This bloc create a workout
+router.post('/addWorkout', (req,res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+    const duration = parseInt(req.body.durationHeure.trim()) * 60 + parseInt(req.body.durationMin.trim());
+    const seance = new Seance(req.body.training_name.trim(), false, req.body.date.trim(), req.body.detail.trim(), duration);
 
-/////////////////////////////////////
-/// Pour la gestion des exercices ///
-/////////////////////////////////////
+    if (req.body.time.trim() != '') {
+        seance.withTime(req.body.time.trim())
+    };
+    
+    userData.workout.add(seance);
+    userData.save();
+
+    res.render('training/main', { 
+        style: true,
+        dataExercice: dataExercice(userData),
+        seance: dataLenght(endWorkout(userData)),
+        title: title.training, 
+        userData: userData,
+    });
+});
 
 
+////////////////////////////////////////
+/// The after workout and sends page ///
+////////////////////////////////////////
 
-// La page qui supprime un exercice 
+
+// This bloc sends the informations for the after workout
+router.post('/afterWorkout', (req,res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    userData.workout.seances[req.body.rpe.trim()].difficulty = req.body.difficulty.trim();
+    userData.workout.seances[req.body.rpe.trim()].note = req.body.note.trim();
+    userData.save();
+    
+    res.render('training/main', { 
+        style: true,
+        dataExercice: dataExercice(userData),
+        title: title.training, 
+        userData: userData,
+        seance: dataLenght(endWorkout(userData)),
+    });
+});
+
+// This bloc delete a workout
+router.get('/deleteWorkout', (req, res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    userData.workout.delete(req.query.id.trim());
+    userData.save();
+
+    res.render("training/main", { 
+        style: true,
+        dataExercice: dataExercice(userData),
+        title: title.training,
+        userData: userData,
+        seance: dataLenght(endWorkout(userData)),
+    });
+});
+
+// This bloc send the page complete workout
+router.post('/planWorkout', (req,res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    req.session.idSeance = parseInt(req.body.idPage.trim());
+
+    res.render('training/completeWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        template: dataLenght(Object.keys(userData.templates)),
+        title: title.training,
+        userData: userData,
+        exercices: exercices,
+    });
+});
+
+// This bloc finish a workout
+router.get('/endWorkout', (req,res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+    const id = req.query.id.trim();
+
+    userData.workout.seances[id].done = true;
+    userData.save();
+
+    res.render('training/main', {
+        dataExercice: dataExercice(userData),
+        seance: dataLenght(endWorkout(userData)),
+        style: true,
+        title: title.training,
+        userData: userData,
+    });
+});
+
+// This bloc delete a job in a workout
 router.get('/deleteJob', (req, res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-    userData.workout.deleteJob(req.query.job, req.session.idSeance)
 
-    userData.save()
+    userData.workout.deleteJob(req.query.job.trim(), req.session.idSeance);
+    userData.save();
 
     res.render('training/planWorkout', {
         id: req.session.idSeance,
@@ -270,31 +264,9 @@ router.get('/deleteJob', (req, res) => {
         exercices: exercices,
         template: dataLenght(Object.keys(userData.templates)),
     });
-})
+});
 
-
-
-//////////////////////////////////
-/// Pour les différentes pages ///
-//////////////////////////////////
-
-// Pour créer un nouvel entrainement
-router.get('/newWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    res.render('training/newWorkout', { 
-        style: true,
-        title: title.training,
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-    });
-})
-
-
-
-// LA PAGE D'ENTRAINEMENT
+// This bloc sends the page training
 router.get('/training', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
@@ -304,51 +276,23 @@ router.get('/training', (req,res) => {
         dataExercice: dataExercice(userData),
         title: title.training,
         userData: userData,
-        old: dataLenght(userData.workout.seances),
         seance: dataLenght(endWorkout(userData)),
-        userBody: dataLenght(userData.health.body),
     });
 });
 
-
-
-// La page de la séance choisie
+// This bloc sends tha page seance
 router.get('/seance', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
 
     res.render('training/seance', {
-        id: req.query.id,
-        page: req.query.page,
+        id: req.query.id.trim(),
+        page: req.query.page.trim(),
         style: false,
         title: title.training,
         userData: userData,
     });
 });
-
-
-// Supprime un entrainement
-router.get('/deleteWorkout', (req, res) => {
-    session(req,res);
-    const Newgroups = new Groups().load();
-    const userData =  workoutClass.getData(req.session.pseudo);
-    userData.workout.delete(req.query.id);
-    userData.save();
-
-    res.render("training/main", { 
-        style: true,
-        user: users.get(req.session.pseudo),
-        groups: Newgroups.groups,
-        length: groupsLenght(),
-        dataExercice: dataExercice(userData),
-        title: title.training, 
-        seance: dataLenght(endWorkout(userData)),
-        userData: userData,
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
-    });
-});
-
 
 // La page avec toutes les séances
 router.get('/allSeances', (req, res) => {
@@ -364,44 +308,39 @@ router.get('/allSeances', (req, res) => {
 });
 
 
-
-////////////////////////////////
-/// L'évolution poids/taille ///
-////////////////////////////////
-
+////////////////////////
+/// The blocs of imc ///
+////////////////////////
 
 
-// Calcule l'IMC de l'utilisateur
+// This bloc calculate the imc
 router.post('/setIMC', (req, res) => {
     session(req,res);
     const pseudo = req.session.pseudo;
     const userData =  workoutClass.getData(pseudo);
-    const body = req.body.body;
-    const height = req.body.height;
+    const body = req.body.body.trim();
+    const height = req.body.height.trim();
  
-    if (body.trim() != '' && height.trim() != '') {
+    if (body != '' && height != '') {
         userData.health.add(parseInt(body), parseInt(height));
-        userData.save()
+        userData.save();
     };
 
     res.render('training/main', { 
         style: true,
         dataExercice: dataExercice(userData),
+        title: title.training,
+        userData: userData,
         seance: dataLenght(endWorkout(userData)),
-        title: title.training, 
-        userData: workoutClass.getData(pseudo),
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
     });
 });
 
-
-
-// Supprime une IMC
+// This bloc delete a imc
 router.get('/deleteIMC', (req, res) => {
     session(req,res);
     const userData =  workoutClass.getData(req.session.pseudo);
-    userData.health.delete(req.query.id);
+
+    userData.health.delete(req.query.id.trim());
     userData.save();
    
     res.render('training/main', {
@@ -410,8 +349,6 @@ router.get('/deleteIMC', (req, res) => {
         title: title.training, 
         userData: userData,
         seance: dataLenght(endWorkout(userData)),
-        old: dataLenght(userData.workout.seances),
-        userBody: dataLenght(userData.health.body),
     });
 });
 

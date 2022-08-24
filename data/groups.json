@@ -1,1 +1,1 @@
-[{"name":"Pole","open":true,"seances":[{"name":"test","date":"","detail":"","duration":60,"time":null,"jobs":[],"note":null,"after":[{"pseudo":"Otharius","done":true,"difficulty":"7"}],"users":["Otharius"]}],"rights":[{"pseudo":"Otharius","group":"Pole","admin":true,"coatch":true,"trainee":true},{"pseudo":"Lolo","group":"Pole","admin":false,"coatch":false,"trainee":true}]}]
+[{"name":"Pole","open":true,"seances":[],"rights":[{"pseudo":"Otharius","group":"Pole","admin":true,"coatch":true,"trainee":true}]}]

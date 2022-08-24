@@ -30,7 +30,7 @@ function endWorkout (data) {
     if (l.length > 0) {
         return l;
     };
-     
+
     return null;
 };
 
@@ -74,14 +74,14 @@ router.get('/register', (req,res) => {
 // Add a new user
 router.post('/register', (req,res) => {
     const users = new Users().load();
-    const pseudo = req.body.pseudo;
-    const firstname = req.body.firstname;
-    const name = req.body.name;
-    const email = req.body.email;
-    const password = req.body.password;
-    const password2 = req.body.password2;
+    const pseudo = req.body.pseudo.trim();
+    const firstname = req.body.firstname.trim();
+    const name = req.body.name.trim();
+    const email = req.body.email.trim();
+    const password = req.body.password.trim();
+    const password2 = req.body.password2.trim();
 
-    if  (pseudo.trim() === '' || firstname.trim() === '' || name.trim() === '' || email.trim() === '' || password.trim() === '' || password2.trim() === '') {
+    if  (pseudo === '' || firstname === '' || name === '' || email === '' || password === '' || password2 === '') {
         res.render('sign/register', { title: title.register, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
@@ -122,10 +122,10 @@ router.post('/login', (req,res) => {
     const users = new Users().load();
     const Newgroups = new Groups().load();
 
-    const pseudo = req.body.pseudo;
-    const password = req.body.password;
+    const pseudo = req.body.pseudo.trim();
+    const password = req.body.password.trim();
 
-    if (pseudo.trim() === '' || password.trim() === '') {
+    if (pseudo === '' || password === '') {
         res.render('sign/login', { title: title.login, message: "Veillez renseigner tout les champs", error: true, style: false});
         return;
     };
@@ -149,10 +149,10 @@ router.post('/login', (req,res) => {
         workoutClass.setData(pseudo, userData);
     };
     
-    res.render('home/main', { 
+    res.render('home/main', {
         style: true,
         groups: Newgroups.groups,
-        title: title.home, 
+        title: title.home,
         user: users.get(req.session.pseudo),
         seance: dataLenght(endWorkout(userData)),
         userData: userData,

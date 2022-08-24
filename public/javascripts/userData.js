@@ -61,50 +61,50 @@ class Training {
 
     static create(req, userData) {
         const training = new Training();
-        const templateName = req.body.template;
+        const templateName = req.body.template.trim();
         const fields = userData.templates[templateName].fields;
 
         if (fields.includes('exercices')) {
-            training.withExercice(req.body.exercice);
+            training.withExercice(req.body.exercice.trim());
         };
 
         if (fields.includes('serie')) {
-            training.withSeries(req.body.serie);
+            training.withSeries(req.body.serie.trim());
         };
 
         if (fields.includes('repetition')) {
-            training.withRepetitions(req.body.repetition);
+            training.withRepetitions(req.body.repetition.trim());
         };
 
         if (fields.includes('pause')) {
-            training.withPause(req.body.pause);
+            training.withPause(req.body.pause.trim());
         };
         
         if (fields.includes('charge')) {
-            training.withWeight(req.body.charge);
+            training.withWeight(req.body.charge.trim());
         };
 
         if (fields.includes('distance')) {
-            training.withDistance(req.body.distance);
+            training.withDistance(req.body.distance.trim());
         };
 
         if (fields.includes('duration')) {
-            training.withDuration(req.body.duration);
+            training.withDuration(req.body.duration.trim());
         };
 
         if (fields.includes('time')) {
-            training.withTime(req.body.time);
+            training.withTime(req.body.time.trim());
         };
 
         if (fields.includes('start')) {
-            training.withStart(req.body.start);
+            training.withStart(req.body.start.trim());
         };
 
         if (fields.includes('arrival')) {
-            training.withArrival(req.body.arrival);
+            training.withArrival(req.body.arrival.trim());
         };
 
-        training.withDescription(req.body.description[0]);
+        training.withDescription(req.body.description[0].trim());
 
         return training;
     };

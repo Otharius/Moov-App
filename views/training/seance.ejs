@@ -9,10 +9,10 @@
 
 <div class="button_seance">
     <% if (userData.workout.seances[id].done === false) { %>
-        <a href="/workout/endWorkout?id=<%=id + 1%>&page=<%=page%>" class="end_seance">Séance terminée</a>
+        <a href="/workout/endWorkout?id=<%=id%>&page=<%=page%>" class="end_seance">Séance terminée</a>
     <% } %>
     
-    <a href="/workout/deleteWorkout?id=<%=id %>&page=<%=page%>" class="delete_seance">Séance supprimée</a>
+    <a href="/workout/deleteWorkout?id=<%=id%>&page=<%=page%>" class="delete_seance">Séance supprimée</a>
 </div>
 
 

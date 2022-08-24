@@ -1,18 +1,28 @@
+///////////////////
+/// The modules ///
+///////////////////
+
+
+// Basics modules
 const express = require('express');
 const router = express.Router();
 
-
+// Trainings modules
 const workoutClass = require('../public/javascripts/userData');
-const Templates = workoutClass.Templates;
 const Template = workoutClass.Template;
 const exercices = require('../data/exercices.json');
 const dataFields = exercices.fields;
 
 
+/////////////////////
+/// The functions ///
+/////////////////////
 
+
+// This function test the length of a list
 function dataLenght (data) {
     try {
-        if (data.length || data == null) {
+        if (data.length || data === null) {
            return true;
         };
     } catch (error) {
@@ -20,14 +30,17 @@ function dataLenght (data) {
     };
 };
 
+
+
 function deleteTemplate (data) {
 
     if (dataLenght(data)) {
         return data;
     } else {
         return null;
-    }
-}
+    };
+};
+
 
 
 function session (req,res) {
@@ -39,6 +52,8 @@ function session (req,res) {
         });
     };
 };
+
+
 
 router.get('/newTemplates', (req,res) => {
     session(req,res);
@@ -61,7 +76,7 @@ router.post('/newTemplate', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
     if (req.body.name.trim() != "") {
-        const template = new Template(req.body.name);
+        const template = new Template(req.body.name.trim());
 
         if (dataLenght(req.session.fields)) {
             for (let i = 0; i < req.session.fields.length; i++) {
@@ -70,11 +85,9 @@ router.post('/newTemplate', (req,res) => {
         
             userData.addTemplate(template);
             userData.save();
-            req.session.fields = []
+            req.session.fields = [];
         };
-    }
-
-
+    };
 
 
     res.render('training/templates/new', {
@@ -88,6 +101,7 @@ router.post('/newTemplate', (req,res) => {
 });
 
 
+
 router.post('/newField', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
@@ -95,12 +109,12 @@ router.post('/newField', (req,res) => {
     let fields = req.session.fields;
     if (fields.length > 0) {
         for (let i = 0; i < fields.length; i++) {
-            if (!fields.includes(req.body.field)) {
-                req.session.fields.push(req.body.field);
-            }
-        }
+            if (!fields.includes(req.body.field.trim())) {
+                req.session.fields.push(req.body.field.trim());
+            };
+        };
     } else {
-        req.session.fields.push(req.body.field);
+        req.session.fields.push(req.body.field.trim());
     };
 
     res.render('training/templates/new', {
@@ -113,11 +127,13 @@ router.post('/newField', (req,res) => {
     });
 });
 
+
+
 router.get('/deleteTemplate', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
-    userData.deleteTemplate(req.query.template);
-    userData.save()
+    userData.deleteTemplate(req.query.template.trim());
+    userData.save();
 
     res.render('training/templates/new', {
         style: false,
@@ -128,5 +144,7 @@ router.get('/deleteTemplate', (req,res) => {
         userData: userData,
     });
 });
+
+
 
 module.exports = router;
