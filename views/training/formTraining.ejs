@@ -43,39 +43,39 @@ temps, départ, arrivé-->
             <% } %>
     
             <% if (userData.templates[t[l]].fields[m] == 'repetition') { %>
-                <input type="number" name="repetition" placeholder="Répétition" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Repetition" min="1">
+                <input type="number" name="repetition" placeholder="Répétition" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Repetition" min="1" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'serie') { %>
-                <input type="number" name="serie" placeholder="Série" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Serie" min="1">
+                <input type="number" name="serie" placeholder="Série" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Serie" min="1" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'pause') { %>
-                <input type="number" name="pause" placeholder="Pause (sec)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Pause" min="0">
+                <input type="number" name="pause" placeholder="Pause (sec)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Pause" min="0" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'charge') { %>
-                <input type="number" name="charge" placeholder="Charge (kg)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Charge" min="0">
+                <input type="number" name="charge" placeholder="Charge (kg)" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Charge" min="0" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'time') { %>
-                <input type="number" name="time" placeholder="Time" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Time" min="0">
+                <input type="number" name="time" placeholder="Time" class="field numberSelect" id="<%=Object.keys(userData.templates)[l]%>Time" min="0" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'distance') { %>
-                <input type="number" name="distance" placeholder="Distance (m)" class="field" id="<%=Object.keys(userData.templates)[l]%>Distance">
+                <input type="number" name="distance" placeholder="Distance (m)" class="field" id="<%=Object.keys(userData.templates)[l]%>Distance" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'duration') { %>
-                <input type="number" name="duration" placeholder="Durée" class="field" id="<%=Object.keys(userData.templates)[l]%>Duration">
+                <input type="number" name="duration" placeholder="Durée" class="field" id="<%=Object.keys(userData.templates)[l]%>Duration" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'start') { %>
-                <input type="text" name="start" placeholder="Départ" class="field" id="<%=Object.keys(userData.templates)[l]%>Start">
+                <input type="text" name="start" placeholder="Départ" class="field" id="<%=Object.keys(userData.templates)[l]%>Start" required>
             <% } %>
 
             <% if (userData.templates[t[l]].fields[m] == 'arrival') { %>
-                <input type="text" name="arrival" placeholder="Arrivée" class="field" id="<%=Object.keys(userData.templates)[l]%>Arrival">
+                <input type="text" name="arrival" placeholder="Arrivée" class="field" id="<%=Object.keys(userData.templates)[l]%>Arrival" required>
             <% } %>
 
         <% } %>

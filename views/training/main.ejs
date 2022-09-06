@@ -16,7 +16,7 @@
 
         <% if(userData.workout.seances.length > 0 && dataExercice){ %>
 
-            <form action="/workout/planWorkout" method="POST" id="planWorkout" style="height: 100%;" >
+            <form action="/workout/completeWorkout" method="POST" id="planWorkout" style="height: 100%;" >
 
                 <select name="idPage" class="selectPage">
             
@@ -92,7 +92,7 @@
                         </div>
         
                         <br>
-                        <button class="home_value_button">Valider</button>
+                        <button class="valueAfter_button">Valider</button>
                     </form>          
                 <% } else {%>
                     <p style="text-align: center;">Terminez vos entrainements avant !</p>
@@ -123,6 +123,9 @@
                         
                 <% } %>
                 </ul>
+                <% if(compteur === 1) { %>
+                    <p class="not_workout">Pas encore d'entrainement ?</p> 
+                <% } %>
             <% } else { %> 
                 <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
             <% } %>

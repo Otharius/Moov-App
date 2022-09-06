@@ -165,17 +165,20 @@ router.post('/afterWorkout', (req,res) => {
 
 
 router.get('/group', (req,res) => {
-    req.session.group = req.query.group.trim();
     const userData =  workoutClass.getData(req.session.pseudo);
     const users = new Users().load();
 
+    if (req.query.group != undefined) {
+        req.session.group = req.query.group.trim();
+    };
+    
 
     res.render('group/group', { 
         style: false,
         exercices: exercices,
         userData: userData,
         title: title.training,
-        groups: groups.get(req.query.group),
+        groups: groups.get(req.session.group),
         user: users.get(req.session.pseudo),
     });
 });
@@ -473,14 +476,14 @@ router.post('/addGroupSeance', (req,res) => {
     if (req.body.pseudo != undefined) {
         const duration = parseInt(req.body.durationHeure.trim()) * 60 + parseInt(req.body.durationMin.trim());
         const seance = new GroupSeance(req.body.training_name.trim(), req.body.date.trim(), req.body.detail.trim(), duration);
-        const type = Array.isArray(req.body.pseudo.trim());
+        const type = Array.isArray(req.body.pseudo);
     
         if (req.body.time.trim() != '') {
             seance.withTime(req.body.time.trim());
         };
         
         if (type) {
-            for (let i=0; i<req.body.pseudo.trim().length; i++) {
+            for (let i=0; i<req.body.pseudo.length; i++) {
                seance.addUser(req.body.pseudo[i].trim()).addAfter(req.body.pseudo[i].trim());
             };
         } else {

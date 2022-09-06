@@ -75,6 +75,7 @@ router.get('/newTemplates', (req,res) => {
 router.post('/newTemplate', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    let fields = null;
     if (req.body.name.trim() != "") {
         const template = new Template(req.body.name.trim());
 
@@ -86,7 +87,10 @@ router.post('/newTemplate', (req,res) => {
             userData.addTemplate(template);
             userData.save();
             req.session.fields = [];
+            fields = null;
         };
+    } else {
+        fields = req.session.fields;
     };
 
 
@@ -94,7 +98,7 @@ router.post('/newTemplate', (req,res) => {
         style: false,
         title: title.training,
         dataFields: dataFields,
-        fields: null,
+        fields: fields,
         template: dataLenght(Object.keys(userData.templates)),
         userData: userData,
     });

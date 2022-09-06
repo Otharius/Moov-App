@@ -104,7 +104,7 @@ class Training {
             training.withArrival(req.body.arrival.trim());
         };
 
-        training.withDescription(req.body.description[0].trim());
+        training.withDescription(req.body.description[0]);
 
         return training;
     };

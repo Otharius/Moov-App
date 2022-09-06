@@ -139,7 +139,7 @@ router.post('/addJob', (req,res) => {
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 
-    res.render('training/planWorkout', { 
+    res.render('training/completeWorkout', { 
         id: req.session.idSeance,
         style: false,
         title: title.training, 
@@ -214,7 +214,7 @@ router.get('/deleteWorkout', (req, res) => {
 });
 
 // This bloc send the page complete workout
-router.post('/planWorkout', (req,res) => {
+router.post('/completeWorkout', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
 
@@ -256,7 +256,7 @@ router.get('/deleteJob', (req, res) => {
     userData.workout.deleteJob(req.query.job.trim(), req.session.idSeance);
     userData.save();
 
-    res.render('training/planWorkout', {
+    res.render('training/completeWorkout', {
         id: req.session.idSeance,
         style: false,
         title: title.training, 

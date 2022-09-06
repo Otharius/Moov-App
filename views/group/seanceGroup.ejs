@@ -1,6 +1,6 @@
 
 <div class="top_group"><br><br>
-    <a href="/home/group?group=<%=groups.name%>" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
+    <a href="/home/group" style="margin-left: 10px; margin-top:40px; color: white; text-align: left; width: 2%;"><i class="fa-solid fa-arrow-left-long fa-2xl"></i></a>
     <h1 class="seance_name" style="width: 98%; margin-right: 2%;"><%= groups.seances[id].name%></h1><br>
 </div>
 
@@ -9,7 +9,7 @@
 
 
 <% if (groups.seances[id].after.find(item => item.pseudo === user.pseudo).done === false) { %>
-    <a href="/home/endSeance?group=<%=groups.name%>">Séance terminée</a>
+    <a href="/home/endSeance">Séance terminée</a>
 <% } else { %>
     <% if(groups.seances[id].after.find(item => item.pseudo === user.pseudo).difficulty === null) { %>
 

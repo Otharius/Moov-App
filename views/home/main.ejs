@@ -105,6 +105,9 @@
                         
                 <% } %>
             </ul>
+            <% if(compteur === 1) { %>
+                <p class="not_workout">Pas encore d'entrainement ? Viens t'entrainer !</p> 
+            <% } %>
         <% } else{ %> 
             <p class="not_workout">Pas encore d'entrainement ?</p> 
         <% } %>
@@ -149,7 +152,7 @@
     
                     <br><br>
     
-                    <div class="home_difficulty">
+                    <div class="homeAfter_difficulty">
                         
                         <% for(var i=0; i < 10; i++) { %>
                             <input type="radio" name="difficulty" class="dif" id="d<%=i%>" value="<%=i%>" required>

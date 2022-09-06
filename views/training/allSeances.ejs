@@ -12,7 +12,7 @@
     <% for(var i=0; i < userData.workout.seances.length; i++) { %>
 
         <tr>
-            <td style="border-collapse: collapse;"><a href="/workout/seance?id=<%=i + 1%>&page=allSeances" class="link_seance"><%= userData.workout.seances[i].name %></a></td>
+            <td style="border-collapse: collapse;"><a href="/workout/seance?id=<%=i%>&page=allSeances" class="link_seance"><%= userData.workout.seances[i].name %></a></td>
 
             <% if (userData.workout.seances[i].done === false) { %>
                 <td>Séance non terminée</td>

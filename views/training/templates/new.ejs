@@ -23,7 +23,38 @@
                 
                     <% for(var i=0; i < dataFields.length; i++) { %>
             
-                        <option value="<%=dataFields[i]%>"><%= dataFields[i] %></option>
+                        <option value="<%=dataFields[i]%>">
+                            <% if(dataFields[i] === "exercices") { %>
+                                Exercices
+                            <% } %>
+                            <% if(dataFields[i] === "repetition") { %>
+                                Répétitions
+                            <% } %>
+                            <% if(dataFields[i] === "serie") { %>
+                                Séries
+                            <% } %>
+                            <% if(dataFields[i] === "charge") { %>
+                                Charge prévue
+                            <% } %>
+                            <% if(dataFields[i] === "pause") { %>
+                                Pause
+                            <% } %>
+                            <% if(dataFields[i] === "time") { %>
+                                Temps
+                            <% } %>
+                            <% if(dataFields[i] === "distance") { %>
+                                Distance
+                            <% } %>
+                            <% if(dataFields[i] === "duration") { %>
+                                Durée
+                            <% } %>
+                            <% if(dataFields[i] === "start") { %>
+                                Départ
+                            <% } %>
+                            <% if(dataFields[i] === "arrival") { %>
+                                Arrivée
+                            <% } %>
+                        </option>
             
                     <% } %>
             
@@ -41,7 +72,38 @@
             <p>Votre template contient: </p>
             <ul>
                 <% for(var j=0; j < fields.length; j++) { %>
-                    <li><%=fields[j]%></li>
+                    <li>
+                    <% if(fields[j] === "exercices") { %>
+                        Exercices
+                    <% } %>
+                    <% if(fields[j] === "repetition") { %>
+                        Répétitions
+                    <% } %>
+                    <% if(fields[j] === "serie") { %>
+                        Séries
+                    <% } %>
+                    <% if(fields[j] === "charge") { %>
+                        Charge prévue
+                    <% } %>
+                    <% if(fields[j] === "pause") { %>
+                        Pause
+                    <% } %>
+                    <% if(fields[j] === "time") { %>
+                        Temps
+                    <% } %>
+                    <% if(fields[j] === "distance") { %>
+                        Distance
+                    <% } %>
+                    <% if(fields[j] === "duration") { %>
+                        Durée
+                    <% } %>
+                    <% if(fields[j] === "start") { %>
+                        Départ
+                    <% } %>
+                    <% if(fields[j] === "arrival") { %>
+                        Arrivée
+                    <% } %>
+                </li>
                 <% } %>
             </ul>
            

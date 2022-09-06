@@ -192,7 +192,7 @@ h3 {
   color: white;
   background-color: steelblue;
   border: none;
-  padding: 2% 10%;
+  padding: 1% 5%;
   border-radius: 25px;
   margin: auto;
   font-size: 1.2rem;
@@ -471,7 +471,14 @@ h3 {
 }
 .home_difficulty {
   display: flex;
-  width: 39%;
+  width: 60%;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: auto;
+}
+.homeAfter_difficulty {
+  display: flex;
+  width: 30%;
   flex-direction: row;
   justify-content: space-around;
   margin: auto;
@@ -1508,6 +1515,24 @@ h3 {
   color: white;
   background-color: #26a1ec;
   padding: 25px;
+}
+.valueAfter_button {
+  text-align: center;
+  color: white;
+  background-color: steelblue;
+  border: none;
+  padding: 2% 10%;
+  border-radius: 25px;
+  margin: auto;
+  font-size: 1.2rem;
+  display: block;
+  cursor: pointer;
+}
+.valueAfter_button:hover {
+  background-color: var(--valueButtonDark);
+}
+.valueAfter_button:active {
+  transform: scale(0.98);
 }
 .select2-container {
   box-sizing: border-box;
