@@ -1,6 +1,6 @@
 {
     "protocol" : "https",
-    "privateKeyPath" : "C:/Users/Loïc Le Pennec/.ssh/privateKey.key",
-    "certificatePath" : "C:/Users/Loïc Le Pennec/.ssh/certificate.crt",
+    "privateKeyPath": "C:/Users/Dad-laptop/.ssh/key.pem",
+    "certificatePath": "C:/Users/Dad-laptop/.ssh/cert.pem",
     "port" : 3000
 }

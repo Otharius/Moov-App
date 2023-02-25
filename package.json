@@ -30,6 +30,7 @@
     "passport-local": "^1.0.0",
     "pug": "2.0.0-beta11",
     "readable-stream": "^3.6.0",
-    "reload-json": "^0.3.1"
+    "reload-json": "^0.3.1",
+    "vscode-express": "^1.0.1"
   }
 }
