@@ -1,1 +1,1 @@
-{"pseudo":"Otharius","health":{"calories":0,"sleep":0,"body":[],"height":[]},"workout":{"seances":[{"name":"Jambe","date":"","detail":"","duration":60,"time":null,"jobs":[],"note":null,"difficulty":null,"done":false,"group":false}]},"templates":{"Musculation":{"name":"Musculation","fields":["exercices","repetition","serie","description","pause"]}}}
+{"pseudo":"Otharius","health":{"calories":0,"sleep":0,"body":[],"height":[]},"workout":{"seances":[]},"templates":{"Musculation":{"name":"Musculation","fields":["exercices","repetition","serie","description","pause"]}}}

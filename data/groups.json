@@ -1,1 +1,1 @@
-[{"name":"Maison","open":false,"seances":[],"rights":[{"pseudo":"Oriane2013","group":"Maison","admin":true,"coatch":true,"trainee":true},{"pseudo":"Lucky","group":"Maison","admin":false,"coatch":false,"trainee":true}]}]
+[{"name":"Maison","open":false,"seances":[],"rights":[{"pseudo":"Oriane2013","group":"Maison","admin":true,"coatch":true,"trainee":true},{"pseudo":"Lucky","group":"Maison","admin":false,"coatch":false,"trainee":true}]},{"name":"Pole","open":true,"seances":[],"rights":[{"pseudo":"Otharius","group":"Pole","admin":true,"coatch":true,"trainee":false}]}]
