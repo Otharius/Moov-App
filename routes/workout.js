@@ -230,6 +230,25 @@ router.post('/completeWorkout', (req,res) => {
     });
 });
 
+
+
+
+router.get('/changeWorkout', (req,res) => {
+    session(req,res);
+    const userData = workoutClass.getData(req.session.pseudo);
+
+    req.session.idSeance = req.query.id
+
+    res.render('training/completeWorkout', { 
+        id: req.session.idSeance,
+        style: false,
+        template: dataLenght(Object.keys(userData.templates)),
+        title: title.training,
+        userData: userData,
+        exercices: exercices,
+    });
+});
+
 // This bloc finish a workout
 router.get('/endWorkout', (req,res) => {
     session(req,res);
