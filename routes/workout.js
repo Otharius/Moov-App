@@ -139,8 +139,9 @@ router.post('/addJob', (req,res) => {
     userData.workout.addJob(job, req.session.idSeance);
     userData.save();
 
-    res.render('training/completeWorkout', { 
+    res.render('training/seance', { 
         id: req.session.idSeance,
+        page: req.session.page,
         style: false,
         title: title.training, 
         userData: userData,
@@ -213,41 +214,6 @@ router.get('/deleteWorkout', (req, res) => {
     });
 });
 
-// This bloc send the page complete workout
-router.post('/completeWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    req.session.idSeance = parseInt(req.body.idPage.trim());
-
-    res.render('training/completeWorkout', { 
-        id: req.session.idSeance,
-        style: false,
-        template: dataLenght(Object.keys(userData.templates)),
-        title: title.training,
-        userData: userData,
-        exercices: exercices,
-    });
-});
-
-
-
-
-router.get('/changeWorkout', (req,res) => {
-    session(req,res);
-    const userData = workoutClass.getData(req.session.pseudo);
-
-    req.session.idSeance = req.query.id
-
-    res.render('training/completeWorkout', { 
-        id: req.session.idSeance,
-        style: false,
-        template: dataLenght(Object.keys(userData.templates)),
-        title: title.training,
-        userData: userData,
-        exercices: exercices,
-    });
-});
 
 // This bloc finish a workout
 router.get('/endWorkout', (req,res) => {
@@ -275,8 +241,9 @@ router.get('/deleteJob', (req, res) => {
     userData.workout.deleteJob(req.query.job.trim(), req.session.idSeance);
     userData.save();
 
-    res.render('training/completeWorkout', {
+    res.render('training/seance', {
         id: req.session.idSeance,
+        page: req.session.page,
         style: false,
         title: title.training, 
         userData: userData,
@@ -289,6 +256,7 @@ router.get('/deleteJob', (req, res) => {
 router.get('/training', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    req.session.page.destroy()
 
     res.render('training/main', {
         style: true,
@@ -303,13 +271,17 @@ router.get('/training', (req,res) => {
 router.get('/seance', (req,res) => {
     session(req,res);
     const userData = workoutClass.getData(req.session.pseudo);
+    req.session.idSeance = req.query.id;
+    req.session.page = req.query.page
 
     res.render('training/seance', {
-        id: req.query.id.trim(),
-        page: req.query.page.trim(),
+        id: req.session.idSeance,
         style: false,
+        page: req.session.page,
+        template: dataLenght(Object.keys(userData.templates)),
         title: title.training,
         userData: userData,
+        exercices: exercices,
     });
 });
 

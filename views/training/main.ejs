@@ -14,24 +14,8 @@
             <%- include('../training/newWorkout.ejs') %>
         </div>
 
-        <% if(userData.workout.seances.length > 0 && dataExercice){ %>
-
-            <form action="/workout/completeWorkout" method="POST" id="planWorkout" style="height: 100%;" >
-
-                <select name="idPage" class="selectPage">
-            
-                    <% for(var i=0; i < userData.workout.seances.length; i++) { %>
-                        <% if (userData.workout.seances[i].done === false) { %>
-                            <option class="o" value="<%= i %>" name="supprimer"> <%= userData.workout.seances[i].name %> </option>
-                        <% } %>
-                    <% } %>
-
-                </select>
-
-            </form>
-
-            <button class="planButton" form="planWorkout">Compléter sa séance</button>
-
+        <% if(userData.workout.seances.length > 0){ %>
+            <a href="/workout/allSeances" class="link_all_seance">Voir les séances passées</a>
         <% } %> 
 
     </div>
@@ -182,9 +166,7 @@
         </div>
 
         <div class="all_seance_box">
-            <% if(userData.workout.seances.length > 0){ %>
-                <a href="/workout/allSeances" class="link_all_seance">Voir les séances passées</a>
-            <% } %> 
+
                 
 
             <% if(userData.health.body.length > 0) { %>

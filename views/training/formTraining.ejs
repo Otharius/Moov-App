@@ -1,12 +1,10 @@
 <!-- Charge prévu, série, répétitions, pause, tricet, difficulté, description, distance, interval, 
 temps, départ, arrivé-->
 <% var t = Object.keys(userData.templates) %>
-
 <% for (var l=0; l < t.length; l++) { %>
-    <div id="<%=Object.keys(userData.templates)[l]%>" class="template" style="display: none;" >
-
+    <div id="<%=Object.keys(userData.templates)[l]%>">
         <% for (var m=0; m < userData.templates[t[l]].fields.length; m++) { %>
-
+            
             <% if (userData.templates[t[l]].fields[m] == 'exercices') { %>
                 <select name="exercices" style="background-color: black;" id="<%=Object.keys(userData.templates)[l]%>Exercice" class="field exerciceSelect" >
                     <optgroup label="Haut du corps">
@@ -83,7 +81,6 @@ temps, départ, arrivé-->
         <textarea name="description" cols="30" rows="10" class="description" id="<%=Object.keys(userData.templates)[l]%>Description"></textarea>
     </div>
 <% } %>
-
 <div class="addJob_box">
     <input type="submit" value="Valider" class="addJob">
 </div>

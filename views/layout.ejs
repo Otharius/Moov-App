@@ -53,7 +53,6 @@ $(document).ready(function () {
 });
 
 function test () {
-  $('.template').attr("style", "display:none");
   $('.field').attr("name", '');
   const id = '#' + $('#selectExerciceJob').val();
   $(id).attr("style", "display:block");
@@ -71,10 +70,19 @@ function test () {
 }
 
 $(function() {  
-    $("#table_intensity_contenta").draggable();  
+    $("#table_intensity_content").draggable();  
   });
 
 
+function see (){
+  let div = document.getElementById('template')
+
+  if (div.style.display == 'block') {
+    div.style.display = 'none';
+  } else {
+    div.style.display = 'block';
+  };
+}
   
 const wrapper = document.querySelector(".move_div"),
 header = wrapper.querySelector("header");
